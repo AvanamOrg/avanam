@@ -1,0 +1,23 @@
+@import "_custom-properties.scss";
+// Styles for Polylang Widget.
+.widget_polylang ul {
+	li {
+		a {
+			display: flex;
+			align-items: center;
+		}
+	}
+}
+// Header.
+.site-header .widget_polylang ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+	li {
+		margin-left: 0.5em;
+	}
+	li:first-child {
+		margin-left: 0;
+	}
+}

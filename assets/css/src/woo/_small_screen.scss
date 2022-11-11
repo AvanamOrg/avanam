@@ -1,0 +1,318 @@
+/**
+ * woocommerce-smallscreen.scss
+ * Optimises the default WooCommerce frontend layout when viewed on smaller screens.
+ */
+
+/**
+ * Imports
+ */
+ @import "./../_custom-properties.scss";
+ @import "./../_mixins.scss";
+ 
+ /**
+  * Style begins
+  */
+  @media screen and (max-width: $phone-minus-query) {
+    .woocommerce div.product .woocommerce-tabs {
+        border: 1px solid var(--global-gray-400);
+        margin-bottom: 2em;
+        ul.tabs {
+            padding: 0;
+            margin-bottom: 1em;
+            &::before {
+                border: 0;
+            }
+            li {
+                display: block;
+                margin: 0;
+                border-radius: 0;
+                border: 0;
+                border-bottom: 1px solid var(--global-gray-400);
+                a {
+                    display: block;
+                    opacity: 0.7;
+                }
+            }
+            li.active {
+                border-bottom-color: var(--global-gray-400);
+                a {
+                    opacity: 1;
+                }
+            }
+        }
+        .panel {
+            padding-left: 1em;
+            padding-right: 1em;
+            margin: 0;
+        }
+    }
+    .woocommerce.product-tab-style-center div.product .woocommerce-tabs ul.tabs {
+        li {
+            border: 0;
+            border-bottom: 1px solid var(--global-gray-400);
+        }
+    }
+    .woocommerce #reviews #comments ol.commentlist li img.avatar {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .woocommerce #reviews #comments ol.commentlist li .comment-text {
+        margin-left: 45px;
+    }
+ .woocommerce,
+ .woocommerce-page {
+     table.shop_table_responsive {
+        ul#shipping_method li {
+            justify-content: flex-end;
+        }
+         thead {
+             display: none;
+         }
+ 
+         tbody {
+             tr:first-child {
+                 td:first-child {
+                     border-top: 0;
+                 }
+             }
+ 
+             th {
+                 display: none;
+             }
+         }
+ 
+         tr {
+             display: block;
+ 
+             td {
+                 display: block;
+                 text-align: right !important; // Important to overwrite order status inline styling
+ 
+                 &.order-actions {
+                     text-align: left !important; // This must always align left on handheld
+                 }
+ 
+                 &::before {
+                     content: attr(data-title) ': ';
+                     font-weight: 700;
+                     float: left;
+                 }
+ 
+                 &.product-remove,
+                 &.actions {
+                     &::before {
+                         display: none;
+                     }
+                 }
+             }
+ 
+             &:nth-child( 2n ) {
+                 td {
+                     background-color: rgba(0, 0, 0, 0.025);
+                 }
+             }
+         }
+     }
+ 
+     table.my_account_orders {
+         tr {
+             td {
+                 &.order-actions {
+                     text-align: left;
+ 
+                     &::before {
+                         display: none;
+                     }
+ 
+                     .button {
+                         float: none;
+                         margin: 0.125em 0.25em 0.125em 0;
+                     }
+                 }
+             }
+         }
+     }
+ 
+     /**
+      * General layout
+      */
+     .col2-set {
+         .col-1,
+         .col-2 {
+             float: none;
+             width: 100%;
+         }
+		 .col-2 {
+			margin-top: var(--global-md-spacing);
+		 }
+     }
+ 
+     /**
+      * Product Details
+      */
+      #primary{
+        div.product,
+        #content div.product {
+            div.images,
+            div.summary {
+                float: none;
+                width: 100%;
+            }
+        }
+    }
+ 
+     /**
+      * Cart
+      */
+     table.cart,
+     #content table.cart {
+        .product-thumbnail {
+            border-top:0;
+            &:before {
+                display: none;
+            }
+            img {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .product-remove {
+            padding-bottom: 0;
+            .remove {
+                transform: translateY(10px);
+            }
+        }
+    
+         td.actions {
+             text-align: left;
+            padding-left: 0;
+            padding-right: 0;
+             .coupon {
+                 float: none;
+                 @include clearfix();
+                 padding-bottom: 0.5em;
+ 
+                 input,
+                 .button,
+                 .input-text {
+                     width: 48%;
+                     box-sizing: border-box;
+                 }
+ 
+                 .input-text + .button,
+                 .button.alt {
+                     float: right;
+                 }
+             }
+ 
+             .button {
+                 display: block;
+                 width: 100%;
+             }
+         }
+     }
+ 
+     .cart-collaterals {
+         .cart_totals,
+         .shipping_calculator,
+         .cross-sells {
+             width: 100%;
+             float: none;
+             text-align: left;
+         }
+     }
+ 
+     /**
+      * Checkout
+      */
+     &.woocommerce-checkout {
+         form.login {
+             .form-row {
+                 width: 100%;
+                 float: none;
+             }
+         }
+     }
+ 
+     #payment {
+         .terms {
+             text-align: left;
+             padding: 0;
+         }
+     }
+ 
+     /**
+      * Account
+      */
+     .lost_reset_password {
+         .form-row-first,
+         .form-row-last {
+             width: 100%;
+             float: none;
+             margin-right: 0;
+         }
+     }
+ }
+ 
+ .woocommerce-account {
+     .woocommerce-MyAccount-navigation,
+     .woocommerce-MyAccount-content {
+         float: none;
+         width: 100%;
+     }
+ }
+	.rtl {
+		.woocommerce table.cart td.actions .coupon .input-text+.button, .woocommerce table.cart td.actions .coupon .button.alt, .woocommerce #content table.cart td.actions .coupon .input-text+.button, .woocommerce #content table.cart td.actions .coupon .button.alt, .woocommerce-page table.cart td.actions .coupon .input-text+.button, .woocommerce-page table.cart td.actions .coupon .button.alt, .woocommerce-page #content table.cart td.actions .coupon .input-text+.button, .woocommerce-page #content table.cart td.actions .coupon .button.alt {
+			float: left;
+		}
+		.woocommerce table.shop_table_responsive tr td, .woocommerce-page table.shop_table_responsive tr td {
+			text-align: left !important;
+		}
+		.woocommerce table.shop_table_responsive tr td::before, .woocommerce-page table.shop_table_responsive tr td::before {
+			float: right;
+		}
+	}
+}
+// Really small for cart.
+@media screen and (max-width: $landscape-phone-minus-query) {
+    .woocommerce .woocommerce-message .button {
+        float: none;
+        margin-top: 0.5em;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    .woocommerce .woocommerce-message {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    table.cart,
+     #content table.cart {
+         td.actions {
+             .coupon { 
+                 input,
+                 .button,
+                 .input-text {
+                     width: 100%;
+                     float:none;
+                     margin:0;
+                 }
+ 
+                 .input-text + .button,
+                 .button.alt {
+                     float: none;
+                 }
+             }
+         }
+    }
+}
+@media screen and (max-width: 400px) {
+    .base-cart-button-medium-large.woocommerce div.product .button.single_add_to_cart_button, .base-cart-button-large.woocommerce div.product .button.single_add_to_cart_button {
+        font-size: 100%;
+        padding: 0;
+    }
+    .woocommerce div.product form.cart .variations td {
+        display: block;
+        padding-right: 0;
+    }
+}

@@ -1,0 +1,43 @@
+@import "_custom-properties.scss";
+$socials: (
+	"facebook": $facebook,
+	"instagram": $instagram,
+	"twitter": $twitter,
+	"youtube": $youtube,
+	"facebook_group": $facebook_group,
+	"vimeo": $vimeo,
+	"pinterest": $pinterest,
+	"linkedin": $linkedin,
+	"medium": $medium,
+	"wordpress": $wordpress,
+	"reddit": $reddit,
+	"patreon": $patreon,
+	"github": $github,
+	"dribbble": $dribbble,
+	"behance": $behance,
+	"vk": $vk,
+	"xing": $xing,
+	"rss": $rss,
+	"email": $email,
+	"phone": $phone,
+	"whatsapp": $whatsapp,
+	"google_reviews": $google_reviews,
+	"telegram": $telegram,
+	"yelp": $yelp,
+	"trip_advisor": $trip_advisor,
+	"imdb": $imdb,
+	"soundcloud": $soundcloud,
+	"tumblr": $tumblr,
+	"anchor": $anchor,
+);
+// @each $social, $color in $socials {
+// 	body .social-show-brand-hover .social-link-#{$social}:not(.ignore-brand):not(.skip):not(.ignore):hover, body .social-show-brand-until .social-link-#{$social}:not(:hover):not(.skip):not(.ignore), body .social-show-brand-always .social-link-#{$social}:not(.ignore-brand):not(.skip):not(.ignore) {
+// 	  background:$color;
+// 	}
+// }
+body.social-brand-colors .social-show-brand-until .social-button:not(:hover):not(.skip):not(.ignore), body.social-brand-colors .social-show-brand-hover .social-button:not(.ignore-brand):not(.skip):not(.ignore):hover, body.social-brand-colors .social-show-brand-always .social-button:not(.ignore-brand):not(.skip):not(.ignore) {
+	color:white;
+}
+body.social-brand-colors .social-show-brand-until.social-style-outline .social-button:not(:hover):not(.skip):not(.ignore), body.social-brand-colors .social-show-brand-hover.social-style-outline .social-button:not(.ignore-brand):not(.skip):not(.ignore):hover, body.social-brand-colors .social-show-brand-always.social-style-outline .social-button:not(.ignore-brand):not(.skip):not(.ignore) {
+	border-color:currentColor;
+}

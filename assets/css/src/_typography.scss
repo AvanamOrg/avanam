@@ -1,0 +1,86 @@
+@import "_custom-properties.scss";
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	padding:0;
+	margin: 0;
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
+
+blockquote,
+q {
+	quotes: '“' '”';
+}
+
+blockquote {
+	padding-left: 1em;
+	border-left: 4px solid var( --global-palette4 );
+}
+
+.entry-content blockquote {
+	margin: 0 0 var(--global-md-spacing);
+}
+
+blockquote cite, blockquote .wp-block-pullquote__citation {
+	color: var(--global-palette5);
+	font-size: 13px;
+	margin-top: 1em;
+	position: relative;
+	font-style: normal;
+	display: block;
+}
+
+address {
+	margin: 0 0 1.5em;
+}
+
+pre {
+	background: var(--global-palette7);
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	font-size: 0.9375rem;
+	line-height: 1.6;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.5em;
+	white-space: pre-wrap;
+}
+
+code,
+kbd,
+tt,
+var {
+	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font-size: 0.8rem;
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted var(--global-palette4);
+	cursor: help;
+}
+
+mark,
+ins {
+	text-decoration: none;
+}
+
+big {
+	font-size: 125%;
+}

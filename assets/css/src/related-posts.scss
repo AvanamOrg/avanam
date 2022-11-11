@@ -1,0 +1,48 @@
+@import "_custom-properties.scss";
+.entry-related {
+	margin-top: var(--global-lg-spacing);
+	margin-bottom: var(--global-lg-spacing);
+	background: var(--global-palette7);
+}
+.content-wrap .entry-related:last-child {
+    margin-bottom: 0;
+}
+.entry-related-carousel {
+	.entry-summary,.entry-footer,.entry-taxonomies {
+		display: none;
+	}
+	h3.entry-title {
+		font-size: 20px;
+	}
+}
+h2.entry-related-title {
+    margin-bottom: 1.5rem;
+}
+.wp-site-blocks .entry-related-inner {
+	display: block;
+}
+.has-sidebar .entry-related {
+    background: transparent;
+}
+.has-sidebar .wp-site-blocks .entry-related-inner {
+    padding: 0;
+}
+.entry-related-inner-content {
+    padding-top: var(--global-xl-spacing);
+	padding-bottom: var(--global-xl-spacing);
+	padding-left: var(--global-sm-spacing);
+	padding-right: var(--global-sm-spacing);
+}
+@media screen and (min-width: $laptop-plus-query) {
+	.content-width-narrow .entry-related-inner-content {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+.entry-related-inner-content .grid-cols {
+	display: grid;
+}
+.splide.splide-initial .splide__list.grid-cols {
+    display: flex;
+	gap:0;
+}

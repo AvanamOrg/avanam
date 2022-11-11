@@ -1,0 +1,89 @@
+const {
+	RangeControl,
+} = wp.components;
+const {
+	useInstanceId,
+} = wp.compose;
+
+/**
+ * Build the Measure controls
+ * @returns {object} Measure settings.
+ */
+export default function BaseRange( {
+	label,
+	onChange,
+	value = '',
+	className = '',
+	step = 1,
+	max = 100,
+	min = 0,
+	beforeIcon = '',
+	help = '',
+} ) {
+	const onChangInput = ( event ) => {
+		if ( event.target.value === '' ) {
+			onChange( undefined );
+			return;
+		}
+		const newValue = Number( event.target.value );
+		if ( newValue === '' ) {
+			onChange( undefined );
+			return;
+		}
+		if ( min < -0.1 ) {
+			if ( newValue > max ) {
+				onChange( max );
+			} else if ( newValue < min && newValue !== '-' ) {
+				onChange( min );
+			} else {
+				onChange( newValue );
+			}
+		} else {
+			if ( newValue > max ) {
+				onChange( max );
+			} else if ( newValue < -0.1 ) {
+				onChange( min );
+			} else {
+				onChange( newValue );
+			}
+		}
+	};
+	const id = useInstanceId( BaseRange, 'inspector-base-range' );
+	return [
+		onChange && (
+			<div className={ `components-base-control base-range-control${ className ? ' ' + className : '' }` }>
+				{ label && (
+					<label htmlFor={ id } className="components-base-control__label">{ label }</label>
+				) }
+				<div className={ 'base-range-control-inner' }>
+					<RangeControl
+						className={ 'base-range-control-range' }
+						beforeIcon={ beforeIcon }
+						value={ value }
+						onChange={ ( newVal ) => onChange( newVal ) }
+						min={ min }
+						max={ max }
+						step={ step }
+						help={ help }
+						withInputField={ false }
+					/>
+					<div className="components-base-control bst-range-number-input">
+						<div className="components-base-control__field">
+							<input
+								value={ value }
+								onChange={ onChangInput }
+								min={ min }
+								max={ max }
+								id={ id }
+								step={ step }
+								type="number"
+								className="components-text-control__input"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		),
+	];
+}
+

@@ -1,0 +1,48 @@
+@import "_custom-properties.scss";
+.single-give_forms #primary { 
+	.give_forms {
+    	margin:0;
+		max-width: none;
+		.entry-content-wrap:after {
+			clear: both;
+			display: table;
+			content: '';
+		}
+	}
+}
+#primary { 
+	form[id*=give-form] .give-donation-amount #give-amount, form[id*=give-form] .give-donation-amount #give-amount-text {
+		background-color: var(--global-palette9);
+		border-color: var(--global-gray-400);
+	}
+	form[id*=give-form] .give-donation-amount .give-currency-symbol {
+		background-color: var(--global-palette8);
+		border-color: var(--global-gray-400);
+		color: var(--global-palette4);
+	}
+	#give-donation-level-button-wrap .give-btn {
+		background: var(--global-palette7);
+		border: 1px solid var(--global-gray-400);
+		color: var(--global-palette4);
+	}
+	#give-recurring-form, form.give-form, form[id*=give-form] {
+		> .give-btn {
+			background: var(--global-palette-btn-bg);
+			color: var(--global-palette-btn);
+			padding: 0.4em 1em;
+			border: 0;
+			line-height: 1.6;
+			&:hover {
+				color: var(--global-palette-btn-hover);
+				background: var(--global-palette-btn-bg-hover);
+			}
+		}
+	}
+	.give-wrap .give-card {
+		background-color: var(--global-palette9);
+		border-color: var(--global-gray-400);
+	}
+	.give-donor__name, .give-donor__timestamp {
+		color: var(--global-palette4) !important;
+	}
+}

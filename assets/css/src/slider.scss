@@ -1,0 +1,258 @@
+// Version: 2.9.2
+.tns-outer {
+	padding: 0 !important; // remove padding: clientWidth = width + padding (0) = width
+	[hidden] {
+		display: none !important;
+	}
+	[aria-controls], [data-action] {
+		cursor: pointer;
+	}
+}
+.tns-slider {
+	transition: all 0s;
+	> .tns-item {
+	  box-sizing: border-box;
+	}
+}
+.tns-outer {
+	position: relative;
+	.tns-nav {
+		position: absolute;
+		width: 100%;
+		bottom: -25px;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		text-align: center;
+		line-height: 1;
+		button {
+			display: inline-block;
+			width: 24px;
+			height: 24px;
+			margin: 0;
+			background: transparent;
+			opacity: 0.25;
+			cursor: pointer;
+			padding: 0;
+			border:0;
+			box-shadow: none !important;
+			&.tns-nav-active {
+				opacity: 1;
+			}
+			&:before {
+				content: '';
+				display:block;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				margin: 0 auto;
+				background: #333;
+			}
+		}
+	}
+	button[data-action="start"], button[data-action="stop"] {
+	    display: none;
+	}
+	.tns-controls.focus-visible button {
+		outline: -webkit-focus-ring-color auto 1px;
+		opacity: .55;
+	}
+	.tns-controls {
+		button {
+			position: absolute;
+			background: rgba(0,0,0,0.8);
+			color: white;
+			border: none;
+			display: block;
+			height: 50px;
+			width: 30px;
+			line-height: 0px;
+			text-align: center;
+			font-size: 0px;
+			outline: none;
+			box-shadow: none;
+			border-radius: 0;
+			top: 50%;
+			transform: translate(0, -50%);
+			padding:0;
+			transition: opacity .25s ease-in-out;
+			opacity: .25;
+			z-index: 10;
+			&:hover {
+				cursor: pointer;
+				opacity: 1;
+				outline: none;
+				background: rgba(0,0,0,0.8);
+			}
+			&[data-controls="prev"] {
+				left: 0px;
+				&:before {
+					border-style: solid;
+					border-width: 2px 2px 0 0;
+					content: '';
+					display: inline-block;
+					height: 10px;
+					position: relative;
+					top: 0px;
+					left: 6px;
+					transform: rotate(-135deg);
+					vertical-align: top;
+					width: 10px;
+				}
+			}
+			&[data-controls="next"] {
+				right: 0px;
+				&:before {
+					border-style: solid;
+					border-width: 2px 2px 0 0;
+					content: '';
+					display: inline-block;
+					height: 10px;
+					position: relative;
+					top: 0px;
+					left: 0px;
+					transform: rotate(45deg);
+					vertical-align: top;
+					width: 10px;
+				}
+			}
+		}
+		&:focus button, button:focus {
+			opacity: 1;
+			outline: -webkit-focus-ring-color auto 1px;
+		}
+	}
+}
+.tns-horizontal {
+	&.tns-subpixel {
+		white-space: nowrap;
+		> .tns-item {
+			display: inline-block;
+			vertical-align: top;
+			white-space: normal;
+		}
+	}
+	&.tns-no-subpixel {
+	  &:after {
+		content: '';
+		display: table;
+		clear: both;
+	  }
+	  > .tns-item {
+		float: left;
+	  }
+	}
+	&.tns-carousel {
+	  &.tns-no-subpixel {
+		> .tns-item {
+		  margin-right: -100%;
+		}
+	  }
+	}
+  }
+  .tns-no-calc {
+	position: relative;
+	left: 0;
+  }
+  .tns-gallery {
+	position: relative;
+	left: 0;
+	min-height: 1px; // make sure slider container is visible
+	// overflow: hidden;
+	> .tns-item {
+	  position: absolute;
+	  left: -100%;
+	  -webkit-transition: transform 0s, opacity 0s;
+	  -moz-transition: transform 0s, opacity 0s;
+	  transition: transform 0s, opacity 0s;
+	}
+	> .tns-slide-active {
+	  position: relative;
+	  left: auto !important;
+	}
+	> .tns-moving {
+	  -webkit-transition: all 0.25s;
+	  -moz-transition: all 0.25s;
+	  transition: all 0.25s;
+	}
+  }
+  .tns-autowidth { display: inline-block; }
+  .tns-lazy-img {
+	-webkit-transition: opacity 0.6s;
+	-moz-transition: opacity 0.6s;
+	transition: opacity 0.6s;
+	opacity: 0.6;
+	&.tns-complete { opacity: 1; }
+  }
+  .tns-ah {
+	-webkit-transition: height 0s;
+	-moz-transition: height 0s;
+	transition: height 0s;
+  }
+  .tns-ovh { overflow: hidden; }
+  .tns-visually-hidden { position: absolute; left: -10000em; }
+  .tns-transparent { opacity: 0; visibility: hidden; }
+  
+  .tns-fadeIn {
+	opacity: 1;
+	filter: alpha(opacity=100);
+	z-index: 0;
+  }
+  .tns-normal, .tns-fadeOut {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	z-index: -1;
+  }
+  
+  
+  // *** Fix a viewport issue in initialization
+  .tns-vpfix {
+	white-space: nowrap;
+	> div, > li {
+	  display: inline-block;
+	}
+  }
+  
+  // *** Detecting browser capability ***
+  
+  .tns-t {
+	&-subp2 {
+	  margin: 0 auto;
+	  width: 310px;
+	  position: relative;
+	  height: 10px;
+	  overflow: hidden;
+	}
+	&-ct {
+	  width: (100% * 70 / 3);
+	  width: -webkit-calc(100% * 70 / 3);
+	  width: -moz-calc(100% * 70 / 3);
+	  width: calc(100% * 70 / 3);
+	  position: absolute;
+	  right: 0;
+	  &:after {
+		content: '';
+		display: table;
+		clear: both;
+	  }
+	  > div {
+		width: (100% / 70);
+		width: -webkit-calc(100% / 70);
+		width: -moz-calc(100% / 70);
+		width: calc(100% / 70);
+		height: 10px;
+		float: left;
+	  }
+	}
+  }
+  .tns-outer .tns-nav ~ .tns-ovh {
+    padding-bottom: 20px;
+}
+@media screen and (max-width: 1024px) {
+	.entry-related .tns-outer .tns-nav {
+		display:none;
+	}
+	.entry-related .tns-outer .tns-controls button {
+		width:50px;
+	}
+}

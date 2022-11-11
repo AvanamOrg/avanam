@@ -1,0 +1,41 @@
+/**
+ * Custom Properties
+ */
+.single-give_forms #primary .give_forms {
+  margin: 0;
+  max-width: none; }
+  .single-give_forms #primary .give_forms .entry-content-wrap:after {
+    clear: both;
+    display: table;
+    content: ''; }
+
+#primary form[id*=give-form] .give-donation-amount #give-amount, #primary form[id*=give-form] .give-donation-amount #give-amount-text {
+  background-color: var(--global-palette9);
+  border-color: var(--global-gray-400); }
+
+#primary form[id*=give-form] .give-donation-amount .give-currency-symbol {
+  background-color: var(--global-palette8);
+  border-color: var(--global-gray-400);
+  color: var(--global-palette4); }
+
+#primary #give-donation-level-button-wrap .give-btn {
+  background: var(--global-palette7);
+  border: 1px solid var(--global-gray-400);
+  color: var(--global-palette4); }
+
+#primary #give-recurring-form > .give-btn, #primary form.give-form > .give-btn, #primary form[id*=give-form] > .give-btn {
+  background: var(--global-palette-btn-bg);
+  color: var(--global-palette-btn);
+  padding: 0.4em 1em;
+  border: 0;
+  line-height: 1.6; }
+  #primary #give-recurring-form > .give-btn:hover, #primary form.give-form > .give-btn:hover, #primary form[id*=give-form] > .give-btn:hover {
+    color: var(--global-palette-btn-hover);
+    background: var(--global-palette-btn-bg-hover); }
+
+#primary .give-wrap .give-card {
+  background-color: var(--global-palette9);
+  border-color: var(--global-gray-400); }
+
+#primary .give-donor__name, #primary .give-donor__timestamp {
+  color: var(--global-palette4) !important; }

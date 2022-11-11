@@ -1,0 +1,63 @@
+/**
+ * Styles for the WordPress post/page editor.
+ * Ensures a visual match between back- and front-end.
+ */
+
+/*--------------------------------------------------------------
+# Adjustments for the editor
+--------------------------------------------------------------*/
+.wp-block-wpzoom-recipe-card-block-recipe-card.is-style-default {
+	background: var(--global-palette9);
+	border-color: var(--global-gray-400);
+	.recipe-card-ingredients {
+		background: var(--global-palette7);
+		color: var(--global-palette5);
+	}
+	.ingredients-title {
+		color: var(--global-palette3);
+	}
+	.ingredients-list>li {
+		border-bottom-color: var(--global-gray-400);
+		.tick-circle {
+			border-color: var(--global-gray-400);
+		}
+	}
+	.notes-title {
+		color: var(--global-palette3);
+	}
+	.recipe-card-notes .recipe-card-notes-list>li {
+		background: var(--global-palette7);
+		color: var(--global-palette5);
+		&::before {
+			background: var(--global-palette3);
+			color: var(--global-palette9);
+		}
+	}
+	.directions-title {
+		color: var(--global-palette3);
+	}
+	.directions-list>li::before {
+		color: var(--global-palette3);
+	}
+	.recipe-card-heading {
+		.recipe-card-course, .recipe-card-cuisine, .recipe-card-difficulty {
+			color: var(--global-palette6);
+			mark {
+				color: var(--global-palette3);
+			}
+		}
+		.recipe-card-author {
+			color: var(--global-palette5);
+			border-color: var(--global-gray-400);
+		}
+		span:not(.recipe-card-author)+span:not(.recipe-card-author):before {
+			color: var(--global-palette6);
+		}
+	}
+	.details-items {
+		border-color: var(--global-gray-400);
+		.detail-item {
+			border-color: var(--global-gray-400);
+		}
+	}
+}

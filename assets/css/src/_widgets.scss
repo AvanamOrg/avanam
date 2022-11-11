@@ -1,0 +1,229 @@
+/*--------------------------------------------------------------
+# Widgets
+--------------------------------------------------------------*/
+.widget {
+	margin-top: 0;
+	margin-bottom: 1.5em;
+}
+.widget-area .widget:last-child {
+    margin-bottom: 0;
+}
+.widget-area .widget-title {
+	font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+}
+.widget-area ul {
+    padding-left: 0.5em;
+}
+.widget-area a:where(:not(.button):not(.wp-block-button__link):not(.wp-element-button)) {
+	color: var(--global-palette3);
+	text-decoration: none;
+	&:hover {
+		color: var(--global-palette-highlight);
+		text-decoration: underline;
+	}
+}
+.sidebar-link-style-underline.widget-area a:where(:not(.button):not(.wp-block-button__link):not(.wp-element-button)) {
+    text-decoration: underline;
+}
+.sidebar-link-style-plain.widget-area a:where(:not(.button):not(.wp-block-button__link):not(.wp-element-button)) {
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
+}
+.widget-area .widget {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.widget li {
+	line-height: 1.8;
+}
+
+.widget_archive ul,
+.widget_categories ul,
+.widget_meta ul,
+.widget_nav_menu ul,
+.widget_recent_comments ul,
+.widget_pages ul,
+.widget_recent_entries ul,
+.widget_rss ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.widget select {
+	max-width: 100%;
+	text-overflow: ellipsis;
+}
+
+/* Archive and Categories widgets */
+.widget_archive li {
+	color: var(--global-palette6);
+}
+
+.widget_categories .children {
+	padding-top: 0;
+}
+
+/* Pages and Menu widgets */
+.widget_pages .children,
+.widget_nav_menu .sub-menu {
+	padding-top: 0;
+	padding-bottom: 0.5em;
+}
+
+.widget_pages a,
+.widget_nav_menu a {
+	display: block;
+	padding: 0.1em 0;
+	text-decoration: none;
+}
+
+.widget_pages a:hover,
+.widget_pages a:focus,
+.widget_nav_menu a:hover,
+.widget_nav_menu a:focus {
+	text-decoration: none;
+}
+
+.widget_pages li,
+.widget_nav_menu li {
+	padding: 0;
+}
+
+.widget_pages li ul,
+.widget_nav_menu li ul {
+	margin-left: 1em;
+}
+
+/* Meta widget */
+.widget_meta li {
+	padding: 0;
+}
+
+/* Recent comments */
+.widget_recent_comments li {
+	line-height: 1.3;
+	padding-bottom: 0.5em;
+}
+.widget_recent_comments a {
+	font-weight: bold;
+}
+.widget_recent_comments .comment-author-link a {
+	font-weight: inherit;
+}
+.widget_recent_comments a:hover,
+.widget_recent_comments a:focus {
+	padding-left: 0;
+}
+/* RSS widget */
+.widget_recent_entries ul li {
+    margin-bottom: 0.4em;
+    .post-date {
+        font-size: 0.8em;
+        color: var(--global-palette6);
+    }
+}
+
+/* RSS widget */
+.widget_rss li {
+	margin-bottom: 1em;
+	line-height: 1.3;
+}
+
+.widget li a.rsswidget {
+	padding-right: 0.5em;
+	font-size: 1em;
+	line-height: 1.4;
+}
+
+.rss-date,
+.widget_rss cite {
+	color: #333;
+	font-size: 0.8em;
+}
+
+.rssSummary {
+	padding: 0.5em 0;
+	font-size: 0.9em;
+	line-height: 1.3;
+}
+
+/* Calendar widget */
+.widget_calendar {
+	font-weight: 400;
+}
+
+.widget_calendar caption {
+	padding: 0.5em 0;
+	font-size: 1em;
+	font-weight: 500;
+	text-align: left;
+}
+
+.widget_calendar thead {
+	background: transparent;
+	color: #333;
+}
+
+.widget_calendar th {
+	border: none;
+	text-align: center;
+}
+
+.widget_calendar thead th {
+	border-bottom-width: 2px;
+}
+
+.widget_calendar td {
+	padding: 0.2em;
+	font-size: 0.8em;
+	text-align: center;
+	background: #fff;
+	border: 1px solid var(--global-gray-400);
+}
+
+.widget_calendar .pad {
+	background: var(--global-palette7);
+}
+.widget_calendar .wp-calendar-nav .pad {
+	background: transparent;
+}
+
+.widget_calendar a {
+	font-weight: 900;
+	text-decoration: none;
+}
+.collapse-sub-navigation ul.menu {
+	display: block;
+	li {
+		a {
+			text-decoration: none;
+			width: 100%;
+			padding-top: 0.5em;
+			padding-bottom: 0.5em;
+			border-bottom: 1px solid var(--global-palette7);
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+	ul {
+		padding: 0 0 0 1em;
+		margin: 0;
+		display: none;
+		transition: all 0.2s ease-in-out;
+	}
+	.sub-menu.show-drawer {
+		display: block;
+	}
+	.drawer-nav-drop-wrap .drawer-sub-toggle {
+		border-left: 1px solid var(--global-palette7);
+		border-bottom: 1px solid var(--global-palette7);
+	}
+}

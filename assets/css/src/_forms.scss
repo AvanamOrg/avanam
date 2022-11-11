@@ -1,0 +1,169 @@
+@import "_custom-properties.scss";
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+textarea {
+	width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+	-webkit-appearance: none;
+	color: var(--global-palette5);
+	border: 1px solid var(--global-gray-400);
+	border-radius: 3px;
+	padding: 0.4em 0.5em;
+	max-width: 100%;
+	background: var(--global-palette9);
+	box-shadow: 0px 0px 0px -7px rgba(0,0,0,0);
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+color: var(--global-palette6);
+}
+::-moz-placeholder { /* Firefox 19+ */
+color: var(--global-palette6);
+opacity: 1;
+}
+:-ms-input-placeholder { /* IE 10+ */
+color: var(--global-palette6);
+}
+:-moz-placeholder { /* Firefox 18- */
+color: var(--global-palette6);
+}
+::placeholder {
+	color: var(--global-palette6);
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="range"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="color"]:focus,
+textarea:focus {
+	color: var(--global-palette3);
+	border-color:var(--global-palette6);
+	outline: 0;
+	box-shadow: 0px 5px 15px -7px rgba(0,0,0,0.1);
+}
+
+select {
+	border: 1px solid var(--global-gray-400);
+	background-size: 16px 100%;
+	padding: 0.2em 35px 0.2em 0.5em;
+    background: var(--global-palette9) url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9IiNiYmIiPjxwYXRoIGQ9Ik02IDlsNiA2IDYtNiIvPjwvc3ZnPg==) no-repeat 98% 50%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: none;
+    outline: 0;
+	box-shadow: 0px 0px 0px -7px rgba(0,0,0,0);
+}
+select::-ms-expand {
+    display: none;
+}
+select:focus {
+	color: var(--global-palette3);
+	border-color:var(--global-palette6);
+	background-color: var(--global-palette9);
+	box-shadow: 0px 5px 15px -7px rgba(0,0,0,0.1);
+	outline: 0;
+	// Fix for firefox if the color palette is dark.
+	option {
+		color: #333;
+	}
+}
+.elementor-select-wrapper select{
+    background-image:none;
+}
+.search-form {
+	position: relative;
+	input[type="search"], input.search-field {
+		padding-right: 60px;
+		width:100%;
+	}
+	.search-submit[type="submit"] {
+		top: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		color: transparent;
+		background: transparent;
+		z-index: 2;
+		width: 50px;
+		border: 0;
+		padding: 8px 12px 7px;
+		border-radius: 0;
+		box-shadow: none;
+		overflow: hidden;
+		&:hover, &:focus {
+			color: transparent;
+			background: transparent;
+			box-shadow: none;
+		}
+	}
+	.base-search-icon-wrap {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		width: 50px;
+		padding: 0;
+		text-align: center;
+		background: 0 0;
+		z-index: 3;
+		cursor: pointer;
+		pointer-events: none;
+		color: var(--global-palette6);
+		text-shadow: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.search-submit[type="submit"]:hover ~ .base-search-icon-wrap {
+		color: var(--global-palette4);
+	}
+}
+body.rtl .search-form .button[type="submit"],
+body.rtl .search-form .base-search-icon-wrap {
+    left: 0;
+    right: auto;
+}
+body.rtl .search-form input[type="search"], body.rtl .search-form input.search-field {
+    padding-right: 0.5em;
+    padding-left: 60px;
+}
+fieldset {
+	padding: 0.625em 1.425em 0.625em;
+	border: 1px solid var(--global-gray-500);
+	margin-top: 1.2em;
+	margin-bottom: 1.2em;
+}
+.affwp-form fieldset {
+    padding: 0;
+}
+legend {
+    font-weight: bold;
+}

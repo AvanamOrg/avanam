@@ -1,0 +1,327 @@
+@import "_custom-properties.scss";
+/*--------------------------------------------------------------
+# Comments
+--------------------------------------------------------------*/
+.comments-area {
+	margin-top: var(--global-xl-spacing);
+	margin-left: auto;
+	margin-right: auto;
+	//padding: 0 var(--global-sm-spacing);
+}
+.comment-content a {
+	word-wrap: break-word;
+}
+
+.bypostauthor {
+	display: block;
+}
+
+.comments-title,
+.comment-reply-title {
+	margin-bottom: 1em;
+}
+
+.comment-list {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.comment-list ol {
+	list-style-type: none;
+}
+
+.children {
+	margin-left: 1em;
+	padding-left: 0;
+}
+#cancel-comment-reply-link {
+    margin-left: 0.8em;
+}
+@media screen and (min-width: $tablet-plus-query) {
+
+	.children {
+		margin-left: 2em;
+	}
+}
+
+.comment-body {
+	position: relative;
+	border-bottom: 1px solid var(--global-gray-500);
+	margin-bottom: 3em;
+	.edit-link:before {
+		content: '|';
+		padding-right: 0.3em;
+	}
+}
+.comment-author .fn a {
+    color: inherit;
+}
+.comment-meta {
+	position: relative;
+	margin-left: 70px;
+	font-size: 80%;
+}
+
+.comment-meta a,
+.comment-form a {
+	text-decoration: none;
+	border: none;
+	color: inherit;
+}
+
+.comment-meta a:hover,
+.comment-meta a:focus,
+.comment-form a:hover,
+.comment-form a:focus {
+	text-decoration: underline;
+}
+
+.comment .avatar {
+	position: absolute;
+	left: -70px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+}
+
+.bypostauthor .avatar {
+	box-sizing: content-box;
+	border: 5px solid var(--global-palette7);
+	margin-top: -5px;
+	margin-left: -5px;
+}
+
+.comment-author {
+	font-size: 1.4em;
+	line-height: 1.3;
+}
+
+.says {
+	font-size: 80%;
+}
+
+.comment-metadata {
+	padding-bottom: 0.5em;
+}
+
+/* stylelint-disable */
+.comment-content a {
+	word-wrap: break-word;
+}
+/* stylelint-enable */
+
+.comment-content ul,
+.comment-content ol {
+	margin: 0;
+	padding-right: 3em;
+	padding-left: 3em;
+}
+
+.comment-content ol {
+	list-style-type: decimal;
+}
+
+.comment-content ul ul,
+.comment-content ol ol {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+@media screen and (min-width: $tablet-plus-query) {
+
+	.comment-content ul,
+	.comment-content ol {
+		padding-right: 1.5em;
+		padding-left: 1.5em;
+	}
+}
+
+.comment-content blockquote {
+	margin-bottom: 0.75em;
+	font-size: 1.6em;
+	line-height: 1.25;
+}
+
+.comment-content cite {
+	font-size: 1.2em;
+}
+.comment-content {
+	margin-bottom: 2rem;
+	padding-top: 0.3em;
+}
+.reply {
+    margin-bottom: 2em;
+    margin-top: -0.5em;
+}
+@media screen and (min-width: $before-tablet-query) {
+.reply {
+	position: absolute;
+    top: 0;
+	right: 0;
+	margin:0;
+}
+}
+
+.comment-reply-link {
+	display: inline-block;
+    padding: 0.5em 1em;
+    font-size: 85%;
+    color: var(--global-palette5);
+    line-height: 1;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid var(--global-palette7);
+    border-radius: 0;
+}
+.comment-reply-link:hover,
+.comment-reply-link:focus {
+	border-color: var(--global-palette4);
+	color: var(--global-palette4);
+	cursor: pointer;
+}
+
+/* Comment Form */
+.comment-form {
+	line-height: 1.3;
+	p {
+		margin: 1.5em 0;
+	}
+	.comment-notes {
+		margin-top: -.5em;
+		font-size:80%;
+		font-style: italic;
+	}
+	.comment-input-wrap p {
+		margin: 0 0 1.5em 0;
+	}
+}
+.comment-input-wrap {
+	input {
+		width: 100%;
+	}
+}
+@media screen and (min-width: $before-tablet-query) {
+	.comment-form .comment-input-wrap {
+		display: grid;
+		grid-template-columns: repeat(3,1fr);
+		grid-gap: 1.5em;
+		margin-top:-1em;
+		p {
+			margin: 0;
+		}
+	}
+	.comment-form .comment-input-wrap.no-url-field {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+#respond+.comments-title {
+    margin-top: 3em;
+}
+
+/* stylelint-disable */
+.comment-form a {
+	font-weight: 500;
+}
+/* stylelint-enable */
+
+.comment-form label {
+	display: block;
+	padding-bottom: 0.4em;
+}
+
+.comment-form-cookies-consent {
+	display: flex;
+	align-items: center;
+}
+
+/* stylelint-disable */
+.comment-form .comment-form-cookies-consent input {
+	font-size: 90%;
+	vertical-align: -2px;
+}
+/* stylelint-enable */
+
+.comment-form .comment-form-cookies-consent label {
+	display: inline-block;
+	padding-left: 0.6em;
+	padding-bottom: 0;
+}
+.comment-form .required {
+	color: #d54e21;
+}
+.comment-form .comment-input-wrap p, .comment-form p.comment-form-float-label {
+    display: flex;
+	flex-direction: column-reverse;
+	align-items: flex-start;
+	label {
+		transform-origin: left bottom;
+		color:var(--global-palette6);
+	}
+}
+.comment-form p.comment-form-float-label {
+	margin-top: -1em;
+}
+.comment-form label, .comment-form input {
+  transition: all 0.2s;
+}
+.comment-form input:placeholder-shown + label, .comment-form textarea:placeholder-shown + label {
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 90%;
+  text-overflow: ellipsis;
+  cursor: text;
+  transform: translate(0.5em, 2.35em) scale(1);
+}
+.comment-form{
+	::-webkit-input-placeholder {
+		transition: inherit;
+		opacity: 0;
+	}
+	::-moz-placeholder { /* Firefox 19+ */
+		transition: inherit;
+		opacity: 0;
+	}
+	:-ms-input-placeholder { /* IE 10+ */
+		transition: inherit;
+		opacity: 0;
+	}
+	::placeholder {
+		transition: inherit;
+		opacity: 0;
+	}
+}
+.comment-form {
+	input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {
+		opacity: 1;
+	}
+	input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
+		opacity: 1;
+	}
+	input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder {
+		opacity: 1;
+	}
+	input:focus::placeholder, textarea:focus::placeholder {
+		opacity: 1;
+	}
+}
+.comment-form input:not(:placeholder-shown) + label,
+.comment-form input:focus + label, .comment-form textarea:not(:placeholder-shown) + label,
+.comment-form textarea:focus + label {
+  transform: translate(0, 0) scale(0.75);
+  cursor: pointer;
+}
+.comment-form .comment-form-cookies-consent label:not(:placeholder-shown) {
+	transform:none;
+	font-size: 90%;
+}
+.pingback .comment-body {
+	padding: 1em 0;
+}
+
+/* stylelint-disable */
+.pingback a {
+	font-style: italic;
+	text-decoration: none;
+}
+/* stylelint-enable */

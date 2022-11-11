@@ -1,0 +1,116 @@
+@import "_custom-properties.scss";
+body.rtl {
+    direction: rtl;
+  	unicode-bidi: embed;
+}
+// Read More.
+.rtl a.post-more-link .base-svg-iconset {
+    margin-left: 0;
+    margin-right: 0.5em;
+    transform: rotate(180deg);
+}
+.rtl a.post-more-link .svg-baseline svg {
+    top:auto;
+    bottom: .125em;
+}
+// Lists.
+.rtl .single-content ul, .rtl .single-content ol {
+    padding-left: 0;
+    padding-right: 2em;
+}
+// Post meta
+.rtl .entry-meta .posted-by .meta-label {
+	margin-left: .2rem;
+    margin-right: 0;
+}
+.rtl .entry-meta .posted-by .author-avatar {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+.rtl .entry-meta>.posted-by:after {
+    order: 3;
+}
+.rtl .entry-tags a.tag-link {
+    margin-left: 0.5em;
+    margin-right: 0;
+}
+.rtl .entry-tags a.tag-link:last-child {
+    margin-left: 0;
+}
+// Pagination
+.rtl .pagination .page-numbers .base-svg-iconset {
+    transform: rotate(180deg);
+}
+
+.rtl .pagination .page-numbers .base-svg-iconset.svg-baseline svg {
+    top:auto;
+    bottom: .125em;
+}
+// Comments
+.rtl {
+	.comment-form input:placeholder-shown+label, .comment-form textarea:placeholder-shown+label {
+		transform: translate(-0.5em, 2.5rem) scale(1);
+	}
+	.comment-form input:not(:placeholder-shown)+label, .comment-form input:focus+label, .comment-form textarea:not(:placeholder-shown)+label, .comment-form textarea:focus+label {
+		transform: translate(0, 0) scale(0.75);
+	}
+	.comment-meta {
+		margin-left: 0;
+		margin-right: 70px;
+	}
+	.comment .avatar {
+		right: -70px;
+		left: auto;
+	}
+}
+@media screen and (min-width: 767px) {
+	.rtl .reply {
+		left: 0;
+		right: auto;
+	}
+}
+// Next Previous
+.rtl {
+	.comment-navigation .nav-previous a, .post-navigation .nav-previous a {
+		padding-right: 0;
+		padding-left: var(--global-xs-spacing);
+	}
+	.comment-navigation .nav-previous .base-svg-iconset, .post-navigation .nav-previous .base-svg-iconset {
+		transform: rotate(180deg);
+		svg{
+			top:auto;
+			bottom: .125em;
+		}
+	}
+	.comment-navigation .nav-next a, .post-navigation .nav-next a {
+		padding-left: 0;
+		padding-right: var(--global-xs-spacing);
+	}
+	.comment-navigation .nav-next .base-svg-iconset, .post-navigation .nav-next .base-svg-iconset {
+		transform: rotate(180deg);
+		svg{
+			top:auto;
+			bottom: .125em;
+		}
+	}
+	.comment-navigation .nav-previous:after, .post-navigation .nav-previous:after {
+		right: auto;
+		left: 0;
+	}
+	.comment-navigation .nav-next, .post-navigation .nav-next {
+		text-align: left;
+	}
+}
+// Woo Header.
+.rtl {
+	.header-cart-button {
+		.header-cart-label {
+			padding-left: 5px;
+			padding-right: 0px;
+		}
+		.header-cart-label:empty {
+			padding-left: 0px;
+		}
+	}
+}

@@ -1,0 +1,260 @@
+ /**
+ * woocommerce-layout.scss
+ * Applies layout to the default WooCommerce frontend design
+ */
+
+/**
+ * Imports
+ */
+ @import "./../_custom-properties.scss";
+ @import "./../_mixins.scss";
+
+ form.woocommerce-product-search {
+	position: relative;
+	button[type="submit"] {
+		top: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		color: transparent !important;
+		background: transparent !important;
+		z-index: 2;
+		width: 50px;
+		border: 0;
+		padding: 8px 12px 7px;
+		box-shadow: none;
+        border-radius: 0;
+        overflow:hidden;
+    }
+    input[type="search"] {
+        padding-right: 60px;
+        width:100%;
+    }
+	.base-search-icon-wrap {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		width: 50px;
+		padding: 0;
+		text-align: center;
+		background: 0 0;
+		z-index: 3;
+		cursor: pointer;
+		pointer-events: none;
+		color: var(--global-palette6);
+		text-shadow: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	button[type="submit"]:hover ~ .base-search-icon-wrap {
+		color: var(--global-palette4);
+	}
+}
+body.rtl .woocommerce-product-search .button[type="submit"],
+body.rtl .woocommerce-product-search .base-search-icon-wrap {
+    left: 0;
+    right: auto;
+}
+body.rtl .woocommerce-product-search input[type="search"] {
+    padding-right: 0.5em;
+    padding-left: 60px;
+}
+
+.woocommerce {
+     /**
+      * Forms
+      */
+      form .form-row {
+        padding: 0;
+        margin: 0 0 0.8em;
+
+        [placeholder]:focus::-webkit-input-placeholder {
+            transition: opacity 0.5s 0.5s ease;
+            opacity: 0;
+        }
+        span em {
+            font-size: 80%;
+        }
+
+        label {
+            line-height: 2.4;
+            font-weight: bold;
+            color: var(--global-palette5);
+            font-size: 90%;
+        }
+
+        label.hidden {
+            visibility: hidden;
+        }
+
+        label.inline {
+            display: inline;
+        }
+
+        .woocommerce-input-wrapper {
+
+            .description {
+                background: #1e85be;
+                color: #fff;
+                border-radius: 3px;
+                padding: 1em;
+                margin: 0.5em 0 0;
+                clear: both;
+                display: none;
+                position: relative;
+
+                a {
+                    color: #fff;
+                    text-decoration: underline;
+                    border: 0;
+                    box-shadow: none;
+                }
+
+                &::before {
+                    left: 50%;
+                    top: 0%;
+                    margin-top: -4px;
+                    transform: translateX(-50%) rotate(180deg);
+                    content: "";
+                    position: absolute;
+                    border-width: 4px 6px 0 6px;
+                    border-style: solid;
+                    border-color: #1e85be transparent transparent transparent;
+                    z-index: 100;
+                    display: block;
+                }
+            }
+        }
+
+        select {
+            cursor: pointer;
+            margin: 0;
+            padding:0.4em 24px 0.4em 0.5em;
+        }
+
+        .optional {
+            visibility: visible;
+        }
+
+        .input-checkbox {
+            display: inline;
+            margin: -2px 8px 0 0;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        input.input-text,
+        textarea {
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+            outline: 0;
+        }
+        .button {
+            padding: calc( 0.4em + 1px ) 1em;
+        }
+
+        textarea {
+            height: 4em;
+            line-height: 1.5;
+            display: block;
+            box-shadow: none;
+        }
+
+        .select2-container {
+            width: 100%;
+            line-height: 2em;
+        }
+
+        &.woocommerce-invalid {
+
+            label {
+                color: $red;
+            }
+
+            .select2-container,
+            input.input-text,
+            select {
+                border-color: $red;
+            }
+        }
+
+        &.woocommerce-validated {
+
+            .select2-container,
+            input.input-text,
+            select {
+                border-color: darken($green, 5%);
+            }
+        }
+
+        ::-webkit-input-placeholder {
+            line-height: normal;
+        }
+
+        :-moz-placeholder {
+            line-height: normal;
+        }
+
+        :-ms-input-placeholder {
+            line-height: normal;
+        }
+    }
+    .form-row {
+        .required {
+            color: red;
+            font-weight: 700;
+            border: 0 !important;
+            text-decoration: none;
+            visibility: hidden; // Only show optional by default.
+        }
+    }
+
+    form.login,
+    form.checkout_coupon,
+    form.register {
+        border: 1px solid darken($secondary, 10%);
+        padding: 20px;
+        margin: 2em 0;
+        text-align: left;
+        border-radius: 5px;
+    }
+
+    ul#shipping_method {
+        list-style: none outside;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0 0 0.5em;
+            line-height: 1.5em;
+            list-style: none outside;
+            display: flex;
+			flex-wrap: wrap;
+            align-items: center;
+
+            input {
+                margin: 0 0.5em 0 0;
+                height: 1em;
+                background-image: none;
+                vertical-align: top;
+            }
+
+            label {
+                display: inline;
+            }
+        }
+
+        .amount {
+            font-weight: 700;
+        }
+    }
+    .cart_totals ul#shipping_method li {
+        flex-wrap:nowrap;
+    }
+    p.woocommerce-shipping-contents {
+        margin: 0;
+    }
+}

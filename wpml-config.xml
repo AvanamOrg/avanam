@@ -1,0 +1,79 @@
+<wpml-config>   
+    <admin-texts>
+        <key name="theme_mods_avanam">
+            <key name="mobile_trigger_label" />
+            <key name="header_html_content" />
+            <key name="header_button_label" />
+            <key name="header_button_link" />
+            <key name="header_search_label" />
+            <key name="mobile_button_label" />
+            <key name="mobile_button_link" />
+            <key name="mobile_html_content" />
+            <key name="footer_html_content" />
+            <key name="post_title_element_meta">
+                <key name="authorLabel" />
+                <key name="dateLabel" />
+                <key name="dateUpdatedLabel" />
+                <key name="categoriesLabel" />
+            </key>
+             <key name="post_archive_element_meta">
+                <key name="authorLabel" />
+                <key name="dateLabel" />
+                <key name="dateUpdatedLabel" />
+                <key name="categoriesLabel" />
+            </key>
+            <key name="product_content_element_price">
+                <key name="shipping_statement" />
+            </key>
+            <key name="product_content_element_extras">
+                <key name="title" />
+                <key name="feature_1" />
+                <key name="feature_2" />
+                <key name="feature_3" />
+                <key name="feature_4" />
+                <key name="feature_5" />
+            </key>
+            <key name="product_content_element_payments">
+                <key name="title" />
+            </key>
+			<key name="facebook_link" />
+			<key name="twitter_link" />
+			<key name="instagram_link" />
+			<key name="youtube_link" />
+			<key name="vimeo_link" />
+			<key name="facebook_group_link" />
+			<key name="pinterest_link" />
+			<key name="linkedin_link" />
+			<key name="dribbble_link" />
+			<key name="behance_link" />
+			<key name="patreon_link" />
+			<key name="reddit_link" />
+			<key name="medium_link" />
+			<key name="wordpress_link" />
+			<key name="github_link" />
+			<key name="vk_link" />
+			<key name="xing_link" />
+			<key name="rss_link" />
+			<key name="google_reviews_link" />
+			<key name="yelp_link" />
+			<key name="trip_advisor_link" />
+			<key name="imdb_link" />
+			<key name="whatsapp_link" />
+			<key name="telegram_link" />
+			<key name="soundcloud_link" />
+			<key name="tumblr_link" />
+			<key name="tiktok_link" />
+			<key name="discord_link" />
+			<key name="spotify_link" />
+			<key name="apple_podcasts_link" />
+			<key name="flickr_link" />
+			<key name="500px_link" />
+			<key name="bandcamp_link" />
+			<key name="email_link" />
+			<key name="phone_link" />
+			<key name="custom1_link" />
+			<key name="custom2_link" />
+			<key name="custom3_link" />
+        </key>
+    </admin-texts>
+</wpml-config>

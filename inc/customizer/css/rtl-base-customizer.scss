@@ -1,0 +1,35 @@
+// Builder.
+@media (min-width: 1660px) {
+	.rtl #customize-theme-controls #sub-accordion-section-base_customizer_header_builder, .rtl #customize-theme-controls #sub-accordion-section-base_customizer_footer_builder {
+		right: 18%;
+		left: 0;
+	}
+}
+.rtl .customize-control-base_blank_control .base-builder-tab-toggle {
+	left:10px;
+	right:auto;
+}
+.rtl .base-builder-item>.base-builder-item-icon {
+    margin-right: 0;
+    margin-left: -10px;
+}
+.rtl .base-builder-item>.base-builder-item-icon.base-move-icon {
+    margin-right: -10px;
+    margin-left: 0;
+}
+.rtl .base-builder-item>.base-builder-item-icon svg.dashicons-arrow-right-alt2 {
+    transform: rotate(180deg);
+}
+.rtl .base-builder-areas.popup-vertical-group {
+    padding-left: 20px;
+    padding-right: 0;
+}
+.rtl #customize-theme-controls .add-new-menu-item, #customize-theme-controls .add-new-widget {
+	float: right;
+}
+.rtl .footer-column-row .base-builder-area:last-child {
+    border-right: 1px dashed #A0AEC0;
+}
+.rtl .footer-column-row .base-builder-area:first-child {
+    border-right: 0;
+}

@@ -1,0 +1,6 @@
+== 1.0.0 | 27th October 2022 ==
+* Initial Version.
+
+== 1.0.0 | 27th October 2022 ==
+* Initial Version.
+

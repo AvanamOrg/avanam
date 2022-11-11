@@ -1,0 +1,78 @@
+@import "_custom-properties.scss";
+.entry-author-profile {
+    position: relative;
+    padding-left: 100px;
+}
+.entry-author {
+    margin: var(--global-lg-spacing) auto;
+}
+.entry-author-avatar {
+    position: absolute;
+    left: 0;
+}
+
+.entry-author-name {
+    font-size: 120%;
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+.entry-author-profile p {
+	margin: 1em 0;
+	&.entry-author-occupation {
+		margin: 0;
+		font-size: 90%;
+	}
+}
+
+.entry-author-follow {
+    margin-top: 1em;
+}
+.entry-author-style-center {
+	padding-bottom: var(--global-md-spacing);
+    border-bottom: 1px solid var(--global-gray-500);
+	.entry-author-profile {
+		text-align: center;
+		padding-left: 0;
+	}
+	.entry-author-avatar {
+		position: relative;
+		margin-bottom: 0.5em;
+		img {
+			margin: 0 auto;
+			border-radius:50%;
+			z-index:2;
+			position:relative;
+			box-sizing:content-box;
+		}
+		&:before{
+			content:'';
+			position:absolute;
+			left:0;
+			width:calc(50% - 60px);;
+			top:50%;
+			margin-top:-1px;
+			height:1px;
+			background:var(--global-gray-500);
+		}
+		&:after{
+			content:'';
+			position:absolute;
+			right:0;
+			width:calc(50% - 60px);;
+			top:50%;
+			margin-top:-1px;
+			height:1px;
+			background:var(--global-gray-500);
+		}
+	}
+}
+@media screen and (min-width: $before-tablet-query) {
+	.entry-author-style-center .entry-author-profile .entry-author-description {
+		max-width: 70%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

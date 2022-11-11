@@ -1,0 +1,33 @@
+{
+	"name": "avanam",
+	"version": "1.0.0",
+	"private": true,
+	"main": "inc/customizer/react/src/index.js",
+	"dependencies": {
+		"@fonticonpicker/react-fonticonpicker": "^1.2.0",
+		"@wordpress/icons": "^9.7.0",
+		"classnames": "^2.2.6",
+		"colord": "^2.9.3",
+		"dompurify": "^2.3.4",
+		"gradient-parser": "^0.1.5",
+		"prop-types": "^15.7.2",
+		"react": "^16.13.1",
+		"react-color": "^2.18.1",
+		"react-dom": "^16.13.1",
+		"react-select": "^3.1.0",
+		"react-sortablejs": "^2.0.9",
+		"reactcss": "^1.2.3",
+		"sortablejs": "^1.15.0",
+		"webfontloader": "^1.6.28"
+	},
+	"devDependencies": {
+		"@babel/preset-env": "^7.10.2",
+		"@wordpress/scripts": "^23.3.0",
+		"babel-cli": "^6.26.0",
+		"babel-core": "^6.26.3"
+	},
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start"
+	}
+}

@@ -1,0 +1,255 @@
+@import "_custom-properties.scss";
+@import "_mixins.scss";
+@import "_reset.scss";
+@import "_vars.scss";
+@import "_typography.scss";
+@import "_elements.scss";
+@import "_links.scss";
+@import "_ally.scss";
+@import "_forms.scss";
+@import "_buttons.scss";
+@import "_icons.scss";
+@import "_social.scss";
+
+
+/*--------------------------------------------------------------
+# Layouts
+--------------------------------------------------------------*/
+.bst-clear {
+	@include clearfix();
+}
+// Makes mobile sticky better when logged in.
+#wpadminbar {
+    position: fixed!important;
+}
+// Perhaps Remove.
+.content-area {
+	margin: var(--global-xxl-spacing) 0;
+}
+.entry-content {
+	word-break: break-word;
+}
+.entry-content table {
+	word-break: normal;
+}
+.body {
+	overflow-x: hidden;
+}
+.scroll a *, a.scroll * {
+	pointer-events: none;
+}
+.content-width-fullwidth .content-container.site-container {
+    max-width: none;
+    padding: 0;
+}
+.content-width-fullwidth .content-area, .content-vertical-padding-hide .content-area {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.content-vertical-padding-top .content-area {
+	margin-bottom: 0;
+}
+.content-vertical-padding-bottom .content-area {
+	margin-top: 0;
+}
+.site-container, .site-header-row-layout-contained, .site-footer-row-layout-contained, .entry-hero-layout-contained, .alignfull > .wp-block-cover__inner-container, .alignwide > .wp-block-cover__inner-container {
+	margin: 0 auto;
+	padding: 0 var(--global-content-edge-padding);
+}
+.bst-row-layout-inner > .kb-theme-content-width, .bst-row-layout-inner.bst-row-has-bg > .kb-theme-content-width {
+	padding-left: var(--global-content-edge-padding);
+	padding-right: var(--global-content-edge-padding);
+}
+// Perhaps Remove.
+.content-bg {
+    background: white;
+}
+.content-style-unboxed {
+	.entry:not(.loop-entry) > .entry-content-wrap {
+		padding: 0;
+	}
+	.content-bg:not(.loop-entry) {
+		background: transparent;
+	}
+	.entry:not(.loop-entry) {
+		box-shadow: none;
+		border-radius: 0;
+	}
+}
+@media screen and (min-width: $laptop-plus-query) {
+
+	.has-sidebar .content-container {
+		display: grid;
+		grid-template-columns: 5fr 2fr;
+		grid-gap: var(--global-xl-spacing);
+		justify-content: center;
+	}
+	#secondary {
+		grid-column: 2;
+		grid-row: 1;
+		min-width: 0;
+	}
+	.has-left-sidebar .content-container {
+		grid-template-columns: 2fr 5fr;
+	}
+	.has-left-sidebar #main {
+		grid-column: 2;
+		grid-row: 1
+	}
+	.has-left-sidebar #secondary {
+		grid-column: 1;
+		grid-row: 1;
+	}
+	.has-sidebar .wp-site-blocks .content-container .alignwide, .has-sidebar .wp-site-blocks .content-container .alignfull {
+		width: unset;
+		max-width: unset;
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.has-sidebar .content-container .base-thumbnail-position-behind.alignwide {
+		margin-left: -10px;
+		margin-right: -10px;
+	}
+
+}
+#bst-scroll-up-reader, #bst-scroll-up {
+    position: fixed;
+	transform: translateY(40px);
+	transition: all 0.2s ease;
+	opacity: 0;
+	z-index: 1000;
+	display: flex;
+	cursor: pointer;
+	* {
+		pointer-events: none;
+	}
+}
+#bst-scroll-up-reader.scroll-up-style-outline, #bst-scroll-up.scroll-up-style-outline {
+	background: transparent;
+}
+.scroll-up-style-filled {
+	color: var( --global-palette9 );
+	background: var( --global-palette4 );
+}
+.scroll-up-style-filled:hover {
+	color: var( --global-palette9 );
+}
+.scroll-up-style-outline, .scroll-up-wrap.scroll-up-style-outline {
+	border-width: 2px;
+	border-style: solid;
+	border-color: currentColor;
+	color: var( --global-palette4 );
+}
+.scroll-up-style-outline:hover {
+	color: var( --global-palette5 );
+}
+#bst-scroll-up.scroll-visible {
+    transform: translateY(0px);
+    opacity: 1;
+}
+#bst-scroll-up-reader{
+	transform: translateY(0px);
+	transition: all 0s ease;
+}
+#bst-scroll-up-reader:not(:focus) {
+	clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    word-wrap: normal !important;
+}
+#bst-scroll-up-reader:focus {
+	transform: translateY(0px);
+    opacity: 1;
+	box-shadow: none;
+	z-index: 1001;
+}
+/*--------------------------------------------------------------
+# Visiblity
+--------------------------------------------------------------*/
+@media screen and (max-width: $phone-minus-query) {
+	.vs-sm-false {
+		display:none !important;
+	}
+}
+@media screen and (min-width: $before-tablet-plus-query) and (max-width: $tablet-minus-query) {
+	.vs-md-false {
+		display:none !important;
+	}
+}
+@media screen and (min-width: $laptop-plus-query) {
+	.vs-lg-false {
+		display:none !important;
+	}
+}
+body.logged-in .vs-logged-in-false {
+	display:none !important;
+}
+body:not(.logged-in) .vs-logged-out-false {
+	display:none !important;
+}
+/*--------------------------------------------------------------
+# Infinite scroll
+--------------------------------------------------------------*/
+
+/* Globally hidden elements when Infinite Scroll is supported and in use. */
+.infinite-scroll .posts-navigation,
+.infinite-scroll .pagination,
+.infinite-scroll.neverending .site-footer {
+
+	/* Theme Footer (when set to scrolling) */
+	display: none;
+}
+
+/* When Infinite Scroll has reached its end we need to re-display elements that
+were hidden (via .neverending) before. */
+.infinity-end.neverending .site-footer {
+	display: block;
+}
+// Maybe CSS option for mobile animate in.
+#wrapper {
+	overflow: hidden;
+	overflow: clip;
+}
+.base-scrollbar-fixer {
+    margin-right: var( --scrollbar-offset, unset );
+	.item-is-fixed {
+		right: var(--scrollbar-offset, 0 );
+	}
+}
+// Align.
+.alignleft {
+	float: left;
+	margin-right: var(--global-md-spacing);
+}
+
+.alignright {
+	float: right;
+	margin-left: var(--global-md-spacing);
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+//body.footer-on-bottom {
+   //height: 100%;
+   //min-height: 100%;
+//}
+body.footer-on-bottom #wrapper {
+	min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+body.footer-on-bottom.admin-bar #wrapper {
+	min-height: calc( 100vh - 32px );
+}
+body.footer-on-bottom #inner-wrap {
+   flex: 1 0 auto;
+}
+.basepro-fixed-item > .base-element-wrap > p:first-child:last-child, .basepro-fixed-item > p:first-child:last-child {
+    margin: 0;
+}

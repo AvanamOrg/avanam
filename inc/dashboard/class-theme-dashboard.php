@@ -157,7 +157,12 @@ class Base_Dashboard_Settings {
 		if ( is_wp_error( $changelog_string ) ) {
 			return $changelog;
 		}
-		$changelog = explode( PHP_EOL, $changelog_string );
+
+		$changelog_string = str_replace("\\r\\n", "\n", $changelog_string);
+		$changelog_string = str_replace("\\n\\r", "\n", $changelog_string);
+	
+		$changelog = preg_split("/\n/", $changelog_string);
+		//$changelog = explode( PHP_EOL, $changelog_string );
 		$releases  = [];
 		foreach ( $changelog as $changelog_line ) {
 			if ( empty( $changelog_line ) ) {
@@ -213,7 +218,12 @@ class Base_Dashboard_Settings {
 		if ( is_wp_error( $changelog_string ) ) {
 			return $changelog;
 		}
-		$changelog = explode( PHP_EOL, $changelog_string );
+
+		$changelog_string = str_replace("\\r\\n", "\n", $changelog_string);
+		$changelog_string = str_replace("\\n\\r", "\n", $changelog_string);
+	
+		$changelog = preg_split("/\n/", $changelog_string);
+		//$changelog = explode( PHP_EOL, $changelog_string );
 		$releases  = [];
 		foreach ( $changelog as $changelog_line ) {
 			if ( empty( $changelog_line ) ) {

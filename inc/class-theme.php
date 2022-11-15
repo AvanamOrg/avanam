@@ -274,6 +274,7 @@ class Theme {
 			new Entry_Title\Component(),
 			new Archive_Title\Component(),
 			new Third_Party\Component(),
+			new Updater\Component(),
 		);
 		if ( class_exists( '\Elementor\Plugin' ) ) {
 			$components[] = new Elementor\Component();

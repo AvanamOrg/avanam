@@ -1,3 +1,7 @@
+== 1.1.0 | 15th November 2022 ==
+* Add: Theme Updater
+* Fix: Changelog Display in Dashboard
+
 == 1.0.0 | 27th October 2022 ==
 * Initial Version.
 

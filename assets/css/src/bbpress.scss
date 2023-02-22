@@ -1,11 +1,25 @@
 @import "_custom-properties.scss";
 // Remove Stuff.
-div.bbp-template-notice, #bbpress-forums li.bbp-header, #bbpress-forums li.bbp-footer, .bbp-reply-ip {
+div.bbp-template-notice, #bbpress-forums li.bbp-footer, .bbp-reply-ip {
     display: none;
 }
 // Need to bring back:
 #bbpress-forums #favorite-toggle, #bbpress-forums #subscription-toggle, #bbpress-forums div.bbp-topic-tags, .bbp-author-role, .bbp-breadcrumb {
 	display: none;
+}
+#bbpress-forums li.bbp-header {
+    display: block;
+    background: var(--global-palette8);
+    border: 0;
+	margin-bottom:-1px;
+}
+#bbpress-forums li.bbp-header ul {
+    display: flex;
+}
+#bbpress-forums li.bbp-header ul li {
+    font-size:0.8rem;
+    text-transform:uppercase;
+    color:var(--global-palette6);
 }
 // Reset.
 #bbpress-forums, #bbpress-forums ul.bbp-forums, #bbpress-forums ul.bbp-lead-topic, #bbpress-forums ul.bbp-replies, #bbpress-forums ul.bbp-search-results, #bbpress-forums ul.bbp-topics {

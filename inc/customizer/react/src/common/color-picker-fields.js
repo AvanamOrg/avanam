@@ -1,4 +1,4 @@
-import color from 'react-color/lib/helpers/color'
+import * as color from 'react-color/lib/helpers/color'
 
 import { EditableInput } from 'react-color/lib/components/common'
 const {

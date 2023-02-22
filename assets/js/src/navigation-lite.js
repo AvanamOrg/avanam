@@ -6,20 +6,6 @@
  * navigation support for dropdown menus.
  */
 
-// polyfill forEach
-// https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach#Polyfill
-if ( window.NodeList && ! NodeList.prototype.forEach ) {
-	NodeList.prototype.forEach = function( callback, thisArg ) {
-		var i;
-		var len = this.length;
-
-		thisArg = thisArg || window;
-
-		for ( i = 0; i < len; i++ ) {
-			callback.call( thisArg, this[ i ], i, this );
-		}
-	};
-}
 (function() {
 	'use strict';
 	window.base = {
@@ -127,8 +113,9 @@ if ( window.NodeList && ! NodeList.prototype.forEach ) {
 				let dropdown = parentMenuItem.querySelector( '.dropdown-nav-toggle' );
 				// If dropdown.
 				if ( dropdown ) {
+					var dropdown_label = parentMenuItem.querySelector( '.nav-drop-title-wrap' ).firstChild.textContent.trim();
 					var dropdownBtn = document.createElement( 'BUTTON' ); // Create a <button> element
-					dropdownBtn.setAttribute( 'aria-label', baseConfig.screenReader.expand );
+					dropdownBtn.setAttribute( 'aria-label', ( dropdown_label ? baseConfig.screenReader.expandOf + ' ' + dropdown_label : baseConfig.screenReader.expand ) );
 					dropdownBtn.classList.add( 'dropdown-nav-special-toggle' );
 					parentMenuItem.insertBefore( dropdownBtn, parentMenuItem.childNodes[1] );
 					// Toggle the submenu when we click the dropdown button.
@@ -183,6 +170,7 @@ if ( window.NodeList && ! NodeList.prototype.forEach ) {
 			var toggleButton = parentMenuItem.querySelector( '.dropdown-nav-special-toggle' ),
 				subMenu = parentMenuItem.querySelector( 'ul' );
 			let parentMenuItemToggled = parentMenuItem.classList.contains( 'menu-item--toggled-on' );
+			var dropdown_label = parentMenuItem.querySelector( '.nav-drop-title-wrap' ).firstChild.textContent.trim();
 			// Will be true if we want to force the toggle on, false if force toggle close.
 			if ( undefined !== forceToggle && 'boolean' === ( typeof forceToggle ) ) {
 				parentMenuItemToggled = ! forceToggle;
@@ -200,7 +188,7 @@ if ( window.NodeList && ! NodeList.prototype.forEach ) {
 				// Toggle "off" the submenu.
 				parentMenuItem.classList.remove( 'menu-item--toggled-on' );
 				subMenu.classList.remove( 'toggle-show' );
-				toggleButton.setAttribute( 'aria-label', baseConfig.screenReader.expand );
+				toggleButton.setAttribute( 'aria-label', ( dropdown_label ? baseConfig.screenReader.expandOf + ' ' + dropdown_label : baseConfig.screenReader.expand ) );
 
 				// Make sure all children are closed.
 				var subMenuItemsToggled = parentMenuItem.querySelectorAll( '.menu-item--toggled-on' );
@@ -217,7 +205,7 @@ if ( window.NodeList && ! NodeList.prototype.forEach ) {
 				// Toggle "on" the submenu.
 				parentMenuItem.classList.add( 'menu-item--toggled-on' );
 				subMenu.classList.add( 'toggle-show' );
-				toggleButton.setAttribute( 'aria-label', baseConfig.screenReader.collapse );
+				toggleButton.setAttribute( 'aria-label', ( dropdown_label ? baseConfig.screenReader.collapseOf + ' ' + dropdown_label : baseConfig.screenReader.collapse ) );
 			}
 		},
 		/**
@@ -422,7 +410,7 @@ if ( window.NodeList && ! NodeList.prototype.forEach ) {
 			if ( ! mobileModal ) {
 				return;
 			}
-			var menuLink = mobileModal.querySelectorAll( 'a' );
+			var menuLink = mobileModal.querySelectorAll( 'a:not(.bst-tab-title)' );
 			// No point if no links.
 			if ( ! menuLink.length ) {
 				return;

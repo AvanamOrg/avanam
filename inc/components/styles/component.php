@@ -1734,6 +1734,17 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.wp-block-button.is-style-outline .wp-block-button__link' );
 		$css->add_property( 'padding', $this->render_responsive_measure( webapp()->option( 'buttons_padding' ), 'mobile' ) );
 		$css->stop_media_query();
+		// Image.
+		$css->set_selector( '.entry-content :where(.wp-block-image) img, .entry-content :where(.wp-block-base-image) img' );
+		$css->add_property( 'border-radius', $this->render_range( webapp()->option( 'image_border_radius' ), 'desktop' ) );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.entry-content :where(.wp-block-image) img, .entry-content :where(.wp-block-base-image) img' );
+		$css->add_property( 'border-radius', $this->render_range( webapp()->option( 'image_border_radius' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.entry-content :where(.wp-block-image) img, .entry-content :where(.wp-block-base-image) img' );
+		$css->add_property( 'border-radius', $this->render_range( webapp()->option( 'image_border_radius' ), 'mobile' ) );
+		$css->stop_media_query();
 		// Padding for transparent header.
 		if ( webapp()->has_header() ) {
 			$css->start_media_query( $media_query['desktop'] );
@@ -2078,6 +2089,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '#colophon .footer-navigation .footer-menu-container > ul > li > a' );
 		$css->add_property( 'padding-left', $this->render_half_size( webapp()->option( 'footer_navigation_spacing' ) ) );
 		$css->add_property( 'padding-right', $this->render_half_size( webapp()->option( 'footer_navigation_spacing' ) ) );
+		$css->add_property( 'padding-top', $this->render_half_size( webapp()->option( 'footer_navigation_vertical_spacing' ) ) );
+		$css->add_property( 'padding-bottom', $this->render_half_size( webapp()->option( 'footer_navigation_vertical_spacing' ) ) );
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'footer_navigation_color', 'color' ) ) );
 		$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'footer_navigation_background', 'color' ) ) );
 		$css->set_selector( '#colophon .footer-navigation .footer-menu-container > ul li a' );
@@ -4045,6 +4058,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'border-color', $this->render_color( webapp()->sub_option( 'buttons_border_colors', 'hover' ) ) );
 		$css->set_selector( '.editor-styles-wrapper .wp-block-button .wp-block-button__link:hover, .editor-styles-wrapper .kb-forms-submit:hover, .editor-styles-wrapper .bst-button:hover' );
 		$css->add_property( 'box-shadow', $css->render_shadow( webapp()->option( 'buttons_shadow_hover' ), webapp()->default( 'buttons_shadow_hover' ) ) );
+		$css->set_selector( '.editor-styles-wrapper :where(.wp-block-image) img, .editor-styles-wrapper :where(.wp-block-base-image) img' );
+		$css->add_property( 'border-radius', $this->render_range( webapp()->option( 'image_border_radius' ), 'desktop' ) );
 
 		$css->set_selector( '.editor-styles-wrapper .bst-button' );
 		$css->add_property( 'font-family', webapp()->sub_option( 'buttons_typography', 'family' ) );
@@ -5075,25 +5090,32 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		if ( ! apply_filters( 'base_print_google_fonts', true ) ) {
 			return '';
 		}
+		$should_output = false;
 		$link    = '';
 		$sub_add = array();
 		$subsets = webapp()->option( 'google_subsets' );
 		foreach ( $google_fonts as $key => $gfont_values ) {
-			if ( ! empty( $link ) ) {
-				$link .= '%7C'; // Append a new font to the string.
-			}
-			$link .= $gfont_values['fontfamily'];
-			if ( ! empty( $gfont_values['fontvariants'] ) ) {
-				$link .= ':';
-				$link .= implode( ',', $gfont_values['fontvariants'] );
-			}
-			if ( ! empty( $gfont_values['fontsubsets'] ) && is_array( $gfont_values['fontsubsets'] ) ) {
-				foreach ( $gfont_values['fontsubsets'] as $subkey ) {
-					if ( ! empty( $subkey ) && ! isset( $sub_add[ $subkey ] ) ) {
-						$sub_add[] = $subkey;
+			if ( ! empty( $gfont_values['fontfamily'] ) ) {
+				if ( ! empty( $link ) ) {
+					$link .= '%7C'; // Append a new font to the string.
+				}
+				$should_output = true;
+				$link .= $gfont_values['fontfamily'];
+				if ( ! empty( $gfont_values['fontvariants'] ) ) {
+					$link .= ':';
+					$link .= implode( ',', $gfont_values['fontvariants'] );
+				}
+				if ( ! empty( $gfont_values['fontsubsets'] ) && is_array( $gfont_values['fontsubsets'] ) ) {
+					foreach ( $gfont_values['fontsubsets'] as $subkey ) {
+						if ( ! empty( $subkey ) && ! in_array( $subkey, $sub_add ) ) {
+							$sub_add[] = $subkey;
+						}
 					}
 				}
 			}
+		}
+		if ( ! $should_output ) {
+			return '';
 		}
 		$args = array(
 			'family' => $link,
@@ -5105,7 +5127,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					if ( 'chinese' === $key ) {
 						$key = 'chinese-traditional';
 					}
-					if ( ! isset( $sub_add[ $key ] ) ) {
+					if ( ! in_array( $key, $sub_add ) ) {
 						$sub_add[] = $key;
 					}
 				}

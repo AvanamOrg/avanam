@@ -128,6 +128,7 @@ class Theme_Customizer {
 		'general-social',
 		'general-scroll-to-top',
 		'general-performance',
+		'general-image',
 		'general-breadcrumb',
 		'general-sidebar',
 		'general-comments',
@@ -651,6 +652,11 @@ class Theme_Customizer {
 				'general_typography' => array(
 					'title'    => __( 'Typography', 'avanam' ),
 					'panel'    => 'design',
+					'priority' => 11,
+				),
+				'general_image' => array(
+					'title'    => __( 'Images', 'avanam' ),
+					'panel'    => 'general',
 					'priority' => 11,
 				),
 				'scroll_up' => array(

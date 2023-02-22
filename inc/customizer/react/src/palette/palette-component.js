@@ -264,14 +264,14 @@ class ColorComponent extends Component {
 							<Dashicon icon="portfolio" />
 						</Button>
 						{ this.state.isVisible && (
-							<Popover position="bottom right" className="base-palette-popover-copy-paste" onClose={ toggleClose }>
+							<Popover position="bottom right" className="base-palette-popover-copy-paste base-customizer-popover" onClose={ toggleClose }>
 								<TabPanel className="base-palette-popover-tabs"
 									activeClass="active-tab"
 									initialTabName={ 'import'}
 									tabs={ [
 										{
 											name: 'import',
-											title: __( 'Select a Color Set', 'avanam' ),
+											title: __( 'Select Palette', 'avanam' ),
 											className: 'base-color-presets',
 										},
 										{
@@ -301,8 +301,8 @@ class ColorComponent extends Component {
 																		{ Object.keys( presetPalettes[item] ).map( ( color, subIndex ) => {
 																			return (
 																				<div key={ subIndex } style={ {
-																					width: 30,
-																					height: 30,
+																					width: 26,
+																					height: 26,
 																					marginBottom: 0,
 																					transform: 'scale(1)',
 																					transition: '100ms transform ease',

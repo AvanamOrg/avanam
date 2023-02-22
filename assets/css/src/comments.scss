@@ -7,6 +7,14 @@
 	margin-left: auto;
 	margin-right: auto;
 	//padding: 0 var(--global-sm-spacing);
+
+	.comment .avatar {
+		position: absolute;
+		left: -70px;
+		width: 50px;
+		height: 50px;
+		border-radius: 50px;
+	}
 }
 .comment-content a {
 	word-wrap: break-word;
@@ -77,13 +85,6 @@
 	text-decoration: underline;
 }
 
-.comment .avatar {
-	position: absolute;
-	left: -70px;
-	width: 50px;
-	height: 50px;
-	border-radius: 50px;
-}
 
 .bypostauthor .avatar {
 	box-sizing: content-box;

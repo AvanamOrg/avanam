@@ -481,6 +481,18 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'spread'  => -7,
 						'inset'   => false,
 					),
+					'image_border_radius' => array(
+						'size' => array(
+							'mobile'  => '',
+							'tablet'  => '',
+							'desktop' => '',
+						),
+						'unit' => array(
+							'mobile'  => 'px',
+							'tablet'  => 'px',
+							'desktop' => 'px',
+						),
+					),
 					'enable_footer_on_bottom' => true,
 					'enable_scroll_to_id'     => true,
 					'lightbox' => false,

@@ -135,7 +135,7 @@ class Component implements Component_Interface {
 
 		add_action( 'base_before_main_content', array( $this, 'wc_print_notices_none_woo' ) );
 		// Add Fragment Support.
-		add_action( 'init', array( $this, 'check_for_fragment_support' ) );
+		add_action( 'wp', array( $this, 'check_for_fragment_support' ), 2 );
 
 		// Add my Account Navigation Classes.
 		add_filter( 'body_class', array( $this, 'my_account_body_classes' ) );

@@ -154,6 +154,12 @@ class Component implements Component_Interface {
 			echo '<div class="bbpress-topic-meta entry-meta">';
 			echo '<span class="bbpress-back-to-forum-wrap"><a href="' . esc_url( bbp_get_forum_permalink( bbp_get_topic_forum_id() ) ) . '" class="bbpress-back-to-forum">' . webapp()->get_icon( 'arrow-left-alt', '', true ) . ' ' . __( 'Back to:', 'avanam' ) . ' ' . bbp_get_forum_title( bbp_get_topic_forum_id() ) . '</a></span>';
 			echo '<span class="bbpress-meta-replies-wrap"><span class="bbpress-meta-replies">' . bbp_get_topic_reply_count() . ' ' . esc_html__( 'Replies', 'avanam' ) . '</span></span>';
+			echo '<span class="bbpress-meta-subscribe-wrap">';
+			bbp_topic_subscription_link( array( 'before' => '' ) );
+			echo '</span>';
+			echo '<span class="bbpress-meta-favorite-wrap">';
+			bbp_topic_favorite_link( array( 'before' => '' ) );
+			echo '</span>';
 			do_action( 'base_bbpress_single_topic_meta' );
 			echo '</div>';
 		}

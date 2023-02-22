@@ -30,7 +30,7 @@ export const SwatchesControl = ( { colors, isPalette, onClick = () => {}, circle
 			flexWrap: 'wrap',
 			justifyContent: 'space-between',
 			paddingTop: circleSpacing,
-			marginBottom: '15px',
+			paddingBottom: '15px',
     		borderTop: '1px solid rgb(238, 238, 238)',
 		} } className="base-swatches-wrap">
 		{ colors.map( ( colorObjOrString ) => {

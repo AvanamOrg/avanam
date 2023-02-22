@@ -1,15 +1,15 @@
-# Copyright (C) 2022 Avanam
+# Copyright (C) 2023 The WP Rig Contributors
 # This file is distributed under the GNU General Public License v3.0 (or later).
 msgid ""
 msgstr ""
-"Project-Id-Version: Avanam 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/base\n"
+"Project-Id-Version: Avanam 1.1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/avanam\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-05T09:51:24+00:00\n"
+"POT-Creation-Date: 2023-02-22T09:44:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: avanam\n"
@@ -380,7 +380,7 @@ msgid "Page"
 msgstr ""
 
 #: inc/components/breadcrumbs/component.php:172
-#: inc/customizer/class-theme-customizer.php:682
+#: inc/customizer/class-theme-customizer.php:688
 #: inc/customizer/options/general-typography-options.php:212
 #: inc/customizer/options/product-layout-options.php:78
 msgid "Breadcrumbs"
@@ -822,7 +822,7 @@ msgstr ""
 
 #: inc/components/icons/component.php:509
 #: inc/components/icons/component.php:517
-#: inc/customizer/class-theme-customizer.php:672
+#: inc/customizer/class-theme-customizer.php:678
 #: template-parts/content/entry_loop_meta.php:319
 #: template-parts/content/entry_meta.php:291
 #: template-parts/title/meta.php:292
@@ -1111,7 +1111,7 @@ msgid "Secondary"
 msgstr ""
 
 #: inc/components/nav_menus/component.php:87
-#: inc/customizer/class-theme-customizer.php:553
+#: inc/customizer/class-theme-customizer.php:554
 msgid "Footer"
 msgstr ""
 
@@ -1124,40 +1124,40 @@ msgstr ""
 msgid "Collapse sub menu items"
 msgstr ""
 
-#: inc/components/options/component.php:1101
-#: inc/components/options/component.php:1491
+#: inc/components/options/component.php:1113
+#: inc/components/options/component.php:1503
 msgid "Insert HTML here"
 msgstr ""
 
-#: inc/components/options/component.php:1127
-#: inc/components/options/component.php:1431
+#: inc/components/options/component.php:1139
+#: inc/components/options/component.php:1443
 #: inc/customizer/options/header-builder-options.php:80
 #: inc/customizer/options/header-builder-options.php:181
 #: inc/customizer/options/product-archive-layout-options.php:668
 msgid "Button"
 msgstr ""
 
-#: inc/components/options/component.php:3036
+#: inc/components/options/component.php:3048
 msgid "& Free Shipping"
 msgstr ""
 
-#: inc/components/options/component.php:3047
+#: inc/components/options/component.php:3059
 msgid "Free shipping on orders over $50!"
 msgstr ""
 
-#: inc/components/options/component.php:3048
+#: inc/components/options/component.php:3060
 msgid "Satisfaction Guaranteed"
 msgstr ""
 
-#: inc/components/options/component.php:3049
+#: inc/components/options/component.php:3061
 msgid "No Hassle Refunds"
 msgstr ""
 
-#: inc/components/options/component.php:3050
+#: inc/components/options/component.php:3062
 msgid "Secure Payments"
 msgstr ""
 
-#: inc/components/options/component.php:3061
+#: inc/components/options/component.php:3073
 msgid "GUARANTEED SAFE CHECKOUT"
 msgstr ""
 
@@ -1175,11 +1175,19 @@ msgid "Slide"
 msgstr ""
 
 #: inc/components/scripts/component.php:156
+msgid "Expand child menu of"
+msgstr ""
+
+#: inc/components/scripts/component.php:157
 msgid "Collapse child menu"
 msgstr ""
 
+#: inc/components/scripts/component.php:158
+msgid "Collapse child menu of"
+msgstr ""
+
 #. translators: %s: stylesheet handle
-#: inc/components/styles/component.php:4834
+#: inc/components/styles/component.php:4849
 msgid "Invalid theme stylesheet handle: %s"
 msgstr ""
 
@@ -1221,27 +1229,27 @@ msgstr ""
 msgid "Grid View"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:269
-#: inc/customizer/class-theme-customizer.php:276
+#: inc/customizer/class-theme-customizer.php:270
+#: inc/customizer/class-theme-customizer.php:277
 msgid "Cart"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:437
+#: inc/customizer/class-theme-customizer.php:438
 #: inc/customizer/options/header-builder-options.php:64
 #: inc/customizer/options/header-builder-options.php:165
 #: assets/js/admin/customizer.js:3
 msgid "Logo"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:545
+#: inc/customizer/class-theme-customizer.php:546
 msgid "Colors & Fonts"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:549
+#: inc/customizer/class-theme-customizer.php:550
 msgid "Header"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:557
+#: inc/customizer/class-theme-customizer.php:558
 #: inc/customizer/options/404-layout-options.php:21
 #: inc/customizer/options/404-layout-options.php:38
 #: inc/customizer/options/custom-layout-options.php:37
@@ -1356,34 +1364,34 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:561
+#: inc/customizer/class-theme-customizer.php:562
 msgid "Posts/Pages Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:567
+#: inc/customizer/class-theme-customizer.php:568
 msgid "LearnDash"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:577
+#: inc/customizer/class-theme-customizer.php:578
 msgid "LifterLMS"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:587
+#: inc/customizer/class-theme-customizer.php:588
 msgid "bbPress"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:597
+#: inc/customizer/class-theme-customizer.php:598
 msgid "TutorLMS"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:623
-#: inc/customizer/class-theme-customizer.php:732
+#: inc/customizer/class-theme-customizer.php:624
+#: inc/customizer/class-theme-customizer.php:738
 msgid "Site Identity"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:627
-#: inc/customizer/class-theme-customizer.php:1313
-#: inc/customizer/class-theme-customizer.php:1318
+#: inc/customizer/class-theme-customizer.php:628
+#: inc/customizer/class-theme-customizer.php:1319
+#: inc/customizer/class-theme-customizer.php:1324
 #: inc/customizer/options/custom-layout-options.php:710
 #: inc/customizer/options/custom-layout-options.php:717
 #: inc/customizer/options/custom-layout-options.php:723
@@ -1400,15 +1408,15 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:632
+#: inc/customizer/class-theme-customizer.php:633
 msgid "Sidebar"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:637
+#: inc/customizer/class-theme-customizer.php:638
 msgid "Sidebar Design"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:642
+#: inc/customizer/class-theme-customizer.php:643
 #: inc/customizer/options/footer-social-options.php:278
 #: inc/customizer/options/general-scroll-to-top-options.php:326
 #: inc/customizer/options/header-button-options.php:227
@@ -1418,201 +1426,205 @@ msgstr ""
 msgid "Colors"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:647
+#: inc/customizer/class-theme-customizer.php:648
 msgid "Buttons"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:652
+#: inc/customizer/class-theme-customizer.php:653
 #: assets/js/admin/dashboard.js:1
 msgid "Typography"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:657
-#: inc/customizer/class-theme-customizer.php:662
+#: inc/customizer/class-theme-customizer.php:658
+msgid "Images"
+msgstr ""
+
+#: inc/customizer/class-theme-customizer.php:663
+#: inc/customizer/class-theme-customizer.php:668
 msgid "Scroll To Top"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:667
+#: inc/customizer/class-theme-customizer.php:673
 msgid "Social Links"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:677
+#: inc/customizer/class-theme-customizer.php:683
 msgid "Performance"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:687
-#: inc/customizer/class-theme-customizer.php:692
+#: inc/customizer/class-theme-customizer.php:693
+#: inc/customizer/class-theme-customizer.php:698
 msgid "404 Page Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:697
+#: inc/customizer/class-theme-customizer.php:703
 #: assets/js/admin/dashboard.js:1
 msgid "Header Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:702
+#: inc/customizer/class-theme-customizer.php:708
 #: inc/customizer/options/header-builder-options.php:25
 msgid "Header Builder"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:707
+#: inc/customizer/class-theme-customizer.php:713
 msgid "Top Row"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:712
+#: inc/customizer/class-theme-customizer.php:718
 msgid "Main Row"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:717
+#: inc/customizer/class-theme-customizer.php:723
 msgid "Bottom Row"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:722
-#: inc/customizer/class-theme-customizer.php:727
+#: inc/customizer/class-theme-customizer.php:728
+#: inc/customizer/class-theme-customizer.php:733
 msgid "Header Off Canvas"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:737
+#: inc/customizer/class-theme-customizer.php:743
 #: inc/customizer/options/header-builder-options.php:68
 #: inc/template-functions/header-functions.php:202
 msgid "Primary Navigation"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:742
+#: inc/customizer/class-theme-customizer.php:748
 #: inc/customizer/options/header-builder-options.php:72
 #: inc/template-functions/header-functions.php:222
 msgid "Secondary Navigation"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:747
-#: inc/customizer/class-theme-customizer.php:752
+#: inc/customizer/class-theme-customizer.php:753
+#: inc/customizer/class-theme-customizer.php:758
 msgid "Dropdown Navigation"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:757
-#: inc/customizer/class-theme-customizer.php:762
+#: inc/customizer/class-theme-customizer.php:763
+#: inc/customizer/class-theme-customizer.php:768
 msgid "Mobile Trigger"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:767
+#: inc/customizer/class-theme-customizer.php:773
 #: inc/customizer/options/header-builder-options.php:169
 msgid "Mobile Navigation"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:772
-#: inc/customizer/class-theme-customizer.php:777
+#: inc/customizer/class-theme-customizer.php:778
+#: inc/customizer/class-theme-customizer.php:783
 msgid "Header Mobile Button"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:782
+#: inc/customizer/class-theme-customizer.php:788
 msgid "Header Mobile HTML"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:787
-#: inc/customizer/class-theme-customizer.php:792
+#: inc/customizer/class-theme-customizer.php:793
+#: inc/customizer/class-theme-customizer.php:798
 msgid "HTML Editor"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:797
+#: inc/customizer/class-theme-customizer.php:803
 msgid "Header Cart"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:802
+#: inc/customizer/class-theme-customizer.php:808
 msgid "Header Cart Design"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:807
-#: inc/customizer/class-theme-customizer.php:812
+#: inc/customizer/class-theme-customizer.php:813
+#: inc/customizer/class-theme-customizer.php:818
 msgid "Mobile Header Cart"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:817
-#: inc/customizer/class-theme-customizer.php:822
+#: inc/customizer/class-theme-customizer.php:823
+#: inc/customizer/class-theme-customizer.php:828
 msgid "Header Button"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:827
-#: inc/customizer/class-theme-customizer.php:832
-#: inc/customizer/class-theme-customizer.php:837
-#: inc/customizer/class-theme-customizer.php:842
+#: inc/customizer/class-theme-customizer.php:833
+#: inc/customizer/class-theme-customizer.php:838
+#: inc/customizer/class-theme-customizer.php:843
+#: inc/customizer/class-theme-customizer.php:848
 msgid "Header Social"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:847
+#: inc/customizer/class-theme-customizer.php:853
 msgid "Header Search"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:852
-#: inc/customizer/class-theme-customizer.php:857
+#: inc/customizer/class-theme-customizer.php:858
+#: inc/customizer/class-theme-customizer.php:863
 #: inc/customizer/options/header-builder-options.php:247
 #: inc/meta/class-theme-meta.php:196
 #: inc/meta/class-theme-meta.php:315
 msgid "Transparent Header"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:862
-#: inc/customizer/class-theme-customizer.php:867
+#: inc/customizer/class-theme-customizer.php:868
+#: inc/customizer/class-theme-customizer.php:873
 #: inc/customizer/options/header-builder-options.php:257
 msgid "Sticky Header"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:872
+#: inc/customizer/class-theme-customizer.php:878
 #: assets/js/admin/dashboard.js:1
 msgid "Footer Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:877
+#: inc/customizer/class-theme-customizer.php:883
 #: inc/customizer/options/footer-builder-options.php:25
 msgid "Footer Builder"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:882
-#: inc/customizer/class-theme-customizer.php:887
+#: inc/customizer/class-theme-customizer.php:888
+#: inc/customizer/class-theme-customizer.php:893
 msgid "Footer Top"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:892
-#: inc/customizer/class-theme-customizer.php:897
+#: inc/customizer/class-theme-customizer.php:898
+#: inc/customizer/class-theme-customizer.php:903
 msgid "Footer Middle"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:902
-#: inc/customizer/class-theme-customizer.php:907
+#: inc/customizer/class-theme-customizer.php:908
+#: inc/customizer/class-theme-customizer.php:913
 msgid "Footer Bottom"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:912
+#: inc/customizer/class-theme-customizer.php:918
 msgid "Footer Copyright HTML"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:917
-#: inc/customizer/class-theme-customizer.php:922
+#: inc/customizer/class-theme-customizer.php:923
+#: inc/customizer/class-theme-customizer.php:928
 msgid "Footer Social"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:927
+#: inc/customizer/class-theme-customizer.php:933
 #: inc/customizer/options/footer-builder-options.php:57
 #: inc/template-functions/footer-functions.php:88
 msgid "Footer Navigation"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:932
+#: inc/customizer/class-theme-customizer.php:938
 #: assets/js/admin/dashboard.js:1
 msgid "Page Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:937
-#: inc/customizer/class-theme-customizer.php:941
+#: inc/customizer/class-theme-customizer.php:943
+#: inc/customizer/class-theme-customizer.php:947
 msgid "Search Results"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:945
-#: inc/customizer/class-theme-customizer.php:950
+#: inc/customizer/class-theme-customizer.php:951
+#: inc/customizer/class-theme-customizer.php:956
 msgid "Single Post Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:955
-#: inc/customizer/class-theme-customizer.php:960
+#: inc/customizer/class-theme-customizer.php:961
+#: inc/customizer/class-theme-customizer.php:966
 #: inc/customizer/options/custom-layout-options.php:1484
 #: inc/customizer/options/custom-layout-options.php:1497
 #: inc/customizer/options/forum-archive-layout-options.php:633
@@ -1640,66 +1652,66 @@ msgstr ""
 msgid "Archive Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:972
+#: inc/customizer/class-theme-customizer.php:978
 msgid "Widget Footer 1 Settings"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:977
+#: inc/customizer/class-theme-customizer.php:983
 msgid "Widget Footer 2 Settings"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:982
+#: inc/customizer/class-theme-customizer.php:988
 msgid "Widget Footer 3 Settings"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:987
+#: inc/customizer/class-theme-customizer.php:993
 msgid "Widget Footer 4 Settings"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:992
+#: inc/customizer/class-theme-customizer.php:998
 msgid "Widget Footer 5 Settings"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:997
+#: inc/customizer/class-theme-customizer.php:1003
 msgid "Widget Footer 6 Settings"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1002
+#: inc/customizer/class-theme-customizer.php:1008
 msgid "Widget Header Settings"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1007
+#: inc/customizer/class-theme-customizer.php:1013
 msgid "Widget Area Settings"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1012
+#: inc/customizer/class-theme-customizer.php:1018
 msgid "Catalog Off Canvas Sidebar Settings"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1023
-#: inc/customizer/class-theme-customizer.php:1028
+#: inc/customizer/class-theme-customizer.php:1029
+#: inc/customizer/class-theme-customizer.php:1034
 msgid "Product Catalog"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1033
-#: inc/customizer/class-theme-customizer.php:1038
+#: inc/customizer/class-theme-customizer.php:1039
+#: inc/customizer/class-theme-customizer.php:1044
 msgid "Single Product Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1043
+#: inc/customizer/class-theme-customizer.php:1049
 msgid "My Account Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1048
+#: inc/customizer/class-theme-customizer.php:1054
 msgid "Store Notice"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1060
-#: inc/customizer/class-theme-customizer.php:1065
-#: inc/customizer/class-theme-customizer.php:1191
-#: inc/customizer/class-theme-customizer.php:1196
-#: inc/customizer/class-theme-customizer.php:1252
-#: inc/customizer/class-theme-customizer.php:1257
+#: inc/customizer/class-theme-customizer.php:1066
+#: inc/customizer/class-theme-customizer.php:1071
+#: inc/customizer/class-theme-customizer.php:1197
+#: inc/customizer/class-theme-customizer.php:1202
+#: inc/customizer/class-theme-customizer.php:1258
+#: inc/customizer/class-theme-customizer.php:1263
 #: inc/customizer/options/learndash-course-layout-options.php:471
 #: inc/customizer/options/learndash-course-layout-options.php:478
 #: inc/customizer/options/learndash-course-layout-options.php:484
@@ -1712,17 +1724,17 @@ msgstr ""
 msgid "Course Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1070
-#: inc/customizer/class-theme-customizer.php:1075
-#: inc/customizer/class-theme-customizer.php:1262
-#: inc/customizer/class-theme-customizer.php:1267
+#: inc/customizer/class-theme-customizer.php:1076
+#: inc/customizer/class-theme-customizer.php:1081
+#: inc/customizer/class-theme-customizer.php:1268
+#: inc/customizer/class-theme-customizer.php:1273
 msgid "Course Archive Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1080
-#: inc/customizer/class-theme-customizer.php:1085
-#: inc/customizer/class-theme-customizer.php:1211
-#: inc/customizer/class-theme-customizer.php:1216
+#: inc/customizer/class-theme-customizer.php:1086
+#: inc/customizer/class-theme-customizer.php:1091
+#: inc/customizer/class-theme-customizer.php:1217
+#: inc/customizer/class-theme-customizer.php:1222
 #: inc/customizer/options/learndash-lesson-layout-options.php:471
 #: inc/customizer/options/learndash-lesson-layout-options.php:478
 #: inc/customizer/options/learndash-lesson-layout-options.php:484
@@ -1732,9 +1744,9 @@ msgstr ""
 msgid "Lesson Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1090
-#: inc/customizer/class-theme-customizer.php:1095
-#: inc/customizer/class-theme-customizer.php:1221
+#: inc/customizer/class-theme-customizer.php:1096
+#: inc/customizer/class-theme-customizer.php:1101
+#: inc/customizer/class-theme-customizer.php:1227
 #: inc/customizer/options/learndash-quiz-layout-options.php:471
 #: inc/customizer/options/learndash-quiz-layout-options.php:478
 #: inc/customizer/options/learndash-quiz-layout-options.php:484
@@ -1743,10 +1755,10 @@ msgstr ""
 msgid "Quiz Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1100
-#: inc/customizer/class-theme-customizer.php:1105
-#: inc/customizer/class-theme-customizer.php:1152
-#: inc/customizer/class-theme-customizer.php:1157
+#: inc/customizer/class-theme-customizer.php:1106
+#: inc/customizer/class-theme-customizer.php:1111
+#: inc/customizer/class-theme-customizer.php:1158
+#: inc/customizer/class-theme-customizer.php:1163
 #: inc/customizer/options/learndash-topic-layout-options.php:471
 #: inc/customizer/options/learndash-topic-layout-options.php:478
 #: inc/customizer/options/learndash-topic-layout-options.php:484
@@ -1756,78 +1768,78 @@ msgstr ""
 msgid "Topic Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1110
-#: inc/customizer/class-theme-customizer.php:1115
+#: inc/customizer/class-theme-customizer.php:1116
+#: inc/customizer/class-theme-customizer.php:1121
 msgid "Groups Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1120
-#: inc/customizer/class-theme-customizer.php:1125
+#: inc/customizer/class-theme-customizer.php:1126
+#: inc/customizer/class-theme-customizer.php:1131
 #: inc/customizer/options/learndash-essays-layout-options.php:471
 #: inc/customizer/options/learndash-essays-layout-options.php:478
 #: inc/customizer/options/learndash-essays-layout-options.php:484
 msgid "Essay Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1130
+#: inc/customizer/class-theme-customizer.php:1136
 msgid "Learn Dash Design"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1135
-#: inc/customizer/class-theme-customizer.php:1140
+#: inc/customizer/class-theme-customizer.php:1141
+#: inc/customizer/class-theme-customizer.php:1146
 msgid "Course Grid Design"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1163
-#: inc/customizer/class-theme-customizer.php:1168
+#: inc/customizer/class-theme-customizer.php:1169
+#: inc/customizer/class-theme-customizer.php:1174
 #: inc/customizer/options/forum-layout-options.php:723
 #: inc/customizer/options/forum-layout-options.php:730
 #: inc/customizer/options/forum-layout-options.php:736
 msgid "Forum Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1174
-#: inc/customizer/class-theme-customizer.php:1179
+#: inc/customizer/class-theme-customizer.php:1180
+#: inc/customizer/class-theme-customizer.php:1185
 msgid "Forum Archive"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1201
-#: inc/customizer/class-theme-customizer.php:1206
+#: inc/customizer/class-theme-customizer.php:1207
+#: inc/customizer/class-theme-customizer.php:1212
 msgid "Course Archive"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1226
+#: inc/customizer/class-theme-customizer.php:1232
 #: inc/customizer/options/lifter-member-layout-options.php:153
 #: inc/customizer/options/lifter-member-layout-options.php:159
 msgid "Membership Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1231
-#: inc/customizer/class-theme-customizer.php:1236
+#: inc/customizer/class-theme-customizer.php:1237
+#: inc/customizer/class-theme-customizer.php:1242
 msgid "Membership Archive"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1241
+#: inc/customizer/class-theme-customizer.php:1247
 msgid "User Dashboard"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1278
-#: inc/customizer/class-theme-customizer.php:1283
+#: inc/customizer/class-theme-customizer.php:1284
+#: inc/customizer/class-theme-customizer.php:1289
 msgid "Single Event Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1288
+#: inc/customizer/class-theme-customizer.php:1294
 #: inc/customizer/options/tec-event-archive-layout-options.php:18
 #: inc/customizer/options/tec-event-archive-layout-options.php:24
 msgid "Events Layout"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1325
-#: inc/customizer/class-theme-customizer.php:1330
+#: inc/customizer/class-theme-customizer.php:1331
+#: inc/customizer/class-theme-customizer.php:1336
 msgid "Archive"
 msgstr ""
 
-#: inc/customizer/class-theme-customizer.php:1340
+#: inc/customizer/class-theme-customizer.php:1346
 #: inc/customizer/options/custom-layout-options.php:1865
 msgid "Custom Post Types"
 msgstr ""
@@ -4373,6 +4385,7 @@ msgstr ""
 
 #: inc/customizer/options/footer-social-options.php:406
 #: inc/customizer/options/general-button-options.php:140
+#: inc/customizer/options/general-image-options.php:18
 #: inc/customizer/options/general-scroll-to-top-options.php:482
 #: inc/customizer/options/header-button-options.php:357
 #: inc/customizer/options/header-mobile-button-options.php:319
@@ -6826,46 +6839,46 @@ msgstr ""
 msgid "Browse Base Starter Templates"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:261
+#: inc/dashboard/class-theme-dashboard.php:271
 msgid "Config Theme Modules"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:304
+#: inc/dashboard/class-theme-dashboard.php:314
 #: assets/js/admin/dashboard.js:1
 msgid "Video Tutorials"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:305
+#: inc/dashboard/class-theme-dashboard.php:315
 msgid "Want a guide? We have video tutorials to walk you through getting started."
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:306
+#: inc/dashboard/class-theme-dashboard.php:316
 msgid "Watch Videos"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:311
+#: inc/dashboard/class-theme-dashboard.php:321
 msgid "Documentation"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:312
+#: inc/dashboard/class-theme-dashboard.php:322
 msgid "Need help? We have a knowledge base full of articles to get you started."
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:313
+#: inc/dashboard/class-theme-dashboard.php:323
 msgid "Browse Docs"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:318
+#: inc/dashboard/class-theme-dashboard.php:328
 #: assets/js/admin/dashboard.js:1
 msgid "Support"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:319
+#: inc/dashboard/class-theme-dashboard.php:329
 #: assets/js/admin/dashboard.js:1
 msgid "Have a question, we are happy to help! Get in touch with our support team."
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:320
+#: inc/dashboard/class-theme-dashboard.php:330
 #: assets/js/admin/dashboard.js:1
 msgid "Submit a Ticket"
 msgstr ""
@@ -7218,7 +7231,7 @@ msgid "Palette 3"
 msgstr ""
 
 #: assets/js/admin/customizer.js:3
-msgid "Select a Color Set"
+msgid "Select Palette"
 msgstr ""
 
 #: assets/js/admin/customizer.js:3

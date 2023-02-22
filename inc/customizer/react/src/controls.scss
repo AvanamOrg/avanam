@@ -524,11 +524,16 @@ flex: 0 1 65px;
     margin-bottom: 15px;
 }
 .base-palette-popover-copy-paste .components-popover__content {
-    padding: 15px 15px;
+    padding: 8px;
     box-sizing: initial;
     background: #fff;
     border-radius: 4px;
     box-shadow: rgba(0,0,0,0.15) 0px 8px 16px;
+	width: 100%;
+    box-sizing: border-box;
+	.base-palette-popover-tabs {
+		width: 100%;
+	}
 }
 .base-palette-popover-tabs .components-tab-panel__tabs-item.active-tab {
     border-bottom-color: #007cba;

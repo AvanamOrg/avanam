@@ -152,8 +152,10 @@ class Component implements Component_Interface {
 			'baseConfig',
 			array(
 				'screenReader' => array(
-					'expand'   => __( 'Expand child menu', 'avanam' ),
-					'collapse' => __( 'Collapse child menu', 'avanam' ),
+					'expand'     => __( 'Expand child menu', 'avanam' ),
+					'expandOf'   => __( 'Expand child menu of', 'avanam' ),
+					'collapse'   => __( 'Collapse child menu', 'avanam' ),
+					'collapseOf' => __( 'Collapse child menu of', 'avanam' ),
 				),
 				'breakPoints' => array(
 					'desktop' => esc_attr( $breakpoint ),

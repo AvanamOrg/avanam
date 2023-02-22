@@ -103,9 +103,9 @@ class TypographyComponent extends Component {
 			},
 			step: {
 				px: '1',
-				em: '0.01',
-				rem: '0.01',
-				'-': '0.01',
+				em: '0.001',
+				rem: '0.001',
+				'-': '0.001',
 			},
 			sizeUnits: ['px', 'em', 'rem'],
 			lineUnits: ['-', 'px', 'em', 'rem'],

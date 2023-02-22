@@ -59,14 +59,14 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.footer-navigation .footer-menu-container > ul > li > a',
+				'selector' => '#colophon .footer-navigation .footer-menu-container > ul > li > a',
 				'property' => 'padding-left',
 				'pattern'  => 'calc($ / 2)',
 				'key'      => 'size',
 			),
 			array(
 				'type'     => 'css',
-				'selector' => '.footer-navigation .footer-menu-container > ul > li > a',
+				'selector' => '#colophon .footer-navigation .footer-menu-container > ul > li > a',
 				'property' => 'padding-right',
 				'pattern'  => 'calc($ / 2)',
 				'key'      => 'size',
@@ -131,14 +131,14 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.footer-navigation .footer-menu-container > ul > li > a',
+				'selector' => '#colophon .footer-navigation .footer-menu-container > ul > li > a',
 				'property' => 'padding-top',
 				'pattern'  => '$',
 				'key'      => 'size',
 			),
 			array(
 				'type'     => 'css',
-				'selector' => '.footer-navigation .footer-menu-container > ul > li > a',
+				'selector' => '#colophon .footer-navigation .footer-menu-container > ul > li > a',
 				'property' => 'padding-bottom',
 				'pattern'  => '$',
 				'key'      => 'size',
@@ -311,7 +311,7 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.footer-navigation .footer-menu-container > ul li a',
+				'selector' => '#colophon .footer-navigation .footer-menu-container > ul li a',
 				'property' => 'background',
 				'pattern'  => '$',
 				'key'      => 'color',

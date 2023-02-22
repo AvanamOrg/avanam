@@ -92,11 +92,21 @@ class Component implements Component_Interface {
 			&& version_compare( $remote->requires, get_bloginfo( 'version' ), '<' )
 		) {
 
+			if(
+				isset( $transient->response )
+				&& ! empty( $transient->response )
+			) {
 			$transient->response[ $stylesheet ] = $data;
+			}
 
 		} else {
 
+			if(
+				isset( $transient->no_update )
+				&& ! empty( $transient->no_update )
+			) {
 			$transient->no_update[ $stylesheet ] = $data;
+			}
 
 		}
 

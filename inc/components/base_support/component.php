@@ -272,6 +272,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * Option to Install Starter Templates
 	 */
 	public function install_starter_script() {
+		wp_register_script( 'base-welcome-deactivate', get_template_directory_uri() . '/assets/js/welcome-notice.min.js', array( 'jquery' ), AVANAM_VERSION, false );
 		wp_register_script( 'base-starter-install', get_template_directory_uri() . '/assets/js/admin-activate.min.js', array( 'jquery' ), AVANAM_VERSION, false );
 		wp_register_script( 'base-gutenberg-deactivate', get_template_directory_uri() . '/assets/js/gutenberg-notice.min.js', array( 'jquery' ), AVANAM_VERSION, false );
 	}

@@ -1,3 +1,6 @@
+== 1.1.4 | 27th March 2023 ==
+* Fix: Welcome notice JS registered
+
 == 1.1.3 | 27th March 2023 ==
 * Update: JS to prevent conflicts
 * Update: Editor styling of form

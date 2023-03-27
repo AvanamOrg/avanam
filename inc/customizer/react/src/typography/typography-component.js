@@ -516,7 +516,7 @@ class TypographyComponent extends Component {
 							initialPosition={ ( currentLineHeight ? currentLineHeight : placeholderLineHeight ) }
 							value={ currentLineHeight }
 							onChange={ (val) => {
-								if ( val ) {
+								if ( typeof(val) !== 'undefined' && val !== '' ) {
 									let value = this.state.value;
 									value.lineHeight[ this.state.currentDevice ] = val;
 									this.updateValues( value );
@@ -548,7 +548,7 @@ class TypographyComponent extends Component {
 							value={ currentLetterSpacing }
 							initialPosition={ ( currentLetterSpacing ? currentLetterSpacing : '' ) }
 							onChange={ (val) => {
-								if ( val ) {
+								if ( typeof(val) !== 'undefined' && val !== '' ) {
 									let value = this.state.value;
 									value.letterSpacing[ this.state.currentDevice ] = val;
 									this.updateValues( value );

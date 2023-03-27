@@ -673,7 +673,7 @@ class Component implements Component_Interface {
 			$css->set_selector( '.entry-hero.forum-hero-section .entry-header' );
 			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'forum_title_height' ), 'desktop' ) );
 			$css->set_selector( '.forum-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $css->render_color( webapp()->sub_option( 'forum_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'forum_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.forum-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'forum_title_background', 'tablet' ), $css );
@@ -804,7 +804,7 @@ class Component implements Component_Interface {
 			$css->set_selector( '.entry-hero.forum-archive-hero-section .entry-header' );
 			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'forum_archive_title_height' ), 'desktop' ) );
 			$css->set_selector( '.forum-archive-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $css->render_color( webapp()->sub_option( 'forum_archive_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'forum_archive_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.forum-archive-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'forum_archive_title_background', 'tablet' ), $css );
@@ -937,7 +937,7 @@ class Component implements Component_Interface {
 			$css->set_selector( '.entry-hero.topic-hero-section .entry-header' );
 			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'topic_title_height' ), 'desktop' ) );
 			$css->set_selector( '.topic-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $css->render_color( webapp()->sub_option( 'topic_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'topic_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.topic-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'topic_title_background', 'tablet' ), $css );

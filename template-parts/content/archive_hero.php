@@ -19,7 +19,7 @@ if ( empty( $slug ) ) {
 	}
 }
 ?>
-<section class="<?php echo esc_attr( implode( ' ', get_archive_hero_classes() ) ); ?>">
+<section role="banner" class="<?php echo esc_attr( implode( ' ', get_archive_hero_classes() ) ); ?>">
 	<div class="entry-hero-container-inner">
 		<div class="hero-section-overlay"></div>
 		<div class="hero-container site-container">

@@ -95,11 +95,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	public function initialize() {
 		add_action( 'after_setup_theme', array( $this, 'action_essential_theme_support' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'install_starter_script' ) );
-		add_action( 'admin_notices', array( $this, 'base_welcome_notice' ) );
-		add_action( 'wp_ajax_base_dismiss_welcome_notice', array( $this, 'ajax_dismiss_welcome_notice' ) );
 		//add_action( 'admin_notices', array( $this, 'base_starter_templates_notice' ) );
+		add_action( 'admin_notices', array( $this, 'base_welcome_notice' ) );
 		add_action( 'admin_notices', array( $this, 'base_turn_off_gutenberg_plugin_notice' ) );
-		add_action( 'wp_ajax_base_dismiss_notice', array( $this, 'ajax_dismiss_starter_notice' ) );
+		//add_action( 'wp_ajax_base_dismiss_notice', array( $this, 'ajax_dismiss_starter_notice' ) );
+		add_action( 'wp_ajax_base_dismiss_welcome_notice', array( $this, 'ajax_dismiss_welcome_notice' ) );
 		add_action( 'wp_ajax_base_dismiss_gutenberg_notice', array( $this, 'ajax_dismiss_gutenberg_notice' ) );
 		add_action( 'wp_ajax_base_install_starter', array( $this, 'install_plugin_ajax_callback' ) );
 		add_action( 'wp_head', array( $this, 'action_add_pingback_header' ) );
@@ -125,9 +125,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			return;
 		}
 		?>
-		<div id="base-notice-welcome-plugin" class="notice base-notice is-dismissible notice-info">
-			<h3 class="notice-title"><?php echo esc_html__( 'Thanks for choosing the Avanam Theme!', 'avanam' ); ?></h3>
-			<p class="base-notice-description"><?php echo esc_html__( 'You can customize the styling of your theme - including header fooder layout, font, colors and spacing - in your theme settings.', 'avanam' ); ?></p>
+		<div id="base-notice-welcome-plugin" class="notice is-dismissible notice-info">
+			<h2 class="notice-title"><?php echo esc_html__( 'Thanks for choosing the Avanam Theme!', 'avanam' ); ?></h2>
+			<p class="base-notice-description"><?php /* translators: %s: <a> */ printf( esc_html__( 'Using %1$sAvanam Theme%2$s you can customize the styling of your site - including header fooder layout, font, colors and spacing - in your theme settings.', 'avanam' ), '<a href="https://avanam.org/" target="_blank">', '</a>' ); ?></p>
 			<?php if ( !isset( $_GET['page'] ) || $_GET['page'] !== 'avanam' ) { ?>
 			<p class="install-submit">
 				<a href="<?php echo esc_url( admin_url( 'themes.php?page=avanam' ) ); ?>"><button class="button button-primary base-theme-settings"><?php echo esc_html__( 'Go to Theme Settings', 'avanam' ); ?></button></a>
@@ -171,25 +171,25 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * Add Notice for Base Starter templates
 	 */
 	public function base_starter_templates_notice() {
-		if ( defined( 'BASE_STARTER_VERSION' ) || get_option( 'base_starter_plugin_notice' ) || ! current_user_can( 'install_plugins' ) ) {
+		if ( defined( 'AVANAM_STARTER_VERSION' ) || get_option( 'base_starter_plugin_notice' ) || ! current_user_can( 'install_plugins' ) ) {
 			return;
 		}
 		$installed_plugins = get_plugins();
-		if ( ! isset( $installed_plugins['base-starter/base-starter.php'] ) ) {
+		if ( ! isset( $installed_plugins['avanam-starter/avanam-starter.php'] ) ) {
 			$button_label = esc_html__( 'Install Base Starter Templates', 'avanam' );
 			$data_action  = 'install';
-		} elseif ( ! self::active_plugin_check( 'base-starter/base-starter.php' ) ) {
+		} elseif ( ! self::active_plugin_check( 'avanam-starter/avanam-starter.php' ) ) {
 			$button_label = esc_html__( 'Activate Base Starter Templates', 'avanam' );
 			$data_action  = 'activate';
 		} else {
 			return;
 		}
 		?>
-		<div id="base-notice-starter-templates" class="notice base-notice is-dismissible notice-info">
-			<h3 class="notice-title"><?php echo esc_html__( 'Thanks for choosing the Avanam Theme!', 'avanam' ); ?></h3>
+		<div id="base-notice-starter-templates" class="notice is-dismissible notice-info">
+			<h2 class="notice-title"><?php echo esc_html__( 'Thanks for choosing the Avanam Theme!', 'avanam' ); ?></h2>
 			<p class="base-notice-description"><?php /* translators: %s: <strong> <a> */ printf( esc_html__( 'Want to get started with a beautiful %1$sstarter template%2$s? Install the Base Starter Templates plugin to launch an optimized design in minutes.', 'avanam' ), '<a href="https://wordpress.org/plugins/base-starter-templates/" target="_blank">', '</a>', '<strong>', '</strong>' ); ?></p>
 			<p class="install-submit">
-				<button class="button button-primary base-install-starter-btn" data-redirect-url="<?php echo esc_url( admin_url( 'themes.php?page=base-starter' ) ); ?>" data-activating-label="<?php echo esc_attr__( 'Activating...', 'avanam' ); ?>" data-activated-label="<?php echo esc_attr__( 'Activated', 'avanam' ); ?>" data-installing-label="<?php echo esc_attr__( 'Installing...', 'avanam' ); ?>" data-installed-label="<?php echo esc_attr__( 'Installed', 'avanam' ); ?>" data-action="<?php echo esc_attr( $data_action ); ?>"><?php echo esc_html( $button_label ); ?></button>
+				<button class="button button-primary base-install-starter-btn" data-redirect-url="<?php echo esc_url( admin_url( 'themes.php?page=avanam-starter' ) ); ?>" data-activating-label="<?php echo esc_attr__( 'Activating...', 'avanam' ); ?>" data-activated-label="<?php echo esc_attr__( 'Activated', 'avanam' ); ?>" data-installing-label="<?php echo esc_attr__( 'Installing...', 'avanam' ); ?>" data-installed-label="<?php echo esc_attr__( 'Installed', 'avanam' ); ?>" data-action="<?php echo esc_attr( $data_action ); ?>"><?php echo esc_html( $button_label ); ?></button>
 			</p>
 		</div>
 		<?php
@@ -212,8 +212,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			return;
 		}
 		?>
-		<div id="base-notice-gutenberg-plugin" class="notice base-notice is-dismissible notice-warning">
-			<h3 class="notice-title"><?php echo esc_html__( 'Gutenberg Plugin Detected', 'avanam' ); ?></h3>
+		<div id="base-notice-gutenberg-plugin" class="notice is-dismissible notice-warning">
+			<h2 class="notice-title"><?php echo esc_html__( 'Gutenberg Plugin Detected', 'avanam' ); ?></h2>
 			<p class="base-notice-description"><?php /* translators: %s: <a> */ printf( esc_html__( 'The %1$sGutenberg plugin%2$s is not recommended for use in a production site. Many things may be broken by using this plugin. Please deactivate.', 'avanam' ), '<a href="https://wordpress.org/plugins/gutenberg/" target="_blank">', '</a>' ); ?></p>
 		</div>
 		<?php
@@ -272,8 +272,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * Option to Install Starter Templates
 	 */
 	public function install_starter_script() {
-		wp_enqueue_style( 'base-admin-styles', get_template_directory_uri().'/assets/css/admin/admin-styles.min.css' );
-		wp_register_script( 'base-welcome-deactivate', get_template_directory_uri() . '/assets/js/welcome-notice.min.js', array( 'jquery' ), AVANAM_VERSION, false );
 		wp_register_script( 'base-starter-install', get_template_directory_uri() . '/assets/js/admin-activate.min.js', array( 'jquery' ), AVANAM_VERSION, false );
 		wp_register_script( 'base-gutenberg-deactivate', get_template_directory_uri() . '/assets/js/gutenberg-notice.min.js', array( 'jquery' ), AVANAM_VERSION, false );
 	}
@@ -323,7 +321,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$api = plugins_api(
 				'plugin_information',
 				array(
-					'slug' => 'base-starter',
+					'slug' => 'avanam-starter',
 					'fields' => array(
 						'short_description' => false,
 						'sections' => false,
@@ -348,7 +346,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 				$installed = $upgrader->install( $api->download_link );
 				if ( $installed ) {
-					$activate = activate_plugin( 'base-starter/base-starter.php', '', false, true );
+					$activate = activate_plugin( 'avanam-starter/avanam-starter.php', '', false, true );
 					if ( is_wp_error( $activate ) ) {
 						$install = false;
 					}
@@ -359,7 +357,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				$install = false;
 			}
 		} elseif ( 'activate' === $status ) {
-			$activate = activate_plugin( 'base-starter/base-starter.php', '', false, true );
+			$activate = activate_plugin( 'avanam-starter/avanam-starter.php', '', false, true );
 			if ( is_wp_error( $activate ) ) {
 				$install = false;
 			}
@@ -433,8 +431,32 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * @param  string $post_ID the post id.
 	 */
 	public function classic_embed_wrap( $cache, $url, $attr = array(), $post_ID = '' ) {
-		if ( doing_filter( 'the_content' ) && ! has_blocks() && ! empty( $cache ) ) {
-			$cache = '<div class="entry-content-asset videofit">' . $cache . '</div>';
+		if ( doing_filter( 'the_content' ) && ! has_blocks() && ! empty( $cache ) && ! empty( $url ) ) {
+			$do_wrap = false;
+			$patterns = array(
+				'#http://((m|www)\.)?youtube\.com/watch.*#i',
+				'#https://((m|www)\.)?youtube\.com/watch.*#i',
+				'#http://((m|www)\.)?youtube\.com/playlist.*#i',
+				'#https://((m|www)\.)?youtube\.com/playlist.*#i',
+				'#http://youtu\.be/.*#i',
+				'#https://youtu\.be/.*#i',
+				'#https?://(.+\.)?vimeo\.com/.*#i',
+				'#https?://(www\.)?dailymotion\.com/.*#i',
+				'#https?://dai.ly/*#i',
+				'#https?://(www\.)?hulu\.com/watch/.*#i',
+				'#https?://wordpress.tv/.*#i',
+				'#https?://(www\.)?funnyordie\.com/videos/.*#i',
+				'#https?://vine.co/v/.*#i',
+				'#https?://(www\.)?collegehumor\.com/video/.*#i',
+				'#https?://(www\.|embed\.)?ted\.com/talks/.*#i'
+			);
+			$patterns = apply_filters( 'base_maybe_wrap_embed_patterns', $patterns );
+			foreach ( $patterns as $pattern ) {
+				$do_wrap = preg_match( $pattern, $url );
+				if ( $do_wrap ) {
+					return '<div class="entry-content-asset videofit">' . $cache . '</div>';
+				}
+			}
 		}
 		return $cache;
 	}

@@ -39,9 +39,13 @@
 	list-style-type: none;
 }
 
-.children {
+.children{
 	margin-left: 1em;
 	padding-left: 0;
+}
+.rtl .children {
+	margin-left: 0;
+	margin-right: 1em;
 }
 #cancel-comment-reply-link {
     margin-left: 0.8em;
@@ -50,6 +54,10 @@
 
 	.children {
 		margin-left: 2em;
+	}
+	.rtl .children {
+		margin-left: 0;
+		margin-right: 2em;
 	}
 }
 

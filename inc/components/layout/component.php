@@ -695,7 +695,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			} elseif ( is_tax( 'course_cat' ) || is_tax( 'course_tag' ) || is_tax( 'course_track' ) ) {
 				$archive_type = 'course_archive';
 				$trans_type   = 'archive';
-			} elseif ( is_post_type_archive( 'tribe_events' ) && function_exists( 'tribe_is_month' ) && tribe_is_month() ) {
+			} elseif ( is_post_type_archive( 'tribe_events' ) ) {
 				$archive_type = 'tribe_events_archive';
 				$trans_type = 'archive';
 			} elseif ( is_tax( 'portfolio-type' ) || is_tax( 'portfolio-tag' ) ) {

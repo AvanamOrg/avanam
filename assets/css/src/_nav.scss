@@ -15,6 +15,9 @@
 .header-navigation ul ul.quadmenu-row {
 	flex-direction: row;
 }
+body:not(.hide-focus-outline) .header-navigation li.menu-item--has-toggle>a:focus .dropdown-nav-toggle {
+	opacity: 0.2;
+}
 // Hide divider for last item.
 .header-navigation ul ul.sub-menu > li:last-child, .header-navigation ul ul.submenu > li:last-child {
 	border-bottom:0;
@@ -108,6 +111,7 @@
 	border-radius: 0;
 	transform: translateY(-50%);
 	overflow: visible;
+	transition: opacity 0.2s ease;
 }
 .nav--toggle-sub ul ul .dropdown-nav-toggle {
 	right: 0.2em;

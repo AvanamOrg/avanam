@@ -6,13 +6,13 @@ $color-gray-500: #A0AEC0;
 $color-gray-600: #718096;
 $color-gray-700: #4A5568;
 $color-gray-800: #2D3748;
-.appearance_page_avanam #wpcontent {
+.toplevel_page_avanam #wpcontent {
     padding: 0;
     background: #EDF2F7;
 }
 .base_theme_dash_head {
-    background: #EDF2F7;
-    padding: 20px;
+    background: white;
+    padding: 10px;
 	height: 50px;
 	h1 {
 		color: $color-gray-800;
@@ -54,11 +54,7 @@ $color-gray-800: #2D3748;
 	}
 }
 .wrap.base_theme_dash {
-    margin: 0;
-    font-size: 14px;
-}
-.base_theme_dash_notices {
-    margin: 20px;
+    margin: 20px 20px 0;
 }
 .wrap.base_theme_dash p {
     font-size: 14px;
@@ -66,64 +62,34 @@ $color-gray-800: #2D3748;
 .base_theme_dashboard {
     margin: 0 auto;
     max-width: 1260px;
-	padding: 20px;
 }
-.base_theme_dashboard .button-primary.active,
-.base_theme_dashboard .button-primary.active:focus,
-.base_theme_dashboard .button-primary.active:hover,
-.base_theme_dashboard .button-primary:active,
-.base_theme_dashboard .button-primary {
-    color: white;
-    background: #2271b1;
-    text-decoration: none;
-    font-size: 16px;
-	border-radius: 0;
-}
-
 .page-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 2em;
+    grid-template-columns: 1fr 260px;
+    grid-gap: 3em;
 }
-.page-grid .side-panel {
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 0px;
-}
-
 .sidebar-section .components-panel__body.is-opened {
-	
-	background: white;
-	padding: 20px;
-	display: flex;
-	flex-flow: column nowrap;
-	margin-top: 0;
-	border: 1px solid #D4E0EB;
-
-
-}
-.support-section h2 {
-	margin-bottom: 0;
-}
-.sidebar-section h2,
-.tab-section h2,
-.page-grid .components-panel__body h3 {
-	color: #3c434a;
+	padding: 20px 0px;
+	border-color:#D4E0EB;
 }
 .sidebar-section h2:first-child, .tab-section h2:first-child {
     margin-top: 0;
 }
+.side-panel {
+	margin-top: 3rem;
+}
+.side-panel .components-panel+.components-panel {
+    margin-top: 1rem;
+}
 .side-panel .components-panel {
 	background-color: transparent;
 	border: none;
-	text-align: center;
 }
 .tab-section.components-panel {
 	border:none;
 }
 .tab-section .components-panel__body.is-opened {
-	padding: 25px 40px;
+    padding: 2rem;
 	border: 1px solid #D4E0EB;
 }
 .tab-section .section-header {
@@ -160,15 +126,8 @@ $color-gray-800: #2D3748;
 	}
 	.components-tab-panel__tabs {
 		margin-bottom: -1px;
-		padding: 0px;
 	}
 }
-.base_theme_dashboard_panel {
-	display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 2em;
-}
-
 .two-col-grid {
 	display: grid;
 	grid-gap: 2rem;
@@ -186,14 +145,15 @@ h3.section-sub-head {
 .link-item {
     border: 1px solid $color-gray-300;
     padding: 20px;
+	border-radius: 4px;
 	display: flex;
     flex-flow: column nowrap;
 	background: #fafcff;
 	text-align: center;
 }
 .link-item h4 {
-	margin: 0;
-	font-size: 16px;
+    margin: 0;
+	font-size: 14px;
 	color: #3c434a;
 }
 .dashboard-pro-settings {
@@ -218,68 +178,45 @@ h3.section-sub-head {
 .link-item .link-item-foot > *:first-child {
     flex-grow: 2;
 }
-.link-item:not(.locked-item) a {
-	display: block;
-	background: transparent;
+.link-item a {
+    display: block;
+    background: transparent;
 	color: #2271b1;
 	background: white;
-	padding: 10px 25px;
+	padding: 7px 18px;
 	text-decoration: none;
 	margin: 7px;
-	font-size: 15px;
+	font-size: 14px;
 	border: 1px solid #D4E0EB;
+	border-radius: 3px;
 	&:hover {
 		color:white;
 		background: #2271b1;
 		border-color:#2271b1 ;
 	}
 }
-.link-item .components-base-control {
-	margin: 7px;
-}
-
 span.bst-license-status {
-	padding: 4px;
-	margin-left: 10px;
-	font-size: 14px;
-	text-transform: uppercase;
+    padding: 4px;
+    margin-left: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 span.bst-license-status.bst-inactive {
-	color: #c05621!important;
-	background: #fffaf0!important;
+    color: #c05621!important;
+    background: #fffaf0!important;
 }
 span.bst-license-status.bst-active {
-	color: #2b6cb0!important;
-	background: #ebf8ff!important;
-}
-.side-panel .license-section.components-panel {
-	text-align: left;
-}
-.license-section.components-panel {
-	border: none;
-	background:transparent ;
-}
-.base_theme_dashboard_more {
-	padding: 0px;
-	background: none;
-	border: none;
-	display: grid;
-	grid-gap: 2rem;
-	grid-template-columns: 1fr 1fr;
+    color: #2b6cb0!important;
+    background: #ebf8ff!important;
 }
 .license-section h2 {
 	display: flex;
 	margin-top: 0;
-	align-items: center;
-	justify-content: space-between;
-	font-size: 18px;
-}
-.license-section .components-panel__body.is-opened {
-    padding: 30px;
+    align-items: center;
+    justify-content: space-between;
 }
 .license-section table.form-table {
     display: block;
-	margin-top: 20px;
 }
 .license-section table.form-table tbody {
     display: block;
@@ -301,10 +238,9 @@ span.bst-license-status.bst-active {
     padding: 0;
     margin-top: 10px;
 }
-.license-section table.form-table input {
+.license-section table.form-table input[type="text"] {
     width:100%;
-	border-radius: 0;
-	border: 1px solid #CBD5E0;
+    border: 1px solid #CBD5E0;
 }
 .base-desk-help-inner {
     max-width: 600px;
@@ -317,6 +253,7 @@ span.bst-license-status.bst-active {
     display: inline-block;
     padding: 10px 12px;
     background: #2271b1;
+    border-radius: 3px;
     font-size: 17px;
     color: white;
     text-decoration: none;
@@ -358,6 +295,7 @@ span.bst-license-status.bst-active {
     padding: 2em;
     margin-bottom: 2em;
     border: 1px solid #D4E0EB;
+    border-radius: 4px;
     font-size: 14px;
     line-height: 1.8;
 }

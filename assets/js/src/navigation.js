@@ -155,6 +155,10 @@
 								window.base.toggleSubMenu( SUBMENUS[ i ].parentNode, false );
 							}
 						}
+						// 27 is keymap for esc key.
+						if ( e.keyCode === 27 ) {
+							window.base.toggleSubMenu( SUBMENUS[ i ].parentNode, false );
+						}
 					} );
 		
 					SUBMENUS[ i ].parentNode.classList.add( 'menu-item--has-toggle' );
@@ -497,7 +501,7 @@
 			var desktopSticky = document.querySelector( '#main-header .base-sticky-header' ),
 				mobileSticky  = document.querySelector( '#mobile-header .base-sticky-header' ),
 				wrapper = document.getElementById( 'wrapper' ),
-				proSticky = document.querySelectorAll( '.basepro-fixed-above' ),
+				proSticky = document.querySelectorAll( '.base-pro-fixed-above' ),
 				proElements = document.querySelectorAll( '.base-before-wrapper-item' ),
 				activeSize = 'mobile',
 				lastScrollTop = 0,

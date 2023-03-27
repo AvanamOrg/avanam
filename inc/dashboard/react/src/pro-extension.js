@@ -19,7 +19,7 @@ export const ProModules = () => {
 	const proLinks = [];
 	return (
 		<Fragment>
-			{/* <h2 className="section-header">{ __( 'Do more with the Base Pro Addon', 'avanam' ) }</h2>
+			{/* <h2 className="section-header">{ __( 'Do more with the Avanam Pro Addon', 'avanam' ) }</h2>
 			<div className="two-col-grid">
 				{ map( proLinks, ( link ) => {
 					return (
@@ -40,4 +40,4 @@ export const ProModules = () => {
 	);
 };
 
-export default withFilters( 'base_pro_modules' )( ProModules );
+export default withFilters( 'base_theme_pro_modules' )( ProModules );

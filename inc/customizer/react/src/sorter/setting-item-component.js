@@ -919,7 +919,7 @@ class ItemComponent extends Component {
 						{ undefined !== this.state.item.custom_enable_03 && (
 							<Fragment>
 								<ToggleControl
-									label={ __(  'Show Custom 02?', 'avanam' ) }
+									label={ __(  'Show Custom 03?', 'avanam' ) }
 									checked={ this.state.item.custom_enable_03 }
 									onChange={ ( value ) => {
 										this.updateValues( { custom_enable_03: value } );
@@ -966,7 +966,7 @@ class ItemComponent extends Component {
 						{ undefined !== this.state.item.custom_enable_04 && (
 							<Fragment>
 								<ToggleControl
-									label={ __(  'Show Custom 02?', 'avanam' ) }
+									label={ __(  'Show Custom 04?', 'avanam' ) }
 									checked={ this.state.item.custom_enable_04 }
 									onChange={ ( value ) => {
 										this.updateValues( { custom_enable_04: value } );
@@ -1013,7 +1013,7 @@ class ItemComponent extends Component {
 						{ undefined !== this.state.item.custom_enable_05 && (
 							<Fragment>
 								<ToggleControl
-									label={ __(  'Show Custom 02?', 'avanam' ) }
+									label={ __(  'Show Custom 05?', 'avanam' ) }
 									checked={ this.state.item.custom_enable_05 }
 									onChange={ ( value ) => {
 										this.updateValues( { custom_enable_05: value } );

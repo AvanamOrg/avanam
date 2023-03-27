@@ -2,20 +2,21 @@
 # This file is distributed under the GNU General Public License v3.0 (or later).
 msgid ""
 msgstr ""
-"Project-Id-Version: Avanam 1.1.1\n"
+"Project-Id-Version: Avanam 1.1.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/avanam\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-02-22T09:44:19+00:00\n"
+"POT-Creation-Date: 2023-03-27T12:25:03+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: avanam\n"
 
 #. Theme Name of the theme
-#: inc/dashboard/class-theme-dashboard.php:74
+#: inc/dashboard/class-theme-dashboard.php:98
+#: inc/dashboard/class-theme-dashboard.php:305
 msgid "Avanam"
 msgstr ""
 
@@ -287,8 +288,9 @@ msgstr ""
 msgid "Thanks for choosing the Avanam Theme!"
 msgstr ""
 
+#. translators: %s: <a>
 #: inc/components/base_support/component.php:130
-msgid "You can customize the styling of your theme - including header fooder layout, font, colors and spacing - in your theme settings."
+msgid "Using %1$sAvanam Theme%2$s you can customize the styling of your site - including header fooder layout, font, colors and spacing - in your theme settings."
 msgstr ""
 
 #: inc/components/base_support/component.php:133
@@ -296,12 +298,12 @@ msgid "Go to Theme Settings"
 msgstr ""
 
 #: inc/components/base_support/component.php:179
-#: inc/dashboard/class-theme-dashboard.php:110
+#: inc/dashboard/class-theme-dashboard.php:135
 msgid "Install Base Starter Templates"
 msgstr ""
 
 #: inc/components/base_support/component.php:182
-#: inc/dashboard/class-theme-dashboard.php:113
+#: inc/dashboard/class-theme-dashboard.php:138
 msgid "Activate Base Starter Templates"
 msgstr ""
 
@@ -335,19 +337,19 @@ msgstr ""
 msgid "The %1$sGutenberg plugin%2$s is not recommended for use in a production site. Many things may be broken by using this plugin. Please deactivate."
 msgstr ""
 
-#: inc/components/base_support/component.php:308
+#: inc/components/base_support/component.php:306
 msgid "Security Error, Please reload the page."
 msgstr ""
 
-#: inc/components/base_support/component.php:311
+#: inc/components/base_support/component.php:309
 msgid "Security Error, Need higher Permissions to install plugin."
 msgstr ""
 
-#: inc/components/base_support/component.php:369
+#: inc/components/base_support/component.php:367
 msgid "Error, plugin could not be installed, please install manually."
 msgstr ""
 
-#: inc/components/base_support/component.php:468
+#: inc/components/base_support/component.php:490
 #: template-parts/footer/footer-row.php:24
 msgid "Click to edit this element."
 msgstr ""
@@ -958,8 +960,8 @@ msgstr ""
 #: inc/template-functions/header-functions.php:746
 #: inc/template-functions/header-functions.php:759
 #: inc/template-functions/header-functions.php:773
-#: inc/template-functions/header-functions.php:845
-#: inc/template-functions/header-functions.php:858
+#: inc/template-functions/header-functions.php:846
+#: inc/template-functions/header-functions.php:859
 msgid "Shopping Cart"
 msgstr ""
 
@@ -1187,7 +1189,7 @@ msgid "Collapse child menu of"
 msgstr ""
 
 #. translators: %s: stylesheet handle
-#: inc/components/styles/component.php:4849
+#: inc/components/styles/component.php:4853
 msgid "Invalid theme stylesheet handle: %s"
 msgstr ""
 
@@ -1211,21 +1213,21 @@ msgstr ""
 msgid "The template tag method %1$s registered by theme component %2$s conflicts with an already registered template tag of the same name."
 msgstr ""
 
-#: inc/components/woocommerce/component.php:955
+#: inc/components/woocommerce/component.php:986
 msgid "Cart Summary"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:990
+#: inc/components/woocommerce/component.php:1021
 msgid "Update Profile Photo"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1263
-#: inc/components/woocommerce/component.php:1275
+#: inc/components/woocommerce/component.php:1294
+#: inc/components/woocommerce/component.php:1306
 msgid "List View"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1266
-#: inc/components/woocommerce/component.php:1272
+#: inc/components/woocommerce/component.php:1297
+#: inc/components/woocommerce/component.php:1303
 msgid "Grid View"
 msgstr ""
 
@@ -1278,8 +1280,8 @@ msgstr ""
 #: inc/customizer/options/forum-layout-options.php:39
 #: inc/customizer/options/general-scroll-to-top-options.php:22
 #: inc/customizer/options/general-scroll-to-top-options.php:39
-#: inc/customizer/options/general-sidebar-options.php:22
-#: inc/customizer/options/general-sidebar-options.php:39
+#: inc/customizer/options/general-sidebar-options.php:29
+#: inc/customizer/options/general-sidebar-options.php:46
 #: inc/customizer/options/header-bottom-options.php:16
 #: inc/customizer/options/header-builder-options.php:32
 #: inc/customizer/options/header-button-options.php:22
@@ -1899,8 +1901,8 @@ msgstr ""
 #: inc/customizer/options/forum-layout-options.php:43
 #: inc/customizer/options/general-scroll-to-top-options.php:26
 #: inc/customizer/options/general-scroll-to-top-options.php:43
-#: inc/customizer/options/general-sidebar-options.php:26
-#: inc/customizer/options/general-sidebar-options.php:43
+#: inc/customizer/options/general-sidebar-options.php:33
+#: inc/customizer/options/general-sidebar-options.php:50
 #: inc/customizer/options/header-bottom-options.php:19
 #: inc/customizer/options/header-builder-options.php:35
 #: inc/customizer/options/header-button-options.php:26
@@ -2965,7 +2967,7 @@ msgstr ""
 #: inc/customizer/options/general-scroll-to-top-options.php:354
 #: inc/customizer/options/general-scroll-to-top-options.php:400
 #: inc/customizer/options/general-scroll-to-top-options.php:441
-#: inc/customizer/options/general-sidebar-options.php:253
+#: inc/customizer/options/general-sidebar-options.php:267
 #: inc/customizer/options/header-button-options.php:248
 #: inc/customizer/options/header-button-options.php:289
 #: inc/customizer/options/header-button-options.php:323
@@ -3750,7 +3752,7 @@ msgstr ""
 #: inc/customizer/options/footer-bottom-options.php:284
 #: inc/customizer/options/footer-middle-options.php:278
 #: inc/customizer/options/footer-top-options.php:278
-#: inc/customizer/options/general-sidebar-options.php:104
+#: inc/customizer/options/general-sidebar-options.php:111
 msgid "Widget Spacing"
 msgstr ""
 
@@ -3778,14 +3780,14 @@ msgstr ""
 #: inc/customizer/options/footer-bottom-options.php:434
 #: inc/customizer/options/footer-middle-options.php:440
 #: inc/customizer/options/footer-top-options.php:440
-#: inc/customizer/options/general-sidebar-options.php:143
+#: inc/customizer/options/general-sidebar-options.php:157
 msgid "Widget Titles"
 msgstr ""
 
 #: inc/customizer/options/footer-bottom-options.php:456
 #: inc/customizer/options/footer-middle-options.php:468
 #: inc/customizer/options/footer-top-options.php:468
-#: inc/customizer/options/general-sidebar-options.php:171
+#: inc/customizer/options/general-sidebar-options.php:185
 msgid "Widget Content"
 msgstr ""
 
@@ -3793,7 +3795,7 @@ msgstr ""
 #: inc/customizer/options/footer-html-options.php:169
 #: inc/customizer/options/footer-middle-options.php:496
 #: inc/customizer/options/footer-top-options.php:496
-#: inc/customizer/options/general-sidebar-options.php:226
+#: inc/customizer/options/general-sidebar-options.php:240
 #: inc/customizer/options/header-html-options.php:124
 #: inc/customizer/options/header-mobile-html-options.php:102
 msgid "Link Colors"
@@ -3813,7 +3815,7 @@ msgstr ""
 #: inc/customizer/options/general-scroll-to-top-options.php:358
 #: inc/customizer/options/general-scroll-to-top-options.php:404
 #: inc/customizer/options/general-scroll-to-top-options.php:445
-#: inc/customizer/options/general-sidebar-options.php:257
+#: inc/customizer/options/general-sidebar-options.php:271
 #: inc/customizer/options/header-button-options.php:252
 #: inc/customizer/options/header-button-options.php:293
 #: inc/customizer/options/header-button-options.php:327
@@ -3863,7 +3865,7 @@ msgstr ""
 #: inc/customizer/options/footer-html-options.php:210
 #: inc/customizer/options/footer-middle-options.php:537
 #: inc/customizer/options/footer-top-options.php:537
-#: inc/customizer/options/general-sidebar-options.php:200
+#: inc/customizer/options/general-sidebar-options.php:214
 #: inc/customizer/options/header-html-options.php:101
 #: inc/customizer/options/header-mobile-html-options.php:143
 #: assets/js/admin/customizer.js:3
@@ -3873,7 +3875,7 @@ msgstr ""
 #: inc/customizer/options/footer-bottom-options.php:517
 #: inc/customizer/options/footer-middle-options.php:541
 #: inc/customizer/options/footer-top-options.php:541
-#: inc/customizer/options/general-sidebar-options.php:204
+#: inc/customizer/options/general-sidebar-options.php:218
 msgid "Underline on Hover"
 msgstr ""
 
@@ -3881,7 +3883,7 @@ msgstr ""
 #: inc/customizer/options/footer-html-options.php:214
 #: inc/customizer/options/footer-middle-options.php:544
 #: inc/customizer/options/footer-top-options.php:544
-#: inc/customizer/options/general-sidebar-options.php:207
+#: inc/customizer/options/general-sidebar-options.php:221
 #: inc/customizer/options/header-html-options.php:105
 #: inc/customizer/options/header-mobile-html-options.php:153
 #: inc/customizer/options/header-navigation-options.php:182
@@ -3893,7 +3895,7 @@ msgstr ""
 #: inc/customizer/options/footer-html-options.php:217
 #: inc/customizer/options/footer-middle-options.php:547
 #: inc/customizer/options/footer-top-options.php:547
-#: inc/customizer/options/general-sidebar-options.php:210
+#: inc/customizer/options/general-sidebar-options.php:224
 #: inc/customizer/options/header-html-options.php:108
 #: inc/customizer/options/header-mobile-html-options.php:156
 #: assets/js/admin/customizer.js:3
@@ -4782,28 +4784,32 @@ msgstr ""
 msgid "Scroll Button Padding"
 msgstr ""
 
-#: inc/customizer/options/general-sidebar-options.php:53
+#: inc/customizer/options/general-sidebar-options.php:15
+msgid "Title and Content settings affect legacy widgets. For block editor widgets use settings in the editor."
+msgstr ""
+
+#: inc/customizer/options/general-sidebar-options.php:60
 msgid "Sidebar Width"
 msgstr ""
 
-#: inc/customizer/options/general-sidebar-options.php:266
-#: inc/customizer/options/general-sidebar-options.php:284
+#: inc/customizer/options/general-sidebar-options.php:280
+#: inc/customizer/options/general-sidebar-options.php:298
 msgid "Sidebar Background"
 msgstr ""
 
-#: inc/customizer/options/general-sidebar-options.php:290
+#: inc/customizer/options/general-sidebar-options.php:304
 msgid "Sidebar Divider Border"
 msgstr ""
 
-#: inc/customizer/options/general-sidebar-options.php:322
+#: inc/customizer/options/general-sidebar-options.php:336
 msgid "Sidebar Padding"
 msgstr ""
 
-#: inc/customizer/options/general-sidebar-options.php:347
+#: inc/customizer/options/general-sidebar-options.php:361
 msgid "Enable Sticky Sidebar"
 msgstr ""
 
-#: inc/customizer/options/general-sidebar-options.php:355
+#: inc/customizer/options/general-sidebar-options.php:369
 msgid "Only Stick Last Widget"
 msgstr ""
 
@@ -6831,54 +6837,55 @@ msgstr ""
 msgid "Background Color"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:74
+#: inc/dashboard/class-theme-dashboard.php:98
+#: inc/dashboard/class-theme-dashboard.php:99
 msgid "Avanam - Next Generation Theme"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:106
+#: inc/dashboard/class-theme-dashboard.php:131
 msgid "Browse Base Starter Templates"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:271
+#: inc/dashboard/class-theme-dashboard.php:286
 msgid "Config Theme Modules"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:314
+#: inc/dashboard/class-theme-dashboard.php:323
 #: assets/js/admin/dashboard.js:1
 msgid "Video Tutorials"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:315
+#: inc/dashboard/class-theme-dashboard.php:324
 msgid "Want a guide? We have video tutorials to walk you through getting started."
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:316
+#: inc/dashboard/class-theme-dashboard.php:325
 msgid "Watch Videos"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:321
+#: inc/dashboard/class-theme-dashboard.php:330
 msgid "Documentation"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:322
+#: inc/dashboard/class-theme-dashboard.php:331
 msgid "Need help? We have a knowledge base full of articles to get you started."
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:323
+#: inc/dashboard/class-theme-dashboard.php:332
 msgid "Browse Docs"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:328
+#: inc/dashboard/class-theme-dashboard.php:337
 #: assets/js/admin/dashboard.js:1
 msgid "Support"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:329
+#: inc/dashboard/class-theme-dashboard.php:338
 #: assets/js/admin/dashboard.js:1
 msgid "Have a question, we are happy to help! Get in touch with our support team."
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:330
+#: inc/dashboard/class-theme-dashboard.php:339
 #: assets/js/admin/dashboard.js:1
 msgid "Submit a Ticket"
 msgstr ""
@@ -6934,11 +6941,11 @@ msgstr ""
 msgid "Close Cart"
 msgstr ""
 
-#: inc/template-functions/header-functions.php:1006
+#: inc/template-functions/header-functions.php:1007
 msgid "View Search Form"
 msgstr ""
 
-#: inc/template-functions/header-functions.php:1055
+#: inc/template-functions/header-functions.php:1056
 msgid "Close search"
 msgstr ""
 
@@ -7720,6 +7727,18 @@ msgstr ""
 
 #: assets/js/admin/customizer.js:3
 msgid "Show Custom 02?"
+msgstr ""
+
+#: assets/js/admin/customizer.js:3
+msgid "Show Custom 03?"
+msgstr ""
+
+#: assets/js/admin/customizer.js:3
+msgid "Show Custom 04?"
+msgstr ""
+
+#: assets/js/admin/customizer.js:3
+msgid "Show Custom 05?"
 msgstr ""
 
 #: assets/js/admin/customizer.js:3

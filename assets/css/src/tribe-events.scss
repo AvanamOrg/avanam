@@ -135,7 +135,7 @@
 	&:hover, &:focus, &:active {
 		background-color: var(--global-palette-highlight );
 		color: var(--global-palette-btn);
-		border-color: ( --global-palette-highlight );
+		border-color: var( --global-palette-highlight );
 		.tribe-events-c-ical__link-icon-svg path {
 			stroke: var(--global-palette-btn);
 		}

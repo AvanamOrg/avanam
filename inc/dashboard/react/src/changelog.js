@@ -17,7 +17,7 @@ export const ChangelogTab = () => {
 		{
 			name: 'pro',
 			title: __( 'Pro Changelog', 'avanam' ),
-			className: 'basepro-changelog-tab',
+			className: 'base-pro-changelog-tab',
 		},
 	];
 	return (

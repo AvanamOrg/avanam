@@ -434,7 +434,7 @@ class Component implements Component_Interface {
 		$css->set_selector( '.entry-hero.courses-archive-hero-section .entry-header' );
 		$css->add_property( 'min-height', $css->render_range( webapp()->option( 'courses_archive_title_height' ), 'desktop' ) );
 		$css->set_selector( '.courses-archive-hero-section .hero-section-overlay' );
-		$css->add_property( 'background', $css->render_color( webapp()->sub_option( 'courses_archive_title_overlay_color', 'color' ) ) );
+		$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'courses_archive_title_overlay_color', 'color' ) ) );
 		$css->start_media_query( $media_query['tablet'] );
 		$css->set_selector( '.courses-archive-hero-section .entry-hero-container-inner' );
 		$css->render_background( webapp()->sub_option( 'courses_archive_title_background', 'tablet' ), $css );

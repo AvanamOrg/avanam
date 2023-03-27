@@ -1,13 +1,13 @@
 jQuery( function( $ ) {
-
 	// Quantity buttons.
-	$( 'div.quantity:not(.spinners-added)' ).addClass( 'spinners-added' ).append( '<input type="button" value="+" class="plus" />' ).prepend( '<input type="button" value="-" class="minus" />' );
+	// Only add to elements that have a number input. Text or hidden inputs would not need these.
+	$( 'div.quantity:not(.spinners-added):has(input[type="number"])' ).addClass( 'spinners-added' ).append( '<input type="button" value="+" class="plus" />' ).prepend( '<input type="button" value="-" class="minus" />' );
 
 	$( document ).on( 'updated_cart_totals', function() {
-		$( 'div.quantity:not(.spinners-added)' ).addClass( 'spinners-added' ).append( '<input type="button" value="+" class="plus" />' ).prepend( '<input type="button" value="-" class="minus" />' );
+		$( 'div.quantity:not(.spinners-added):has(input[type="number"])' ).addClass( 'spinners-added' ).append( '<input type="button" value="+" class="plus" />' ).prepend( '<input type="button" value="-" class="minus" />' );
 	});
 	$( 'body' ).on( 'quick-view-displayed', function() {
-		$( 'div.quantity:not(.spinners-added)' ).addClass( 'spinners-added' ).append( '<input type="button" value="+" class="plus" />' ).prepend( '<input type="button" value="-" class="minus" />' );
+		$( 'div.quantity:not(.spinners-added):has(input[type="number"])' ).addClass( 'spinners-added' ).append( '<input type="button" value="+" class="plus" />' ).prepend( '<input type="button" value="-" class="minus" />' );
 	});
 
 	$( document ).on( 'click', '.plus, .minus', function() {
@@ -48,5 +48,4 @@ jQuery( function( $ ) {
 		$qty.trigger( 'change' );
 
 	});
-
 });

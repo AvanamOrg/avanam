@@ -16,7 +16,7 @@ if ( is_singular( get_post_type() ) ) {
 	$classes[] = 'title-mobile-align-' . ( webapp()->sub_option( get_post_type() . '_title_align', 'mobile' ) ? webapp()->sub_option( get_post_type() . '_title_align', 'mobile' ) : 'inherit' );
 }
 ?>
-<section class="entry-hero <?php echo esc_attr( get_post_type() ) . '-hero-section'; ?> <?php echo esc_attr( 'entry-hero-layout-' . webapp()->option( get_post_type() . '_title_inner_layout' ) ); ?>">
+<section role="banner" class="entry-hero <?php echo esc_attr( get_post_type() ) . '-hero-section'; ?> <?php echo esc_attr( 'entry-hero-layout-' . webapp()->option( get_post_type() . '_title_inner_layout' ) ); ?>">
 	<div class="entry-hero-container-inner">
 		<div class="hero-section-overlay"></div>
 		<div class="hero-container site-container">

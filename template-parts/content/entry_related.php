@@ -14,7 +14,7 @@ use function Base\webapp;
 use function get_template_part;
 
 webapp()->print_styles( 'base-related-posts' );
-webapp()->print_styles( 'base-splide' );
+webapp()->print_styles( 'bst-splide' );
 wp_enqueue_script( 'base-slide-init' );
 
 $args          = get_related_posts_args( $post->ID );

@@ -44,9 +44,13 @@ class Component implements Component_Interface {
 		remove_action( 'lifterlms_after_main_content', 'lifterlms_output_content_wrapper_end' );
 		// Remove Title.
 		add_filter( 'lifterlms_show_page_title', '__return_false' );
+		// Remove Sidebar.
+		remove_action( 'lifterlms_sidebar', 'lifterlms_get_sidebar', 10 );
 		// Add Content wrappers.
 		add_action( 'lifterlms_before_main_content', array( $this, 'output_content_wrapper' ) );
-		add_action( 'lifterlms_after_main_content', array( $this, 'output_content_wrapper_end' ) );
+		add_action( 'lifterlms_after_main_content', array( $this, 'output_main_wrapper_end' ), 8 );
+		add_action( 'lifterlms_after_main_content', 'lifterlms_get_sidebar', 9 );
+		add_action( 'lifterlms_after_main_content', array( $this, 'output_content_wrapper_end' ), 10 );
 
 		add_filter( 'post_class', array( $this, 'set_lifter_entry_class' ), 10, 3 );
 		add_filter( 'llms_get_loop_list_classes', array( $this, 'set_lifter_grid_class' ) );
@@ -153,17 +157,32 @@ class Component implements Component_Interface {
 		 * Hook for Hero Section
 		 */
 		do_action( 'base_hero_header' );
-		echo '<div id="primary" class="content-area"><div class="content-container site-container"><main id="main" class="site-main" role="main">';
+		echo '<div id="primary" class="content-area"><div class="content-container site-container">';
+		$this->output_main_wrapper();
 		if ( is_archive() && webapp()->show_in_content_title() ) {
 			get_template_part( 'template-parts/content/archive_header' );
 		}
 	}
 
 	/**
+	 * Adds theme main output Wrapper.
+	 */
+	public function output_main_wrapper() {
+		echo '<main id="main" class="site-main" role="main">';
+	}
+
+	/**
+	 * Adds theme main end output Wrapper.
+	 */
+	public function output_main_wrapper_end() {
+		echo '</main>';
+	}
+
+	/**
 	 * Adds theme end output Wrapper.
 	 */
 	public function output_content_wrapper_end() {
-		echo '</main></div></div>';
+		echo '</div></div>';
 	}
 	/**
 	 * Add some css styles for lifterLMS

@@ -835,8 +835,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'use_mobile_logo' => false,
 					'logo_layout'     => array(
 						'include' => array(
-							'mobile'  => '',
-							'tablet'  => 'logo_title',
+							'mobile'  => 'logo',
+							'tablet'  => 'logo',
 							'desktop' => 'logo_title',
 						),
 						'layout' => array(

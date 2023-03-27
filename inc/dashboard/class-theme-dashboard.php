@@ -56,6 +56,30 @@ class Base_Dashboard_Settings {
 		}
 		add_action( 'init', array( $this, 'load_api_settings' ) );
 	}
+
+
+	/**
+	 * Returns a base64 URL for the SVG for use in the menu.
+	 *
+	 * @param  bool $base64 Whether or not to return base64-encoded SVG.
+	 * @return string
+	 */
+	private function get_icon_svg( $base64 = true ) {
+		$svg = '<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#9ca2a7" stroke="none"><path d="M3786 4604 c-27 -8 -61 -23 -75 -32 -49 -30 -113 -97 -137 -144 -65 -128 -47 -329 42 -445 l25 -33 -340 0 -341 0 1 -27 c0 -16 17 -134 37 -263 l37 -235 258 -3 257 -2 0 -450 0 -450 -592 0 -591 0 59 63 c140 146 215 308 233 505 25 275 -63 511 -256 692 -296 276 -749 338 -1358 184 -143 -36 -285 -83 -285 -94 0 -10 190 -532 196 -539 2 -2 54 16 116 39 62 23 165 56 228 73 104 27 130 30 275 31 144 1 166 -1 215 -22 81 -32 132 -74 165 -134 25 -46 29 -64 30 -133 0 -96 -28 -165 -94 -233 -104 -107 -325 -203 -623 -272 -54 -12 -98 -28 -98 -34 0 -6 35 -129 78 -274 l77 -263 50 6 c86 11 285 55 368 82 l79 24 40 -27 c68 -47 163 -159 201 -236 119 -241 38 -513 -187 -623 -74 -36 -202 -58 -296 -50 -350 29 -602 276 -766 749 -20 58 -40 106 -44 106 -4 0 -113 -47 -241 -104 -217 -96 -234 -106 -231 -127 2 -13 24 -84 48 -157 87 -265 193 -442 379 -628 279 -280 598 -414 987 -414 492 0 883 207 1042 552 86 186 89 443 6 655 l-28 73 409 0 409 0 0 -720 0 -720 335 0 335 0 0 1435 0 1435 305 0 c291 0 305 1 305 19 0 10 -16 127 -35 261 -19 134 -35 244 -35 246 0 2 -147 4 -327 4 l-327 0 36 38 c53 54 88 138 95 225 13 179 -53 314 -185 375 -70 32 -194 39 -266 16z"/></g></svg>';
+
+		if ( $base64 ) {
+			return 'data:image/svg+xml;base64,' . base64_encode( $svg );
+		}
+
+		return $svg;
+	}
+	/**
+	 * Allow settings visibility to be changed.
+	 */
+	public function settings_user_capabilities() {
+		$cap = apply_filters( 'base_admin_settings_capability', 'manage_options' );
+		return $cap;
+	}
 	/**
 	 * Redirect to the settings page on activation.
 	 *
@@ -71,7 +95,8 @@ class Base_Dashboard_Settings {
 	 * Add option page menu
 	 */
 	public function add_menu() {
-		$page = add_theme_page( __( 'Avanam - Next Generation Theme', 'avanam' ), __( 'Avanam', 'avanam' ), apply_filters( 'base_admin_settings_capability', 'manage_options' ), 'avanam', array( $this, 'config_page' ) );
+		add_menu_page( __( 'Avanam - Next Generation Theme', 'avanam' ), __( 'Avanam', 'avanam' ), $this->settings_user_capabilities(), 'avanam', null, $this->get_icon_svg(), 30 );
+		$page = add_submenu_page( 'avanam', __( 'Avanam - Next Generation Theme', 'avanam' ), __( 'Settings' ), $this->settings_user_capabilities(), 'avanam', array( $this, 'config_page' ) );
 		add_action( 'admin_print_styles-' . $page, array( $this, 'scripts' ) );
 		do_action( 'base_theme_admin_menu' );
 	}
@@ -105,11 +130,11 @@ class Base_Dashboard_Settings {
 		$installed_plugins = get_plugins();
 		$button_label = esc_html__( 'Browse Base Starter Templates', 'avanam' );
 		$data_action  = '';
-		if ( ! defined( 'BASE_STARTER_VERSION' ) ) {
-			if ( ! isset( $installed_plugins['base-starter/base-starter.php'] ) ) {
+		if ( ! defined( 'AVANAM_STARTER_VERSION' ) ) {
+			if ( ! isset( $installed_plugins['avanam-starter/avanam-starter.php'] ) ) {
 				$button_label = esc_html__( 'Install Base Starter Templates', 'avanam' );
 				$data_action  = 'install';
-			} elseif ( ! self::active_plugin_check( 'base-starter/base-starter.php' ) ) {
+			} elseif ( ! self::active_plugin_check( 'avanam-starter/avanam-starter.php' ) ) {
 				$button_label = esc_html__( 'Activate Base Starter Templates', 'avanam' );
 				$data_action  = 'activate';
 			}
@@ -123,14 +148,14 @@ class Base_Dashboard_Settings {
 				'adminURL' => esc_url( admin_url() ),
 				'settings' => esc_attr( get_option( 'avanam_theme_config' ) ),
 				'changelog' => $this->get_changelog(),
-				'proChangelog' => ( class_exists( 'Base_Pro' ) ? $this->get_pro_changelog() : '' ),
-				'starterTemplates' => ( defined( 'BASE_STARTER_VERSION' ) ? true : false ),
+				'proChangelog' => ( class_exists( 'Base_Theme_Pro' ) ? $this->get_pro_changelog() : '' ),
+				'starterTemplates' => ( defined( 'AVANAM_STARTER_VERSION' ) ? true : false ),
 				'ajax_url'   => admin_url( 'admin-ajax.php' ),
 				'ajax_nonce' => wp_create_nonce( 'base-ajax-verification' ),
 				'status'       => $data_action,
 				'starterLabel' => $button_label,
 				'starterImage' => esc_attr( get_template_directory_uri() . '/assets/images/starter-templates-banner.jpeg' ),
-				'starterURL' => esc_url( admin_url( 'themes.php?page=base-starter' ) ),
+				'starterURL' => esc_url( admin_url( 'themes.php?page=avanam-starter' ) ),
 				'videoImage' => esc_attr( get_template_directory_uri() . '/assets/images/getting-started-video.jpg' ),
 			)
 		);
@@ -157,12 +182,7 @@ class Base_Dashboard_Settings {
 		if ( is_wp_error( $changelog_string ) ) {
 			return $changelog;
 		}
-
-		$changelog_string = str_replace("\\r\\n", "\n", $changelog_string);
-		$changelog_string = str_replace("\\n\\r", "\n", $changelog_string);
-	
-		$changelog = preg_split("/\n/", $changelog_string);
-		//$changelog = explode( PHP_EOL, $changelog_string );
+		$changelog = explode( PHP_EOL, $changelog_string );
 		$releases  = [];
 		foreach ( $changelog as $changelog_line ) {
 			if ( empty( $changelog_line ) ) {
@@ -218,12 +238,7 @@ class Base_Dashboard_Settings {
 		if ( is_wp_error( $changelog_string ) ) {
 			return $changelog;
 		}
-
-		$changelog_string = str_replace("\\r\\n", "\n", $changelog_string);
-		$changelog_string = str_replace("\\n\\r", "\n", $changelog_string);
-	
-		$changelog = preg_split("/\n/", $changelog_string);
-		//$changelog = explode( PHP_EOL, $changelog_string );
+		$changelog = explode( PHP_EOL, $changelog_string );
 		$releases  = [];
 		foreach ( $changelog as $changelog_line ) {
 			if ( empty( $changelog_line ) ) {
@@ -281,34 +296,28 @@ class Base_Dashboard_Settings {
 	 */
 	public function config_page() {
 		?>
-		
-		<div class="wrap base_theme_dash">
-			<div class="base_theme_dash_notices">
-				<h2 class="notices" style="display:none;"></h2>
-				<?php settings_errors(); ?>
-			</div>
-			<div class="base_theme_dash_head">
-				<div class="base_theme_dash_head_container">
-					<div class="base_theme_dash_logo">
-						<img src="<?php echo esc_attr( get_template_directory_uri() . '/assets/images/avanam-logo.png' ); ?>">
-					</div>
-					<div class="base_theme_dash_version">
-						<span>
-							<?php echo esc_html( AVANAM_VERSION ); ?>
-						</span>
-					</div>
+		<div class="base_theme_dash_head">
+			<div class="base_theme_dash_head_container">
+				<div class="base_theme_dash_logo">
+					<img src="<?php echo esc_attr( get_template_directory_uri() . '/assets/images/avanam-logo.png' ); ?>">
+				</div>
+				<div class="base_theme_dash_version">
+						<span class="name"><?php esc_html_e( 'Avanam', 'avanam' ); ?></span>
+					<span>
+						<?php echo esc_html( AVANAM_VERSION ); ?>
+					</span>
 				</div>
 			</div>
+		</div>
+		<div class="wrap base_theme_dash">
 			<div class="base_theme_dashboard">
+				<h2 class="notices" style="display:none;"></h2>
+				<?php settings_errors(); ?>
 				<div class="page-grid">
-					<div class="base_theme_dashboard_panel">
 					<div class="base_theme_dashboard_main">
 					</div>
-						<div class="base_theme_dashboard_more">
-							<?php do_action( 'base_theme_after_dashboard_main' ); ?>
-						</div>
-					</div>
 					<div class="side-panel">
+						<?php do_action( 'base_theme_dash_side_panel' ); ?>
 						<div class="support-section sidebar-section components-panel">
 							<div class="components-panel__body is-opened">
 								<h2><?php esc_html_e( 'Video Tutorials', 'avanam' ); ?></h2>

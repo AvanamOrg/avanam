@@ -66,6 +66,7 @@ class Base_CSS {
 		'transition-timing-function',
 		'background-image',
 		'content',
+		'line-height',
 	);
 
 	/**
@@ -243,6 +244,12 @@ class Base_CSS {
 				break;
 			case 'content':
 				$this->add_rule( $property, sprintf( '"%s"', $value ) );
+				break;
+			case 'line-height':
+				if ( is_numeric( $value ) && 0 == $value ) {
+					$value = '0px';
+				}
+				$this->add_rule( $property, $value );
 				break;
 			default:
 				$this->add_rule( $property, $value );
@@ -441,7 +448,7 @@ class Base_CSS {
 		if ( isset( $font['google'] ) && true === $font['google'] ) {
 			$this->maybe_add_google_font( $font, $area );
 		}
-		if ( strpos( $font_string, '"') === false && strpos( $font_string, ',') === false && strpos( $font_string, ' ' ) !== false ) {
+		if ( strpos( $font_string, '"') === false && strpos( $font_string, ',') === false && ( strpos( $font_string, ' ' ) !== false || strpos( $font_string, '.' ) !== false ) ) {
 			$font_string = "'" . $font_string . "'";
 		}
 		if ( isset( $font['google'] ) && true === $font['google'] && 'inherit' !== $font_string ) {
@@ -552,7 +559,7 @@ class Base_CSS {
 		}
 		$line_type = ( isset( $font['lineType'] ) && ! empty( $font['lineType'] ) ? $font['lineType'] : '' );
 		$line_type = ( '-' !== $line_type ? $line_type : '' );
-		if ( isset( $font['lineHeight'] ) && isset( $font['lineHeight']['desktop'] ) && ! empty( $font['lineHeight']['desktop'] ) ) {
+		if ( isset( $font['lineHeight'] ) && isset( $font['lineHeight']['desktop'] ) && is_numeric( $font['lineHeight']['desktop'] ) ) {
 			$css->add_property( 'line-height', $font['lineHeight']['desktop'] . $line_type );
 		}
 		$letter_type = ( isset( $font['spacingType'] ) && ! empty( $font['spacingType'] ) ? $font['spacingType'] : 'em' );
@@ -676,6 +683,21 @@ class Base_CSS {
 			return false;
 		}
 		if ( ! is_array( $color ) && strpos( $color, 'palette' ) !== false ) {
+			$color = 'var(--global-' . $color . ')';
+		}
+		return $color;
+	}
+	/**
+	 * Generates the color output.
+	 *
+	 * @param string $color any color attribute.
+	 * @return string
+	 */
+	public function render_color_or_gradient( $color ) {
+		if ( empty( $color ) ) {
+			return false;
+		}
+		if ( ! is_array( $color ) && 'palette' === substr( $color, 0, 7 ) ) {
 			$color = 'var(--global-' . $color . ')';
 		}
 		return $color;

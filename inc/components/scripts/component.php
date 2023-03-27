@@ -81,19 +81,19 @@ class Component implements Component_Interface {
 		}
 		// Enqueue the slide script.
 		wp_register_script(
-			'base-splide',
+			'bst-splide',
 			get_theme_file_uri( '/assets/js/splide.min.js' ),
 			array(),
 			AVANAM_VERSION,
 			true
 		);
-		wp_script_add_data( 'base-splide', 'async', true );
-		wp_script_add_data( 'base-splide', 'precache', true );
+		wp_script_add_data( 'bst-splide', 'async', true );
+		wp_script_add_data( 'bst-splide', 'precache', true );
 		// Enqueue the slide script.
 		wp_register_script(
 			'base-slide-init',
 			get_theme_file_uri( '/assets/js/splide-init.min.js' ),
-			array( 'base-splide', 'base-navigation' ),
+			array( 'bst-splide', 'base-navigation' ),
 			AVANAM_VERSION,
 			true
 		);

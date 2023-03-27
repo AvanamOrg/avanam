@@ -360,3 +360,96 @@ body:not(.mce-content-body):before {
 .wp-block-navigation__container>.wp-block-navigation-link, .wp-block-page-list, .wp-block-page-list>.wp-block-pages-list__item {
 	margin: 0 2em 0 0;
 }
+textarea {
+	width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+	-webkit-appearance: none;
+	color: var(--global-palette5);
+	border: 1px solid var(--global-gray-400);
+	border-radius: 3px;
+	padding: 0.4em 0.5em;
+	max-width: 100%;
+	background: var(--global-palette9);
+	box-shadow: 0px 0px 0px -7px rgba(0,0,0,0);
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+color: var(--global-palette6);
+}
+::-moz-placeholder { /* Firefox 19+ */
+color: var(--global-palette6);
+opacity: 1;
+}
+:-ms-input-placeholder { /* IE 10+ */
+color: var(--global-palette6);
+}
+:-moz-placeholder { /* Firefox 18- */
+color: var(--global-palette6);
+}
+::placeholder {
+	color: var(--global-palette6);
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="range"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="color"]:focus,
+textarea:focus {
+	color: var(--global-palette3);
+	border-color:var(--global-palette6);
+	outline: 0;
+	box-shadow: 0px 5px 15px -7px rgba(0,0,0,0.1);
+}
+
+select {
+	border: 1px solid var(--global-gray-400);
+	background-size: 16px 100%;
+	padding: 0.2em 35px 0.2em 0.5em;
+    background: var(--global-palette9) url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9IiNiYmIiPjxwYXRoIGQ9Ik02IDlsNiA2IDYtNiIvPjwvc3ZnPg==) no-repeat 98% 50%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: none;
+    outline: 0;
+	box-shadow: 0px 0px 0px -7px rgba(0,0,0,0);
+}
+select::-ms-expand {
+    display: none;
+}
+select:focus {
+	color: var(--global-palette3);
+	border-color:var(--global-palette6);
+	background-color: var(--global-palette9);
+	box-shadow: 0px 5px 15px -7px rgba(0,0,0,0.1);
+	outline: 0;
+	// Fix for firefox if the color palette is dark.
+	option {
+		color: #333;
+	}
+}

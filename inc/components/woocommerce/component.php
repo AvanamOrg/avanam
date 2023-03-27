@@ -34,6 +34,20 @@ class Component implements Component_Interface {
 	public static $cart_in_header = null;
 
 	/**
+	 * Holds the bool for mini cart in header.
+	 *
+	 * @var bool based on the theme settings.
+	 */
+	public static $show_mini_cart = false;
+
+	/**
+	 * Holds the bool for showing the cart total.
+	 *
+	 * @var bool based on the theme settings.
+	 */
+	public static $show_cart_total = false;
+
+	/**
 	 * Gets the unique identifier for the theme component.
 	 *
 	 * @return string Component slug.
@@ -135,7 +149,9 @@ class Component implements Component_Interface {
 
 		add_action( 'base_before_main_content', array( $this, 'wc_print_notices_none_woo' ) );
 		// Add Fragment Support.
-		add_action( 'wp', array( $this, 'check_for_fragment_support' ), 2 );
+		add_action( 'init', array( $this, 'check_for_fragment_support' ) );
+		// Check again for Fragment Support in conditional header.
+		add_action( 'wp', array( $this, 'check_conditional_for_fragment_support' ), 2 );
 
 		// Add my Account Navigation Classes.
 		add_filter( 'body_class', array( $this, 'my_account_body_classes' ) );
@@ -824,9 +840,24 @@ class Component implements Component_Interface {
 	public function check_for_fragment_support() {
 		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_class' ) );
 		if ( webapp()->option( 'header_cart_show_total' ) ) {
+			self::$show_cart_total = true;
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_number' ) );
 		}
 		if ( 'slide' === webapp()->option( 'header_cart_style' ) || 'slide' === webapp()->option( 'header_mobile_cart_style' ) || 'dropdown' === webapp()->option( 'header_cart_style' ) ) {
+			self::$show_mini_cart = true;
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_mini' ) );
+		}
+	}
+	/**
+	 * Checks to see if themes conditional header needs to hook into cart fragments.
+	 */
+	public function check_conditional_for_fragment_support() {
+		if ( webapp()->option( 'header_cart_show_total' ) && ! self::$show_cart_total ) {
+			self::$show_cart_total = true;
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_number' ) );
+		}
+		if ( ( 'slide' === webapp()->option( 'header_cart_style' ) || 'slide' === webapp()->option( 'header_mobile_cart_style' ) || 'dropdown' === webapp()->option( 'header_cart_style' ) ) && ! self::$show_mini_cart ) {
+			self::$show_mini_cart = true;
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_mini' ) );
 		}
 	}
@@ -1106,13 +1137,13 @@ class Component implements Component_Interface {
 	 * Insert the content wrap.
 	 */
 	public function archive_content_wrap_start() {
-		echo '<div class="product-details content-bg entry-content-wrap">';
+		echo apply_filters( 'base_archive_content_wrap_start', '<div class="product-details content-bg entry-content-wrap">' );
 	}
 	/**
 	 * Close the content wrap.
 	 */
 	public function archive_content_wrap_end() {
-		echo '</div>';
+		echo apply_filters( 'base_archive_content_wrap_end', '</div>' );
 	}
 	/**
 	 * Show the product title in the product loop. By default this is an H2.

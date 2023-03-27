@@ -113,6 +113,8 @@
         padding: 1em;
         color: var(--global-palette4);
         font-size: 90%;
+        max-height: 90vh;
+        overflow: auto;
     }
     ul {
         p.woocommerce-mini-cart__empty-message {

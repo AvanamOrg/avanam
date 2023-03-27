@@ -91,11 +91,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		add_action( 'after_setup_theme', array( $this, 'action_add_editor_styles' ) );
 		add_filter( 'wp_resource_hints', array( $this, 'filter_resource_hints' ), 10, 2 );
 		add_filter( 'base_dynamic_css', array( $this, 'dynamic_css' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'action_add_gutenberg_styles' ), 90 );
 		add_filter( 'tiny_mce_before_init', array( $this, 'filter_add_tinymce_editor_styles' ) );
 		add_filter( 'base_editor_dynamic_css', array( $this, 'editor_dynamic_css' ) );
 		add_action( 'wp_head', array( $this, 'frontend_gfonts' ), 89 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'update_block_style_dependencies' ), 20 );
+		add_action( 'admin_init', array( $this, 'action_add_gutenberg_styles' ), 1 );
+		add_action( 'admin_init', array( $this, 'update_block_style_dependencies' ), 2 );
 	}
 
 	/**
@@ -542,14 +542,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'letter-spacing', $this->render_font_spacing( webapp()->option( 'brand_tag_typography' ), 'mobile' ) );
 		$css->stop_media_query();
 		// Header.
-		$css->set_selector( '#masthead, #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start) > .site-header-row-container-inner' );
+		$css->set_selector( '#masthead, #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.site-main-header-wrap), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start) > .site-header-row-container-inner' );
 		$css->render_background( webapp()->sub_option( 'header_wrap_background', 'desktop' ), $css );
 		$css->start_media_query( ( webapp()->sub_option( 'header_mobile_switch', 'size' ) ? '(max-width: ' . webapp()->sub_option( 'header_mobile_switch', 'size' ) . 'px)' : $media_query['tablet'] ) );
-		$css->set_selector( '#masthead, #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start) > .site-header-row-container-inner' );
+		$css->set_selector( '#masthead, #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.site-main-header-wrap), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start) > .site-header-row-container-inner' );
 		$css->render_background( webapp()->sub_option( 'header_wrap_background', 'tablet' ), $css );
 		$css->stop_media_query();
 		$css->start_media_query( $media_query['mobile'] );
-		$css->set_selector( '#masthead, #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start) > .site-header-row-container-inner' );
+		$css->set_selector( '#masthead, #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.site-main-header-wrap), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start) > .site-header-row-container-inner' );
 		$css->render_background( webapp()->sub_option( 'header_wrap_background', 'mobile' ), $css );
 		$css->stop_media_query();
 		// Header Main.
@@ -688,16 +688,16 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->stop_media_query();
 
 		// Sticky Header.
-		$css->set_selector( '#masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.item-hidden-above), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.item-hidden-above) > .site-header-row-container-inner' );
+		$css->set_selector( '#masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.item-hidden-above):not(.site-main-header-wrap), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.item-hidden-above) > .site-header-row-container-inner' );
 		$css->render_background( webapp()->sub_option( 'header_sticky_background', 'desktop' ), $css );
 		$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'header_sticky_bottom_border', 'desktop' ) ) );
 		$css->start_media_query( ( webapp()->sub_option( 'header_mobile_switch', 'size' ) ? '(max-width: ' . webapp()->sub_option( 'header_mobile_switch', 'size' ) . 'px)' : $media_query['tablet'] ) );
-		$css->set_selector( '#masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.item-hidden-above), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.item-hidden-above) > .site-header-row-container-inner' );
+		$css->set_selector( '#masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.item-hidden-above):not(.site-main-header-wrap), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.item-hidden-above) > .site-header-row-container-inner' );
 		$css->render_background( webapp()->sub_option( 'header_sticky_background', 'tablet' ), $css );
 		$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'header_sticky_bottom_border', 'tablet' ) ) );
 		$css->stop_media_query();
 		$css->start_media_query( $media_query['mobile'] );
-		$css->set_selector( '#masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.item-hidden-above), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.item-hidden-above) > .site-header-row-container-inner' );
+		$css->set_selector( '#masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.site-header-row-container):not(.item-hidden-above):not(.site-main-header-wrap), #masthead .base-sticky-header.item-is-fixed:not(.item-at-start):not(.item-hidden-above) > .site-header-row-container-inner' );
 		$css->render_background( webapp()->sub_option( 'header_sticky_background', 'mobile' ), $css );
 		$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'header_sticky_bottom_border', 'mobile' ) ) );
 		$css->stop_media_query();
@@ -1650,9 +1650,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.primary-sidebar.widget-area' );
 		$css->render_background( webapp()->sub_option( 'sidebar_background', 'desktop' ), $css );
 		$css->add_property( 'padding', $this->render_responsive_measure( webapp()->option( 'sidebar_padding' ), 'desktop' ) );
-		$css->set_selector( '.has-sidebar.has-left-sidebar .primary-sidebar.widget-area' );
+		$css->set_selector( '.has-sidebar.has-left-sidebar:not(.rtl) .primary-sidebar.widget-area, .rtl.has-sidebar:not(.has-left-sidebar) .primary-sidebar.widget-area' );
 		$css->add_property( 'border-right', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'desktop' ) ) );
-		$css->set_selector( '.has-sidebar:not(.has-left-sidebar) .primary-sidebar.widget-area' );
+		$css->set_selector( '.has-sidebar:not(.has-left-sidebar):not(.rtl) .primary-sidebar.widget-area, .rtl.has-sidebar.has-left-sidebar .primary-sidebar.widget-area' );
 		$css->add_property( 'border-left', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'desktop' ) ) );
 		$css->start_media_query( $media_query['tablet'] );
 		$css->set_selector( '.primary-sidebar.widget-area .widget' );
@@ -1764,7 +1764,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.wp-site-blocks .entry-hero-container-inner' );
 		$css->render_background( webapp()->sub_option( 'above_title_background', 'desktop' ), $css );
 		$css->set_selector( '.wp-site-blocks .hero-section-overlay' );
-		$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'above_title_overlay_color', 'color' ) ) );
+		$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'above_title_overlay_color', 'color' ) ) );
 		$css->start_media_query( $media_query['tablet'] );
 		$css->set_selector( '.wp-site-blocks .entry-hero-container-inner' );
 		$css->render_background( webapp()->sub_option( 'above_title_background', 'tablet' ), $css );
@@ -2189,7 +2189,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.entry-hero.page-hero-section .entry-header' );
 		$css->add_property( 'min-height', $this->render_range( webapp()->option( 'page_title_height' ), 'desktop' ) );
 		$css->set_selector( '.page-hero-section .hero-section-overlay' );
-		$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'page_title_overlay_color', 'color' ) ) );
+		$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'page_title_overlay_color', 'color' ) ) );
 		$css->start_media_query( $media_query['tablet'] );
 		$css->set_selector( '.page-hero-section .entry-hero-container-inner' );
 		$css->render_background( webapp()->sub_option( 'page_title_background', 'tablet' ), $css );
@@ -2381,7 +2381,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.post-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'post_title_height' ), 'desktop' ) );
 			$css->set_selector( '.post-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'post_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'post_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.post-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'post_title_background', 'tablet' ), $css );
@@ -2407,7 +2407,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.entry-hero.post-archive-hero-section .entry-header' );
 		$css->add_property( 'min-height', $this->render_range( webapp()->option( 'post_archive_title_height' ), 'desktop' ) );
 		$css->set_selector( '.post-archive-hero-section .hero-section-overlay' );
-		$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'post_archive_title_overlay_color', 'color' ) ) );
+		$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'post_archive_title_overlay_color', 'color' ) ) );
 		$css->start_media_query( $media_query['tablet'] );
 		$css->set_selector( '.post-archive-hero-section .entry-hero-container-inner' );
 		$css->render_background( webapp()->sub_option( 'post_archive_title_background', 'tablet' ), $css );
@@ -2516,7 +2516,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.entry-hero.search-archive-hero-section .entry-header' );
 		$css->add_property( 'min-height', $this->render_range( webapp()->option( 'search_archive_title_height' ), 'desktop' ) );
 		$css->set_selector( '.search-archive-hero-section .hero-section-overlay' );
-		$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'search_archive_title_overlay_color', 'color' ) ) );
+		$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'search_archive_title_overlay_color', 'color' ) ) );
 		$css->start_media_query( $media_query['tablet'] );
 		$css->set_selector( '.search-archive-hero-section .entry-hero-container-inner' );
 		$css->render_background( webapp()->sub_option( 'search_archive_title_background', 'tablet' ), $css );
@@ -2639,7 +2639,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.product-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'product_title_height' ), 'desktop' ) );
 			$css->set_selector( '.product-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'product_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'product_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.product-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'product_title_background', 'tablet' ), $css );
@@ -2784,7 +2784,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.product-archive-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'product_archive_title_height' ), 'desktop' ) );
 			$css->set_selector( '.product-archive-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'product_archive_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'product_archive_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.product-archive-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'product_archive_title_background', 'tablet' ), $css );
@@ -2801,17 +2801,17 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.product-archive-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'product_archive_title_height' ), 'mobile' ) );
 			$css->stop_media_query();
-			$css->set_selector( '.product-archive-title h1' );
+			$css->set_selector( '.wp-site-blocks .product-archive-title h1' );
 			$css->render_font( webapp()->option( 'product_archive_title_heading_font' ), $css, 'heading' );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'product_archive_title_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
-			$css->set_selector( '.product-archive-title h1' );
+			$css->set_selector( '.wp-site-blocks .product-archive-title h1' );
 			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'product_archive_title_heading_font' ), 'tablet' ) );
 			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'product_archive_title_heading_font' ), 'tablet' ) );
 			$css->add_property( 'letter-spacing', $this->render_font_spacing( webapp()->option( 'product_archive_title_heading_font' ), 'tablet' ) );
 			$css->stop_media_query();
 			$css->start_media_query( $media_query['mobile'] );
-			$css->set_selector( '.product-archive-title h1' );
+			$css->set_selector( '.wp-site-blocks .product-archive-title h1' );
 			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'product_archive_title_heading_font' ), 'mobile' ) );
 			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'product_archive_title_heading_font' ), 'mobile' ) );
 			$css->add_property( 'letter-spacing', $this->render_font_spacing( webapp()->option( 'product_archive_title_heading_font' ), 'mobile' ) );
@@ -2908,7 +2908,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.sfwd-courses-archive-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'sfwd-courses_archive_title_height' ), 'desktop' ) );
 			$css->set_selector( '.sfwd-courses-archive-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'sfwd-courses_archive_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-courses_archive_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.sfwd-courses-archive-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_title_background', 'tablet' ), $css );
@@ -2976,7 +2976,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.sfwd-courses-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'sfwd-courses_title_height' ), 'desktop' ) );
 			$css->set_selector( '.sfwd-courses-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'sfwd-courses_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-courses_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.sfwd-courses-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'sfwd-courses_title_background', 'tablet' ), $css );
@@ -3054,7 +3054,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					$css->set_selector( '.entry-hero.sfwd-lessons-hero-section .entry-header' );
 					$css->add_property( 'min-height', $this->render_range( webapp()->option( 'sfwd-lessons_title_height' ), 'desktop' ) );
 					$css->set_selector( '.sfwd-lessons-hero-section .hero-section-overlay' );
-					$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'sfwd-lessons_title_overlay_color', 'color' ) ) );
+					$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-lessons_title_overlay_color', 'color' ) ) );
 					$css->start_media_query( $media_query['tablet'] );
 					$css->set_selector( '.sfwd-lessons-hero-section .entry-hero-container-inner' );
 					$css->render_background( webapp()->sub_option( 'sfwd-lessons_title_background', 'tablet' ), $css );
@@ -3129,7 +3129,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					$css->set_selector( '.entry-hero.sfwd-quiz-hero-section .entry-header' );
 					$css->add_property( 'min-height', $this->render_range( webapp()->option( 'sfwd-quiz_title_height' ), 'desktop' ) );
 					$css->set_selector( '.sfwd-quiz-hero-section .hero-section-overlay' );
-					$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'sfwd-quiz_title_overlay_color', 'color' ) ) );
+					$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-quiz_title_overlay_color', 'color' ) ) );
 					$css->start_media_query( $media_query['tablet'] );
 					$css->set_selector( '.sfwd-quiz-hero-section .entry-hero-container-inner' );
 					$css->render_background( webapp()->sub_option( 'sfwd-quiz_title_background', 'tablet' ), $css );
@@ -3204,7 +3204,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					$css->set_selector( '.entry-hero.sfwd-topic-hero-section .entry-header' );
 					$css->add_property( 'min-height', $this->render_range( webapp()->option( 'sfwd-topic_title_height' ), 'desktop' ) );
 					$css->set_selector( '.sfwd-topic-hero-section .hero-section-overlay' );
-					$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'sfwd-topic_title_overlay_color', 'color' ) ) );
+					$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-topic_title_overlay_color', 'color' ) ) );
 					$css->start_media_query( $media_query['tablet'] );
 					$css->set_selector( '.sfwd-topic-hero-section .entry-hero-container-inner' );
 					$css->render_background( webapp()->sub_option( 'sfwd-topic_title_background', 'tablet' ), $css );
@@ -3281,7 +3281,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.groupe-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'groupe_title_height' ), 'desktop' ) );
 			$css->set_selector( '.groupe-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'groupe_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'groupe_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.groupe-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'groupe_title_background', 'tablet' ), $css );
@@ -3339,7 +3339,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.sfwd-essays-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'sfwd-essays_title_height' ), 'desktop' ) );
 			$css->set_selector( '.sfwd-essays-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'sfwd-essays_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-essays_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.sfwd-essays-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'sfwd-essays_title_background', 'tablet' ), $css );
@@ -3483,7 +3483,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.course-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'course_title_height' ), 'desktop' ) );
 			$css->set_selector( '.course-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'course_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'course_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.course-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'course_title_background', 'tablet' ), $css );
@@ -3541,7 +3541,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.lesson-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'lesson_title_height' ), 'desktop' ) );
 			$css->set_selector( '.lesson-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'lesson_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'lesson_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.lesson-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'lesson_title_background', 'tablet' ), $css );
@@ -3566,7 +3566,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.course-archive-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'course_archive_title_height' ), 'desktop' ) );
 			$css->set_selector( '.course-archive-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'course_archive_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'course_archive_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.course-archive-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'course_archive_title_background', 'tablet' ), $css );
@@ -3601,7 +3601,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.entry-hero.llms_membership-archive-hero-section .entry-header' );
 			$css->add_property( 'min-height', $this->render_range( webapp()->option( 'llms_membership_archive_title_height' ), 'desktop' ) );
 			$css->set_selector( '.llms_membership-archive-hero-section .hero-section-overlay' );
-			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'llms_membership_archive_title_overlay_color', 'color' ) ) );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'llms_membership_archive_title_overlay_color', 'color' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.llms_membership-archive-hero-section .entry-hero-container-inner' );
 			$css->render_background( webapp()->sub_option( 'llms_membership_archive_title_background', 'tablet' ), $css );
@@ -3754,7 +3754,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					$css->set_selector( '.entry-hero.' . $post_type_name . '-hero-section .entry-header' );
 					$css->add_property( 'min-height', $this->render_range( webapp()->option( $post_type_name . '_title_height' ), 'desktop' ) );
 					$css->set_selector( '.' . $post_type_name . '-hero-section .hero-section-overlay' );
-					$css->add_property( 'background', $this->render_color( webapp()->sub_option( $post_type_name . '_title_overlay_color', 'color' ) ) );
+					$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( $post_type_name . '_title_overlay_color', 'color' ) ) );
 					$css->start_media_query( $media_query['tablet'] );
 					$css->set_selector( '.' . $post_type_name . '-hero-section .entry-hero-container-inner' );
 					$css->render_background( webapp()->sub_option( $post_type_name . '_title_background', 'tablet' ), $css );
@@ -4774,26 +4774,30 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * Enqueues WordPress theme styles for the editor.
 	 */
 	public function action_add_gutenberg_styles() {
-		//wp_register_style( 'base-editor-global', false );
+		wp_register_style( 'base-editor-global', false, array(), AVANAM_VERSION );
 		//wp_enqueue_style( 'base-editor-global' );
-		// wp_add_inline_style( 'base-editor-global', trim( apply_filters( 'base_editor_dynamic_css', '' ) ) );
-		wp_add_inline_style( 'wp-edit-blocks', trim( apply_filters( 'base_editor_dynamic_css', '' ) ) );
+		wp_add_inline_style( 'base-editor-global', trim( apply_filters( 'base_editor_dynamic_css', '' ) ) );
 		// Enqueue Google Fonts.
 		$google_fonts_url = $this->get_google_fonts_url();
 		if ( ! empty( $google_fonts_url ) ) {
-			wp_enqueue_style( 'base-google-fonts', $this->get_google_fonts_url() );
+			wp_register_style( 'base-google-fonts', $this->get_google_fonts_url(), array(), AVANAM_VERSION  );
 		}
 	}
 	/**
-	 * Connects theme styles to base block style so it loads in full size editing context.
-	 * This is a workaround so dynamic css can be loaded in FSE mode.
+	 * Connects theme styles to core block style so it loads in full size editing context.
+	 * This is a workaround so dynamic css can be loaded in Iframe and FSE mode.
 	 */
 	public function update_block_style_dependencies() {
 		$wp_styles = wp_styles();
-		$style     = $wp_styles->query( 'base-blocks-editor-css', 'registered' );
-
+		$style     = $wp_styles->query( 'wp-block-library', 'registered' );
 		if ( ! $style ) {
 			return;
+		}
+		if (
+			wp_style_is( 'base-editor-global', 'registered' ) &&
+			! in_array( 'base-editor-global', $style->deps, true )
+		) {
+			$style->deps[] = 'base-editor-global';
 		}
 		if (
 			wp_style_is( 'base-google-fonts', 'registered' ) &&
@@ -4943,7 +4947,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					return is_single() && webapp()->option( 'post_related' );
 				},
 			),
-			'base-splide'   => array(
+			'bst-splide'   => array(
 				'file'             => 'base-splide.min.css',
 				'preload_callback' => function() {
 					return is_single() && webapp()->option( 'post_related' );

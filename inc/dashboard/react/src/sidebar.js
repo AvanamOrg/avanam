@@ -13,7 +13,7 @@ export const Sidebar = () => {
 				>
 					<h2>{ __( 'Support', 'avanam' ) }</h2>
 					<p>{ __( 'Have a question, we are happy to help! Get in touch with our support team.', 'avanam' ) }</p>
-					<a href="https://avanam.org/support" target="_blank" class="sidebar-link">{ __( 'Submit a Ticket', 'avanam' ) }</a>
+					<a href="https://avanam.org/wordpress#support" target="_blank" class="sidebar-link">{ __( 'Submit a Ticket', 'avanam' ) }</a>
 				</PanelBody>
 			</Panel>
 		</Fragment>

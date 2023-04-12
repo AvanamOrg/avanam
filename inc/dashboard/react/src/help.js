@@ -13,7 +13,7 @@ export const HelpTab = () => {
 			<div className="video-container">
 				<a href="https://www.youtube.com/watch?v=avanam"></a>
 			</div>
-			<a href="https://avanam.org/video-tutorials" className="base-desk-button" target="_blank">{ __( 'Video Tutorials', 'avanam' ) }</a><a href="https://avanam.org/kb" className="base-desk-button base-desk-button-second" target="_blank">{ __( 'View Knowledge Base', 'avanam' ) }</a>
+			<a href="https://avanam.org/wordpress#learn" className="base-desk-button" target="_blank">{ __( 'Video Tutorials', 'avanam' ) }</a><a href="https://avanam.org/wordpress#kb" className="base-desk-button base-desk-button-second" target="_blank">{ __( 'View Knowledge Base', 'avanam' ) }</a>
 		</div>
 	);
 };

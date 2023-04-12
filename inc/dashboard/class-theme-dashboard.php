@@ -96,7 +96,7 @@ class Base_Dashboard_Settings {
 	 */
 	public function add_menu() {
 		add_menu_page( __( 'Avanam - Next Generation Theme', 'avanam' ), __( 'Avanam', 'avanam' ), $this->settings_user_capabilities(), 'avanam', null, $this->get_icon_svg(), 30 );
-		$page = add_submenu_page( 'avanam', __( 'Avanam - Next Generation Theme', 'avanam' ), __( 'Settings' ), $this->settings_user_capabilities(), 'avanam', array( $this, 'config_page' ) );
+		$page = add_submenu_page( 'avanam', __( 'Avanam - Next Generation Theme', 'avanam' ), __( 'Settings', 'avanam' ), $this->settings_user_capabilities(), 'avanam', array( $this, 'config_page' ) );
 		add_action( 'admin_print_styles-' . $page, array( $this, 'scripts' ) );
 		do_action( 'base_theme_admin_menu' );
 	}
@@ -302,8 +302,8 @@ class Base_Dashboard_Settings {
 					<img src="<?php echo esc_attr( get_template_directory_uri() . '/assets/images/avanam-logo.png' ); ?>">
 				</div>
 				<div class="base_theme_dash_version">
-						<span class="name"><?php esc_html_e( 'Avanam', 'avanam' ); ?></span>
 					<span>
+						<strong><?php esc_html_e( 'Avanam', 'avanam' ); ?></strong>
 						<?php echo esc_html( AVANAM_VERSION ); ?>
 					</span>
 				</div>
@@ -322,21 +322,21 @@ class Base_Dashboard_Settings {
 							<div class="components-panel__body is-opened">
 								<h2><?php esc_html_e( 'Video Tutorials', 'avanam' ); ?></h2>
 								<p><?php esc_html_e( 'Want a guide? We have video tutorials to walk you through getting started.', 'avanam' ); ?></p>
-								<a href="https://avanam.org/video-tutorials" target="_blank" class="sidebar-link"><?php esc_html_e( 'Watch Videos', 'avanam' ); ?></a>
+								<a href="https://avanam.org/wordpress#learn" target="_blank" class="sidebar-link"><?php esc_html_e( 'Watch Videos', 'avanam' ); ?></a>
 							</div>
 						</div>
 						<div class="support-section sidebar-section components-panel">
 							<div class="components-panel__body is-opened">
 								<h2><?php esc_html_e( 'Documentation', 'avanam' ); ?></h2>
 								<p><?php esc_html_e( 'Need help? We have a knowledge base full of articles to get you started.', 'avanam' ); ?></p>
-								<a href="https://avanam.org/kb" target="_blank" class="sidebar-link"><?php esc_html_e( 'Browse Docs', 'avanam' ); ?></a>
+								<a href="https://avanam.org/wordpress#kb" target="_blank" class="sidebar-link"><?php esc_html_e( 'Browse Docs', 'avanam' ); ?></a>
 							</div>
 						</div>
 						<div class="support-section sidebar-section components-panel">
 							<div class="components-panel__body is-opened">
 								<h2><?php esc_html_e( 'Support', 'avanam' ); ?></h2>
 								<p><?php esc_html_e( 'Have a question, we are happy to help! Get in touch with our support team.', 'avanam' ); ?></p>
-								<a href="https://avanam.org/support" target="_blank" class="sidebar-link"><?php esc_html_e( 'Submit a Ticket', 'avanam' ); ?></a>
+								<a href="https://avanam.org/wordpress#support" target="_blank" class="sidebar-link"><?php esc_html_e( 'Submit a Ticket', 'avanam' ); ?></a>
 							</div>
 						</div>
 					</div>

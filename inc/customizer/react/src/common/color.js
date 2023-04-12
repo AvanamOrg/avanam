@@ -39,7 +39,6 @@ class ColorControl extends Component {
 	}
 
 	render() {
-		//console.log(this.props.presetColors );
 		const toggleVisible = () => {
 			if ( this.props.usePalette ) {
 				const updateColors = JSON.parse( this.props.customizer.control( 'base_color_palette' ).setting.get() );
@@ -67,7 +66,7 @@ class ColorControl extends Component {
 			},
 		};
 		const GradientPickerComponent = GradientPicker || __experimentalGradientPicker || '';
-		const position = ( this.props.position ? this.props.position : "top left" );
+		const position = ( this.props.position ? this.props.position : "bottom right" );
 		const showingGradient = ( this.props.allowGradient && this.state.supportGradient ? true : false );
 		return (
 			<div className="base-color-picker-wrap">
@@ -91,7 +90,7 @@ class ColorControl extends Component {
 				{ showingGradient && (
 					<Fragment>
 						{ this.state.isVisible && (
-							<Popover position={ position } className="base-popover-color base-popover-color-gradient base-customizer-popover" onClose={ toggleClose }>
+							<Popover position={ position } anchor={( undefined !== this.props?.controlRef?.current ? this.props.controlRef.current : undefined )} className="base-popover-color base-popover-color-gradient base-customizer-popover" onClose={ toggleClose }>
 								<TabPanel className="base-popover-tabs base-background-tabs"
 									activeClass="active-tab"
 									initialTabName={ ( this.state.color && this.state.color.includes( 'gradient' ) ? 'gradient' : 'color' ) }
@@ -174,7 +173,7 @@ class ColorControl extends Component {
 				{ ! showingGradient && (
 					<Fragment>
 						{ this.state.isVisible && this.state.refresh && (
-							<Popover position="top left" className="base-popover-color base-customizer-popover" onClose={ toggleClose }>
+							<Popover position="top right" anchor={( undefined !== this.props?.controlRef?.current ? this.props.controlRef.current : undefined )} className="base-popover-color base-customizer-popover" onClose={ toggleClose }>
 								<BaseColorPicker
 									color={ ( this.state.isPalette && this.state.palette.palette && this.state.palette.palette[parseInt(this.state.color.slice(-1), 10 ) - 1] ? this.state.palette.palette[parseInt(this.state.color.slice(-1), 10 ) - 1 ].color : this.state.color ) }
 									onChange={ ( color ) => this.onChangeState( color, '' ) }
@@ -190,7 +189,7 @@ class ColorControl extends Component {
 							</Popover>
 						) }
 						{ this.state.isVisible && ! this.state.refresh &&  (
-							<Popover position="top left" className="base-popover-color base-customizer-popover" onClose={ toggleClose }>
+							<Popover position={ position } anchor={ ( undefined !== this.props?.controlRef?.current ? this.props.controlRef.current : undefined ) } className="base-popover-color base-customizer-popover" onClose={ toggleClose }>
 								<BaseColorPicker
 									//presetColors={ [] }
 									color={ ( this.state.isPalette && this.state.palette[ this.state.activePalette ] && this.state.palette[ this.state.activePalette ][parseInt(this.state.color.slice(-1), 10 ) - 1] ? this.state.palette[ this.state.activePalette ][parseInt(this.state.color.slice(-1), 10 ) - 1 ].color : this.state.color ) }

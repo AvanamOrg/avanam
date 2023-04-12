@@ -10,7 +10,10 @@ import { __ } from '@wordpress/i18n';
 
 const { ButtonGroup, Dashicon, Toolbar, ToolbarGroup, Tooltip, Button } = wp.components;
 
-const { Component, Fragment } = wp.element;
+/**
+ * WordPress dependencies
+ */
+import { createRef, Component, Fragment } from '@wordpress/element';
 class SingleBorderComponent extends Component {
 	constructor() {
 		super( ...arguments );
@@ -84,6 +87,7 @@ class SingleBorderComponent extends Component {
 			currentDevice: 'desktop',
 			value: value,
 		};
+		this.anchorNodeRef = createRef();
 	}
 	handleResponsiveChangeComplete( color, isPalette, device ) {
 		let value = this.state.value;
@@ -239,6 +243,7 @@ class SingleBorderComponent extends Component {
 										tooltip={ __( 'Border Color' ) }
 										onChangeComplete={ ( color, isPalette ) => this.handleResponsiveChangeComplete( color, isPalette, this.props.currentDevice ) }
 										customizer={ this.props.customizer }
+										controlRef={ this.anchorNodeRef }
 									/>
 								) }
 								<input
@@ -276,6 +281,7 @@ class SingleBorderComponent extends Component {
 										tooltip={ __( 'Border Color' ) }
 										onChangeComplete={ ( color, isPalette ) => this.handleChangeComplete( color, isPalette ) }
 										customizer={ this.props.customizer }
+										controlRef={ this.anchorNodeRef }
 									/>
 								) }
 								<input

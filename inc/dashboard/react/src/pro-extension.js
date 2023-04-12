@@ -28,7 +28,7 @@ export const ProModules = () => {
 							<h4>{ link.title }</h4>
 							<p>{ link.description }</p>
 							<div className="link-item-foot">
-								<a href={ `https://avanam.org/premium/?utm_source=${ link.setting }&utm_campaign=theme-dash` } target="_blank">
+								<a href={ `https://avanam.org/wordpress#premium/?utm_source=${ link.setting }&utm_campaign=theme-dash` } target="_blank">
 									{ __( 'Learn More', 'avanam') }
 								</a>
 							</div>

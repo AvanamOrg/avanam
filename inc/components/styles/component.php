@@ -867,6 +867,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'primary_navigation_color', 'hover' ) ) );
 		$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'primary_navigation_background', 'hover' ) ) );
 		if ( webapp()->option( 'primary_navigation_parent_active' ) ) {
+			$css->set_selector( '.header-navigation[class*="header-navigation-style-underline"] .header-menu-container.primary-menu-container>ul>li.current-menu-ancestor>a:after' );
+			$css->add_property( 'transform', 'scale(1, 1) translate(50%, 0)' );
 			$css->set_selector( '.main-navigation .primary-menu-container > ul > li.menu-item.current-menu-item > a, .main-navigation .primary-menu-container > ul > li.menu-item.current-menu-ancestor > a' );
 		} else {
 			$css->set_selector( '.main-navigation .primary-menu-container > ul > li.menu-item.current-menu-item > a' );
@@ -893,6 +895,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'secondary_navigation_color', 'hover' ) ) );
 		$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'secondary_navigation_background', 'hover' ) ) );
 		if ( webapp()->option( 'secondary_navigation_parent_active' ) ) {
+			$css->set_selector( '..header-navigation[class*="header-navigation-style-underline"] .header-menu-container.secondary-menu-container>ul>li.current-menu-ancestor>a:after' );
+			$css->add_property( 'transform', 'scale(1, 1) translate(50%, 0)' );
 			$css->set_selector( '.secondary-navigation .secondary-menu-container > ul > li.menu-item.current-menu-item > a, .secondary-navigation .secondary-menu-container > ul > li.menu-item.current-menu-ancestor > a' );
 		} else {
 			$css->set_selector( '.secondary-navigation .secondary-menu-container > ul > li.menu-item.current-menu-item > a' );
@@ -4156,9 +4160,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.editor-styles-wrapper .wp-block-base-rowlayout > .innerblocks-wrap.kb-theme-content-width' );
 		$css->add_property( 'padding-left', 'var(--global-content-edge-padding)' );
 		$css->add_property( 'padding-right', 'var(--global-content-edge-padding)' );
-		$css->set_selector( '.post-content-style-boxed .editor-styles-wrapper .wp-block-base-rowlayout > .innerblocks-wrap.kb-theme-content-width' );
-		$css->add_property( 'padding-left', 'calc(var(--global-content-edge-padding) + 2rem)' );
-		$css->add_property( 'padding-right', 'calc(var(--global-content-edge-padding) + 2rem)' );
+		// $css->set_selector( '.post-content-style-boxed .editor-styles-wrapper .wp-block-base-rowlayout[data-align="full"] > .innerblocks-wrap.kb-theme-content-width' );
+		// $css->add_property( 'padding-left', 'calc(var(--global-content-edge-padding) + 2rem)' );
+		// $css->add_property( 'padding-right', 'calc(var(--global-content-edge-padding) + 2rem)' );
 		// Align Wide Boxed.
 		$css->set_selector( '.post-content-style-boxed' );
 		$css->add_property( '--global-content-wide-width', 'calc(var(--global-content-width) + 4rem )' );

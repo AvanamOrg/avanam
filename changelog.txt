@@ -1,3 +1,7 @@
+== 1.1.5 | 12th April 2023 ==
+* Update: Editor style tweak
+* Fix: 6.2 css issue with editor title
+
 == 1.1.4 | 27th March 2023 ==
 * Fix: Welcome notice JS registered
 

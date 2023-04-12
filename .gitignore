@@ -6,6 +6,7 @@ Thumbs.db
 **/Thumbs.db
 node_modules/
 vendor/
+prepros.config
 package-lock.json
 composer.lock
 .vscode/

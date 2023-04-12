@@ -51,9 +51,10 @@ html :where(.wp-block) {
 .block-editor-block-list__layout.is-root-container > * > .wp-block[data-align=wide] {
     max-width: none;
 }
-.edit-post-visual-editor__post-title-wrapper {
+.edit-post-visual-editor__post-title-wrapper:not(.specificity) {
     margin-top: var(--global-md-spacing);
     margin-bottom: var(--global-md-spacing);
+	position: relative;
 }
 /*--------------------------------------------------------------
 # Adjustments for the editor

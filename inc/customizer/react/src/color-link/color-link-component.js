@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 const { SelectControl } = wp.components;
 import ColorControl from '../common/color.js';
-const { Component, Fragment } = wp.element;
+/**
+ * WordPress dependencies
+ */
+import { createRef, Component, Fragment } from '@wordpress/element';
 
 class ColorLinkComponent extends Component {
 	constructor(props) {
@@ -66,6 +69,7 @@ class ColorLinkComponent extends Component {
 			value: value,
 			colorPalette: palette,
 		};
+		this.anchorNodeRef = createRef();
 	}
 	handleChangeComplete( color, isPalette, item ) {
 		let value = this.state.value;
@@ -100,7 +104,7 @@ class ColorLinkComponent extends Component {
 						} }
 					/>
 				</div>
-				<div className="base-control-field base-color-control base-link-color-control">
+				<div ref={ this.anchorNodeRef } className="base-control-field base-color-control base-link-color-control">
 					{
 						this.props.control.params.label &&
 						<span className="customize-control-title">
@@ -120,6 +124,7 @@ class ColorLinkComponent extends Component {
 								tooltip={ ( undefined !== this.controlParams.colors[ item ] && undefined !== this.controlParams.colors[ item ].tooltip ? this.controlParams.colors[ item ].tooltip : '' ) }
 								onChangeComplete={ ( color, isPalette ) => this.handleChangeComplete( color, isPalette, item ) }
 								customizer={ this.props.customizer }
+								controlRef={ this.anchorNodeRef }
 							/>
 						)
 					} ) }

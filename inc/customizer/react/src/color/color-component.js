@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash';
 import { __ } from '@wordpress/i18n';
-const { Component, Fragment } = wp.element;
 const { Tooltip, Button, Dashicon } = wp.components;
+/**
+ * WordPress dependencies
+ */
+import { createRef, Component, Fragment } from '@wordpress/element';
 import ColorControl from '../common/color.js';
 
 class ColorComponent extends Component {
@@ -46,6 +49,7 @@ class ColorComponent extends Component {
 			value: value,
 			colorPalette: palette,
 		};
+		this.anchorNodeRef = createRef();
 	}
 	handleChangeComplete( color, isPalette, item ) {
 		let value = this.state.value;
@@ -63,7 +67,7 @@ class ColorComponent extends Component {
 
 	render() {
 		return (
-				<div className="base-control-field base-color-control">
+				<div ref={ this.anchorNodeRef } className="base-control-field base-color-control">
 					<span className="customize-control-title">
 						<Fragment>
 							<Tooltip text={ __( 'Reset Values', 'avanam' ) }>
@@ -94,6 +98,7 @@ class ColorComponent extends Component {
 								onChangeComplete={ ( color, isPalette ) => this.handleChangeComplete( color, isPalette, item ) }
 								customizer={ this.props.customizer }
 								allowGradient={ this.controlParams.allowGradient }
+								controlRef={ this.anchorNodeRef }
 							/>
 						)
 					} ) }

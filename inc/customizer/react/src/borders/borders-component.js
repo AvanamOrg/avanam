@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import ResponsiveControl from '../common/responsive.js';
-import ColorControl from '../common/color.js';
 import Icons from '../common/icons.js';
 import SingleBorderComponent from './border-component';
 
@@ -11,7 +10,10 @@ import { __ } from '@wordpress/i18n';
 
 const { ButtonGroup, Dashicon, Toolbar, Tooltip, Button } = wp.components;
 
-const { Component, Fragment } = wp.element;
+/**
+ * WordPress dependencies
+ */
+import { Component, Fragment } from '@wordpress/element';
 class BordersComponent extends Component {
 	constructor() {
 		super( ...arguments );

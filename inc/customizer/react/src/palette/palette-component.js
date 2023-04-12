@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
-const { Component } = wp.element;
+/**
+ * WordPress dependencies
+ */
+import { createRef, Component, Fragment } from '@wordpress/element';
 import map from 'lodash/map';
 import ColorControl from '../common/color.js';
-import { Fragment } from 'react';
 const { ButtonGroup, Dashicon, Tooltip, Button, Popover, TabPanel, TextareaControl } = wp.components;
 class ColorComponent extends Component {
 	constructor(props) {
@@ -88,6 +90,7 @@ class ColorComponent extends Component {
 			textImport: '',
 			importError: false,
 		};
+		this.anchorNodeRef = createRef();
 	}
 	handleChangePalette( active ) {
 		let value = this.state.value;
@@ -223,7 +226,7 @@ class ColorComponent extends Component {
 							</div>
 						}
 					</div>
-					<div className="base-palette-colors">
+					<div ref={ this.anchorNodeRef } className="base-palette-colors">
 						{ 'start' === this.state.fresh && (
 							<Fragment>
 								{ Object.keys( this.controlParams.colors ).map( ( item, index ) => {
@@ -236,6 +239,7 @@ class ColorComponent extends Component {
 												usePalette={ false }
 												tooltip={ ( undefined !== this.controlParams.colors[ item ].tooltip ? this.controlParams.colors[ item ].tooltip : '' ) }
 												onChangeComplete={ ( color, isPalette ) => this.handleChangeComplete( color, isPalette, item, index ) }
+												controlRef={ this.anchorNodeRef }
 											/>
 										)
 								} ) }
@@ -369,7 +373,7 @@ class ColorComponent extends Component {
 						) }
 					</div>
 					{ this.props.control.params.description && (
-						<span className="customize-control-description"><a href="https://avanam.org/color-palette" target="_blank">{ this.props.control.params.description }</a></span>
+						<span className="customize-control-description"><a href="https://avanam.org/wordpress#color-palette" target="_blank">{ this.props.control.params.description }</a></span>
 					) }
 				</div>
 		);

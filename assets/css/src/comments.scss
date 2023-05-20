@@ -251,11 +251,6 @@
 }
 /* stylelint-enable */
 
-.comment-form .comment-form-cookies-consent label {
-	display: inline-block;
-	padding-left: 0.6em;
-	padding-bottom: 0;
-}
 .comment-form .required {
 	color: #d54e21;
 }
@@ -320,8 +315,14 @@
   transform: translate(0, 0) scale(0.75);
   cursor: pointer;
 }
-.comment-form .comment-form-cookies-consent label:not(:placeholder-shown) {
+.comment-form input[type=checkbox]+label {
+	display: inline-block;
+	padding-bottom: 0;
 	transform:none;
+	padding-left: 0.2em;
+}
+.comment-form .comment-form-cookies-consent label:not(:placeholder-shown) {
+	padding-left: 0.6em;
 	font-size: 90%;
 }
 .pingback .comment-body {

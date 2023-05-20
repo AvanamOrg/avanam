@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-12T11:45:39+00:00\n"
+"POT-Creation-Date: 2023-05-20T09:19:28+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: avanam\n"
@@ -1190,7 +1190,7 @@ msgid "Collapse child menu of"
 msgstr ""
 
 #. translators: %s: stylesheet handle
-#: inc/components/styles/component.php:4857
+#: inc/components/styles/component.php:4856
 msgid "Invalid theme stylesheet handle: %s"
 msgstr ""
 
@@ -1214,21 +1214,21 @@ msgstr ""
 msgid "The template tag method %1$s registered by theme component %2$s conflicts with an already registered template tag of the same name."
 msgstr ""
 
-#: inc/components/woocommerce/component.php:986
+#: inc/components/woocommerce/component.php:992
 msgid "Cart Summary"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1021
+#: inc/components/woocommerce/component.php:1027
 msgid "Update Profile Photo"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1294
-#: inc/components/woocommerce/component.php:1306
+#: inc/components/woocommerce/component.php:1300
+#: inc/components/woocommerce/component.php:1312
 msgid "List View"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1297
 #: inc/components/woocommerce/component.php:1303
+#: inc/components/woocommerce/component.php:1309
 msgid "Grid View"
 msgstr ""
 
@@ -2986,8 +2986,8 @@ msgstr ""
 #: inc/customizer/options/header-mobile-social-options.php:214
 #: inc/customizer/options/header-mobile-social-options.php:255
 #: inc/customizer/options/header-navigation-options.php:289
-#: inc/customizer/options/header-popup-options.php:317
-#: inc/customizer/options/header-popup-options.php:351
+#: inc/customizer/options/header-popup-options.php:320
+#: inc/customizer/options/header-popup-options.php:354
 #: inc/customizer/options/header-search-options.php:257
 #: inc/customizer/options/header-search-options.php:435
 #: inc/customizer/options/header-secondary-navigation-options.php:289
@@ -3836,8 +3836,8 @@ msgstr ""
 #: inc/customizer/options/header-mobile-social-options.php:259
 #: inc/customizer/options/header-mobile-social-options.php:293
 #: inc/customizer/options/header-navigation-options.php:293
-#: inc/customizer/options/header-popup-options.php:321
-#: inc/customizer/options/header-popup-options.php:355
+#: inc/customizer/options/header-popup-options.php:324
+#: inc/customizer/options/header-popup-options.php:358
 #: inc/customizer/options/header-search-options.php:261
 #: inc/customizer/options/header-secondary-navigation-options.php:293
 #: inc/customizer/options/header-social-options.php:218
@@ -4050,7 +4050,7 @@ msgstr ""
 #: inc/customizer/options/footer-widget4-options.php:32
 #: inc/customizer/options/footer-widget5-options.php:32
 #: inc/customizer/options/footer-widget6-options.php:32
-#: inc/customizer/options/header-popup-options.php:182
+#: inc/customizer/options/header-popup-options.php:185
 msgid "Content Align"
 msgstr ""
 
@@ -4063,7 +4063,7 @@ msgstr ""
 #: inc/customizer/options/footer-widget4-options.php:56
 #: inc/customizer/options/footer-widget5-options.php:56
 #: inc/customizer/options/footer-widget6-options.php:56
-#: inc/customizer/options/header-popup-options.php:195
+#: inc/customizer/options/header-popup-options.php:198
 msgid "Left Align"
 msgstr ""
 
@@ -4076,7 +4076,7 @@ msgstr ""
 #: inc/customizer/options/footer-widget4-options.php:60
 #: inc/customizer/options/footer-widget5-options.php:60
 #: inc/customizer/options/footer-widget6-options.php:60
-#: inc/customizer/options/header-popup-options.php:199
+#: inc/customizer/options/header-popup-options.php:202
 msgid "Center Align"
 msgstr ""
 
@@ -4089,7 +4089,7 @@ msgstr ""
 #: inc/customizer/options/footer-widget4-options.php:64
 #: inc/customizer/options/footer-widget5-options.php:64
 #: inc/customizer/options/footer-widget6-options.php:64
-#: inc/customizer/options/header-popup-options.php:203
+#: inc/customizer/options/header-popup-options.php:206
 msgid "Right Align"
 msgstr ""
 
@@ -4102,7 +4102,7 @@ msgstr ""
 #: inc/customizer/options/footer-widget4-options.php:74
 #: inc/customizer/options/footer-widget5-options.php:74
 #: inc/customizer/options/footer-widget6-options.php:74
-#: inc/customizer/options/header-popup-options.php:213
+#: inc/customizer/options/header-popup-options.php:216
 msgid "Content Vertical Align"
 msgstr ""
 
@@ -4115,7 +4115,7 @@ msgstr ""
 #: inc/customizer/options/footer-widget4-options.php:98
 #: inc/customizer/options/footer-widget5-options.php:98
 #: inc/customizer/options/footer-widget6-options.php:98
-#: inc/customizer/options/header-popup-options.php:226
+#: inc/customizer/options/header-popup-options.php:229
 msgid "Top Align"
 msgstr ""
 
@@ -4128,7 +4128,7 @@ msgstr ""
 #: inc/customizer/options/footer-widget4-options.php:102
 #: inc/customizer/options/footer-widget5-options.php:102
 #: inc/customizer/options/footer-widget6-options.php:102
-#: inc/customizer/options/header-popup-options.php:230
+#: inc/customizer/options/header-popup-options.php:233
 msgid "Middle Align"
 msgstr ""
 
@@ -4141,7 +4141,7 @@ msgstr ""
 #: inc/customizer/options/footer-widget4-options.php:106
 #: inc/customizer/options/footer-widget5-options.php:106
 #: inc/customizer/options/footer-widget6-options.php:106
-#: inc/customizer/options/header-popup-options.php:234
+#: inc/customizer/options/header-popup-options.php:237
 msgid "Bottom Align"
 msgstr ""
 
@@ -5302,7 +5302,7 @@ msgid "None"
 msgstr ""
 
 #: inc/customizer/options/header-dropdown-options.php:220
-#: inc/customizer/options/header-popup-options.php:162
+#: inc/customizer/options/header-popup-options.php:165
 #: inc/customizer/options/product-archive-layout-options.php:612
 msgid "Fade"
 msgstr ""
@@ -5471,48 +5471,52 @@ msgstr ""
 msgid "Move Body with toggle?"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:140
+#: inc/customizer/options/header-popup-options.php:126
+msgid "This can require a lot of memory to render the animation in mobile browsers, use with caution if you have graphically heavy pages."
+msgstr ""
+
+#: inc/customizer/options/header-popup-options.php:143
 msgid "Animation"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:161
+#: inc/customizer/options/header-popup-options.php:164
 msgid "Fade In"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:166
+#: inc/customizer/options/header-popup-options.php:169
 msgid "Scale into view"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:167
+#: inc/customizer/options/header-popup-options.php:170
 msgid "Scale"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:171
+#: inc/customizer/options/header-popup-options.php:174
 msgid "Slice into view"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:172
+#: inc/customizer/options/header-popup-options.php:175
 msgid "Slice"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:244
-#: inc/customizer/options/header-popup-options.php:256
+#: inc/customizer/options/header-popup-options.php:247
+#: inc/customizer/options/header-popup-options.php:259
 msgid "Popup Background"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:262
+#: inc/customizer/options/header-popup-options.php:265
 msgid "Close Icon Size"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:296
+#: inc/customizer/options/header-popup-options.php:299
 msgid "Close Toggle Colors"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:330
+#: inc/customizer/options/header-popup-options.php:333
 msgid "Close Toggle Background Colors"
 msgstr ""
 
-#: inc/customizer/options/header-popup-options.php:365
+#: inc/customizer/options/header-popup-options.php:368
 msgid "Close Icon Padding"
 msgstr ""
 

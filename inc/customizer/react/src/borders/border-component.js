@@ -218,7 +218,7 @@ class SingleBorderComponent extends Component {
 			}
 		}
 		return (
-			<div className="base-responsive-controls-content base-border-single-item">
+			<div ref={this.anchorNodeRef} className="base-responsive-controls-content base-border-single-item">
 				{ this.controlParams.responsive && (
 					<Fragment>
 						<Tooltip text={ __( 'Reset Values', 'avanam' ) }>

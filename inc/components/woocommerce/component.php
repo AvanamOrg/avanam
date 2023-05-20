@@ -131,6 +131,9 @@ class Component implements Component_Interface {
 		// Add to cart.
 		add_filter( 'woocommerce_product_loop_start', array( $this, 'add_filter_for_add_to_cart_link' ) );
 		add_filter( 'woocommerce_product_loop_end', array( $this, 'remove_filter_for_add_to_cart_link' ) );
+		// Custom templates for blocks.
+		add_action( 'base_woocommerce_template_before_block_loop', array( $this, 'add_filter_for_add_to_cart_link' ) );
+		add_action( 'base_woocommerce_template_after_block_loop', array( $this, 'add_filter_for_add_to_cart_link' ) );
 		// My Account.
 		add_action( 'woocommerce_before_account_navigation', array( $this, 'myaccount_nav_wrap_start' ), 2 );
 		add_action( 'woocommerce_before_account_navigation', array( $this, 'myaccount_nav_avatar' ), 20 );
@@ -334,13 +337,16 @@ class Component implements Component_Interface {
 	 */
 	public function add_product_archive_loop_classes_shopkit( $classes ) {
 		$product_image_hover_style = webapp()->option( 'product_archive_image_hover_switch' );
+		$product_btn_style = webapp()->option( 'product_archive_button_style' );
 		$hover_style       = 'woo-archive-image-hover-' . esc_attr( $product_image_hover_style );
+		$button_style      = 'woo-archive-btn-' . esc_attr( $product_btn_style );
 		if ( ! empty( $classes ) && is_array( $classes ) ) {
 			$classes[] = $hover_style;
+			$classes[] = $button_style;
 		} else if ( ! empty( $classes ) ) {
-			$classes = array( $hover_style, $classes );
+			$classes = array( $hover_style, $button_style, $classes );
 		} else {
-			$classes = array( $hover_style );
+			$classes = array( $hover_style, $button_style );
 		}
 		return $classes;
 	}

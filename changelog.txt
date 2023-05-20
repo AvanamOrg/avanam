@@ -1,3 +1,9 @@
+== 1.1.6 | 20th May 2023 ==
+* Fix: Color picker in border controls.
+* Fix: Pallet Color picker offscreen.
+* Fix: Footer widgets spacing.
+* Fix: Issue with product buttons style.
+
 == 1.1.5 | 12th April 2023 ==
 * Update: Editor style tweak
 * Fix: 6.2 css issue with editor title

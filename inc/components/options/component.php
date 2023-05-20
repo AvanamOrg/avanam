@@ -496,7 +496,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'enable_footer_on_bottom' => true,
 					'enable_scroll_to_id'     => true,
 					'lightbox' => false,
-					'enable_popup_body_animate' => true,
+					'enable_popup_body_animate' => false,
 					// Typography.
 					'font_rendering' => false,
 					'base_font' => array(

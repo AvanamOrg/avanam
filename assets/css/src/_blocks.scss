@@ -190,7 +190,7 @@ figure.wp-block-image.aligncenter img {
 	}
 }
 /* Social */
-.single-content ul.wp-block-social-links {
+ul.wp-block-social-links:not(.specificity) {
 	padding-left: 0;
 	padding-right: 0;
 }

@@ -122,6 +122,9 @@ $settings = array(
 		'transport'    => 'refresh',
 		'default'      => webapp()->default( 'enable_popup_body_animate' ),
 		'label'        => esc_html__( 'Move Body with toggle?', 'avanam' ),
+		'input_attrs'  => array(
+			'help' => esc_html__( 'This can require a lot of memory to render the animation in mobile browsers, use with caution if you have graphically heavy pages.', 'avanam' ),
+		),
 		'context'      => array(
 			array(
 				'setting'    => 'header_popup_layout',

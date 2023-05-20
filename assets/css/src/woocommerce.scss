@@ -19,6 +19,7 @@
  @import "woo/_blocks.scss";
  @font-face {
 	font-family: 'star';
+    font-display: block;
 	src:
 	  url('../fonts/star.woff2?gmcsp2') format('woff2'),
 	  url('../fonts/star.ttf?gmcsp2') format('truetype'),
@@ -92,7 +93,7 @@
 }
 #cart-drawer.popup-drawer .drawer-content ul.product_list_widget{
     max-height: calc( 100vh - ( 1.5em + 1em + 1.2em + 24px + 55px + 105px) );
-    overflow: scroll;
+    overflow: auto;
 }
 #cart-drawer.popup-drawer .drawer-content .woocommerce-mini-cart__buttons.buttons {
     margin-bottom: 0;
@@ -898,7 +899,7 @@
              }
          }
      }
-    ul.cart_list li.mini_cart_item dl dt {
+    ul.cart_list li.mini_cart_item dl dt:first-child {
         clear:none;
     }
  

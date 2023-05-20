@@ -257,6 +257,7 @@ class ColorComponent extends Component {
 												usePalette={ false }
 												tooltip={ ( undefined !== this.controlParams.colors[ item ].tooltip ? this.controlParams.colors[ item ].tooltip : '' ) }
 												onChangeComplete={ ( color, isPalette ) => this.handleChangeComplete( color, isPalette, item, index ) }
+												controlRef={ this.anchorNodeRef }
 											/>
 										)
 								} ) }

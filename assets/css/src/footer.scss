@@ -259,6 +259,9 @@
 .ft-ro-dir-row .footer-section-inner-items-2 .footer-widget-area:first-child {
     margin-left: 0;
 }
+.ft-ro-dir-column .site-footer-section:not(.footer-section-inner-items-1) .footer-widget-area {
+    flex: unset;
+}
 .footer-widget-area > * {
 	flex: 1;
 	min-width: 0;

@@ -257,6 +257,7 @@ class BorderComponent extends Component {
 										tooltip={ __( 'Border Color' ) }
 										onChangeComplete={ ( color, isPalette ) => this.handleResponsiveChangeComplete( color, isPalette, this.state.currentDevice ) }
 										customizer={ this.props.customizer }
+										controlRef={ this.anchorNodeRef }
 									/>
 								) }
 								<input
@@ -298,6 +299,7 @@ class BorderComponent extends Component {
 											tooltip={ __( 'Border Color' ) }
 											onChangeComplete={ ( color, isPalette ) => this.handleChangeComplete( color, isPalette ) }
 											customizer={ this.props.customizer }
+											controlRef={ this.anchorNodeRef }
 										/>
 									) }
 									<input

@@ -389,7 +389,7 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css_border',
-				'selector' => '.wp-site-blocks .site-footer .site-footer-wrap .footer-social-wrap a.social-button',
+				'selector' => '.site-footer .site-footer-wrap .site-footer-section .footer-social-wrap .footer-social-inner-wrap .social-button',
 				'property' => 'border',
 				'pattern'  => '$',
 				'key'      => 'border',
@@ -407,7 +407,7 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.wp-site-blocks .site-footer .site-footer-wrap .footer-social-wrap a.social-button',
+				'selector' => '.site-footer .site-footer-wrap .site-footer-section .footer-social-wrap .footer-social-inner-wrap .social-button',
 				'property' => 'border-radius',
 				'pattern'  => '$',
 				'key'      => 'size',

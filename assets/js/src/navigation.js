@@ -111,6 +111,7 @@
 		
 			for ( let i = 0; i < SUBMENUS.length; i++ ) {
 				var parentMenuItem = SUBMENUS[ i ].parentNode;
+				let parentMenuItemLink = parentMenuItem.querySelector( 'a' );
 				let dropdown = parentMenuItem.querySelector( '.dropdown-nav-toggle' );
 				// If dropdown.
 				if ( dropdown ) {
@@ -118,11 +119,15 @@
 					var dropdownBtn = document.createElement( 'BUTTON' ); // Create a <button> element
 					dropdownBtn.setAttribute( 'aria-label', ( dropdown_label ? baseConfig.screenReader.expandOf + ' ' + dropdown_label : baseConfig.screenReader.expand ) );
 					dropdownBtn.classList.add( 'dropdown-nav-special-toggle' );
-					parentMenuItem.insertBefore( dropdownBtn, parentMenuItem.childNodes[1] );
+					if ( parentMenuItemLink ) {
+						parentMenuItemLink.insertBefore( dropdownBtn, parentMenuItemLink.childNodes[1] );
+					} else {
+						parentMenuItem.insertBefore( dropdownBtn, parentMenuItem.childNodes[1] );
+					}
 					// Toggle the submenu when we click the dropdown button.
 					dropdownBtn.addEventListener( 'click', function( e ) {
 						e.preventDefault();
-						window.base.toggleSubMenu( e.target.parentNode );
+						window.base.toggleSubMenu( e.target.closest('li') );
 					} );
 		
 					// Clean up the toggle if a mouse takes over from keyboard.
@@ -276,21 +281,23 @@
 		 * Initiate the script to process all drawer toggles.
 		 */
 		toggleDrawer: function( element, changeFocus ) {
-			changeFocus = (typeof changeFocus !== 'undefined') ?  changeFocus : true;
+			changeFocus = (typeof changeFocus !== 'undefined') ? changeFocus : true;
 			var toggle = element;
 			var target = document.querySelector( toggle.dataset.toggleTarget );
-			var _doc   = document;
+			if ( ! target ) {
+				return;
+			}
 			var scrollBar = window.innerWidth - document.documentElement.clientWidth;
 			var duration = ( toggle.dataset.toggleDuration ? toggle.dataset.toggleDuration : 250 );
 			window.base.toggleAttribute( toggle, 'aria-expanded', 'true', 'false' );
 			if ( target.classList.contains('show-drawer') ) {
 				if ( toggle.dataset.toggleBodyClass ) {
-					_doc.body.classList.remove( toggle.dataset.toggleBodyClass );
+					document.body.classList.remove( toggle.dataset.toggleBodyClass );
 				}
 				// Hide the drawer.
 				target.classList.remove('active');
 				target.classList.remove('pop-animated');
-				_doc.body.classList.remove( 'base-scrollbar-fixer' );
+				document.body.classList.remove( 'base-scrollbar-fixer' );
 				setTimeout(function () {
 					target.classList.remove('show-drawer');
 					if ( toggle.dataset.setFocus && changeFocus ) {
@@ -308,15 +315,15 @@
 				target.classList.add('show-drawer');
 				// Toggle body class
 				if ( toggle.dataset.toggleBodyClass ) {
-					_doc.body.classList.toggle( toggle.dataset.toggleBodyClass );
+					document.body.classList.toggle( toggle.dataset.toggleBodyClass );
 					if ( toggle.dataset.toggleBodyClass.includes( 'showing-popup-drawer-' ) ) {
-						_doc.body.style.setProperty('--scrollbar-offset', scrollBar + 'px' );
-						_doc.body.classList.add( 'base-scrollbar-fixer' );
+						document.body.style.setProperty('--scrollbar-offset', scrollBar + 'px' );
+						document.body.classList.add( 'base-scrollbar-fixer' );
 					}
 				}
 				setTimeout(function () {
 					target.classList.add('active');
-					if ( toggle.dataset.setFocus, changeFocus ) {
+					if ( toggle.dataset.setFocus && changeFocus ) {
 						var focusElement = document.querySelector(toggle.dataset.setFocus);
 
 						if ( focusElement ) {
@@ -884,11 +891,15 @@
 				return;
 			}
 			foundLinks.forEach( function( element ) {
-				var targetURL = new URL( element.href );
-				if ( targetURL.pathname === window.location.pathname ) {
-					element.addEventListener( 'click', function( e ) {
-						window.base.anchorScrollToCheck( e );
-					} );
+				try {
+					var targetURL = new URL( element.href );
+					if ( targetURL.pathname === window.location.pathname ) {
+						element.addEventListener( 'click', function( e ) {
+							window.base.anchorScrollToCheck( e );
+						} );
+					}
+				} catch (error) {
+					console.log('ClassList: ' + element.classList, 'Invalid URL' );
 				}
 			} );
 		},

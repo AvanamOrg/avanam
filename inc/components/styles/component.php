@@ -859,7 +859,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		}
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'primary_navigation_color', 'color' ) ) );
 		$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'primary_navigation_background', 'color' ) ) );
-		$css->set_selector( '.main-navigation .primary-menu-container > ul > li.menu-item > .dropdown-nav-special-toggle' );
+		$css->set_selector( '.main-navigation .primary-menu-container > ul > li.menu-item .dropdown-nav-special-toggle' );
 		$css->add_property( 'right', $this->render_half_size( webapp()->option( 'primary_navigation_spacing' ) ) );
 		$css->set_selector( '.main-navigation .primary-menu-container > ul li.menu-item > a' );
 		$css->render_font( webapp()->option( 'primary_navigation_typography' ), $css, 'primary_nav' );
@@ -887,7 +887,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		}
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'secondary_navigation_color', 'color' ) ) );
 		$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'secondary_navigation_background', 'color' ) ) );
-		$css->set_selector( '.secondary-navigation .primary-menu-container > ul > li.menu-item > .dropdown-nav-special-toggle' );
+		$css->set_selector( '.secondary-navigation .primary-menu-container > ul > li.menu-item .dropdown-nav-special-toggle' );
 		$css->add_property( 'right', $this->render_half_size( webapp()->option( 'secondary_navigation_spacing' ) ) );
 		$css->set_selector( '.secondary-navigation .secondary-menu-container > ul li.menu-item > a' );
 		$css->render_font( webapp()->option( 'secondary_navigation_typography' ), $css );
@@ -1669,10 +1669,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.primary-sidebar.widget-area' );
 		$css->render_background( webapp()->sub_option( 'sidebar_background', 'tablet' ), $css );
 		$css->add_property( 'padding', $this->render_responsive_measure( webapp()->option( 'sidebar_padding' ), 'tablet' ) );
-		$css->set_selector( '.has-sidebar.has-left-sidebar .primary-sidebar.widget-area' );
-		$css->add_property( 'border-right', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'tablet' ) ) );
-		$css->set_selector( '.has-sidebar:not(.has-left-sidebar) .primary-sidebar.widget-area' );
-		$css->add_property( 'border-left', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'tablet' ) ) );
+		$css->set_selector( '.has-sidebar.has-left-sidebar:not(.rtl) .primary-sidebar.widget-area, .rtl.has-sidebar:not(.has-left-sidebar) .primary-sidebar.widget-area' );
+		$css->add_property( 'border-right', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'tablet' ), webapp()->sub_option( 'sidebar_divider_border', 'desktop' ) ) );
+		$css->set_selector( '.has-sidebar:not(.has-left-sidebar):not(.rtl) .primary-sidebar.widget-area, .rtl.has-sidebar.has-left-sidebar .primary-sidebar.widget-area' );
+		$css->add_property( 'border-left', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'tablet' ), webapp()->sub_option( 'sidebar_divider_border', 'desktop' ) ) );
 		$css->stop_media_query();
 		$css->start_media_query( $media_query['mobile'] );
 		$css->set_selector( '.primary-sidebar.widget-area .widget' );
@@ -1685,10 +1685,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.primary-sidebar.widget-area' );
 		$css->render_background( webapp()->sub_option( 'sidebar_background', 'mobile' ), $css );
 		$css->add_property( 'padding', $this->render_responsive_measure( webapp()->option( 'sidebar_padding' ), 'mobile' ) );
-		$css->set_selector( '.has-sidebar.has-left-sidebar .primary-sidebar.widget-area' );
-		$css->add_property( 'border-right', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'mobile' ) ) );
-		$css->set_selector( '.has-sidebar:not(.has-left-sidebar) .primary-sidebar.widget-area' );
-		$css->add_property( 'border-left', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'mobile' ) ) );
+		$css->set_selector( '.has-sidebar.has-left-sidebar:not(.rtl) .primary-sidebar.widget-area, .rtl.has-sidebar:not(.has-left-sidebar) .primary-sidebar.widget-area' );
+		$css->add_property( 'border-right', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'mobile' ), webapp()->sub_option( 'sidebar_divider_border', 'desktop' ) ) );
+		$css->set_selector( '.has-sidebar:not(.has-left-sidebar):not(.rtl) .primary-sidebar.widget-area, .rtl.has-sidebar.has-left-sidebar .primary-sidebar.widget-area' );
+		$css->add_property( 'border-left', $css->render_border( webapp()->sub_option( 'sidebar_divider_border', 'mobile' ), webapp()->sub_option( 'sidebar_divider_border', 'desktop' ) ) );
 		$css->stop_media_query();
 
 		// Button.
@@ -2774,7 +2774,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			// Product Archive Columns Mobile.
 			if ( 'twocolumn' === webapp()->option( 'product_archive_mobile_columns' ) ) {
 				$css->start_media_query( $media_query['mobile'] );
-				$css->set_selector( '.woocommerce ul.products:not(.products-list-view)' );
+				$css->set_selector( '.woocommerce ul.products:not(.products-list-view), .wp-site-blocks .wc-block-grid:not(.has-2-columns):not(has-1-columns) .wc-block-grid__products' );
 				$css->add_property( 'grid-template-columns', 'repeat(2, minmax(0, 1fr))' );
 				$css->add_property( 'column-gap', '0.5rem' );
 				$css->add_property( 'grid-row-gap', '0.5rem' );
@@ -2859,7 +2859,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->add_property( 'letter-spacing', $this->render_font_spacing( webapp()->option( 'product_archive_price_font' ), 'mobile' ) );
 			$css->stop_media_query();
 			// Product Archive Button Font.
-			$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link' );
+			$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link' );
 			$css->add_property( 'border-radius', $this->render_measure( webapp()->option( 'product_archive_button_radius' ) ) );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'product_archive_button_color', 'color' ) ) );
 			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'product_archive_button_background', 'color' ) ) );
@@ -2867,19 +2867,19 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->add_property( 'border-color', $this->render_color( webapp()->sub_option( 'product_archive_button_border_colors', 'color' ) ) );
 			$css->add_property( 'box-shadow', $css->render_shadow( webapp()->option( 'product_archive_button_shadow' ), webapp()->default( 'product_archive_button_shadow' ) ) );
 			$css->render_font( webapp()->option( 'product_archive_button_typography' ), $css );
-			$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:hover, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link:hover' );
+			$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button):hover, .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button):hover, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link:hover' );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'product_archive_button_color', 'hover' ) ) );
 			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'product_archive_button_background', 'hover' ) ) );
 			$css->add_property( 'border-color', $this->render_color( webapp()->sub_option( 'product_archive_button_border_colors', 'hover' ) ) );
 			$css->add_property( 'box-shadow', $css->render_shadow( webapp()->option( 'product_archive_button_shadow_hover' ), webapp()->default( 'product_archive_button_shadow_hover' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
-			$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link' );
+			$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link' );
 			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'product_archive_button_typography' ), 'tablet' ) );
 			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'product_archive_button_typography' ), 'tablet' ) );
 			$css->add_property( 'letter-spacing', $this->render_font_spacing( webapp()->option( 'product_archive_button_typography' ), 'tablet' ) );
 			$css->stop_media_query();
 			$css->start_media_query( $media_query['mobile'] );
-			$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link' );
+			$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link' );
 			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'product_archive_button_typography' ), 'mobile' ) );
 			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'product_archive_button_typography' ), 'mobile' ) );
 			$css->add_property( 'letter-spacing', $this->render_font_spacing( webapp()->option( 'product_archive_button_typography' ), 'mobile' ) );
@@ -4066,8 +4066,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'border-radius', $this->render_range( webapp()->option( 'image_border_radius' ), 'desktop' ) );
 
 		$css->set_selector( '.editor-styles-wrapper .bst-button' );
-		$css->add_property( 'font-family', webapp()->sub_option( 'buttons_typography', 'family' ) );
-		$css->add_property( 'font-weight', webapp()->sub_option( 'buttons_typography', 'weight' ) );
+		$css->render_font( webapp()->option( 'buttons_typography' ), $css );
 
 		$css->set_selector( '.block-editor-page .editor-styles-wrapper' );
 		$css->render_background( webapp()->sub_option( 'site_background', 'desktop' ), $css );

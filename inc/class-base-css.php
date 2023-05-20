@@ -926,7 +926,7 @@ class Base_CSS {
 	 * @param array $border an array of border settings.
 	 * @return string
 	 */
-	public function render_border( $border ) {
+	public function render_border( $border, $inherit = false ) {
 		if ( empty( $border ) ) {
 			return false;
 		}
@@ -935,7 +935,9 @@ class Base_CSS {
 		}
 		$border_string = '';
 		$style         = ( isset( $border['style'] ) && ! empty( $border['style'] ) ? $border['style'] : '' );
-
+		if ( '' === $style ) {
+			$style = isset( $inherit['style'] ) && ! empty( $inherit['style'] ) ? $inherit['style'] : '';
+		}
 		if ( '' === $style ) {
 			return false;
 		}

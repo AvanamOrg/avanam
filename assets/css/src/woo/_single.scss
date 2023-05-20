@@ -665,6 +665,12 @@
 .single-product .base-breadcrumbs {
     margin-top: -1rem;
 }
+.single-product .extra-title+.base-breadcrumbs {
+    margin-top: 1em;
+}
+.single-product .entry-taxonomies+.base-breadcrumbs {
+    margin-top: 1em;
+}
 .single-product.content-vertical-padding-hide .base-breadcrumbs, .single-product.content-vertical-padding-bottom .base-breadcrumbs {
     margin-top: 0.5em;
     margin-bottom: 0.5em;

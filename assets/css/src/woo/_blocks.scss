@@ -327,7 +327,12 @@ body.content-style-unboxed .wc-block-grid .wc-block-grid__product.woo-archive-ac
 .wc-block-grid__product .wc-block-grid__product-rating ~.wc-block-grid__product-price {
     padding-right: 5.4em;
 }
-.wc-block-grid__product-rating .star-rating, .wc-block-grid__product-rating .wc-block-grid__product-rating__stars, .wc-block-review-list .wc-block-components-review-list-item__rating > .wc-block-components-review-list-item__rating__stars {
+.wc-block-components-product-rating {
+    display: flex;
+    gap: 0.2em;
+	align-items: center;
+}
+.wc-block-grid__product-rating .star-rating, .wc-block-grid__product-rating .wc-block-grid__product-rating__stars, .wc-block-review-list .wc-block-components-review-list-item__rating > .wc-block-components-review-list-item__rating__stars, .wc-block-components-product-rating__stars {
     font-family: "star";
 	display: block;
     margin: 0.25em auto 0.25em;

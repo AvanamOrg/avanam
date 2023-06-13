@@ -514,10 +514,6 @@ a.post-more-link {
 		> div {
 			width: 100%;
 		}
-
-		.entry-meta {
-			justify-content: center;
-		}
 	}
 }
 .entry-hero-layout-fullwidth > .entry-hero-container-inner > .site-container {
@@ -538,6 +534,9 @@ a.post-more-link {
 }
 .title-align-left {
 	text-align: left;
+	.entry-meta {
+		justify-content: flex-start;
+	}
 }
 .title-align-center {
 	text-align: center;
@@ -708,6 +707,14 @@ a.post-more-link {
 	margin-right: - 2rem;
 	max-width: unset;
 	width: unset;
+}
+.content-style-boxed .wp-site-blocks .entry-content > .alignwide.is-layout-constrained {
+	padding-left: var(--global-content-boxed-padding );
+	padding-right: var(--global-content-boxed-padding );
+}
+.content-style-boxed .wp-site-blocks .entry-content .alignwide > * .alignwide {
+	margin-left: unset;
+    margin-right: unset;
 }
 
 /*--------------------------------------------------------------

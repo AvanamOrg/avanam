@@ -148,6 +148,9 @@ figure.wp-block-image.aligncenter img {
 		border: 1px solid var(--global-palette6);
 		word-break: normal;
 	}
+	img {
+		display: inline-block;
+	}
 }
 .wp-block-table.is-style-stripes {
 	thead{

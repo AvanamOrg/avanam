@@ -745,14 +745,14 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link',
 				'property' => 'color',
 				'pattern'  => '$',
 				'key'      => 'color',
 			),
 			array(
 				'type'     => 'css',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:hover',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button):hover, .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button):hover, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link:hover',
 				'property' => 'color',
 				'pattern'  => '$',
 				'key'      => 'hover',
@@ -786,14 +786,14 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link',
 				'property' => 'background',
 				'pattern'  => '$',
 				'key'      => 'color',
 			),
 			array(
 				'type'     => 'css',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:hover',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button):hover, .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button):hover, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link:hover',
 				'property' => 'background',
 				'pattern'  => '$',
 				'key'      => 'hover',
@@ -827,14 +827,14 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link',
 				'property' => 'border-color',
 				'pattern'  => '$',
 				'key'      => 'color',
 			),
 			array(
 				'type'     => 'css',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:hover',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button):hover, .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button):hover, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link:hover',
 				'property' => 'border-color',
 				'pattern'  => '$',
 				'key'      => 'hover',
@@ -868,7 +868,7 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css_border',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link',
 				'property' => 'border',
 				'pattern'  => '$',
 				'key'      => 'border',
@@ -895,7 +895,7 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link',
 				'property' => 'border-radius',
 				'pattern'  => '$',
 				'key'      => 'measure',
@@ -920,7 +920,7 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css_typography',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link',
 				'pattern'  => array(
 					'desktop' => '$',
 					'tablet'  => '$',
@@ -949,7 +949,7 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css_boxshadow',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link',
 				'property' => 'box-shadow',
 				'pattern'  => '$',
 				'key'      => '',
@@ -971,7 +971,7 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css_boxshadow',
-				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:hover',
+				'selector' => '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button):hover, .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button):hover, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link:hover',
 				'property' => 'box-shadow',
 				'pattern'  => '$',
 				'key'      => '',

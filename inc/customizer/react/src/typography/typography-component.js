@@ -488,7 +488,7 @@ class TypographyComponent extends Component {
 							initialPosition={ ( currentSize ? currentSize : placeholderSize ) }
 							value={ currentSize }
 							onChange={ (val) => {
-								if ( val ) {
+								if ( val >= 0 ) {
 									let value = this.state.value;
 									value.size[ this.state.currentDevice ] = val;
 									this.updateValues( value );

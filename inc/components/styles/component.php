@@ -1298,7 +1298,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( '--global-content-width', webapp()->sub_option( 'content_width', 'size' ) . webapp()->sub_option( 'content_width', 'unit' ) );
 		$css->add_property( '--global-content-narrow-width', webapp()->sub_option( 'content_narrow_width', 'size' ) . webapp()->sub_option( 'content_narrow_width', 'unit' ) );
 		$css->add_property( '--global-content-edge-padding', $css->render_range( webapp()->option( 'content_edge_spacing' ), 'desktop' ) );
+		$css->add_property( '--global-content-boxed-padding', $this->render_range( webapp()->option( 'boxed_spacing' ), 'desktop' ) );
 		$css->add_property( '--global-calc-content-width', 'calc(' . webapp()->sub_option( 'content_width', 'size' ) . webapp()->sub_option( 'content_width', 'unit' ) . ' - var(--global-content-edge-padding) - var(--global-content-edge-padding) )' );
+		$css->add_property( '--wp--style--global--content-size', 'var(--global-calc-content-width)' );
 		//$css->add_property( '--scrollbar-offset', '0px' );
 		$css->set_selector( '.wp-site-blocks' );
 		$css->add_property( '--global-vw', 'calc( 100vw - ( 0.5 * var(--scrollbar-offset)))' );
@@ -1550,18 +1552,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->stop_media_query();
 		// Wide layout when boxed.
 		$css->set_selector( '.content-style-boxed .wp-site-blocks .entry-content .alignwide' );
-		$css->add_property( 'margin-left', '-' . $this->render_range( webapp()->option( 'boxed_spacing' ), 'desktop' ) );
-		$css->add_property( 'margin-right', '-' . $this->render_range( webapp()->option( 'boxed_spacing' ), 'desktop' ) );
-		$css->start_media_query( $media_query['tablet'] );
-		$css->set_selector( '.content-style-boxed .wp-site-blocks .entry-content .alignwide' );
-		$css->add_property( 'margin-left', '-' . $this->render_range( webapp()->option( 'boxed_spacing' ), 'tablet' ) );
-		$css->add_property( 'margin-right', '-' . $this->render_range( webapp()->option( 'boxed_spacing' ), 'tablet' ) );
-		$css->stop_media_query();
-		$css->start_media_query( $media_query['mobile'] );
-		$css->set_selector( '.content-style-boxed .wp-site-blocks .entry-content .alignwide' );
-		$css->add_property( 'margin-left', '-' . $this->render_range( webapp()->option( 'boxed_spacing' ), 'mobile' ) );
-		$css->add_property( 'margin-right', '-' . $this->render_range( webapp()->option( 'boxed_spacing' ), 'mobile' ) );
-		$css->stop_media_query();
+		$css->add_property( 'margin-left', 'calc( -1 * var( --global-content-boxed-padding ) )' );
+		$css->add_property( 'margin-right', 'calc( -1 * var( --global-content-boxed-padding ) )' );
 		// Content Spacing.
 		$css->set_selector( '.content-area' );
 		$css->add_property( 'margin-top', $css->render_range( webapp()->option( 'content_spacing' ), 'desktop' ) );
@@ -1580,10 +1572,12 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->start_media_query( $media_query['tablet'] );
 		$css->set_selector( ':root' );
 		$css->add_property( '--global-content-edge-padding', $css->render_range( webapp()->option( 'content_edge_spacing' ), 'tablet' ) );
+		$css->add_property( '--global-content-boxed-padding', $this->render_range( webapp()->option( 'boxed_spacing' ), 'tablet' ) );
 		$css->stop_media_query();
 		$css->start_media_query( $media_query['mobile'] );
 		$css->set_selector( ':root' );
 		$css->add_property( '--global-content-edge-padding', $css->render_range( webapp()->option( 'content_edge_spacing' ), 'mobile' ) );
+		$css->add_property( '--global-content-boxed-padding', $this->render_range( webapp()->option( 'boxed_spacing' ), 'mobile' ) );
 		$css->stop_media_query();
 		// Boxed Spacing.
 		$css->set_selector( '.entry-content-wrap' );

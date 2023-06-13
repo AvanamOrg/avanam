@@ -108,9 +108,12 @@ class Component implements Component_Interface {
 		remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open' );
 		remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 		// Image Link.
+		add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'archive_loop_image_wrap_open' ), 1 );
 		add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'archive_loop_image_link_open' ), 5 );
 		add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'archive_loop_second_image' ), 30 );
 		add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'archive_loop_image_link_close' ), 50 );
+		add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'archive_loop_product_action' ), 90 );
+		add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'archive_loop_image_wrap_close' ), 91 );
 		// Content Wrap.
 		add_action( 'woocommerce_shop_loop_item_title', array( $this, 'archive_content_wrap_start' ), 5 );
 		add_action( 'woocommerce_after_shop_loop_item', array( $this, 'archive_content_wrap_end' ), 50 );
@@ -388,7 +391,11 @@ class Component implements Component_Interface {
 				esc_html( $product->add_to_cart_text() ) . '' . webapp()->get_icon( 'arrow-right-alt' ) . '' . webapp()->get_icon( 'spinner' ) . '' . webapp()->get_icon( 'check' )
 			);
 		}
-		$action_button = '<div class="wp-block-button wc-block-grid__product-add-to-cart">' . $cart_text . '</div>';
+		$style_class = '';
+		if ( webapp()->option( 'product_archive_button_style' ) ) {
+			$style_class = 'style-'.webapp()->option( 'product_archive_button_style' );
+		}
+		$action_button = '<div class="wp-block-button wc-block-grid__product-add-to-cart '.$style_class.'">' . $cart_text . '</div>';
 		$secondary_image_output = '';
 		if ( 'none' !== $product_image_hover_style ) {
 			if ( is_a( $product, 'WC_Product' ) ) {
@@ -1089,6 +1096,26 @@ class Component implements Component_Interface {
 		return apply_filters( 'base_product_archive_infinite_attributes', $attributes );
 	}
 	/**
+	 * Insert the opening wrap for products image in the loop.
+	 */
+	public function archive_loop_image_wrap_open() {
+		echo '<div class="product-thumbnail">';
+	}
+	/**
+	 * Insert the closing wrap for products image in the loop.
+	 */
+	public function archive_loop_image_wrap_close() {
+		echo '</div>';
+	}
+	/**
+	 * Insert the closing anchor tag for products image in the loop.
+	 */
+	public function archive_loop_product_action() {
+		echo '<div class="product-actions">';
+			do_action( 'base_archive_loop_product_action_over_image' );
+		echo '</div>';
+	}
+	/**
 	 * Insert the opening anchor tag for products image in the loop.
 	 */
 	public function archive_loop_image_link_open() {
@@ -1184,7 +1211,13 @@ class Component implements Component_Interface {
 	 * Wrap Action buttons.
 	 */
 	public function archive_action_wrap_start() {
-		echo '<div class="product-action-wrap">';
+		$class = '';
+		if ( webapp()->option( 'product_archive_button_style' ) ) {
+			$class = 'style-'.webapp()->option( 'product_archive_button_style' );
+		}
+		echo '<div class="product-action-wrap '.$class.'">';
+		
+		do_action( 'base_archive_loop_product_action_inner' );
 	}
 	/**
 	 * Close Action buttons wrap.

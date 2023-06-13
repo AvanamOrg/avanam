@@ -1,6 +1,10 @@
+== 1.1.7 | 12th June 2023 ==
+* Fix: Color picker input typing.
+* New: WooCommerce Product Wrap
+
 == 1.1.6 | 20th May 2023 ==
 * Fix: Color picker in border controls.
-* Fix: Pallet Color picker offscreen.
+* Fix: Palette Color picker offscreen.
 * Fix: Footer widgets spacing.
 * Fix: Issue with product buttons style.
 

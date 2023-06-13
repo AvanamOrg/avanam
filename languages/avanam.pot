@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0 (or later).
 msgid ""
 msgstr ""
-"Project-Id-Version: Avanam 1.1.5\n"
+"Project-Id-Version: Avanam 1.1.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/avanam\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-05-20T09:19:28+00:00\n"
+"POT-Creation-Date: 2023-06-13T03:21:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: avanam\n"
@@ -1214,21 +1214,21 @@ msgstr ""
 msgid "The template tag method %1$s registered by theme component %2$s conflicts with an already registered template tag of the same name."
 msgstr ""
 
-#: inc/components/woocommerce/component.php:992
+#: inc/components/woocommerce/component.php:999
 msgid "Cart Summary"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1027
+#: inc/components/woocommerce/component.php:1034
 msgid "Update Profile Photo"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1300
-#: inc/components/woocommerce/component.php:1312
+#: inc/components/woocommerce/component.php:1333
+#: inc/components/woocommerce/component.php:1345
 msgid "List View"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1303
-#: inc/components/woocommerce/component.php:1309
+#: inc/components/woocommerce/component.php:1336
+#: inc/components/woocommerce/component.php:1342
 msgid "Grid View"
 msgstr ""
 

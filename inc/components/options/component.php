@@ -274,7 +274,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 1.5,
+							'desktop' => 1.8,
 						),
 						'unit' => array(
 							'mobile'  => 'em',
@@ -308,7 +308,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'variant' => '',
 						'color'   => 'palette4',
 					),
-					'sidebar_link_style' => 'normal',
+					'sidebar_link_style' => 'plain',
 					'sidebar_link_colors' => array(
 						'color' => '',
 						'hover' => '',
@@ -337,10 +337,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'highlight'      => 'palette1',
 						'highlight-alt'  => 'palette2',
 						'highlight-alt2' => 'palette9',
-						'style'          => 'standard',
+						'style'          => 'no-underline',
 					),
 					// Scroll To Top.
-					'scroll_up'               => false,
+					'scroll_up'               => true,
 					'scroll_up_side'          => 'right',
 					'scroll_up_icon'          => 'arrow-up',
 					'scroll_up_icon_size'   => array(
@@ -660,12 +660,12 @@ class Component implements Component_Interface, Templating_Component_Interface {
 							'main_left_center'  => array(),
 							'main_center'       => array(),
 							'main_right_center' => array(),
-							'main_right'        => array( 'navigation' ),
+							'main_right'        => array(),
 						),
 						'bottom' => array(
 							'bottom_left'         => array(),
 							'bottom_left_center'  => array(),
-							'bottom_center'       => array(),
+							'bottom_center'       => array( 'navigation' ),
 							'bottom_right_center' => array(),
 							'bottom_right'        => array(),
 						),
@@ -1376,7 +1376,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'tablet'  => true,
 						'mobile'  => false,
 					),
-					'header_search_icon'   => 'search',
+					'header_search_icon'   => 'search2',
 					'header_search_style'  => 'default',
 					'header_search_woo'    => false,
 					'header_search_border' => array(
@@ -2256,7 +2256,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'footer_html_link_style'    => 'normal',
 					'footer_html_margin' => array(
-						'size'   => array( '', '', '', '' ),
+						'size'   => array( '0', '', '0', '' ),
 						'unit'   => 'px',
 						'locked' => false,
 					),
@@ -2359,7 +2359,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'enabled' => true,
 					),
 					'page_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'page_title_element_meta' => array(
@@ -2421,7 +2421,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'post_background'         => '',
 					'post_content_background' => '',
 					'post_title'              => true,
-					'post_title_layout'       => 'normal',
+					'post_title_layout'       => 'above',
 					'post_title_height'       => array(
 						'size' => array(
 							'mobile'  => '',
@@ -2538,7 +2538,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'enabled' => true,
 					),
 					'post_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'post_title_element_excerpt' => array(
@@ -2873,7 +2873,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_archive_show_order' => true,
 					'product_archive_show_results_count' => true,
 					'product_archive_style'  => 'action-on-hover',
-					'product_archive_image_hover_switch' => 'none',
+					'product_archive_image_hover_switch' => 'fade',
 					'product_archive_button_style'       => 'text',
 					'product_archive_button_align'       => false,
 					'product_archive_title'              => true,
@@ -2896,7 +2896,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'enabled' => true,
 					),
 					'product_archive_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'product_archive_title_element_description' => array(
@@ -2938,9 +2938,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'color' => '',
 						'hover' => '',
 					),
-					'product_archive_layout'             => 'normal',
-					'product_archive_content_style'      => 'boxed',
-					'product_archive_sidebar_id'         => 'sidebar-primary',
+					'product_archive_layout'             => 'left',
+					'product_archive_content_style'      => 'unboxed',
+					'product_archive_sidebar_id'         => 'sidebar-woocommerce-shop',
 					'product_archive_title_font'   => array(
 						'size' => array(
 							'desktop' => '',
@@ -3019,8 +3019,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'locked' => true,
 					),
 					// Product Controls.
-					'custom_quantity'                => false,
-					'product_archive_mobile_columns' => 'default',
+					'custom_quantity'                => true,
+					'product_archive_mobile_columns' => 'twocolumn',
 					'product_layout'             => 'normal',
 					'product_content_style'      => 'unboxed',
 					'product_vertical_padding'   => 'show',
@@ -3069,7 +3069,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'feature_5_icon' => 'shield_check',
 					),
 					'product_content_element_payments' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'title'     => __( 'GUARANTEED SAFE CHECKOUT', 'avanam' ),
 						'visa' => true,
 						'mastercard' => true,
@@ -3097,7 +3097,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'product_tab_style'   => 'normal',
 					'variation_direction' => 'horizontal',
-					'product_tab_title'   => true,
+					'product_tab_title'   => false,
 					'product_content_element_product_meta' => array(
 						'enabled' => true,
 					),
@@ -3239,7 +3239,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					// Header Cart.
 					'header_cart_label' => '',
 					'header_cart_show_total' => true,
-					'header_cart_style' => 'link',
+					'header_cart_style' => 'slide',
 					'header_cart_popup_side' => 'right',
 					'header_cart_icon' => 'shopping-bag',
 					'header_cart_icon_size'   => array(
@@ -3248,7 +3248,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'header_cart_color'              => array(
 						'color' => '',
-						'hover' => '',
+						'hover' => 'palette1',
 					),
 					'header_cart_background'              => array(
 						'color' => '',

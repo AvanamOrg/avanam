@@ -130,7 +130,7 @@ class RadioIconComponent extends Component {
 													isTertiary
 													className={ ( item === this.state.value[this.state.currentDevice] ?
 															'active-radio ' :
-															'' ) + 'bst-ratio-' + item + ( this.controlParams.layout[ item ].icon && this.controlParams.layout[ item ].name ? ' btn-flex-col' : '' ) }
+															'' ) + 'bt-ratio-' + item + ( this.controlParams.layout[ item ].icon && this.controlParams.layout[ item ].name ? ' btn-flex-col' : '' ) }
 													onClick={ () => {
 														let value = this.state.value;
 														value[ this.state.currentDevice ] = item;
@@ -159,7 +159,7 @@ class RadioIconComponent extends Component {
 													isTertiary
 													className={ ( item === this.state.value[this.state.currentDevice] ?
 															'active-radio ' :
-															'' ) + 'bst-radio-' + item + ( this.controlParams.layout[ item ].icon && this.controlParams.layout[ item ].name ? ' btn-flex-col' : '' ) }
+															'' ) + 'bt-radio-' + item + ( this.controlParams.layout[ item ].icon && this.controlParams.layout[ item ].name ? ' btn-flex-col' : '' ) }
 															onClick={ () => {
 																let value = this.state.value;
 																value[ this.state.currentDevice ] = item;
@@ -203,7 +203,7 @@ class RadioIconComponent extends Component {
 													isTertiary
 													className={ ( item === this.state.value ?
 															'active-radio ' :
-															'' ) + 'bst-radio-' + item + ( this.controlParams.layout[ item ].icon && this.controlParams.layout[ item ].name ? ' btn-flex-col' : '' ) }
+															'' ) + 'bt-radio-' + item + ( this.controlParams.layout[ item ].icon && this.controlParams.layout[ item ].name ? ' btn-flex-col' : '' ) }
 													onClick={ () => {
 														let value = this.state.value;
 														value = item;
@@ -232,7 +232,7 @@ class RadioIconComponent extends Component {
 													isTertiary
 													className={ ( item === this.state.value ?
 															'active-radio ' :
-															'' ) + 'bst-radio-' + item + ( this.controlParams.layout[ item ].icon && this.controlParams.layout[ item ].name ? ' btn-flex-col' : '' ) }
+															'' ) + 'bt-radio-' + item + ( this.controlParams.layout[ item ].icon && this.controlParams.layout[ item ].name ? ' btn-flex-col' : '' ) }
 															onClick={ () => {
 																let value = this.state.value;
 																value = item;

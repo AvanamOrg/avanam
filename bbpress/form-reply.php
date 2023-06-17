@@ -18,7 +18,7 @@ if ( bbp_is_reply_edit() ) : ?>
 <?php endif; ?>
 
 <?php if ( bbp_current_user_can_access_create_reply_form() ) : ?>
-	<div class="bst-bbpress-clearfix"></div>
+	<div class="bt-bbpress-clearfix"></div>
 	<div class="forum-topic-bg">
 		<div id="new-reply-<?php bbp_topic_id(); ?>" class="bbp-reply-form">
 			<form id="new-post" name="new-post" method="post" action="<?php bbp_reply_permalink() ?>">

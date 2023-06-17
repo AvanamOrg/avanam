@@ -28,14 +28,14 @@ if ( ! bbp_is_single_forum() ) : ?>
 
 <?php endif; ?>
 <?php if ( bbp_current_user_can_access_create_topic_form() ) : ?>
-	<div class="bst-bbpress-clearfix"></div>
+	<div class="bt-bbpress-clearfix"></div>
 	<div class="forum-topic-bg">
 	<div id="new-topic-<?php bbp_topic_id(); ?>" class="bbp-topic-form">
 		<form id="new-post" name="new-post" method="post" action="<?php bbp_topic_permalink(); ?>">
 			<div class="bbpress-reply-head clearfix">
 			<?php
 				if ( bbp_is_topic_edit() ) :
-					echo '<h2 class="bstbb-reply-head-title">';
+					echo '<h2 class="btbb-reply-head-title">';
 					printf( __( 'Now Editing %s', 'avanam' ), '<strong>' . esc_html( bbp_get_topic_title() ) . '</strong>' );
 					echo '</h2>';
 				else :

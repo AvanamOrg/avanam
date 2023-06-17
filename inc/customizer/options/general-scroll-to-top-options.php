@@ -97,7 +97,7 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader, #bst-scroll-up',
+					'selector' => '#bt-scroll-up-reader, #bt-scroll-up',
 					'property' => 'font-size',
 					'pattern'  => '$',
 					'key'      => 'size',
@@ -173,14 +173,14 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader.scroll-up-side-right, #bst-scroll-up.scroll-up-side-right',
+					'selector' => '#bt-scroll-up-reader.scroll-up-side-right, #bt-scroll-up.scroll-up-side-right',
 					'pattern'  => '$',
 					'property' => 'right',
 					'key'      => 'size',
 				),
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader.scroll-up-side-left, #bst-scroll-up.scroll-up-side-left',
+					'selector' => '#bt-scroll-up-reader.scroll-up-side-left, #bt-scroll-up.scroll-up-side-left',
 					'pattern'  => '$',
 					'property' => 'left',
 					'key'      => 'size',
@@ -224,7 +224,7 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader, #bst-scroll-up',
+					'selector' => '#bt-scroll-up-reader, #bt-scroll-up',
 					'pattern'  => '$',
 					'property' => 'bottom',
 					'key'      => 'size',
@@ -295,7 +295,7 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'class',
-					'selector' => '#bst-scroll-up-reader, #bst-scroll-up',
+					'selector' => '#bt-scroll-up-reader, #bt-scroll-up',
 					'pattern'  => 'scroll-up-style-$',
 					'key'      => '',
 				),
@@ -328,14 +328,14 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader, #bst-scroll-up',
+					'selector' => '#bt-scroll-up-reader, #bt-scroll-up',
 					'property' => 'color',
 					'pattern'  => '$',
 					'key'      => 'color',
 				),
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader:hover, #bst-scroll-up:hover',
+					'selector' => '#bt-scroll-up-reader:hover, #bt-scroll-up:hover',
 					'property' => 'color',
 					'pattern'  => '$',
 					'key'      => 'hover',
@@ -369,14 +369,14 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader, #bst-scroll-up',
+					'selector' => '#bt-scroll-up-reader, #bt-scroll-up',
 					'property' => 'background',
 					'pattern'  => '$',
 					'key'      => 'color',
 				),
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader:hover, #bst-scroll-up:hover',
+					'selector' => '#bt-scroll-up-reader:hover, #bt-scroll-up:hover',
 					'property' => 'background',
 					'pattern'  => '$',
 					'key'      => 'hover',
@@ -415,14 +415,14 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader, #bst-scroll-up',
+					'selector' => '#bt-scroll-up-reader, #bt-scroll-up',
 					'property' => 'border-color',
 					'pattern'  => '$',
 					'key'      => 'color',
 				),
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader:hover, #bst-scroll-up:hover',
+					'selector' => '#bt-scroll-up-reader:hover, #bt-scroll-up:hover',
 					'property' => 'border-color',
 					'pattern'  => '$',
 					'key'      => 'hover',
@@ -456,7 +456,7 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css_border',
-					'selector' => '#bst-scroll-up-reader, #bst-scroll-up',
+					'selector' => '#bt-scroll-up-reader, #bt-scroll-up',
 					'property' => 'border',
 					'pattern'  => '$',
 					'key'      => 'border',
@@ -483,7 +483,7 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader, #bst-scroll-up',
+					'selector' => '#bt-scroll-up-reader, #bt-scroll-up',
 					'property' => 'border-radius',
 					'pattern'  => '$',
 					'key'      => 'measure',
@@ -509,7 +509,7 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css',
-					'selector' => '#bst-scroll-up-reader, #bst-scroll-up',
+					'selector' => '#bt-scroll-up-reader, #bt-scroll-up',
 					'property' => 'padding',
 					'pattern'  => '$',
 					'key'      => 'measure',

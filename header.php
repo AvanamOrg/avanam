@@ -51,7 +51,7 @@ do_action( 'base_before_wrapper' );
 	do_action( 'base_after_header' );
 	?>
 
-	<div id="inner-wrap" class="wrap hfeed bst-clear">
+	<div id="inner-wrap" class="wrap hfeed bt-clear">
 		<?php
 		/**
 		 * Hook for top of inner wrap.

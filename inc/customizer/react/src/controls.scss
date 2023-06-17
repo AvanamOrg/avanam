@@ -48,7 +48,7 @@ li#accordion-section-base_customizer_custom_posts_placeholder > h3.accordion-sec
 .base-range-control {
     width: 100%;
 }
-.base-range-control-inner .components-base-control.bst-range-number-input{
+.base-range-control-inner .components-base-control.bt-range-number-input{
 margin-left: 16px;
 margin-bottom: 0;
 flex: 0 1 65px;
@@ -1353,7 +1353,7 @@ li#customize-control-base_color_palette .customize-control-description {
 font-size: 7px;
 }
 }
-p.bst-box-shadow-title {
+p.bt-box-shadow-title {
 	text-align: center;
 	margin-bottom: 0;
 }
@@ -1362,7 +1362,7 @@ p.bst-box-shadow-title {
 	width: 50px;
 	padding-left: 2px;
 }
-.bst-box-inset-settings {
+.bt-box-inset-settings {
     padding-top: 10px;
 }
 #customize-control-google_subsets .base-radio-container-control {
@@ -1526,7 +1526,7 @@ p.bst-box-shadow-title {
 .base-font-pair-popover > .components-popover__content {
     padding: 0 12px 12px;
 }
-.components-button-group.bst-font-pair-group {
+.components-button-group.bt-font-pair-group {
     min-width: 290px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1536,7 +1536,7 @@ p.bst-box-shadow-title {
     margin-right: 0;
     margin-left: auto;
 }
-.components-button-group.bst-font-pair-group button.components-button.bst-font-pair-btn {
+.components-button-group.bt-font-pair-group button.components-button.bt-font-pair-btn {
     height: auto;
 	text-align: center;
     flex-direction: column;

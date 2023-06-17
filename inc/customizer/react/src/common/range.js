@@ -67,7 +67,7 @@ export default function BaseRange( {
 						help={ help }
 						withInputField={ false }
 					/>
-					<div className="components-base-control bst-range-number-input">
+					<div className="components-base-control bt-range-number-input">
 						<div className="components-base-control__field">
 							<input
 								value={ value }

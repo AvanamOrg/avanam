@@ -13,14 +13,14 @@
 			);
 		},
 		findImages: function() {
-			var foundLinks = document.querySelectorAll( 'a[href]:not(.bst-no-lightbox):not(.custom-link):not(.kb-gallery-item-link):not(.bst-core-gallery-lightbox)' );
+			var foundLinks = document.querySelectorAll( 'a[href]:not(.bt-no-lightbox):not(.custom-link):not(.kb-gallery-item-link):not(.bt-core-gallery-lightbox)' );
 			if ( ! foundLinks.length ) {
 				return;
 			}
 			if ( foundLinks ) {
 				for ( let i = 0; i < foundLinks.length; i++ ) {
 					if ( baseThemeLightbox.checkImage( foundLinks[ i ] ) ) {
-						foundLinks[ i ].classList.add( 'bst-lightbox' );
+						foundLinks[ i ].classList.add( 'bt-lightbox' );
 						new SimpleLightbox({
 							elements: [ foundLinks[ i ] ],
 						});
@@ -42,7 +42,7 @@
 					if ( foundLinks ) {
 						for ( let i = 0; i < foundLinks.length; i++ ) {
 							if ( baseThemeLightbox.checkImage( foundLinks[ i ] ) ) {
-								foundLinks[ i ].classList.add( 'bst-core-gallery-lightbox' );
+								foundLinks[ i ].classList.add( 'bt-core-gallery-lightbox' );
 							}
 						}
 					}

@@ -2045,7 +2045,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'footer_html_link_color', 'hover' ) ) );
 		// Scroll To Top.
 		if ( webapp()->option( 'scroll_up' ) ) {
-			$css->set_selector( '#bst-scroll-up-reader, #bst-scroll-up' );
+			$css->set_selector( '#bt-scroll-up-reader, #bt-scroll-up' );
 			$css->add_property( 'border', $css->render_border( webapp()->option( 'scroll_up_border' ) ) );
 			$css->add_property( 'border-radius', $this->render_measure( webapp()->option( 'scroll_up_radius' ) ) );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'scroll_up_color', 'color' ) ) );
@@ -2054,32 +2054,32 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->add_property( 'bottom', $this->render_range( webapp()->option( 'scroll_up_bottom_offset' ), 'desktop' ) );
 			$css->add_property( 'font-size', $this->render_range( webapp()->option( 'scroll_up_icon_size' ), 'desktop' ) );
 			$css->add_property( 'padding', $this->render_responsive_measure( webapp()->option( 'scroll_up_padding' ), 'desktop' ) );
-			$css->set_selector( '#bst-scroll-up-reader.scroll-up-side-right, #bst-scroll-up.scroll-up-side-right' );
+			$css->set_selector( '#bt-scroll-up-reader.scroll-up-side-right, #bt-scroll-up.scroll-up-side-right' );
 			$css->add_property( 'right', $this->render_range( webapp()->option( 'scroll_up_side_offset' ), 'desktop' ) );
-			$css->set_selector( '#bst-scroll-up-reader.scroll-up-side-left, #bst-scroll-up.scroll-up-side-left' );
+			$css->set_selector( '#bt-scroll-up-reader.scroll-up-side-left, #bt-scroll-up.scroll-up-side-left' );
 			$css->add_property( 'left', $this->render_range( webapp()->option( 'scroll_up_side_offset' ), 'desktop' ) );
-			$css->set_selector( '#bst-scroll-up-reader:hover, #bst-scroll-up:hover' );
+			$css->set_selector( '#bt-scroll-up-reader:hover, #bt-scroll-up:hover' );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'scroll_up_color', 'hover' ) ) );
 			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'scroll_up_background', 'hover' ) ) );
 			$css->add_property( 'border-color', $this->render_color( webapp()->sub_option( 'scroll_up_border_colors', 'hover' ) ) );
 			$css->start_media_query( $media_query['tablet'] );
-			$css->set_selector( '#bst-scroll-up-reader, #bst-scroll-up' );
+			$css->set_selector( '#bt-scroll-up-reader, #bt-scroll-up' );
 			$css->add_property( 'bottom', $this->render_range( webapp()->option( 'scroll_up_bottom_offset' ), 'tablet' ) );
 			$css->add_property( 'font-size', $this->render_range( webapp()->option( 'scroll_up_icon_size' ), 'tablet' ) );
 			$css->add_property( 'padding', $this->render_responsive_measure( webapp()->option( 'scroll_up_padding' ), 'tablet' ) );
-			$css->set_selector( '#bst-scroll-up-reader.scroll-up-side-right, #bst-scroll-up.scroll-up-side-right' );
+			$css->set_selector( '#bt-scroll-up-reader.scroll-up-side-right, #bt-scroll-up.scroll-up-side-right' );
 			$css->add_property( 'right', $this->render_range( webapp()->option( 'scroll_up_side_offset' ), 'tablet' ) );
-			$css->set_selector( '#bst-scroll-up-reader.scroll-up-side-left, #bst-scroll-up.scroll-up-side-left' );
+			$css->set_selector( '#bt-scroll-up-reader.scroll-up-side-left, #bt-scroll-up.scroll-up-side-left' );
 			$css->add_property( 'left', $this->render_range( webapp()->option( 'scroll_up_side_offset' ), 'tablet' ) );
 			$css->stop_media_query();
 			$css->start_media_query( $media_query['mobile'] );
-			$css->set_selector( '#bst-scroll-up-reader, #bst-scroll-up' );
+			$css->set_selector( '#bt-scroll-up-reader, #bt-scroll-up' );
 			$css->add_property( 'bottom', $this->render_range( webapp()->option( 'scroll_up_bottom_offset' ), 'mobile' ) );
 			$css->add_property( 'font-size', $this->render_range( webapp()->option( 'scroll_up_icon_size' ), 'mobile' ) );
 			$css->add_property( 'padding', $this->render_responsive_measure( webapp()->option( 'scroll_up_padding' ), 'mobile' ) );
-			$css->set_selector( '#bst-scroll-up-reader.scroll-up-side-right, #bst-scroll-up.scroll-up-side-right' );
+			$css->set_selector( '#bt-scroll-up-reader.scroll-up-side-right, #bt-scroll-up.scroll-up-side-right' );
 			$css->add_property( 'right', $this->render_range( webapp()->option( 'scroll_up_side_offset' ), 'mobile' ) );
-			$css->set_selector( '#bst-scroll-up-reader.scroll-up-side-left, #bst-scroll-up.scroll-up-side-left' );
+			$css->set_selector( '#bt-scroll-up-reader.scroll-up-side-left, #bt-scroll-up.scroll-up-side-left' );
 			$css->add_property( 'left', $this->render_range( webapp()->option( 'scroll_up_side_offset' ), 'mobile' ) );
 			$css->stop_media_query();
 		}
@@ -4043,23 +4043,23 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( ':root .has-theme-palette9-color' );
 		$css->add_property( 'color', 'var(--global-palette9)' );
 		// Buttons.
-		$css->set_selector( '.editor-styles-wrapper .wp-block-button .wp-block-button__link, .editor-styles-wrapper .bst-button.kb-btn-global-inherit' );
+		$css->set_selector( '.editor-styles-wrapper .wp-block-button .wp-block-button__link, .editor-styles-wrapper .bt-button.kb-btn-global-inherit' );
 		$css->render_font( webapp()->option( 'buttons_typography' ), $css );
 		$css->add_property( 'border-radius', $this->render_range( webapp()->option( 'buttons_border_radius' ), 'desktop' ) );
 		$css->add_property( 'padding', $this->render_responsive_measure( webapp()->option( 'buttons_padding' ), 'desktop' ) );
-		$css->set_selector( '.editor-styles-wrapper .wp-block-button .wp-block-button__link, .editor-styles-wrapper .kb-forms-submit, .editor-styles-wrapper .bst-button' );
+		$css->set_selector( '.editor-styles-wrapper .wp-block-button .wp-block-button__link, .editor-styles-wrapper .kb-forms-submit, .editor-styles-wrapper .bt-button' );
 		$css->add_property( 'box-shadow', $css->render_shadow( webapp()->option( 'buttons_shadow' ), webapp()->default( 'buttons_shadow' ) ) );
-		$css->set_selector( '.editor-styles-wrapper .wp-block-button:not(.is-style-outline) .wp-block-button__link, .editor-styles-wrapper .bst-button.kb-btn-global-inherit' );
+		$css->set_selector( '.editor-styles-wrapper .wp-block-button:not(.is-style-outline) .wp-block-button__link, .editor-styles-wrapper .bt-button.kb-btn-global-inherit' );
 		$css->add_property( 'border', $css->render_responsive_border( webapp()->option( 'buttons_border' ), 'desktop' ) );
 		$css->add_property( 'border-color', $this->render_color( webapp()->sub_option( 'buttons_border_colors', 'color' ) ) );
-		$css->set_selector( '.editor-styles-wrapper .wp-block-button:not(.is-style-outline) .wp-block-button__link:hover, .editor-styles-wrapper .bst-button.kb-btn-global-inherit:hover' );
+		$css->set_selector( '.editor-styles-wrapper .wp-block-button:not(.is-style-outline) .wp-block-button__link:hover, .editor-styles-wrapper .bt-button.kb-btn-global-inherit:hover' );
 		$css->add_property( 'border-color', $this->render_color( webapp()->sub_option( 'buttons_border_colors', 'hover' ) ) );
-		$css->set_selector( '.editor-styles-wrapper .wp-block-button .wp-block-button__link:hover, .editor-styles-wrapper .kb-forms-submit:hover, .editor-styles-wrapper .bst-button:hover' );
+		$css->set_selector( '.editor-styles-wrapper .wp-block-button .wp-block-button__link:hover, .editor-styles-wrapper .kb-forms-submit:hover, .editor-styles-wrapper .bt-button:hover' );
 		$css->add_property( 'box-shadow', $css->render_shadow( webapp()->option( 'buttons_shadow_hover' ), webapp()->default( 'buttons_shadow_hover' ) ) );
 		$css->set_selector( '.editor-styles-wrapper :where(.wp-block-image) img, .editor-styles-wrapper :where(.wp-block-base-image) img' );
 		$css->add_property( 'border-radius', $this->render_range( webapp()->option( 'image_border_radius' ), 'desktop' ) );
 
-		$css->set_selector( '.editor-styles-wrapper .bst-button' );
+		$css->set_selector( '.editor-styles-wrapper .bt-button' );
 		$css->render_font( webapp()->option( 'buttons_typography' ), $css );
 
 		$css->set_selector( '.block-editor-page .editor-styles-wrapper' );

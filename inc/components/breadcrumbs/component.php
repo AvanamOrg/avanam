@@ -213,9 +213,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'archive_page'  => $this->args['testimonial_id'],
 					'archive_label' => '',
 				),
-				'bst_gallery'  => array(
-					'post_type'     => 'bst_gallery',
-					'taxonomy'      => 'bst_album',
+				'bt_gallery'  => array(
+					'post_type'     => 'bt_gallery',
+					'taxonomy'      => 'bt_album',
 					'archive_page'  => $this->args['gallery_id'],
 					'archive_label' => '',
 				),

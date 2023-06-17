@@ -36,12 +36,12 @@ class FontPairModal extends Component {
 				{ this.state.isVisible && (
 					<Popover position="bottom left" className="base-font-pair-popover base-customizer-popover" onClose={ toggleClose }>
 						<h2 style={{ textAlign:'center' }}>{ __( 'Select a Font Pairing', 'avanam' ) }</h2>
-						<ButtonGroup className="bst-font-pair-group" aria-label={ __( 'Select a Font Pair', 'avanam' ) }>
+						<ButtonGroup className="bt-font-pair-group" aria-label={ __( 'Select a Font Pair', 'avanam' ) }>
 							{ map( this.state.fonts, ( { hfont, bfont, hv, img, name } ) => {
 								return (
 									this.state.confirm === name ? (
 										<Button
-											className={ 'bst-font-pair-btn state-confirm' }
+											className={ 'bt-font-pair-btn state-confirm' }
 											onClick={ () => {
 												this.updateSettings( hfont, bfont, hv );
 											} }
@@ -50,7 +50,7 @@ class FontPairModal extends Component {
 										</Button>
 									) : (
 										<Button
-											className={ 'bst-font-pair-btn' }
+											className={ 'bt-font-pair-btn' }
 											onClick={ () => {
 												this.setState( { confirm: name } );
 											} }

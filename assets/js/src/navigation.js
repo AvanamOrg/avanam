@@ -454,7 +454,7 @@
 			if ( ! mobileModal ) {
 				return;
 			}
-			var menuLink = mobileModal.querySelectorAll( 'a:not(.bst-tab-title)' );
+			var menuLink = mobileModal.querySelectorAll( 'a:not(.bt-tab-title)' );
 			// No point if no links.
 			if ( ! menuLink.length ) {
 				return;
@@ -794,7 +794,7 @@
 			element.focus({
 				preventScroll: true
 			});
-			if ( element.classList.contains( 'bst-title-item' ) ) {
+			if ( element.classList.contains( 'bt-title-item' ) ) {
 				element.firstElementChild.click();
 			}
 			if ( history ) {
@@ -907,7 +907,7 @@
 		 * Initiate the scroll to top.
 		 */
 		initScrollToTop: function() {
-			var scrollBtn = document.getElementById( "bst-scroll-up" );
+			var scrollBtn = document.getElementById( "bt-scroll-up" );
 			if ( scrollBtn ) {
 				var checkScrollVisiblity = function() {
 					if ( window.scrollY > 100 ) {
@@ -926,7 +926,7 @@
 					document.activeElement.blur();
 				} );
 			}
-			var scrollBtnReader = document.getElementById( "bst-scroll-up-reader" );
+			var scrollBtnReader = document.getElementById( "bt-scroll-up-reader" );
 			if ( scrollBtnReader ) {
 				scrollBtnReader.addEventListener( 'click', function( e ) {
 					e.preventDefault();

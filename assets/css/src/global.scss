@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------
 # Layouts
 --------------------------------------------------------------*/
-.bst-clear {
+.bt-clear {
 	@include clearfix();
 }
 // Makes mobile sticky better when logged in.
@@ -56,7 +56,7 @@
 	margin: 0 auto;
 	padding: 0 var(--global-content-edge-padding);
 }
-.bst-row-layout-inner > .kb-theme-content-width, .bst-row-layout-inner.bst-row-has-bg > .kb-theme-content-width {
+.bt-row-layout-inner > .kb-theme-content-width, .bt-row-layout-inner.bt-row-has-bg > .kb-theme-content-width {
 	padding-left: var(--global-content-edge-padding);
 	padding-right: var(--global-content-edge-padding);
 }
@@ -112,7 +112,7 @@
 	}
 
 }
-#bst-scroll-up-reader, #bst-scroll-up {
+#bt-scroll-up-reader, #bt-scroll-up {
     position: fixed;
 	transform: translateY(40px);
 	transition: all 0.2s ease;
@@ -124,7 +124,7 @@
 		pointer-events: none;
 	}
 }
-#bst-scroll-up-reader.scroll-up-style-outline, #bst-scroll-up.scroll-up-style-outline {
+#bt-scroll-up-reader.scroll-up-style-outline, #bt-scroll-up.scroll-up-style-outline {
 	background: transparent;
 }
 .scroll-up-style-filled {
@@ -143,22 +143,22 @@
 .scroll-up-style-outline:hover {
 	color: var( --global-palette5 );
 }
-#bst-scroll-up.scroll-visible {
+#bt-scroll-up.scroll-visible {
     transform: translateY(0px);
     opacity: 1;
 }
-#bst-scroll-up-reader{
+#bt-scroll-up-reader{
 	transform: translateY(0px);
 	transition: all 0s ease;
 }
-#bst-scroll-up-reader:not(:focus) {
+#bt-scroll-up-reader:not(:focus) {
 	clip: rect(1px, 1px, 1px, 1px);
     height: 1px;
     width: 1px;
     overflow: hidden;
     word-wrap: normal !important;
 }
-#bst-scroll-up-reader:focus {
+#bt-scroll-up-reader:focus {
 	transform: translateY(0px);
     opacity: 1;
 	box-shadow: none;

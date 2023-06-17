@@ -410,7 +410,7 @@
 			if ( ! mobileModal ) {
 				return;
 			}
-			var menuLink = mobileModal.querySelectorAll( 'a:not(.bst-tab-title)' );
+			var menuLink = mobileModal.querySelectorAll( 'a:not(.bt-tab-title)' );
 			// No point if no links.
 			if ( ! menuLink.length ) {
 				return;

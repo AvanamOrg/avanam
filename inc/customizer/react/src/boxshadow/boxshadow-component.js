@@ -176,8 +176,8 @@ class BoxshadowComponent extends Component {
 						onChange={ ( currentDevice) => this.setState( { currentDevice } ) }
 						controlLabel={ responsiveControlLabel }
 					>
-						<div className="bst-box-color-settings bst-box-shadow-subset">
-							<p className="bst-box-shadow-title">{ __( 'Color' ) }</p>
+						<div className="bt-box-color-settings bt-box-shadow-subset">
+							<p className="bt-box-shadow-title">{ __( 'Color' ) }</p>
 							<ColorControl
 								presetColors={ this.state.colorPalette }
 								color={ ( undefined !== this.state.value.color && this.state.value.color ? this.state.value.color : '' ) }
@@ -187,9 +187,9 @@ class BoxshadowComponent extends Component {
 								customizer={ this.props.customizer }
 							/>
 						</div>
-						<div className="bst-box-x-settings bst-box-shadow-subset">
-							<p className="bst-box-shadow-title">{ __( 'X' ) }</p>
-							<div className="components-base-control bst-boxshadow-number-input">
+						<div className="bt-box-x-settings bt-box-shadow-subset">
+							<p className="bt-box-shadow-title">{ __( 'X' ) }</p>
+							<div className="components-base-control bt-boxshadow-number-input">
 								<div className="components-base-control__field">
 									<input
 										value={ ( undefined !== this.state.value && undefined !== this.state.value.hOffset ? this.state.value.hOffset : '' ) }
@@ -203,9 +203,9 @@ class BoxshadowComponent extends Component {
 								</div>
 							</div>
 						</div>
-						<div className="bst-box-y-settings bst-box-shadow-subset">
-							<p className="bst-box-shadow-title">{ __( 'Y' ) }</p>
-							<div className="components-base-control bst-boxshadow-number-input">
+						<div className="bt-box-y-settings bt-box-shadow-subset">
+							<p className="bt-box-shadow-title">{ __( 'Y' ) }</p>
+							<div className="components-base-control bt-boxshadow-number-input">
 								<div className="components-base-control__field">
 									<input
 										value={ ( undefined !== this.state.value && undefined !== this.state.value.vOffset ? this.state.value.vOffset : '' ) }
@@ -219,9 +219,9 @@ class BoxshadowComponent extends Component {
 								</div>
 							</div>
 						</div>
-						<div className="bst-box-x-settings bst-box-shadow-subset">
-							<p className="bst-box-shadow-title">{ __( 'Blur' ) }</p>
-							<div className="components-base-control bst-boxshadow-number-input">
+						<div className="bt-box-x-settings bt-box-shadow-subset">
+							<p className="bt-box-shadow-title">{ __( 'Blur' ) }</p>
+							<div className="components-base-control bt-boxshadow-number-input">
 								<div className="components-base-control__field">
 									<input
 										value={ ( undefined !== this.state.value && undefined !== this.state.value.blur ? this.state.value.blur : '' ) }
@@ -235,9 +235,9 @@ class BoxshadowComponent extends Component {
 								</div>
 							</div>
 						</div>
-						<div className="bst-box-y-settings bst-box-shadow-subset">
-							<p className="bst-box-shadow-title">{ __( 'Spread' ) }</p>
-							<div className="components-base-control bst-boxshadow-number-input">
+						<div className="bt-box-y-settings bt-box-shadow-subset">
+							<p className="bt-box-shadow-title">{ __( 'Spread' ) }</p>
+							<div className="components-base-control bt-boxshadow-number-input">
 								<div className="components-base-control__field">
 									<input
 										value={ ( undefined !== this.state.value && undefined !== this.state.value.spread ? this.state.value.spread : '' ) }
@@ -251,7 +251,7 @@ class BoxshadowComponent extends Component {
 								</div>
 							</div>
 						</div>
-						<div className="bst-box-inset-settings">
+						<div className="bt-box-inset-settings">
 							<ToggleControl
 								label={ __( 'Inset' ) }
 								checked={ ( undefined !== this.state.value && undefined !== this.state.value.inset ? this.state.value.inset : false ) }
@@ -267,8 +267,8 @@ class BoxshadowComponent extends Component {
 						</div>
 						<div className="base-responsive-controls-content">
 							<Fragment>
-								<div className="bst-box-color-settings bst-box-shadow-subset">
-									<p className="bst-box-shadow-title">{ __( 'Color' ) }</p>
+								<div className="bt-box-color-settings bt-box-shadow-subset">
+									<p className="bt-box-shadow-title">{ __( 'Color' ) }</p>
 									<ColorControl
 										presetColors={ this.state.colorPalette }
 										color={ ( undefined !== this.state.value.color && this.state.value.color ? this.state.value.color : '' ) }
@@ -278,9 +278,9 @@ class BoxshadowComponent extends Component {
 										customizer={ this.props.customizer }
 									/>
 								</div>
-								<div className="bst-box-x-settings bst-box-shadow-subset">
-									<p className="bst-box-shadow-title">{ __( 'X' ) }</p>
-									<div className="components-base-control bst-boxshadow-number-input">
+								<div className="bt-box-x-settings bt-box-shadow-subset">
+									<p className="bt-box-shadow-title">{ __( 'X' ) }</p>
+									<div className="components-base-control bt-boxshadow-number-input">
 										<div className="components-base-control__field">
 											<input
 												value={ ( undefined !== this.state.value && undefined !== this.state.value.hOffset ? this.state.value.hOffset : '' ) }
@@ -294,9 +294,9 @@ class BoxshadowComponent extends Component {
 										</div>
 									</div>
 								</div>
-								<div className="bst-box-y-settings bst-box-shadow-subset">
-									<p className="bst-box-shadow-title">{ __( 'Y' ) }</p>
-									<div className="components-base-control bst-boxshadow-number-input">
+								<div className="bt-box-y-settings bt-box-shadow-subset">
+									<p className="bt-box-shadow-title">{ __( 'Y' ) }</p>
+									<div className="components-base-control bt-boxshadow-number-input">
 										<div className="components-base-control__field">
 											<input
 												value={ ( undefined !== this.state.value && undefined !== this.state.value.vOffset ? this.state.value.vOffset : '' ) }
@@ -310,9 +310,9 @@ class BoxshadowComponent extends Component {
 										</div>
 									</div>
 								</div>
-								<div className="bst-box-x-settings bst-box-shadow-subset">
-									<p className="bst-box-shadow-title">{ __( 'Blur' ) }</p>
-									<div className="components-base-control bst-boxshadow-number-input">
+								<div className="bt-box-x-settings bt-box-shadow-subset">
+									<p className="bt-box-shadow-title">{ __( 'Blur' ) }</p>
+									<div className="components-base-control bt-boxshadow-number-input">
 										<div className="components-base-control__field">
 											<input
 												value={ ( undefined !== this.state.value && undefined !== this.state.value.blur ? this.state.value.blur : '' ) }
@@ -326,9 +326,9 @@ class BoxshadowComponent extends Component {
 										</div>
 									</div>
 								</div>
-								<div className="bst-box-y-settings bst-box-shadow-subset">
-									<p className="bst-box-shadow-title">{ __( 'Spread' ) }</p>
-									<div className="components-base-control bst-boxshadow-number-input">
+								<div className="bt-box-y-settings bt-box-shadow-subset">
+									<p className="bt-box-shadow-title">{ __( 'Spread' ) }</p>
+									<div className="components-base-control bt-boxshadow-number-input">
 										<div className="components-base-control__field">
 											<input
 												value={ ( undefined !== this.state.value && undefined !== this.state.value.spread ? this.state.value.spread : '' ) }
@@ -345,7 +345,7 @@ class BoxshadowComponent extends Component {
 							</Fragment>
 						</div>
 						<div className="base-responsive-controls-content">
-							<div className="bst-box-inset-settings">
+							<div className="bt-box-inset-settings">
 								<ToggleControl
 									label={ __( 'Inset' ) }
 									checked={ ( undefined !== this.state.value && undefined !== this.state.value.inset && this.state.value.inset ? true : false ) }

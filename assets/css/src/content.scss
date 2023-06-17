@@ -400,7 +400,7 @@ article.sticky {
 .entry-meta-divider-customicon.entry-meta>*:after {
     display: none;
 }
-.entry-meta-divider-customicon.entry-meta .bst-reading-time-wrap {
+.entry-meta-divider-customicon.entry-meta .bt-reading-time-wrap {
     margin-left: .8em;
 }
 .loop-entry .entry-header .entry-title {
@@ -769,7 +769,7 @@ body.content-style-unboxed {
 .entry-hero-layout-contained >.entry-hero-container-inner {
     position: relative;
 }
-body.content-style-boxed:not(.content-width-fullwidth) .wp-block-base-rowlayout.alignfull > .bst-row-layout-inner > .kb-theme-content-width {
+body.content-style-boxed:not(.content-width-fullwidth) .wp-block-base-rowlayout.alignfull > .bt-row-layout-inner > .kb-theme-content-width {
     padding-left: calc( var(--global-content-edge-padding) + var(--global-boxed-spacing) );
     padding-right: calc( var(--global-content-edge-padding) + var(--global-boxed-spacing) );
 }

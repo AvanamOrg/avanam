@@ -1,3 +1,6 @@
+== 1.2.0 | 17th June 2023 ==
+* Update: Class prefix for better separation.
+
 == 1.1.8 | 12th June 2023 ==
 * Fix: Inline images align issue in table block.
 * Fix: Issue with filter by rating.

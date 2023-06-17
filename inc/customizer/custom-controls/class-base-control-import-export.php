@@ -35,7 +35,7 @@ class Base_Control_Import_Export extends WP_Customize_Control {
 			</span>
 			<input type="button" class="button base-theme-export base-theme-button" name="base-theme-export-button" value="<?php esc_attr_e( 'Export', 'avanam' ); ?>" />
 
-			<hr class="bst-theme-hr" />
+			<hr class="bt-theme-hr" />
 
 			<span class="customize-control-title">
 				<?php esc_html_e( 'Import', 'avanam' ); ?>
@@ -50,7 +50,7 @@ class Base_Control_Import_Export extends WP_Customize_Control {
 			<div class="base-theme-uploading"><?php esc_html_e( 'Uploading...', 'avanam' ); ?></div>
 			<input type="button" class="button base-theme-import base-theme-button" name="base-theme-import-button" value="<?php esc_attr_e( 'Import', 'avanam' ); ?>" />
 
-			<hr class="bst-theme-hr" />
+			<hr class="bt-theme-hr" />
 			<span class="customize-control-title">
 				<?php esc_html_e( 'Reset', 'avanam' ); ?>
 			</span>

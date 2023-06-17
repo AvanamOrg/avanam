@@ -46,7 +46,7 @@ export const StarterTab = () => {
 				</div>
 				{ baseDashboardParams.starterTemplates && (
 					<a
-						className="bst-action-starter base-desk-button"
+						className="bt-action-starter base-desk-button"
 						href={ baseDashboardParams.starterURL }
 					>
 						{ baseDashboardParams.starterLabel }
@@ -54,7 +54,7 @@ export const StarterTab = () => {
 				) }
 				{ ! baseDashboardParams.starterTemplates && (
 					<Button 
-						className="bst-action-starter base-desk-button"
+						className="bt-action-starter base-desk-button"
 						onClick={ () => handleClick() }
 					>
 						{ baseDashboardParams.starterLabel }

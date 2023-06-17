@@ -109,7 +109,7 @@
 			 * @return void
 			 */
 			function buttonStatusInProgress( message ){
-				$button.addClass('updating-message').removeClass('button-disabled bst-not-installed installed').text( message );
+				$button.addClass('updating-message').removeClass('button-disabled bt-not-installed installed').text( message );
 			}
 
 			/**
@@ -118,7 +118,7 @@
 			 * @return void
 			 */
 			function buttonStatusDisabled( message ){
-				$button.removeClass('updating-message bst-not-installed installed')
+				$button.removeClass('updating-message bt-not-installed installed')
 				.addClass('button-disabled')
 				.text( message );
 			}
@@ -129,7 +129,7 @@
 			 * @return void
 			 */
 			function buttonStatusInstalled( message ){
-				$button.removeClass('updating-message bst-not-installed')
+				$button.removeClass('updating-message bt-not-installed')
 					.addClass('installed')
 					.text( message );
 			}

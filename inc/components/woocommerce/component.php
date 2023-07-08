@@ -95,8 +95,14 @@ class Component implements Component_Interface {
 		add_action( 'woocommerce_before_shop_loop', array( $this, 'archive_loop_top' ), 20 );
 		// Add Single product controls.
 		add_action( 'woocommerce_before_single_product', array( $this, 'single_product_layout' ), 20 );
+		// Add div before Single product images.
+		add_action( 'woocommerce_before_single_product_summary', array( $this, 'wrap_single_product_image_summary' ), 1 );
+		// Add div after Single product summary.
+		add_action( 'woocommerce_after_single_product_summary', array( $this, 'wrap_single_product_image_summary_close' ), 1 );
 		// Add Single product reviews css.
 		add_action( 'woocommerce_after_single_product_summary', array( $this, 'single_product_comment_css' ), 5 );
+		// Add woocommerce grouped product thumbnail
+		add_action( 'woocommerce_grouped_product_list_before_quantity', array( $this, 'grouped_product_thumbnail' ) );
 		// Loop Start.
 		add_filter( 'woocommerce_product_loop_start', array( $this, 'product_loop_start' ), 5 );
 		add_filter( 'base_blocks_carousel_woocommerce_product_loop_start', array( $this, 'product_loop_start' ), 5 );
@@ -545,6 +551,18 @@ class Component implements Component_Interface {
 		}
 	}
 	/**
+	 * Adds div before Single product images.
+	 */
+	public function wrap_single_product_image_summary() {
+		echo '<div id="wrap-summary" class="tm-sticky-parent wrap-summary">';
+	}
+	/**
+	 * Adds div after Single product images.
+	 */
+	public function wrap_single_product_image_summary_close() {
+		echo '</div>';
+	}
+	/**
 	 * Adds a shipping price after the price on single product pages.
 	 *
 	 * @param string $price the price for the product.
@@ -648,9 +666,6 @@ class Component implements Component_Interface {
 		$payments_element = webapp()->option( 'product_content_element_payments' );
 		$colors           = ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['card_color'] ) && ! empty( $payments_element['card_color'] ) ? $payments_element['card_color'] : 'inherit' );
 		echo '<fieldset class="single-product-payments payments-color-scheme-' . esc_attr( $colors ) . '">';
-		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['title'] ) && ! empty( $payments_element['title'] ) ) {
-			echo '<legend>' . wp_kses_post( $payments_element['title'] ) . '</legend>';
-		}
 		echo '<ul>';
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['stripe'] ) && true === $payments_element['stripe'] ) {
 			echo '<li class="single-product-payments-stripe">' . webapp()->get_icon( 'stripe' ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -689,6 +704,9 @@ class Component implements Component_Interface {
 			echo '<li class="single-product-payments-custom-05"><img src="' . esc_attr( $payments_element['custom_img_05'] ) . '" class="payment-custom-img' . ( 'inherit' !== $colors ? ' payment-custom-img-gray' : '' ) . '" alt="' . ( isset( $payments_element['custom_id_05'] ) && ! empty( $payments_element['custom_id_05'] ) ? get_post_meta( $payments_element['custom_id_05'], '_wp_attachment_image_alt', true ) : '' ) . '"/></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</ul>';
+		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['title'] ) && ! empty( $payments_element['title'] ) ) {
+			echo '<span class="title">' . wp_kses_post( $payments_element['title'] ) . '</span>';
+		}
 		echo '</fieldset>';
 	}
 	/**
@@ -1410,5 +1428,15 @@ class Component implements Component_Interface {
 		echo '</main>';
 		get_sidebar();
 		echo '</div></div>';
+	}
+
+	/**
+	 * Adds grouped product thumbnail
+	 */
+	public function grouped_product_thumbnail() {
+		global $product;
+		echo '<td class="woocommerce-grouped-product-list-item__thumbnail">';
+		echo '<a href="' . get_the_permalink( $product->get_id() ) . '">' . wp_get_attachment_image( get_post_meta( $product->get_id(), '_thumbnail_id', true ), array( 90, 90 ) ) . '</a>';
+		echo '</td>';
 	}
 }

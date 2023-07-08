@@ -174,7 +174,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				'base_theme_options_defaults',
 				array(
 					'content_width'   => array(
-						'size' => 1290,
+						'size' => 1400,
 						'unit' => 'px',
 					),
 					'content_narrow_width'   => array(
@@ -185,7 +185,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 1.5,
+							'desktop' => 1,
 						),
 						'unit' => array(
 							'mobile'  => 'rem',
@@ -195,9 +195,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'content_spacing'   => array(
 						'size' => array(
-							'mobile'  => 2,
-							'tablet'  => 3,
-							'desktop' => 5,
+							'mobile'  => 1,
+							'tablet'  => 2,
+							'desktop' => 3,
 						),
 						'unit' => array(
 							'mobile'  => 'rem',
@@ -310,8 +310,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'sidebar_link_style' => 'plain',
 					'sidebar_link_colors' => array(
-						'color' => '',
-						'hover' => '',
+						'color' => 'palette4',
+						'hover' => 'palette-highlight',
 					),
 					'sidebar_background' => array(
 						'desktop' => array(
@@ -2272,7 +2272,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'404_sidebar_id'         => 'sidebar-primary',
 					// Page Layout.
 					'page_layout'             => 'normal',
-					'page_content_style'      => 'boxed',
+					'page_content_style'      => 'unboxed',
 					'page_vertical_padding'   => 'show',
 					'page_comments'           => false,
 					'page_feature'            => false,
@@ -2287,7 +2287,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 200,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2354,7 +2354,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'weight'  => '',
 						'variant' => '',
 					),
-					'page_title_elements'      => array( 'title', 'breadcrumb', 'meta' ),
+					'page_title_elements'      => array( 'breadcrumb', 'title', 'meta' ),
 					'page_title_element_title' => array(
 						'enabled' => true,
 					),
@@ -2383,13 +2383,13 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'commentsCondition'      => false,
 					),
 					// Post Layout.
-					'post_layout'             => 'narrow',
-					'post_content_style'      => 'boxed',
+					'post_layout'             => 'right',
+					'post_content_style'      => 'unboxed',
 					'post_vertical_padding'   => 'show',
 					'post_sidebar_id'         => 'sidebar-primary',
 					'post_comments'           => true,
 					'post_comments_date'      => true,
-					'post_footer_area_boxed'  => false,
+					'post_footer_area_boxed'  => true,
 					'post_navigation'         => true,
 					'post_related'            => true,
 					'post_related_style'      => 'wide',
@@ -2408,15 +2408,15 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'variant' => '',
 						'color'   => '',
 					),
-					'post_related_background' => '',
+					'post_related_background' => 'palette7',
 					'post_tags'               => true,
 					'post_author_box'         => false,
 					'post_author_box_style'   => 'normal',
 					'post_author_box_link'    => true,
 					'post_feature'            => true,
-					'post_feature_position'   => 'behind',
+					'post_feature_position'   => 'above',
 					'post_feature_caption'    => false,
-					'post_feature_ratio'      => '2-3',
+					'post_feature_ratio'      => 'inherit',
 					'post_feature_width'      => 'wide',
 					'post_background'         => '',
 					'post_content_background' => '',
@@ -2426,7 +2426,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 200,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2449,7 +2449,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'post_title_align'         => array(
 						'mobile'  => '',
 						'tablet'  => '',
-						'desktop' => '',
+						'desktop' => 'center',
 					),
 					'post_title_font'   => array(
 						'size' => array(
@@ -2530,7 +2530,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'post_title_elements'           => array( 'breadcrumb', 'categories', 'title', 'meta', 'excerpt' ),
 					'post_title_element_categories' => array(
-						'enabled' => true,
+						'enabled' => false,
 						'style'   => 'normal',
 						'divider' => 'vline',
 					),
@@ -2546,7 +2546,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'post_title_element_meta' => array(
 						'id'                     => 'meta',
-						'enabled'                => true,
+						'enabled'                => false,
 						'divider'                => 'dot',
 						'author'                 => true,
 						'authorLink'             => true,
@@ -2596,11 +2596,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'enabled' => true,
 					),
 					'post_archive_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'post_archive_title_element_description' => array(
-						'enabled' => true,
+						'enabled' => false,
 					),
 					'post_archive_title_background'    => array(
 						'desktop' => array(
@@ -2626,9 +2626,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'color' => '',
 						'hover' => '',
 					),
-					'post_archive_layout'               => 'normal',
-					'post_archive_content_style'        => 'boxed',
-					'post_archive_columns'              => '3',
+					'post_archive_layout'               => 'right',
+					'post_archive_content_style'        => 'unboxed',
+					'post_archive_columns'              => '2',
 					'post_archive_item_image_placement' => 'above',
 					'post_archive_item_vertical_alignment' => 'top',
 					'post_archive_sidebar_id'           => 'sidebar-primary',
@@ -2668,7 +2668,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'post_archive_element_feature' => array(
 						'enabled'   => true,
-						'ratio'     => '2-3',
+						'ratio'     => 'inherit',
 						'size'      => 'medium_large',
 						'imageLink' => true,
 					),
@@ -2683,7 +2683,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'post_archive_item_title_font'   => array(
 						'size' => array(
-							'desktop' => '',
+							'desktop' => '24',
 						),
 						'lineHeight' => array(
 							'desktop' => '',
@@ -2730,13 +2730,13 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'post_archive_column_layout'      => 'grid',
 					// Search Results.
 					'search_archive_title'              => true,
-					'search_archive_title_layout'       => 'normal',
+					'search_archive_title_layout'       => 'above',
 					'search_archive_title_inner_layout' => 'standard',
 					'search_archive_title_height'       => array(
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => '',
+							'desktop' => '170',
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2769,7 +2769,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'hover' => '',
 					),
 					'search_archive_layout'               => 'normal',
-					'search_archive_content_style'        => 'boxed',
+					'search_archive_content_style'        => 'unboxed',
 					'search_archive_columns'              => '3',
 					'search_archive_item_image_placement' => 'above',
 					'search_archive_sidebar_id'           => 'sidebar-primary',
@@ -3024,7 +3024,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_layout'             => 'normal',
 					'product_content_style'      => 'unboxed',
 					'product_vertical_padding'   => 'show',
-					'product_above_layout'       => 'breadcrumbs',
+					'product_above_layout'       => 'title',
 					'product_sidebar_id'         => 'sidebar-primary',
 					'product_navigation'         => false,
 					'product_related'            => true,
@@ -3055,7 +3055,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'button_size' => '',
 					),
 					'product_content_element_extras' => array(
-						'enabled'   => false,
+						'enabled'   => true,
 						'title'     => __( 'Free shipping on orders over $50!', 'avanam' ),
 						'feature_1' => __( 'Satisfaction Guaranteed', 'avanam' ),
 						'feature_2' => __( 'No Hassle Refunds', 'avanam' ),
@@ -3095,7 +3095,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'custom_img_05' => '',
 						'custom_id_05' => '',
 					),
-					'product_tab_style'   => 'normal',
+					'product_tab_style'   => 'center',
 					'variation_direction' => 'horizontal',
 					'product_tab_title'   => false,
 					'product_content_element_product_meta' => array(
@@ -3108,20 +3108,20 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_content_background' => '',
 					'product_title_elements'           => array( 'breadcrumb', 'category', 'above_title' ),
 					'product_title_element_category' => array(
-						'enabled' => true,
+						'enabled' => false,
 					),
 					'product_title_element_above_title' => array(
 						'enabled' => false,
 					),
 					'product_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'product_title_height'       => array(
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 200,
+							'desktop' => 80,
 						),
 						'unit' => array(
 							'mobile'  => 'px',

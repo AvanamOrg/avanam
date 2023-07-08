@@ -156,8 +156,9 @@
         #content div.product {
             div.images,
             div.summary {
-                float: none;
-                width: 100%;
+                /* float: none;
+                width: 100%; */
+                flex-direction: column;
             }
         }
     }

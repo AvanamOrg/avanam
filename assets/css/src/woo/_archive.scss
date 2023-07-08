@@ -2,29 +2,30 @@
 # Archive Top
 --------------------------------------------------------------*/
 .base-shop-top-row {
-    padding-bottom: var(--global-md-spacing);
+    padding-bottom: var(--global-sm-spacing);
     display: flex;
 }
 .base-product-toggle-container {
     display: flex;
     .base-toggle-shop-layout {
-        padding: 0px 6px;
-        color: var(--global-palette6);
+        padding: 0px 8px;
+        color: var(--global-palette5);
         margin-left: 0.5em;
-        border: 1px solid var(--global-gray-400);
+        border: none;
         display: flex;
         height: 30px;
         border-radius: 0;
         align-items: center;
-        background: transparent;
+        background: var(--global-palette7);
         box-shadow: none;
+        border-radius: 3px;
         .base-svg-iconset {
             pointer-events: none;
         }
         &.toggle-active, &:hover {
-            color: var(--global-palette5);
-            border-color: var(--global-palette5);
-            background:transparent;
+            color: var(--global-palette-btn);
+            border-color: var(--global-palette-btn-bg);
+            background: var(--global-palette4);
             box-shadow: none;
         }
         .base-list-svg {
@@ -35,7 +36,7 @@
 }
 .base-woo-results-count {
     flex-grow: 1;
-    font-size:90%;
+    /* font-size:90%; */
     margin-bottom: 0.5em;
     line-height: 30px;
     p {

@@ -1,3 +1,6 @@
+== 1.2.1 | 8th July 2023 ==
+* Update: General design updates.
+
 == 1.2.0 | 17th June 2023 ==
 * Update: Class prefix for better separation.
 

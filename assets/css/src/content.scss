@@ -303,8 +303,8 @@ article.sticky {
     background: linear-gradient(0deg, var(--global-palette9) 5%, rgba(var(--global-palette9rgb),0.35) 30%, rgba(255,255,255,0) 50%);
 }
 .base-breadcrumbs {
-	margin: 1em 0;
-	font-size: 85%;
+	margin: 0.5em 0;
+	font-size: 90%;
     color: var(--global-palette5);
 	a {
 		color: inherit;
@@ -504,7 +504,7 @@ a.post-more-link {
 .entry-hero-container-inner {
 	background: var( --global-palette7 );
 	.entry-header {
-		min-height: 200px;
+		min-height: 170px;
 		display: flex;
 		align-items: center;
 		text-align: center;

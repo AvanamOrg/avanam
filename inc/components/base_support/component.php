@@ -772,7 +772,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * @return mixed
 	 */
 	public function add_search_icon( $markup ) {
-		$markup = str_replace( '</form>', '<div class="base-search-icon-wrap">' . webapp()->get_icon( 'search', '', false ) . '</div></form>', $markup );
+		$markup = str_replace( '</form>', '<div class="base-search-icon-wrap">' . webapp()->get_icon( 'search2', '', false ) . '</div></form>', $markup );
 		return $markup;
 	}
 	/**

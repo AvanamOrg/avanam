@@ -46,15 +46,21 @@
 	div.product,
 	#content div.product {
 
+		.wrap-summary {
+			display: flex;
+			flex-wrap: wrap;
+		}
 		div.images {
-			float: left;
-			width: 48%;
+			/* float: left;
+			width: 48%; */
 		}
 
 		div.summary {
-			float: right;
+			/* float: right;
 			width: 48%;
-			clear: none;
+			clear: none; */
+			margin-left: 2em;
+			flex: 1;
 		}
 
 		.woocommerce-tabs {
@@ -300,10 +306,11 @@
 		* Product page
 		*/
 		div.product {
-
+			
 			div.images {
-				float: right;
-				width: 48%;
+				/* float: right;
+				width: 48%; */
+				margin-right: 2em;
 				.woocommerce-product-gallery__trigger {
 					right: auto;
 					left: 0.5rem;
@@ -314,11 +321,11 @@
     				right: 50%;
 				}
 			}
-
 			div.summary {
-				float: left;
+				/* float: left;
 				width: 48%;
-				clear: none;
+				clear: none; */
+				margin-left: 0;
 			}
 			#reviews {
 

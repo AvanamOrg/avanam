@@ -1946,6 +1946,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'padding-top', $this->render_range( webapp()->option( 'footer_bottom_top_spacing' ), 'desktop' ) );
 		$css->add_property( 'padding-bottom', $this->render_range( webapp()->option( 'footer_bottom_bottom_spacing' ), 'desktop' ) );
 		$css->add_property( 'grid-column-gap', $this->render_range( webapp()->option( 'footer_bottom_column_spacing' ), 'desktop' ) );
+		$css->add_property( 'grid-row-gap', $this->render_range( webapp()->option( 'footer_bottom_column_spacing' ), 'desktop' ) );
 		$css->set_selector( '.site-bottom-footer-inner-wrap .widget' );
 		$css->add_property( 'margin-bottom', $this->render_range( webapp()->option( 'footer_bottom_widget_spacing' ), 'desktop' ) );
 		$css->set_selector( '.site-bottom-footer-inner-wrap .widget-area .widget-title' );
@@ -1970,6 +1971,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'padding-top', $this->render_range( webapp()->option( 'footer_bottom_top_spacing' ), 'tablet' ) );
 		$css->add_property( 'padding-bottom', $this->render_range( webapp()->option( 'footer_bottom_bottom_spacing' ), 'tablet' ) );
 		$css->add_property( 'grid-column-gap', $this->render_range( webapp()->option( 'footer_bottom_column_spacing' ), 'tablet' ) );
+		$css->add_property( 'grid-row-gap', $this->render_range( webapp()->option( 'footer_bottom_column_spacing' ), 'tablet' ) );
 		$css->set_selector( '.site-bottom-footer-inner-wrap .widget' );
 		$css->add_property( 'margin-bottom', $this->render_range( webapp()->option( 'footer_bottom_widget_spacing' ), 'tablet' ) );
 		$css->set_selector( '.site-bottom-footer-inner-wrap .site-footer-section:not(:last-child):after' );
@@ -1993,6 +1995,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'padding-top', $this->render_range( webapp()->option( 'footer_bottom_top_spacing' ), 'mobile' ) );
 		$css->add_property( 'padding-bottom', $this->render_range( webapp()->option( 'footer_bottom_bottom_spacing' ), 'mobile' ) );
 		$css->add_property( 'grid-column-gap', $this->render_range( webapp()->option( 'footer_bottom_column_spacing' ), 'mobile' ) );
+		$css->add_property( 'grid-row-gap', $this->render_range( webapp()->option( 'footer_bottom_column_spacing' ), 'mobile' ) );
 		$css->set_selector( '.site-bottom-footer-inner-wrap .widget' );
 		$css->add_property( 'margin-bottom', $this->render_range( webapp()->option( 'footer_bottom_widget_spacing' ), 'mobile' ) );
 		$css->set_selector( '.site-bottom-footer-inner-wrap .site-footer-section:not(:last-child):after' );
@@ -2731,6 +2734,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'product_single_category_font' ), 'mobile' ) );
 			$css->add_property( 'letter-spacing', $this->render_font_spacing( webapp()->option( 'product_single_category_font' ), 'mobile' ) );
 			$css->stop_media_query();
+			// Product Single Image Width.
+			$css->set_selector( '.woocommerce div.product div.images' );
+			$css->add_property( 'max-width', get_option( 'woocommerce_single_image_width', '600' ).'px' );
 			// Product Single Backgrounds.
 			$css->set_selector( 'body.single-product' );
 			$css->render_background( webapp()->sub_option( 'product_background', 'desktop' ), $css );

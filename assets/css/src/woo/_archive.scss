@@ -7,13 +7,14 @@
 }
 .base-product-toggle-container {
     display: flex;
+    align-items:center;
     .base-toggle-shop-layout {
         padding: 0px 8px;
         color: var(--global-palette5);
         margin-left: 0.5em;
         border: none;
         display: flex;
-        height: 30px;
+        height: 33px;
         border-radius: 0;
         align-items: center;
         background: var(--global-palette7);
@@ -42,6 +43,9 @@
     p {
         margin: 0;
     }
+    @media screen and (max-width: $tablet-minus-query) {
+        display:none;
+    }
 }
 @media screen and (min-width: $tablet-plus-query) {
     .base-shop-top-row {
@@ -52,8 +56,8 @@
     }
 }
 select.orderby {
-    padding-bottom: 3px;
-    padding-top: 2px;
+    padding-bottom: 4px;
+    padding-top: 4px;
     padding-left: 5px;
     padding-right: 25px;
     height: auto;
@@ -117,7 +121,8 @@ select.orderby {
              padding: 0.5rem 0;
              margin: 0;
              font-size: 1em;
-             font-weight: 500;
+             font-weight: normal;
+             line-height: 1.4;
              a {
                  transition: none;
              }
@@ -190,12 +195,12 @@ select.orderby {
           .price {
              color: inherit;
              display: block;
-             font-weight: normal;
+             font-weight: 500;
              margin-bottom: 0.3em;
              font-size: 0.857em;
               del {
                   color: inherit;
-                  opacity: 0.5;
+                  opacity: 0.9;
                   display: inline-block;
               }
   
@@ -213,7 +218,7 @@ select.orderby {
               }
           }
           .star-rating ~ .price {
-             padding-right: 5.4em;
+             padding-right: 4.6em;
           }
       }
 		.products.align-buttons-bottom li.product .entry-content-wrap {
@@ -254,8 +259,14 @@ select.orderby {
         overflow: hidden;
         border:0;
     }
-    ul.products.woo-archive-btn-button.products-list-view .button {
+    ul.products .products-list-view {
+        &.woo-archive-btn-button {
+            li.product {
+                .button {
         width: auto;
+    }
+            }
+        }
     }
     ul.products.woo-archive-btn-button li.product .price {
         margin-bottom: 1em;
@@ -286,10 +297,17 @@ select.orderby {
             right: 0;
             opacity: 0;
             transition: opacity .3s cubic-bezier(.17,.67,.35,.95);
+            @media screen and (max-width: $before-tablet-query) {
+                position: unset;
+                opacity: 1;
+            }
         }
         &:hover, &:focus-within {
             .entry-content-wrap {
                 transform: translateY(-2rem);
+                @media screen and (max-width: $before-tablet-query) {
+                    transform: none;
+                }
             }
             .product-action-wrap {
                 bottom: -.8rem;
@@ -350,21 +368,19 @@ select.orderby {
         display: block;
     }
     .archive.content-style-unboxed.woocommerce ul.products.products-list-view li.product.content-bg.loop-entry .entry-content-wrap:not(.loop-entry) {
-        padding: 0 0 0 1.5rem;
+        padding: 1rem 0.5rem 1rem 1.5rem;
     }
     .woocommerce ul.products.products-list-view {
         grid-template-columns: 1fr;
         li.product {
             display: grid;
             grid-template-columns: 1fr 2fr;
+            align-items: center;
             .woocommerce-loop-product__title {
-                font-size: 1.3em;
+                font-size: 1.2em;
             }
             .entry-content-wrap {
                 padding: 1rem 1rem 1rem 1.5rem;
-            }
-            .product-excerpt {
-                display: block;
             }
             .product-action-wrap {
                 width: auto;
@@ -381,7 +397,7 @@ select.orderby {
             }
             .star-rating ~ .price {
                 padding:0;
-                margin-top: 1em;
+                margin-top: 0.5em;
             }
             &:hover, &:focus-within {
                 .entry-content-wrap {
@@ -402,6 +418,7 @@ select.orderby {
     .woocommerce ul.products.products-list-view {
         li.product {
             align-items: center;
+            grid-template-columns: 242px 1fr;
         }
     }
 }

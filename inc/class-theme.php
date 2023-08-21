@@ -324,6 +324,9 @@ class Theme {
 		if ( defined( 'POLYLANG_VERSION' ) ) {
 			$components[] = new Polylang\Component();
 		}
+		if ( defined( 'RANK_MATH_VERSION' ) ) {
+			$components[] = new Rankmath\Component();
+		}
 		if ( defined( 'TRIBE_EVENTS_FILE' ) ) {
 			$components[] = new The_Events_Calendar\Component();
 		}

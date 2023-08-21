@@ -460,7 +460,7 @@ class Component implements Component_Interface {
 		}
 		$output = "<li class=\"wc-block-grid__product entry loop-entry content-bg {$action_style} {$button_style} {$boxed_class} {$hover_style}\">";
 		if ( $product_image ) {
-			$output .= "<a href=\"{$new_data->permalink}\" class=\"{$product_image_link}\">
+			$output .= "<a href=\"{$new_data->permalink}\" class=\"{$product_image_link}\" aria-label=\"{$new_data->title}\">
 					{$new_data->image}
 					{$new_data->second_image}
 				</a>";
@@ -869,14 +869,14 @@ class Component implements Component_Interface {
 	 * Checks to see if theme needs to hook into cart fragments.
 	 */
 	public function check_for_fragment_support() {
-		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_class' ) );
+		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_class' ), 11 );
 		if ( webapp()->option( 'header_cart_show_total' ) ) {
 			self::$show_cart_total = true;
-			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_number' ) );
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_number' ), 11 );
 		}
 		if ( 'slide' === webapp()->option( 'header_cart_style' ) || 'slide' === webapp()->option( 'header_mobile_cart_style' ) || 'dropdown' === webapp()->option( 'header_cart_style' ) ) {
 			self::$show_mini_cart = true;
-			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_mini' ) );
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_mini' ), 11 );
 		}
 	}
 	/**
@@ -1149,7 +1149,7 @@ class Component implements Component_Interface {
 				}
 			}
 		}
-		echo '<a href="' . esc_url( $link ) . '" class="woocommerce-loop-image-link woocommerce-LoopProduct-link woocommerce-loop-product__link' . esc_attr( $has_hover_image ) . '">';
+		echo '<a href="' . esc_url( $link ) . '" class="woocommerce-loop-image-link woocommerce-LoopProduct-link woocommerce-loop-product__link' . esc_attr( $has_hover_image ) . '" aria-label="' . esc_attr( $product->get_name() ) . '">';
 	}
 	/**
 	 * Insert the closing anchor tag for products image in the loop.
@@ -1320,7 +1320,11 @@ class Component implements Component_Interface {
 			return;
 		}
 		if ( webapp()->option( 'product_archive_show_results_count' ) || webapp()->option( 'product_archive_show_order' ) || webapp()->option( 'product_archive_toggle' ) || apply_filters( 'base_product_archive_show_top_row', false ) ) {
+			if ( webapp()->option( 'product_archive_sticky_filter' ) ) {
+			    echo '<div id="sticky_filter" class="base-shop-top-row">';
+			} else {
 			echo '<div class="base-shop-top-row">';
+			}
 			do_action( 'base_woocommerce_before_shop_loop_top_row' );
 			if ( webapp()->option( 'product_archive_show_results_count' ) ) {
 				echo '<div class="base-shop-top-item base-woo-results-count">';
@@ -1436,7 +1440,7 @@ class Component implements Component_Interface {
 	public function grouped_product_thumbnail() {
 		global $product;
 		echo '<td class="woocommerce-grouped-product-list-item__thumbnail">';
-		echo '<a href="' . get_the_permalink( $product->get_id() ) . '">' . wp_get_attachment_image( get_post_meta( $product->get_id(), '_thumbnail_id', true ), array( 90, 90 ) ) . '</a>';
+		echo '<a href="' . get_the_permalink( $product->get_id() ) . '">' . wp_get_attachment_image( get_post_meta( $product->get_id(), '_thumbnail_id', true ), array( 100, 100 ) ) . '</a>';
 		echo '</td>';
 	}
 }

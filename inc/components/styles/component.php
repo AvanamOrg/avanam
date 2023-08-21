@@ -1042,6 +1042,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				$css->set_selector( '.header-cart-wrap .header-cart-button .base-svg-iconset' );
 				$css->add_property( 'font-size', webapp()->sub_option( 'header_cart_icon_size', 'size' ) . webapp()->sub_option( 'header_cart_icon_size', 'unit' ) );
 			}
+			$css->set_selector( '.header-cart-wrap .header-cart-button .header-cart-title' );
+			$css->render_font( webapp()->option( 'header_cart_title_typography' ), $css );
 
 			// Mobile Cart.
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-inner-wrap .header-cart-button' );
@@ -1058,6 +1060,19 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'header_mobile_cart_total_background', 'hover' ) ) );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_mobile_cart_total_color', 'hover' ) ) );
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label' );
+
+			$css->render_font( webapp()->option( 'header_mobile_cart_title_typography' ), $css );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->stop_media_query();
+			
 			$css->render_font( webapp()->option( 'header_mobile_cart_typography' ), $css );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label' );
@@ -2736,7 +2751,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->stop_media_query();
 			// Product Single Image Width.
 			$css->set_selector( '.woocommerce div.product div.images' );
-			$css->add_property( 'max-width', get_option( 'woocommerce_single_image_width', '600' ).'px' );
+			$css->add_property( 'width', get_option( 'woocommerce_single_image_width', '600' ).'px' );
 			// Product Single Backgrounds.
 			$css->set_selector( 'body.single-product' );
 			$css->render_background( webapp()->sub_option( 'product_background', 'desktop' ), $css );
@@ -3868,6 +3883,16 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		}
 		// Social brands.
 		if ( '' !== webapp()->option( 'header_social_brand' ) || '' !== webapp()->option( 'header_mobile_social_brand' ) || '' !== webapp()->option( 'footer_social_brand' ) ) {
+			$items = array();
+			if ( '' !== webapp()->option( 'footer_social_brand' ) && is_array( webapp()->sub_option( 'footer_social_items', 'items' ) ) ) {
+				$items = array_merge( $items, webapp()->sub_option( 'footer_social_items', 'items' ) );
+			}
+			if ( '' !== webapp()->option( 'header_social_brand' ) && is_array( webapp()->sub_option( 'header_social_items', 'items' ) ) ) {
+				$items = array_merge( $items, webapp()->sub_option( 'header_social_items', 'items' ) );
+			}
+			if ( '' !== webapp()->option( 'header_mobile_social_brand' ) && is_array( webapp()->sub_option( 'header_mobile_social_items', 'items' ) ) ) {
+				$items = array_merge( $items, webapp()->sub_option( 'header_mobile_social_items', 'items' ) );
+			}
 			$socials = array(
 				'facebook'=> '#3b5998',
 				'instagram'=> '#517fa4',
@@ -3900,7 +3925,17 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				'tiktok'=> '#69C9D0',
 				'discord'=> '#7289DA',
 			);
-			foreach( $socials as $name => $color ) {
+			$socials_final = array();
+			if ( is_array( $items ) && ! empty( $items ) ) {
+				foreach ( $items as $item ) {
+					if ( isset( $item['enabled'] ) && $item['enabled'] ) {
+						if ( ! isset( $socials_final[ $item['id'] ] ) ) {
+							$socials_final[ $item['id' ] ] = $socials[ $item['id'] ];
+						}
+					}
+				}
+			}
+			foreach ( $socials_final as $name => $color ) {
 				$css->set_selector( 'body.social-brand-colors .social-show-brand-hover .social-link-' . $name . ':not(.ignore-brand):not(.skip):not(.ignore):hover, body.social-brand-colors .social-show-brand-until .social-link-' . $name . ':not(:hover):not(.skip):not(.ignore), body.social-brand-colors .social-show-brand-always .social-link-' . $name . ':not(.ignore-brand):not(.skip):not(.ignore)' );
 				$css->add_property( 'background', $color );
 				$css->set_selector( 'body.social-brand-colors .social-show-brand-hover.social-style-outline .social-link-' . $name . ':not(.ignore-brand):not(.skip):not(.ignore):hover, body.social-brand-colors .social-show-brand-until.social-style-outline .social-link-' . $name . ':not(:hover):not(.skip):not(.ignore), body.social-brand-colors .social-show-brand-always.social-style-outline .social-link-' . $name . ':not(.ignore-brand):not(.skip):not(.ignore)' );

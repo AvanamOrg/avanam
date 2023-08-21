@@ -46,6 +46,22 @@ Theme_Customizer::add_settings(
 				'active' => 'design',
 			),
 		),
+		'header_cart_title' => array(
+			'control_type' => 'base_text_control',
+			'section'      => 'cart',
+			'sanitize'     => 'sanitize_text_field',
+			'priority'     => 6,
+			'default'      => webapp()->default( 'header_cart_title' ),
+			'label'        => esc_html__( 'Cart Title', 'avanam' ),
+			'live_method'     => array(
+				array(
+					'type'     => 'html',
+					'selector' => '.header-mobile-cart-wrap .header-cart-title',
+					'pattern'  => '$',
+					'key'      => '',
+				),
+			),
+		),
 		'header_cart_label' => array(
 			'control_type' => 'base_text_control',
 			'section'      => 'cart',
@@ -304,6 +320,70 @@ Theme_Customizer::add_settings(
 				),
 			),
 		),
+		'header_cart_title_typography' => array(
+			'control_type' => 'base_typography_control',
+			'section'      => 'cart_design',
+			'label'        => esc_html__( 'Cart Title Font', 'avanam' ),
+			'context'      => array(
+				array(
+					'setting'  => 'header_cart_title',
+					'operator' => '!empty',
+					'value'    => '',
+				),
+			),
+			'default'      => webapp()->default( 'header_cart_title_typography' ),
+			'live_method'     => array(
+				array(
+					'type'     => 'css_typography',
+					'selector' => '.header-cart-wrap .header-cart-button .header-cart-title',
+					'pattern'  => array(
+						'desktop' => '$',
+						'tablet'  => '$',
+						'mobile'  => '$',
+					),
+					'property' => 'font',
+					'key'      => 'typography',
+				),
+			),
+			'input_attrs'  => array(
+				'id'      => 'header_cart_title_typography',
+				'options' => 'no-color',
+			),
+		),
+		'header_cart_title_color' => array(
+			'control_type' => 'base_color_control',
+			'section'      => 'cart_design',
+			'label'        => esc_html__( 'Cart Title Color', 'avanam' ),
+			'default'      => webapp()->default( 'header_cart_title_color' ),
+			'live_method'     => array(
+				array(
+					'type'     => 'css',
+					'selector' => '.header-cart-wrap .header-cart-button .header-cart-title',
+					'property' => 'color',
+					'pattern'  => '$',
+					'key'      => 'color',
+				),
+				array(
+					'type'     => 'css',
+					'selector' => '.header-cart-wrap .header-cart-button:hover .header-cart-title',
+					'property' => 'color',
+					'pattern'  => '$',
+					'key'      => 'hover',
+				),
+			),
+			'input_attrs'  => array(
+				'colors' => array(
+					'color' => array(
+						'tooltip' => __( 'Initial Color', 'avanam' ),
+						'palette' => true,
+					),
+					'hover' => array(
+						'tooltip' => __( 'Hover Color', 'avanam' ),
+						'palette' => true,
+					),
+				),
+			),
+		),
 		'header_cart_typography' => array(
 			'control_type' => 'base_typography_control',
 			'section'      => 'cart_design',
@@ -332,6 +412,40 @@ Theme_Customizer::add_settings(
 			'input_attrs'  => array(
 				'id'      => 'header_cart_typography',
 				'options' => 'no-color',
+			),
+		),
+		'header_cart_label_color' => array(
+			'control_type' => 'base_color_control',
+			'section'      => 'cart_design',
+			'label'        => esc_html__( 'Cart Label Color', 'avanam' ),
+			'default'      => webapp()->default( 'header_cart_label_color' ),
+			'live_method'     => array(
+				array(
+					'type'     => 'css',
+					'selector' => '.header-cart-wrap .header-cart-button .header-cart-label',
+					'property' => 'color',
+					'pattern'  => '$',
+					'key'      => 'color',
+				),
+				array(
+					'type'     => 'css',
+					'selector' => '.header-cart-wrap .header-cart-button:hover .header-cart-label',
+					'property' => 'color',
+					'pattern'  => '$',
+					'key'      => 'hover',
+				),
+			),
+			'input_attrs'  => array(
+				'colors' => array(
+					'color' => array(
+						'tooltip' => __( 'Initial Color', 'avanam' ),
+						'palette' => true,
+					),
+					'hover' => array(
+						'tooltip' => __( 'Hover Color', 'avanam' ),
+						'palette' => true,
+					),
+				),
 			),
 		),
 		'header_cart_padding' => array(

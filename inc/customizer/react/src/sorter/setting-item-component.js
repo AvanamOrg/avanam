@@ -72,6 +72,10 @@ class ItemComponent extends Component {
 		if ( taxOptions ) {
 			taxOptions = [{ label: __( 'Select', 'avanam' ), value: '' }].concat( taxOptions );
 		}
+
+		// An item has panel content if it's item object has more than just 'enabled' and/or 'flag'.
+		const hasPanelContent = ! ( ( Object.keys(this.state.item).length === 1 && this.state.item.hasOwnProperty('enabled') ) || ( Object.keys(this.state.item).length === 2 && this.state.item.hasOwnProperty('enabled') && this.state.item.hasOwnProperty('flag') ) );
+
 		return (
 			<div className="base-sorter-item" data-id={ this.props.item } key={ this.props.item }>
 				<div className={ `base-sorter-item-panel-header ${ ( this.state.item.enabled ? 'panel-item-is-visible' : 'panel-item-is-hidden' ) }` }>
@@ -95,7 +99,7 @@ class ItemComponent extends Component {
 					<span className="base-sorter-title">
 						{ capitalizeFirstLetter( this.props.item.replace( /_/g, ' ' ) ) }
 					</span>
-					{ 'title' !== this.props.item && 'above_title' !== this.props.item && 'back_link' !== this.props.item && 'category' !== this.props.item && 'description' !== this.props.item && 'rating' !== this.props.item && 'product_meta' !== this.props.item && 'share' !== this.props.item && (
+					{ hasPanelContent && (
 						<Tooltip text={ __( 'Expand Item Controls', 'avanam' ) }>
 							<Button
 								className="base-sorter-item-expand"

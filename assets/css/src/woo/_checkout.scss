@@ -44,7 +44,7 @@
 			color: var(--global-palette5);
 		}
          img {
-             width: 60px;
+             width: 86px;
              box-shadow: none;
 		 }
 		 .product-name {
@@ -158,7 +158,7 @@
  
              tr td,
              tr th {
-                 border-top: 1px solid var(--global-gray-500);
+                 border-top: 1px solid var(--global-gray-400);
              }
  
              .woocommerce-shipping-destination {
@@ -471,7 +471,7 @@
 	
 		table.cart {
 			.product-thumbnail {
-				width: 74px;
+				width: 100px;
 			 }
 			 th.product-name {
 				position: absolute;

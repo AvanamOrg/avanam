@@ -22,6 +22,9 @@
 .header-html-inner img.alignnone {
     display: inline-block;
 }
+.drawer-content .mobile-html, .drawer-content .mobile-html2 {
+    width: 100%;
+}
 .site-header-row {
     display: grid;
 	grid-template-columns: auto auto;
@@ -64,11 +67,11 @@
 .site-header-item {
     display: flex;
 	align-items: center;
-	margin-right: 10px;
+	margin-right: 20px;
 	max-height: inherit;
 }
 .rtl .site-header-item {
-	margin-left: 10px;
+	margin-left: 20px;
 	margin-right: 0px;
 }
 .site-header-section > .site-header-item:last-child {
@@ -154,6 +157,9 @@ a.social-button {
     background: var(--global-palette7);
 	border-radius: 3px;
 	transition: all .2s ease-in-out;
+	&:after{
+		display: none;
+	}
 	&:hover {
 		color: var(--global-palette-btn);
 		background: var(--global-palette-btn-bg);
@@ -203,7 +209,6 @@ a.social-button.has-custom-image {
 	.search-toggle-icon {
 		display: flex;
 		svg.base-svg-icon {
-			top: -0.05em;
 			position: relative;
 		}
 	}

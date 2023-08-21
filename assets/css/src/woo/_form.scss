@@ -27,7 +27,8 @@
         overflow:hidden;
     }
     input[type="search"] {
-        padding-right: 60px;
+        padding: 0.2em 0.8em;
+        padding-right: 40px;
         width:100%;
     }
 	.base-search-icon-wrap {
@@ -35,7 +36,7 @@
 		right: 0;
 		top: 0;
 		height: 100%;
-		width: 50px;
+		width: 40px;
 		padding: 0;
 		text-align: center;
 		background: 0 0;

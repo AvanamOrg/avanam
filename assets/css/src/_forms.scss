@@ -101,7 +101,8 @@ select:focus {
 .search-form {
 	position: relative;
 	input[type="search"], input.search-field {
-		padding-right: 60px;
+		padding: 0.2em 0.8em;
+		padding-right: 40px;
 		width:100%;
 	}
 	.search-submit[type="submit"] {
@@ -129,7 +130,7 @@ select:focus {
 		right: 0;
 		top: 0;
 		height: 100%;
-		width: 50px;
+		width: 40px;
 		padding: 0;
 		text-align: center;
 		background: 0 0;

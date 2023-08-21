@@ -171,6 +171,13 @@ class ItemComponent extends Component {
 							}
 						</TabPanel>
 						<TextControl
+							label={ __( 'Item Title', 'avanam' ) }
+							value={ this.props.item.title ? this.props.item.title : '' }
+							onChange={ ( value ) => {
+								this.props.onChangeTitle( value, this.props.index );
+							} }
+						/>
+						<TextControl
 							label={ __( 'Item Label', 'avanam' ) }
 							value={ this.props.item.label ? this.props.item.label : '' }
 							onChange={ ( value ) => {

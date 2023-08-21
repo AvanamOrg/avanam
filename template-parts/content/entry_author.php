@@ -33,8 +33,16 @@ webapp()->print_styles( 'base-author-box' );
 			<?php
 			foreach ( array( 'facebook', 'twitter', 'instagram', 'youtube', 'flickr', 'vimeo', 'linkedin', 'pinterest', 'dribbble', 'amazon', 'medium', 'goodreads', 'bookbub' ) as $social ) {
 				if ( get_the_author_meta( $social ) ) {
+					$url = get_the_author_meta( $social );
+
+					// Might need some special parsing if rank math is active.
+					if ( defined( 'RANK_MATH_VERSION' ) && ! str_contains( $url, '.com' ) ) {
+						if ( 'twitter' == $social ) {
+							$url = 'https://twitter.com/' . $url;
+						}
+					}
 					?>
-					<a href="<?php echo esc_url( get_the_author_meta( $social ) ); ?>" class="<?php echo esc_attr( $social ); ?>-link social-button" target="_blank" rel="noopener" title="<?php /* translators: 1: Author Name, 2: Social Media Name */ echo sprintf( esc_attr__( 'Follow %1$s on %2$s', 'avanam' ), esc_attr( get_the_author_meta( 'display_name' ) ), esc_attr( ucfirst( $social ) ) ); ?>">
+					<a href="<?php echo esc_url( $url ); ?>" class="<?php echo esc_attr( $social ); ?>-link social-button" target="_blank" rel="noopener" title="<?php /* translators: 1: Author Name, 2: Social Media Name */ echo sprintf( esc_attr__( 'Follow %1$s on %2$s', 'avanam' ), esc_attr( get_the_author_meta( 'display_name' ) ), esc_attr( ucfirst( $social ) ) ); ?>">
 						<?php webapp()->print_icon( $social, '', false ); ?>
 					</a>
 					<?php

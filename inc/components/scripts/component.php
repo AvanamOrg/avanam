@@ -135,7 +135,7 @@ class Component implements Component_Interface {
 		// Main js file.
 		$file = 'navigation.min.js';
 		// Lets make it possile to load a lighter file if things are not being used.
-		if ( 'no' === webapp()->option( 'header_sticky' ) && 'no' === webapp()->option( 'mobile_header_sticky' ) && ! webapp()->option( 'enable_scroll_to_id' ) && ! webapp()->option( 'scroll_up' ) ) {
+		if ( 'no' === webapp()->option( 'header_sticky' ) && 'no' === webapp()->option( 'mobile_header_sticky' ) && ! webapp()->option( 'product_archive_sticky_filter' ) && ! webapp()->option( 'enable_scroll_to_id' ) && ! webapp()->option( 'scroll_up' ) ) {
 			$file = 'navigation-lite.min.js';
 		}
 		wp_enqueue_script(

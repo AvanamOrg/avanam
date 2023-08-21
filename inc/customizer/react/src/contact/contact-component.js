@@ -24,6 +24,7 @@ class ContactComponent extends Component {
 		this.saveArrayUpdate = this.saveArrayUpdate.bind( this );
 		this.toggleEnableItem = this.toggleEnableItem.bind( this );
 		this.onChangeIcon = this.onChangeIcon.bind( this );
+		this.onChangeTitle = this.onChangeTitle.bind( this );
 		this.onChangeLabel = this.onChangeLabel.bind( this );
 		this.onChangeLink = this.onChangeLink.bind( this );
 		this.onChangeURL = this.onChangeURL.bind( this );
@@ -43,6 +44,7 @@ class ContactComponent extends Component {
 					'width': 24,
 					'link': '',
 					'icon': 'mobile',
+					'title': 'Phone',
 					'label': '444-546-8765',
 				},
 				{
@@ -54,6 +56,7 @@ class ContactComponent extends Component {
 					'width': 24,
 					'link': '',
 					'icon': 'hours',
+					'title': 'Hours',
 					'label': 'Mon - Fri: 8AM - 5PM',
 				}
 			],
@@ -69,10 +72,10 @@ class ContactComponent extends Component {
 		let defaultParams = {
 			'group' : 'contact_item_group',
 			'options': [
-				{ value: 'phone', label: __( 'Phone', 'avanam' ), content: __( '444-546-8765', 'avanam' ) },
-				{ value: 'hours', label: __( 'Hours', 'avanam' ), content: __( 'Mon - Fri: 8AM - 5PM', 'avanam' ) },
-				{ value: 'email', label: __( 'Email', 'avanam' ), content: __( 'example@example.com', 'avanam' ) },
-				{ value: 'location', label: __( 'Address', 'avanam' ), content: __( '4560 example street', 'avanam' ) },
+				{ value: 'phone', label: __( 'Phone', 'avanam' ), title: __( 'Phone', 'avanam' ), content: __( '444-546-8765', 'avanam' ) },
+				{ value: 'hours', label: __( 'Hours', 'avanam' ), title: __( 'Hours', 'avanam' ), content: __( 'Mon - Fri: 8AM - 5PM', 'avanam' ) },
+				{ value: 'email', label: __( 'Email', 'avanam' ), title: __( 'Email', 'avanam' ), content: __( 'example@example.com', 'avanam' ) },
+				{ value: 'location', label: __( 'Address', 'avanam' ), title: __( 'Address', 'avanam' ), content: __( '4560 example street', 'avanam' ) },
 			],
 		};
 		this.controlParams = this.props.control.params.input_attrs ? {
@@ -123,6 +126,9 @@ class ContactComponent extends Component {
 	toggleEnableItem( value, itemIndex ) {
 		this.saveArrayUpdate( { enabled: value }, itemIndex );
 	}
+	onChangeTitle( value, itemIndex ) {
+		this.saveArrayUpdate( { title: value }, itemIndex );
+	}
 	onChangeLabel( value, itemIndex ) {
 		this.saveArrayUpdate( { label: value }, itemIndex );
 	}
@@ -165,6 +171,7 @@ class ContactComponent extends Component {
 		if ( itemControl ) {
 			let updateState = this.state.value;
 			let update = updateState.items;
+			const itemTitle = this.controlParams.options.filter(function(o){return o.value === itemControl;} );
 			const itemLabel = this.controlParams.options.filter(function(o){return o.value === itemControl;} );
 			let newItem = {
 				'id': itemControl,
@@ -175,6 +182,7 @@ class ContactComponent extends Component {
 				'width': 24,
 				'link': '',
 				'icon': itemControl,
+				'title': itemTitle[0].title,
 				'label': itemLabel[0].content,
 			};
 			update.push( newItem );
@@ -248,7 +256,7 @@ class ContactComponent extends Component {
 					<ReactSortable animation={100} onStart={ () => this.onDragStop() } onEnd={ () => this.onDragStop() } group={ this.controlParams.group } className={ `base-sorter-drop base-sorter-sortable-panel base-sorter-drop-${ this.controlParams.group } base-sorter-drop-social_item_group` } handle={ '.base-sorter-item-panel-header' } list={ theItems } setList={ ( newState ) => this.onDragEnd( newState ) } >
 						{ currentList.length > 0 && (
 							currentList.map( ( item, index ) => {
-								return <ItemComponent removeItem={ ( remove ) => this.removeItem( remove ) } toggleEnabled={ ( enable, itemIndex ) => this.toggleEnableItem( enable, itemIndex ) } onChangeLabel={ ( label, itemIndex ) => this.onChangeLabel( label, itemIndex ) } onChangeLink={ ( link, itemIndex ) => this.onChangeLink( link, itemIndex ) } onChangeSource={ ( source, itemIndex ) => this.onChangeSource( source, itemIndex ) } onChangeWidth={ ( width, itemIndex ) => this.onChangeWidth( width, itemIndex ) } onChangeURL={ ( url, itemIndex ) => this.onChangeURL( url, itemIndex ) } onChangeAttachment={ ( imageid, itemIndex ) => this.onChangeAttachment( imageid, itemIndex ) } onChangeIcon={ ( icon, itemIndex ) => this.onChangeIcon( icon, itemIndex ) } key={ item.id } index={ index } item={ item } controlParams={ this.controlParams } />;
+								return <ItemComponent removeItem={ ( remove ) => this.removeItem( remove ) } toggleEnabled={ ( enable, itemIndex ) => this.toggleEnableItem( enable, itemIndex ) } onChangeTitle={ ( title, itemIndex ) => this.onChangeTitle( title, itemIndex ) } onChangeLabel={ ( label, itemIndex ) => this.onChangeLabel( label, itemIndex ) } onChangeLink={ ( link, itemIndex ) => this.onChangeLink( link, itemIndex ) } onChangeSource={ ( source, itemIndex ) => this.onChangeSource( source, itemIndex ) } onChangeWidth={ ( width, itemIndex ) => this.onChangeWidth( width, itemIndex ) } onChangeURL={ ( url, itemIndex ) => this.onChangeURL( url, itemIndex ) } onChangeAttachment={ ( imageid, itemIndex ) => this.onChangeAttachment( imageid, itemIndex ) } onChangeIcon={ ( icon, itemIndex ) => this.onChangeIcon( icon, itemIndex ) } key={ item.id } index={ index } item={ item } controlParams={ this.controlParams } />;
 							} )
 						) }
 					</ReactSortable>

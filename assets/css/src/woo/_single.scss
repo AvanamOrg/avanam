@@ -76,11 +76,12 @@
 		padding: 1em;
 		border-radius: 0.25rem;
 		border: none;
-		background-color: var(--global-palette7);
+		background-color: var(--global-palette8);
 		text-align: center;
 		.title {
-			color: var(--global-palette5);
+			color: var(--global-palette4);
 			font-size: calc(100% - 2px);
+			font-weight: 500;
 		}
 		ul {
 			list-style: none;
@@ -128,7 +129,7 @@
 		span.price,
 		p.price {
 			font-size: 1.25em;
-
+			font-weight: 500;
 			ins {
 				background: inherit;
 				font-weight: 700;
@@ -175,6 +176,7 @@
 
 			&.woocommerce-product-gallery {
 				position: relative;
+				z-index: 3;
 			}
 
 			.woocommerce-product-gallery__wrapper {
@@ -339,6 +341,7 @@
 				margin: 0 0 1.618em;
 				overflow: hidden;
 				position: relative;
+				border-bottom: 1px solid var(--global-gray-400);
 
 				li {
 					border: 1px solid var(--global-gray-400);
@@ -390,6 +393,40 @@
 			.panel {
 				margin: 0 0 2em;
 				padding: 0;
+				table {
+					&.bordered {
+						border: 1px solid var(--global-gray-400);
+						border-spacing: 0;
+						display: block;
+						max-width: -moz-fit-content;
+						max-width: fit-content;
+						overflow-x: auto;
+						white-space: nowrap;
+						scrollbar-width: thin;
+						&::-webkit-scrollbar {
+							width: 5px;
+							height: 5px;
+							background-color: #F1F1F1;
+						}
+						&::-webkit-scrollbar-thumb{
+							background: #A8A8A8;
+						}
+						td, th {
+							padding: 7px 15px 7px;
+							border-bottom: 1px solid var(--global-gray-400);
+						}
+						th {
+							padding: 15px;
+							text-align:left;
+						    color: var(--global-palette1);
+						}
+						tr {
+							&:nth-child(odd) {
+								background-color: var(--global-palette8);
+							}
+						}
+					}
+				}
 			}
 		}
 		p.cart {
@@ -500,6 +537,9 @@
 				td:first-child {
 					width: 4em;
 					text-align: center;
+					@media screen and (max-width: $landscape-phone-minus-query) {
+						width: 6em;
+					}
 				}
 
 				.wc-grouped-product-add-to-cart-checkbox {
@@ -530,6 +570,10 @@
 	   color: var(--global-palette-highlight-alt2);
 	   font-size: 0.857em;
 	   z-index: 9;
+	   @media screen and (min-width: $landscape-phone-minus-query) {
+		   padding: 0.3em 0.5em;
+		   font-size: 0.7em;
+	   }
    	}
    	&.product-tab-style-center div.product .woocommerce-tabs ul.tabs {
 		text-align: center;
@@ -910,7 +954,7 @@
 						float: right;
 						@media screen and (max-width: $tablet-minus-query) {
 							float: none;
-							padding-bottom: 0.4em;
+							padding-bottom: 0.7em;
 						}
 					}
 					.button {

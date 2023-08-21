@@ -280,14 +280,14 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.wp-site-blocks .site-footer .site-footer-wrap .footer-social-wrap a.social-button',
+				'selector' => '.site-footer .site-footer-wrap .site-footer-section .footer-social-wrap .footer-social-inner-wrap .social-button',
 				'property' => 'color',
 				'pattern'  => '$',
 				'key'      => 'color',
 			),
 			array(
 				'type'     => 'css',
-				'selector' => '.wp-site-blocks .site-footer .site-footer-wrap .site-footer-section .footer-social-wrap .footer-social-inner-wrap .social-button:hover',
+				'selector' => '.site-footer .site-footer-wrap .site-footer-section .footer-social-wrap .footer-social-inner-wrap .social-button:hover',
 				'property' => 'color',
 				'pattern'  => '$',
 				'key'      => 'hover',
@@ -314,14 +314,14 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '.wp-site-blocks .site-footer .site-footer-wrap .footer-social-wrap a.social-button',
+				'selector' => '.site-footer .site-footer-wrap .site-footer-section .footer-social-wrap .footer-social-inner-wrap .social-button',
 				'property' => 'background',
 				'pattern'  => '$',
 				'key'      => 'color',
 			),
 			array(
 				'type'     => 'css',
-				'selector' => '.wp-site-blocks .site-footer .site-footer-wrap .footer-social-wrap a.social-button:hover',
+				'selector' => '.site-footer .site-footer-wrap .site-footer-section .footer-social-wrap .footer-social-inner-wrap .social-button:hover',
 				'property' => 'background',
 				'pattern'  => '$',
 				'key'      => 'hover',
@@ -355,14 +355,14 @@ $settings = array(
 		'live_method'     => array(
 			array(
 				'type'     => 'css',
-				'selector' => '#colophon .footer-social-wrap a.social-button',
+				'selector' => '.site-footer .site-footer-wrap .site-footer-section .footer-social-wrap .footer-social-inner-wrap .social-button',
 				'property' => 'border-color',
 				'pattern'  => '$',
 				'key'      => 'color',
 			),
 			array(
 				'type'     => 'css',
-				'selector' => '#colophon .footer-social-wrap a.social-button:hover',
+				'selector' => '.site-footer .site-footer-wrap .site-footer-section .footer-social-wrap .footer-social-inner-wrap .social-button:hover',
 				'property' => 'border-color',
 				'pattern'  => '$',
 				'key'      => 'hover',

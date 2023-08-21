@@ -257,6 +257,21 @@ body:not(.hide-focus-outline) .header-navigation li.menu-item--has-toggle>a:focu
 	transition: all .2s ease-in-out;
 	transform: translate3d(0,0,0);
 }
+.header-navigation-style-standard.header-navigation > div > ul > li > a:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    border-bottom: 1px solid var(--global-palette-highlight);
+	-webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.header-navigation-style-standard.header-navigation > div > ul > li > a:hover:after {
+	left: 0;
+    right: auto;
+    width: 100%;
+}
 .header-navigation li.menu-item > a:hover,
 .header-navigation li.menu-item > a:focus {
 	color: var(--global-palette-highlight);
@@ -271,7 +286,7 @@ body:not(.hide-focus-outline) .header-navigation li.menu-item--has-toggle>a:focu
 	padding: 0.6em 0.5em;
 }
 .header-navigation ul ul li.menu-item > a {
-	padding: 1em;
+	padding: 0.5em;
 }
 .header-navigation ul ul li.menu-item > a {
 	width: 200px;
@@ -319,6 +334,7 @@ body:not(.hide-focus-outline) .header-navigation li.menu-item--has-toggle>a:focu
 }
 .wp-site-blocks .menu-toggle-open {
 	box-shadow: none;
+	padding:0;
 }
 /*--------------------------------------------------------------
 ## Mobile Menu
@@ -333,10 +349,12 @@ body:not(.hide-focus-outline) .header-navigation li.menu-item--has-toggle>a:focu
 	padding: 0.6em 0.5em;
 }
 .mobile-navigation ul {
-	display: block;
 	list-style: none;
 	margin: 0;
 	padding: 0;
+}
+.drawer-content .site-header-item-mobile-navigation.site-header-item {
+    margin-bottom: 0;
 }
 .drawer-nav-drop-wrap {
 	display: flex;
@@ -378,7 +396,6 @@ body:not(.hide-focus-outline) .header-navigation li.menu-item--has-toggle>a:focu
 //     justify-content: flex-end;
 // }
 .mobile-navigation ul ul {
-	padding-left: 1em;
 	transition: all 0.2s ease-in-out;
 }
 .mobile-navigation ul.has-collapse-sub-nav ul.sub-menu {
@@ -455,6 +472,9 @@ body[class*='amp-mode-'] .mobile-navigation ul ul {
 	}
 	.drawer-content {
 		padding: 0 1.5em 1.5em;
+		@media screen and ( max-width: $landscape-phone-minus-query) {
+			padding: 0 0.5em 0.5em;
+		}
 	}
 }
 .popup-drawer-layout-sidepanel.popup-drawer-side-left {

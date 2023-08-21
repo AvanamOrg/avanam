@@ -88,6 +88,24 @@ class ColorLinkComponent extends Component {
 		const styleOptions = Object.keys( this.controlParams.styles ).map( ( item ) => { 
 			return ( { label: this.controlParams.styles[ item ].label, value: item } );
 		} );
+		const hoverBackgroundColors = {
+			'highlight': {
+				tooltip: __( 'Initial/Background', 'avanam' ),
+				palette: true,
+			},
+			'highlight-alt': {
+				tooltip: __( 'Unused', 'avanam' ),
+				palette: true,
+			},
+			'highlight-alt2': {
+				tooltip: __( 'Text Hover', 'avanam' ),
+				palette: true,
+			},
+		};
+
+		// Use special color labels for hover background;
+		const colorsToUse = this.state.value.style === 'hover-background' ? hoverBackgroundColors : this.controlParams.colors;
+
 		return (
 			<Fragment>
 				<div className="base-control-field base-color-control base-link-color-control">
@@ -111,7 +129,7 @@ class ColorLinkComponent extends Component {
 							{ this.props.control.params.label }
 						</span>
 					}
-					{ Object.keys( this.controlParams.colors ).map( ( item ) => {
+					{ Object.keys( colorsToUse ).map( ( item ) => {
 						if ( ( this.state.value.style === 'standard' || this.state.value.style === 'color-underline' || this.state.value.style === 'no-underline' ) && item === 'highlight-alt2' ) {
 							return;
 						}
@@ -120,8 +138,8 @@ class ColorLinkComponent extends Component {
 								key={ item }
 								presetColors={ this.state.colorPalette }
 								color={ ( undefined !== this.state.value[ item ] && this.state.value[ item ] ? this.state.value[ item ] : '' ) }
-								usePalette={ ( undefined !== this.controlParams.colors[ item ] && undefined !== this.controlParams.colors[ item ].palette && '' !== this.controlParams.colors[ item ].palette ? this.controlParams.colors[ item ].palette : true ) }
-								tooltip={ ( undefined !== this.controlParams.colors[ item ] && undefined !== this.controlParams.colors[ item ].tooltip ? this.controlParams.colors[ item ].tooltip : '' ) }
+								usePalette={ ( undefined !== colorsToUse[ item ] && undefined !== colorsToUse[ item ].palette && '' !== colorsToUse[ item ].palette ? colorsToUse[ item ].palette : true ) }
+								tooltip={ ( undefined !== colorsToUse[ item ] && undefined !== colorsToUse[ item ].tooltip ? colorsToUse[ item ].tooltip : '' ) }
 								onChangeComplete={ ( color, isPalette ) => this.handleChangeComplete( color, isPalette, item ) }
 								customizer={ this.props.customizer }
 								controlRef={ this.anchorNodeRef }

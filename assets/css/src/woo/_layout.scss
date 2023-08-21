@@ -53,6 +53,12 @@
 		div.images {
 			/* float: left;
 			width: 48%; */
+			@media screen and (max-width: $tablet-minus-query){
+				width: 350px;
+			}
+			@media screen and (max-width: $phone-minus-query){
+				width: 100%;
+			}
 		}
 
 		div.summary {
@@ -61,6 +67,9 @@
 			clear: none; */
 			margin-left: 2em;
 			flex: 1;
+			@media screen and (max-width: $phone-minus-query){
+				margin-left: 0;
+			}
 		}
 
 		.woocommerce-tabs {
@@ -311,6 +320,12 @@
 				/* float: right;
 				width: 48%; */
 				margin-right: 2em;
+				@media screen and (max-width: $tablet-minus-query){
+					width: 350px;
+				}
+				@media screen and (max-width: $phone-minus-query){
+					width: 100%;
+				}
 				.woocommerce-product-gallery__trigger {
 					right: auto;
 					left: 0.5rem;

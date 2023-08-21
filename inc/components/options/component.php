@@ -174,7 +174,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				'base_theme_options_defaults',
 				array(
 					'content_width'   => array(
-						'size' => 1400,
+						'size' => 1430,
 						'unit' => 'px',
 					),
 					'content_narrow_width'   => array(
@@ -185,7 +185,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 1,
+							'desktop' => 0.938,
 						),
 						'unit' => array(
 							'mobile'  => 'rem',
@@ -308,7 +308,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'variant' => '',
 						'color'   => 'palette4',
 					),
-					'sidebar_link_style' => 'plain',
+					'sidebar_link_style' => 'normal',
 					'sidebar_link_colors' => array(
 						'color' => 'palette4',
 						'hover' => 'palette-highlight',
@@ -382,9 +382,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'scroll_up_visiblity' => array(
 						'desktop' => true,
 						'tablet'  => true,
-						'mobile'  => false,
+						'mobile'  => true,
 					),
-					'scroll_up_style' => 'outline',
+					'scroll_up_style' => 'filled',
 					'scroll_up_padding' => array(
 						'size'   => array( 
 							'desktop' => array( 0.4, 0.4, 0.4, 0.4 ),
@@ -397,20 +397,24 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						),
 					),
 					'scroll_up_color'                     => array(
-						'color'  => '',
-						'hover'  => '',
+						'color'  => 'palette1',
+						'hover'  => 'palette9',
 					),
 					'scroll_up_background'                     => array(
-						'color'  => '',
-						'hover'  => '',
+						'color'  => 'palette9',
+						'hover'  => 'palette1',
 					),
 					'scroll_up_border_colors'         => array(
-						'color'  => '',
+						'color'  => 'palette1',
 						'hover'  => '',
 					),
-					'scroll_up_border'    => array(),
+					'scroll_up_border'    => array(
+						'width' => 1,
+						'unit'  => 'px',
+						'style' => 'solid',
+					),
 					'scroll_up_radius' => array(
-						'size'   => array( 0, 0, 0, 0 ),
+						'size'   => array( 100, 100, 100, 100 ),
 						'unit'   => 'px',
 						'locked' => true,
 					),
@@ -466,19 +470,19 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						),
 					),
 					'buttons_shadow' => array(
-						'color'   => 'rgba(0,0,0,0)',
+						'color'   => '',
 						'hOffset' => 0,
 						'vOffset' => 0,
 						'blur'    => 0,
-						'spread'  => -7,
+						'spread'  => 0,
 						'inset'   => false,
 					),
 					'buttons_shadow_hover' => array(
-						'color'   => 'rgba(0,0,0,0.1)',
+						'color'   => '',
 						'hOffset' => 0,
 						'vOffset' => 15,
 						'blur'    => 25,
-						'spread'  => -7,
+						'spread'  => 0,
 						'inset'   => false,
 					),
 					'image_border_radius' => array(
@@ -521,9 +525,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'h1_font' => array(
 						'size' => array(
+							'mobile' => 26,
 							'desktop' => 32,
 						),
 						'lineHeight' => array(
+							'mobile' => 1.3,
 							'desktop' => 1.5,
 						),
 						'family'  => 'inherit',
@@ -534,6 +540,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'h2_font' => array(
 						'size' => array(
+							'mobile' => 22,
 							'desktop' => 28,
 						),
 						'lineHeight' => array(
@@ -649,30 +656,30 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					// Header.
 					'header_desktop_items'       => array(
 						'top' => array(
-							'top_left'         => array(),
+							'top_left'         => array( 'social' ),
 							'top_left_center'  => array(),
-							'top_center'       => array(),
+							'top_center'       => array( 'html' ),
 							'top_right_center' => array(),
-							'top_right'        => array(),
+							'top_right'        => array( 'navigation-2' ),
 						),
 						'main' => array(
 							'main_left'         => array( 'logo' ),
 							'main_left_center'  => array(),
-							'main_center'       => array(),
+							'main_center'       => array( 'html2' ),
 							'main_right_center' => array(),
-							'main_right'        => array(),
+							'main_right'        => array( 'search' , 'account' , 'cart' ),
 						),
 						'bottom' => array(
-							'bottom_left'         => array(),
+							'bottom_left'         => array( 'navigation' ),
 							'bottom_left_center'  => array(),
-							'bottom_center'       => array( 'navigation' ),
+							'bottom_center'       => array(),
 							'bottom_right_center' => array(),
-							'bottom_right'        => array(),
+							'bottom_right'        => array( 'search-bar' ),
 						),
 					),
 					'header_wrap_background' => array(
 						'desktop' => array(
-							'color' => '#ffffff',
+							'color' => 'palette9',
 						),
 					),
 					// Header Main.
@@ -704,7 +711,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						),
 					),
 					'header_main_top_border'    => array(),
-					'header_main_bottom_border' => array(),
+					'header_main_bottom_border' => array(
+						'desktop' => array(
+							'width' => 1,
+							'unit'  => 'px',
+							'style' => 'solid',
+							'color'  => 'var(--global-gray-400)',
+						),
+					 ),
 					'header_main_padding' => array(
 						'size'   => array( 
 							'desktop' => array( '', '', '', '' ),
@@ -736,7 +750,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'header_top_background'    => array(
 						'desktop' => array(
-							'color' => '',
+							'color' => 'palette4',
 						),
 					),
 					'header_top_trans_background'    => array(
@@ -762,7 +776,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 0,
+							'desktop' => 60,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -801,17 +815,17 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					// Mobile Header.
 					'header_mobile_items' => array(
 						'popup' => array(
-							'popup_content' => array( 'mobile-navigation' ),
+							'popup_content' => array( 'mobile-navigation', 'mobile-nav2' ),
 						),
 						'top' => array(
 							'top_left'   => array(),
-							'top_center' => array(),
+							'top_center' => array( 'mobile-html' ),
 							'top_right'  => array(),
 						),
 						'main' => array(
-							'main_left'   => array( 'mobile-logo' ),
+							'main_left'   => array( 'popup-toggle', 'mobile-logo' ),
 							'main_center' => array(),
-							'main_right'  => array( 'popup-toggle' ),
+							'main_right'  => array( 'search', 'mobile-account', 'mobile-cart' ),
 						),
 						'bottom' => array(
 							'bottom_left'   => array(),
@@ -832,7 +846,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 							'desktop' => 'px',
 						),
 					),
-					'use_mobile_logo' => false,
+					'use_mobile_logo' => true,
 					'logo_layout'     => array(
 						'include' => array(
 							'mobile'  => 'logo',
@@ -911,7 +925,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'primary_navigation_fill_stretch' => false,
 					'primary_navigation_style'   => 'standard',
 					'primary_navigation_color'   => array(
-						'color'  => 'palette5',
+						'color'  => 'palette4',
 						'hover'  => 'palette-highlight',
 						'active' => 'palette3',
 					),
@@ -939,16 +953,16 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'unit' => 'em',
 					),
 					'secondary_navigation_vertical_spacing'   => array(
-						'size' => 0.6,
+						'size' => 0.5,
 						'unit' => 'em',
 					),
 					'secondary_navigation_stretch' => false,
 					'secondary_navigation_fill_stretch' => false,
 					'secondary_navigation_style'   => 'standard',
 					'secondary_navigation_color'   => array(
-						'color'  => 'palette5',
-						'hover'  => 'palette-highlight',
-						'active' => 'palette3',
+						'color'  => 'palette8',
+						'hover'  => 'palette6',
+						'active' => 'palette9',
 					),
 					'secondary_navigation_background'              => array(
 						'color'  => '',
@@ -957,30 +971,30 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'secondary_navigation_parent_active' => false,
 					// Dropdown.
-					'dropdown_navigation_reveal' => 'none',
+					'dropdown_navigation_reveal' => 'fade-up',
 					'dropdown_navigation_width'  => array(
-						'size' => 200,
+						'size' => 240,
 						'unit' => 'px',
 					),
 					'dropdown_navigation_vertical_spacing'   => array(
-						'size' => 1,
+						'size' => 0.3,
 						'unit' => 'em',
 					),
 					'dropdown_navigation_color'              => array(
-						'color'  => 'palette8',
-						'hover'  => 'palette9',
-						'active' => 'palette9',
+						'color'  => 'palette4',
+						'hover'  => 'palette-highlight',
+						'active' => 'palette-highlight',
 					),
 					'dropdown_navigation_background'              => array(
-						'color'  => 'palette3',
-						'hover'  => 'palette4',
-						'active' => 'palette4',
+						'color'  => 'palette9',
+						'hover'  => '',
+						'active' => '',
 					),
 					'dropdown_navigation_divider'              => array(
-						'width' => 1,
-						'unit'  => 'px',
-						'style' => 'solid',
-						'color' => 'rgba(255,255,255,0.1)',
+						'width' => '',
+						'unit'  => '',
+						'style' => '',
+						'color' => '',
 					),
 					'dropdown_navigation_shadow'              => array(
 						'color'   => 'rgba(0,0,0,0.1)',
@@ -992,10 +1006,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'dropdown_navigation_typography'            => array(
 						'size' => array(
-							'desktop' => 12,
+							'desktop' => '',
 						),
 						'lineHeight' => array(
-							'desktop' => '',
+							'desktop' => '1.4',
 						),
 						'family'  => 'inherit',
 						'google'  => false,
@@ -1046,16 +1060,16 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'mobile_navigation_collapse' => true,
 					'mobile_navigation_parent_toggle' => false,
 					'mobile_navigation_width'  => array(
-						'size' => 200,
+						'size' => 240,
 						'unit' => 'px',
 					),
 					'mobile_navigation_vertical_spacing'   => array(
-						'size' => 1,
+						'size' => 0.6,
 						'unit' => 'em',
 					),
 					'mobile_navigation_color'              => array(
-						'color'  => 'palette8',
-						'hover'  => '',
+						'color'  => 'palette4',
+						'hover'  => 'palette-highlight',
 						'active' => 'palette-highlight',
 					),
 					'mobile_navigation_background'              => array(
@@ -1064,14 +1078,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'active' => '',
 					),
 					'mobile_navigation_divider'              => array(
-						'width' => 1,
+						'width' => 0,
 						'unit'  => 'px',
 						'style' => 'solid',
 						'color' => 'rgba(255,255,255,0.1)',
 					),
 					'mobile_navigation_typography'            => array(
 						'size' => array(
-							'desktop' => 14,
+							'desktop' => '',
 						),
 						'lineHeight' => array(
 							'desktop' => '',
@@ -1082,18 +1096,18 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'variant' => '',
 					),
 					// Header Popup.
-					'header_popup_side'           => 'right',
+					'header_popup_side'           => 'left',
 					'header_popup_layout'         => 'sidepanel',
 					'header_popup_animation'      => 'fade',
 					'header_popup_vertical_align' => 'top',
 					'header_popup_content_align'  => 'left',
 					'header_popup_background' => array(
 						'desktop' => array(
-							'color' => '',
+							'color' => 'palette9',
 						),
 					),
 					'header_popup_close_color'  => array(
-						'color' => '',
+						'color' => 'palette3',
 						'hover' => '',
 					),
 					'header_popup_close_background'  => array(
@@ -1110,7 +1124,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'locked' => false,
 					),
 					// Header HTML.
-					'header_html_content'    => __( 'Insert HTML here', 'avanam' ),
+					'header_html_content'    => __( 'Get a $50 credit on selected items <a href="#">Shop now</a>', 'avanam' ),
 					'header_html_typography' => array(
 						'size' => array(
 							'desktop' => '',
@@ -1122,12 +1136,12 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'google'  => false,
 						'weight'  => '',
 						'variant' => '',
-						'color'   => '',
+						'color'   => 'palette8',
 					),
 					'header_html_link_style' => 'normal',
 					'header_html_link_color'              => array(
-						'color' => '',
-						'hover' => '',
+						'color' => 'palette8',
+						'hover' => 'palette6',
 					),
 					'header_html_margin' => array(
 						'size'   => array( '', '', '', '' ),
@@ -1201,6 +1215,13 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'unit'   => 'px',
 						'locked' => true,
 					),
+					
+					// Social Links
+					'facebook_link' => '#',
+					'twitter_link' => '#',
+					'instagram_link' => '#',
+					'youtube_link' => '#',
+					
 					// Header Social.
 					'header_social_items' => array(
 						'items' => array(
@@ -1211,7 +1232,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'facebook',
+								'icon'    => 'facebookAlt',
 								'label'   => 'Facebook',
 							),
 							array(
@@ -1221,7 +1242,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'twitter',
+								'icon'    => 'twitterAlt',
 								'label'   => 'Twitter',
 							),
 							array(
@@ -1231,12 +1252,22 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'instagram',
+								'icon'    => 'instagramAlt',
 								'label'   => 'Instagram',
+							),
+							array(
+								'id'      => 'youtube',
+								'enabled' => true,
+								'source'  => 'icon',
+								'url'     => '',
+								'imageid' => '',
+								'width'   => 24,
+								'icon'    => 'youtubeAlt',
+								'label'   => 'YouTube',
 							),
 						),
 					),
-					'header_social_style'        => 'filled',
+					'header_social_style'        => 'outline',
 					'header_social_show_label'   => false,
 					'header_social_item_spacing' => array(
 						'size' => 0.3,
@@ -1248,8 +1279,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'header_social_brand' => '',
 					'header_social_color' => array(
-						'color' => '',
-						'hover' => '',
+						'color' => 'palette8',
+						'hover' => 'palette6',
 					),
 					'header_social_background' => array(
 						'color' => '',
@@ -1378,7 +1409,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'header_search_icon'   => 'search2',
 					'header_search_style'  => 'default',
-					'header_search_woo'    => false,
+					'header_search_woo'    => true,
 					'header_search_border' => array(
 						'width' => 1,
 						'unit'  => 'px',
@@ -1389,7 +1420,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 1,
+							'desktop' => 1.22,
 						),
 						'unit' => array(
 							'mobile'  => 'em',
@@ -1398,7 +1429,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						),
 					),
 					'header_search_color'              => array(
-						'color' => 'palette5',
+						'color' => 'palette4',
 						'hover' => 'palette-highlight',
 					),
 					'header_search_background'              => array(
@@ -1418,7 +1449,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'variant' => '',
 					),
 					'header_search_padding' => array(
-						'size'   => array( '', '', '', '' ),
+						'size'   => array( '0', '0', '0', '0' ),
 						'unit'   => 'em',
 						'locked' => false,
 					),
@@ -1428,7 +1459,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'locked' => false,
 					),
 					'header_search_modal_color'              => array(
-						'color' => '',
+						'color' => 'palette9',
 						'hover' => '',
 					),
 					'header_search_modal_background'              => array(
@@ -1500,7 +1531,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'locked' => true,
 					),
 					// Mobile Header HTML.
-					'mobile_html_content'    => __( 'Insert HTML here', 'avanam' ),
+					'mobile_html_content'    => __( 'Free shipping on orders over $50!', 'avanam' ),
 					'mobile_html_typography' => array(
 						'size' => array(
 							'desktop' => '',
@@ -1512,7 +1543,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'google'  => false,
 						'weight'  => '',
 						'variant' => '',
-						'color'   => '',
+						'color'   => 'palette8',
 					),
 					'mobile_html_link_color'              => array(
 						'color' => '',
@@ -1661,7 +1692,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 							'color' => '',
 						),
 					),
-					'header_sticky_bottom_border'   => array(),
+					'header_sticky_bottom_border'   => array(
+						'desktop' => array(
+							'width' => 1,
+							'unit'  => 'px',
+							'style' => 'solid',
+							'color'  => 'var(--global-gray-400)',
+						),
+					),
 					// Footer.
 					'footer_items'       => array(
 						'top' => array(
@@ -1672,23 +1710,23 @@ class Component implements Component_Interface, Templating_Component_Interface {
 							'top_5' => array(),
 						),
 						'middle' => array(
-							'middle_1' => array(),
-							'middle_2' => array(),
-							'middle_3' => array(),
+							'middle_1' => array( 'footer-widget1' ),
+							'middle_2' => array( 'footer-widget2', 'footer-widget3', 'footer-widget4' ),
+							'middle_3' => array( 'footer-widget5' ),
 							'middle_4' => array(),
 							'middle_5' => array(),
 						),
 						'bottom' => array(
-							'bottom_1' => array( 'footer-html' ),
-							'bottom_2' => array(),
-							'bottom_3' => array(),
+							'bottom_1' => array( 'footer-widget6' ),
+							'bottom_2' => array( 'footer-html' ),
+							'bottom_3' => array( 'footer-social' ),
 							'bottom_4' => array(),
 							'bottom_5' => array(),
 						),
 					),
 					'footer_wrap_background' => array(
 						'desktop' => array(
-							'color' => '',
+							'color' => 'palette7',
 						),
 					),
 					// Footer Top.
@@ -1824,7 +1862,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'footer_middle_column_spacing' => array(
 						'size' => array(
 							'mobile'  => '',
-							'tablet'  => '',
+							'tablet'  => '50',
 							'desktop' => '30',
 						),
 						'unit' => array(
@@ -1848,8 +1886,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'footer_middle_top_spacing' => array(
 						'size' => array(
 							'mobile'  => '',
-							'tablet'  => '',
-							'desktop' => '30',
+							'tablet'  => '30',
+							'desktop' => '65',
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -1860,8 +1898,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'footer_middle_bottom_spacing' => array(
 						'size' => array(
 							'mobile'  => '',
-							'tablet'  => '',
-							'desktop' => '30',
+							'tablet'  => '30',
+							'desktop' => '65',
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -1878,11 +1916,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'footer_middle_columns' => '3',
 					'footer_middle_layout'  => array(
 						'mobile'  => 'row',
-						'tablet'  => '',
-						'desktop' => 'equal',
+						'tablet'  => 'row',
+						'desktop' => 'center-half',
 					),
 					'footer_middle_direction'         => array(
-						'mobile'  => '',
+						'mobile'  => 'column',
 						'tablet'  => '',
 						'desktop' => 'row',
 					),
@@ -1892,7 +1930,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						),
 					),
 					'footer_middle_top_border'    => array(),
-					'footer_middle_bottom_border' => array(),
+					'footer_middle_bottom_border' => array(
+						'desktop' => array(
+							'width' => 1,
+							'unit'  => 'px',
+							'style' => 'solid',
+							'color'  => 'var(--global-gray-400)',
+						),
+					),
 					'footer_middle_column_border' => array(),
 					'footer_middle_widget_title'  => array(
 						'size' => array(
@@ -1965,7 +2010,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'footer_bottom_top_spacing' => array(
 						'size' => array(
 							'mobile'  => '',
-							'tablet'  => '',
+							'tablet'  => '15',
 							'desktop' => '30',
 						),
 						'unit' => array(
@@ -1977,8 +2022,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'footer_bottom_bottom_spacing' => array(
 						'size' => array(
 							'mobile'  => '',
-							'tablet'  => '',
-							'desktop' => '30',
+							'tablet'  => '80',
+							'desktop' => '90',
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -1991,7 +2036,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'tablet'  => '',
 						'desktop' => 'standard',
 					),
-					'footer_bottom_columns' => '1',
+					'footer_bottom_columns' => '3',
 					'footer_bottom_collapse' => 'normal',
 					'footer_bottom_layout'  => array(
 						'mobile'  => 'row',
@@ -2085,7 +2130,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'facebook',
+								'icon'    => 'facebookAlt',
 								'label'   => 'Facebook',
 							),
 							array(
@@ -2095,7 +2140,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'twitter',
+								'icon'    => 'twitterAlt',
 								'label'   => 'Twitter',
 							),
 							array(
@@ -2105,12 +2150,22 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'instagram',
+								'icon'    => 'instagramAlt',
 								'label'   => 'Instagram',
 							),
+							array(
+								'id'      => 'youtube',
+								'enabled' => true,
+								'source'  => 'icon',
+								'url'     => '',
+								'imageid' => '',
+								'width'   => 24,
+								'icon'    => 'youtubeAlt',
+								'label'   => 'YouTube',
+						),
 						),
 					),
-					'footer_social_style'        => 'filled',
+					'footer_social_style'        => 'outline',
 					'footer_social_show_label'   => false,
 					'footer_social_item_spacing' => array(
 						'size' => 0.3,
@@ -2161,8 +2216,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'footer_social_align'         => array(
 						'mobile'  => '',
-						'tablet'  => '',
-						'desktop' => '',
+						'tablet'  => 'left',
+						'desktop' => 'right',
 					),
 					'footer_social_vertical_align'         => array(
 						'mobile'  => '',
@@ -2285,8 +2340,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'page_title_layout'       => 'above',
 					'page_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
-							'tablet'  => '',
+							'mobile'  => 95,
+							'tablet'  => 120,
 							'desktop' => 170,
 						),
 						'unit' => array(
@@ -2424,8 +2479,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'post_title_layout'       => 'above',
 					'post_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
-							'tablet'  => '',
+							'mobile'  => 95,
+							'tablet'  => 120,
 							'desktop' => 170,
 						),
 						'unit' => array(
@@ -2453,6 +2508,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'post_title_font'   => array(
 						'size' => array(
+							'mobile' => '19',
+							'tablet' => '24',
 							'desktop' => '',
 						),
 						'lineHeight' => array(
@@ -2581,7 +2638,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'post_archive_title_inner_layout' => 'standard',
 					'post_archive_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
+							'mobile'  => 100,
 							'tablet'  => '',
 							'desktop' => '',
 						),
@@ -2600,7 +2657,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'show_title' => true,
 					),
 					'post_archive_title_element_description' => array(
-						'enabled' => false,
+						'enabled' => true,
 					),
 					'post_archive_title_background'    => array(
 						'desktop' => array(
@@ -2734,8 +2791,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'search_archive_title_inner_layout' => 'standard',
 					'search_archive_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
-							'tablet'  => '',
+							'mobile'  => '95',
+							'tablet'  => '120',
 							'desktop' => '170',
 						),
 						'unit' => array(
@@ -2881,9 +2938,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_archive_title_inner_layout' => 'standard',
 					'product_archive_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
-							'tablet'  => '',
-							'desktop' => '',
+							'mobile'  => 95,
+							'tablet'  => 120,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2943,6 +3000,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_archive_sidebar_id'         => 'sidebar-woocommerce-shop',
 					'product_archive_title_font'   => array(
 						'size' => array(
+							'mobile' => '15',
 							'desktop' => '',
 						),
 						'lineHeight' => array(
@@ -3031,7 +3089,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_large_cart_button'  => false,
 					'product_additional_weight_dimensions' => true,
 					'product_related_style'      => 'standard',
-					'product_related_columns'    => '4',
+					'product_related_columns'    => '5',
 					'product_content_elements'           => array( 'category', 'title', 'rating', 'price', 'excerpt', 'add_to_cart', 'extras', 'payments', 'product_meta', 'share' ),
 					'product_content_element_category' => array(
 						'enabled' => false,
@@ -3058,8 +3116,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'enabled'   => true,
 						'title'     => __( 'Free shipping on orders over $50!', 'avanam' ),
 						'feature_1' => __( 'Satisfaction Guaranteed', 'avanam' ),
-						'feature_2' => __( 'No Hassle Refunds', 'avanam' ),
-						'feature_3' => __( 'Secure Payments', 'avanam' ),
+						'feature_2' => __( 'Secure Payments', 'avanam' ),
+						'feature_3' => '',
 						'feature_4' => '',
 						'feature_5' => '',
 						'feature_1_icon' => 'shield_check',
@@ -3070,13 +3128,13 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'product_content_element_payments' => array(
 						'enabled' => true,
-						'title'     => __( 'GUARANTEED SAFE CHECKOUT', 'avanam' ),
+						'title'     => __( 'Guaranteed Safe Checkout', 'avanam' ),
 						'visa' => true,
 						'mastercard' => true,
 						'amex' => true,
 						'discover' => true,
 						'paypal' => true,
-						'applepay' => false,
+						'applepay' => true,
 						'stripe' => false,
 						'card_color' => 'inherit',
 						'custom_enable_01' => false,
@@ -3099,7 +3157,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'variation_direction' => 'horizontal',
 					'product_tab_title'   => false,
 					'product_content_element_product_meta' => array(
-						'enabled' => true,
+						'enabled' => false,
 					),
 					'product_content_element_share' => array(
 						'enabled' => true,
@@ -3147,6 +3205,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'product_title_font'   => array(
 						'size' => array(
+							'mobile'  => '23',
+							'tablet' => '25',
 							'desktop' => '',
 						),
 						'lineHeight' => array(
@@ -3237,6 +3297,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'show_title' => true,
 					),
 					// Header Cart.
+					'header_cart_title' => '',
 					'header_cart_label' => '',
 					'header_cart_show_total' => true,
 					'header_cart_style' => 'slide',
@@ -3262,6 +3323,18 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'color' => '',
 						'hover' => '',
 					),
+					'header_cart_title_typography'            => array(
+						'size' => array(
+							'desktop' => '',
+						),
+						'lineHeight' => array(
+							'desktop' => '',
+						),
+						'family'  => 'inherit',
+						'google'  => false,
+						'weight'  => '',
+						'variant' => '',
+					),
 					'header_cart_typography'            => array(
 						'size' => array(
 							'desktop' => '',
@@ -3280,13 +3353,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'locked' => false,
 					),
 					// Mobile Header Cart.
+					'header_mobile_cart_title' => '',
 					'header_mobile_cart_label' => '',
 					'header_mobile_cart_show_total' => true,
-					'header_mobile_cart_style' => 'link',
+					'header_mobile_cart_style' => 'slide',
 					'header_mobile_cart_popup_side' => 'right',
 					'header_mobile_cart_icon' => 'shopping-bag',
 					'header_mobile_cart_icon_size'   => array(
-						'size' => '',
+						'size' => '1.3',
 						'unit' => 'em',
 					),
 					'header_mobile_cart_color'              => array(
@@ -3304,6 +3378,18 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'header_mobile_cart_total_background'              => array(
 						'color' => '',
 						'hover' => '',
+					),
+					'header_mobile_cart_title_typography'            => array(
+						'size' => array(
+							'desktop' => '',
+						),
+						'lineHeight' => array(
+							'desktop' => '',
+						),
+						'family'  => 'inherit',
+						'google'  => false,
+						'weight'  => '',
+						'variant' => '',
 					),
 					'header_mobile_cart_typography'            => array(
 						'size' => array(
@@ -4596,7 +4682,38 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	public static function palette_defaults() {
 		// Don't store defaults until after init.
 		if ( is_null( self::$default_palette ) ) {
-			self::$default_palette = apply_filters( 'base_global_palette_defaults', '{"palette":[{"color":"#2B6CB0","slug":"palette1","name":"Palette Color 1"},{"color":"#215387","slug":"palette2","name":"Palette Color 2"},{"color":"#1A202C","slug":"palette3","name":"Palette Color 3"},{"color":"#2D3748","slug":"palette4","name":"Palette Color 4"},{"color":"#4A5568","slug":"palette5","name":"Palette Color 5"},{"color":"#718096","slug":"palette6","name":"Palette Color 6"},{"color":"#EDF2F7","slug":"palette7","name":"Palette Color 7"},{"color":"#F7FAFC","slug":"palette8","name":"Palette Color 8"},{"color":"#ffffff","slug":"palette9","name":"Palette Color 9"}],"second-palette":[{"color":"#2B6CB0","slug":"palette1","name":"Palette Color 1"},{"color":"#215387","slug":"palette2","name":"Palette Color 2"},{"color":"#1A202C","slug":"palette3","name":"Palette Color 3"},{"color":"#2D3748","slug":"palette4","name":"Palette Color 4"},{"color":"#4A5568","slug":"palette5","name":"Palette Color 5"},{"color":"#718096","slug":"palette6","name":"Palette Color 6"},{"color":"#EDF2F7","slug":"palette7","name":"Palette Color 7"},{"color":"#F7FAFC","slug":"palette8","name":"Palette Color 8"},{"color":"#ffffff","slug":"palette9","name":"Palette Color 9"}],"third-palette":[{"color":"#2B6CB0","slug":"palette1","name":"Palette Color 1"},{"color":"#215387","slug":"palette2","name":"Palette Color 2"},{"color":"#1A202C","slug":"palette3","name":"Palette Color 3"},{"color":"#2D3748","slug":"palette4","name":"Palette Color 4"},{"color":"#4A5568","slug":"palette5","name":"Palette Color 5"},{"color":"#718096","slug":"palette6","name":"Palette Color 6"},{"color":"#EDF2F7","slug":"palette7","name":"Palette Color 7"},{"color":"#F7FAFC","slug":"palette8","name":"Palette Color 8"},{"color":"#ffffff","slug":"palette9","name":"Palette Color 9"}],"active":"palette"}' );
+			self::$default_palette = apply_filters( 'base_global_palette_defaults',
+			'{"palette":
+			[{"color":"#2B6CB0","slug":"palette1","name":"Palette Color 1"},
+			{"color":"#215387","slug":"palette2","name":"Palette Color 2"},
+			{"color":"#1A202C","slug":"palette3","name":"Palette Color 3"},
+			{"color":"#2D3748","slug":"palette4","name":"Palette Color 4"},
+			{"color":"#4A5568","slug":"palette5","name":"Palette Color 5"},
+			{"color":"#718096","slug":"palette6","name":"Palette Color 6"},
+			{"color":"#EDF2F7","slug":"palette7","name":"Palette Color 7"},
+			{"color":"#F7FAFC","slug":"palette8","name":"Palette Color 8"},
+			{"color":"#ffffff","slug":"palette9","name":"Palette Color 9"}],
+			"second-palette":
+			[{"color":"#fed700","slug":"palette1","name":"Palette Color 1"},
+			{"color":"#d6b500","slug":"palette2","name":"Palette Color 2"},
+			{"color":"#ffffff","slug":"palette3","name":"Palette Color 3"},
+			{"color":"#d9d9d9","slug":"palette4","name":"Palette Color 4"},
+			{"color":"#6e767d","slug":"palette5","name":"Palette Color 5"},
+			{"color":"#8f8f8f","slug":"palette6","name":"Palette Color 6"},
+			{"color":"#212121","slug":"palette7","name":"Palette Color 7"},
+			{"color":"#0c0c0c","slug":"palette8","name":"Palette Color 8"},
+			{"color":"#181818","slug":"palette9","name":"Palette Color 9"}],
+			"third-palette":
+			[{"color":"#2B6CB0","slug":"palette1","name":"Palette Color 1"},
+			{"color":"#215387","slug":"palette2","name":"Palette Color 2"},
+			{"color":"#1A202C","slug":"palette3","name":"Palette Color 3"},
+			{"color":"#2D3748","slug":"palette4","name":"Palette Color 4"},
+			{"color":"#4A5568","slug":"palette5","name":"Palette Color 5"},
+			{"color":"#718096","slug":"palette6","name":"Palette Color 6"},
+			{"color":"#EDF2F7","slug":"palette7","name":"Palette Color 7"},
+			{"color":"#F7FAFC","slug":"palette8","name":"Palette Color 8"},
+			{"color":"#ffffff","slug":"palette9","name":"Palette Color 9"}],
+			"active":"palette"}' );
 		}
 		return self::$default_palette;
 	}

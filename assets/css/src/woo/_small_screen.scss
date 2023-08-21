@@ -14,7 +14,6 @@
   */
   @media screen and (max-width: $phone-minus-query) {
     .woocommerce div.product .woocommerce-tabs {
-        border: 1px solid var(--global-gray-400);
         margin-bottom: 2em;
         ul.tabs {
             padding: 0;
@@ -47,9 +46,12 @@
         }
     }
     .woocommerce.product-tab-style-center div.product .woocommerce-tabs ul.tabs {
+		display: flex;
+		justify-content: unset; 
+		overflow-x: auto;
         li {
             border: 0;
-            border-bottom: 1px solid var(--global-gray-400);
+            flex-shrink: 0;
         }
     }
     .woocommerce #reviews #comments ol.commentlist li img.avatar {
@@ -109,7 +111,7 @@
  
              &:nth-child( 2n ) {
                  td {
-                     background-color: rgba(0, 0, 0, 0.025);
+                     background-color: var(--global-palette8);
                  }
              }
          }

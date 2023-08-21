@@ -116,6 +116,46 @@ width: auto;
 margin-left: 0;
 margin-top: 0;
 }
+// Courses
+.learndash-wrapper .ld-course-status.ld-course-status-enrolled {
+	background-color: var(--global-palette7);
+}
+.learndash-wrapper .ld-progress .ld-progress-bar {
+	background-color: var(--global-palette9);
+}
+.learndash-wrapper .ld-item-list .ld-item-list-item {
+	background: var(--global-palette9);
+    border-color: var(--global-gray-400);
+}
+.learndash-wrapper .ld-status-incomplete.ld-status-icon {
+	background-color: var(--global-palette9);
+	border-color: var(--global-gray-400);
+}
+.learndash-wrapper .ld-item-list .ld-item-list-item .ld-item-name {
+	color: var(--global-palette4);
+}
+// Focus 
+.learndash-wrapper .ld-course-navigation .ld-lesson-item-preview a.ld-lesson-item-preview-heading {
+	color: var(--global-palette4);
+}
+.learndash-wrapper #learndash_mark_complete_button:hover, .learndash-wrapper .learndash_mark_complete_button:hover {
+	color: #fff;
+}
+.learndash-wrapper .ld-course-navigation .ld-lesson-item-preview .ld-expand-button {
+	color: var(--global-palette6);
+}
+.learndash-wrapper .ld-focus .ld-focus-sidebar .ld-course-navigation .ld-topic-list.ld-table-list {
+	background-color: var(--global-palette7);
+}
+.learndash-wrapper .ld-focus .ld-focus-sidebar .ld-course-navigation .ld-topic-list.ld-table-list:before {
+	background: var(--global-palette9);
+}
+.learndash-wrapper .ld-table-list a.ld-table-list-item-preview {
+	color: var(--global-palette4);
+}
+.learndash-wrapper .ld-course-navigation .ld-status-icon.ld-status-incomplete {
+	border-color: var(--global-gray-400);
+}
 // Temp Fix till learndash updates their css.
 .wp-site-blocks .learndash-wrapper .ld-item-list .ld-item-list-item .ld-item-name {
     flex: 1;

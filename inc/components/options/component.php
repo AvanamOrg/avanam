@@ -1106,6 +1106,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 							'color' => 'palette9',
 						),
 					),
+					'header_popup_text_color'  => array(
+						'color' => 'palette4',
+					),
 					'header_popup_close_color'  => array(
 						'color' => 'palette3',
 						'hover' => '',
@@ -3335,6 +3338,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'weight'  => '',
 						'variant' => '',
 					),
+					'header_cart_title_color'              => array(
+						'color' => '',
+						'hover' => '',
+					),
 					'header_cart_typography'            => array(
 						'size' => array(
 							'desktop' => '',
@@ -3346,6 +3353,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'google'  => false,
 						'weight'  => '',
 						'variant' => '',
+					),
+					'header_cart_label_color'              => array(
+						'color' => '',
+						'hover' => '',
 					),
 					'header_cart_padding' => array(
 						'size'   => array( '', '', '', '' ),
@@ -4694,14 +4705,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			{"color":"#F7FAFC","slug":"palette8","name":"Palette Color 8"},
 			{"color":"#ffffff","slug":"palette9","name":"Palette Color 9"}],
 			"second-palette":
-			[{"color":"#fed700","slug":"palette1","name":"Palette Color 1"},
-			{"color":"#d6b500","slug":"palette2","name":"Palette Color 2"},
-			{"color":"#ffffff","slug":"palette3","name":"Palette Color 3"},
-			{"color":"#d9d9d9","slug":"palette4","name":"Palette Color 4"},
-			{"color":"#6e767d","slug":"palette5","name":"Palette Color 5"},
-			{"color":"#8f8f8f","slug":"palette6","name":"Palette Color 6"},
+			[{"color":"#ffd21d","slug":"palette1","name":"Palette Color 1"},
+			{"color":"#e7ba0a","slug":"palette2","name":"Palette Color 2"},
+			{"color":"#f8f9fb","slug":"palette3","name":"Palette Color 3"},
+			{"color":"#888888","slug":"palette4","name":"Palette Color 4"},
+			{"color":"#cccccc","slug":"palette5","name":"Palette Color 5"},
+			{"color":"#e4e4e4","slug":"palette6","name":"Palette Color 6"},
 			{"color":"#212121","slug":"palette7","name":"Palette Color 7"},
-			{"color":"#0c0c0c","slug":"palette8","name":"Palette Color 8"},
+			{"color":"#0f0f0f","slug":"palette8","name":"Palette Color 8"},
 			{"color":"#181818","slug":"palette9","name":"Palette Color 9"}],
 			"third-palette":
 			[{"color":"#2B6CB0","slug":"palette1","name":"Palette Color 1"},

@@ -156,8 +156,7 @@
       #primary{
         div.product,
         #content div.product {
-            div.images,
-            div.summary {
+            .wrap-summary {
                 /* float: none;
                 width: 100%; */
                 flex-direction: column;

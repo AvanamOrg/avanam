@@ -20,6 +20,7 @@
         background: var(--global-palette7);
         box-shadow: none;
         border-radius: 3px;
+        font-size: 17px;
         .base-svg-iconset {
             pointer-events: none;
         }
@@ -151,9 +152,6 @@ select.orderby {
               border: 1px solid #f2f2f2;
           }
   
-          .star-rating {
-              font-size: 0.85em;
-          }
           .button {
 			.base-svg-iconset svg {
 				margin-left: 0.5em;

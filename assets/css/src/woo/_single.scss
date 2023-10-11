@@ -396,10 +396,9 @@
 				table {
 					&.bordered {
 						border: 1px solid var(--global-gray-400);
+						background-color: var(--global-palette9);
 						border-spacing: 0;
 						display: block;
-						max-width: -moz-fit-content;
-						max-width: fit-content;
 						overflow-x: auto;
 						white-space: nowrap;
 						scrollbar-width: thin;
@@ -424,6 +423,15 @@
 							&:nth-child(odd) {
 								background-color: var(--global-palette8);
 							}
+							&:last-child{
+								td, th {
+									border: none;
+								}
+							}
+						}
+						tbody {
+							display: table;
+							width: 100%;
 						}
 					}
 				}
@@ -516,6 +524,9 @@
 			.button {
 				vertical-align: middle;
 				float: left;
+				.base-svg-iconset {
+					display: none;
+				}
 			}
 
 			.group_table {

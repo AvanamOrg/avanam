@@ -259,6 +259,24 @@ $settings = array(
 			'tooltip'  => __( 'Popup Background', 'avanam' ),
 		),
 	),
+	'header_popup_text_color' => array(
+		'control_type' => 'base_color_control',
+		'section'      => 'header_popup_design',
+		'label'        => esc_html__( 'Popup Color', 'avanam' ),
+		'default'      => webapp()->default( 'header_popup_text_color' ),
+		'live_method'     => array(
+			array(
+				'type'     => 'css',
+				'selector' => '#mobile-drawer .drawer-inner, #mobile-drawer.popup-drawer-layout-fullwidth.popup-drawer-animation-slice .pop-portion-bg',
+				'property' => 'color',
+				'pattern'  => '$',
+				'key'      => 'color',
+			),
+		),
+		'input_attrs'  => array(
+			'tooltip'  => __( 'Popup Color', 'avanam' ),
+		),
+	),
 	'header_popup_close_icon_size' => array(
 		'control_type' => 'base_range_control',
 		'section'      => 'header_popup_design',

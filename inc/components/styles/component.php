@@ -977,6 +977,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'border-left', $css->render_border( webapp()->option( 'mobile_navigation_divider' ) ) );
 		// Mobile Popout.
 		$css->set_selector( '#mobile-drawer .drawer-inner, #mobile-drawer.popup-drawer-layout-fullwidth.popup-drawer-animation-slice .pop-portion-bg, #mobile-drawer.popup-drawer-layout-fullwidth.popup-drawer-animation-slice.pop-animated.show-drawer .drawer-inner' );
+		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_popup_text_color', 'color' ) ) );
 		$css->render_background( webapp()->sub_option( 'header_popup_background', 'desktop' ), $css );
 		$css->start_media_query( $media_query['tablet'] );
 		$css->set_selector( '#mobile-drawer .drawer-inner, #mobile-drawer.popup-drawer-layout-fullwidth.popup-drawer-animation-slice .pop-portion-bg, #mobile-drawer.popup-drawer-layout-fullwidth.popup-drawer-animation-slice.pop-animated.show-drawer .drawer-inner' );
@@ -986,6 +987,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '#mobile-drawer .drawer-inner, #mobile-drawer.popup-drawer-layout-fullwidth.popup-drawer-animation-slice .pop-portion-bg, #mobile-drawer.popup-drawer-layout-fullwidth.popup-drawer-animation-slice.show-drawer.pop-animated .drawer-inner' );
 		$css->render_background( webapp()->sub_option( 'header_popup_background', 'mobile' ), $css );
 		$css->stop_media_query();
+ 
 		$css->set_selector( '#mobile-drawer .drawer-header .drawer-toggle' );
 		$css->add_property( 'padding', $this->render_measure( webapp()->option( 'header_popup_close_padding' ) ) );
 		$css->add_property( 'font-size', webapp()->sub_option( 'header_popup_close_icon_size', 'size' ) . webapp()->sub_option( 'header_popup_close_icon_size', 'unit' ) );
@@ -1037,13 +1039,19 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->add_property( 'background', $this->render_color( webapp()->sub_option( 'header_cart_total_background', 'hover' ) ) );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_total_color', 'hover' ) ) );
 			$css->set_selector( '.header-cart-wrap .header-cart-button .header-cart-label' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_label_color', 'color' ) ) );
 			$css->render_font( webapp()->option( 'header_cart_typography' ), $css );
 			if ( ! empty( webapp()->sub_option( 'header_cart_icon_size', 'size' ) ) ) {
 				$css->set_selector( '.header-cart-wrap .header-cart-button .base-svg-iconset' );
 				$css->add_property( 'font-size', webapp()->sub_option( 'header_cart_icon_size', 'size' ) . webapp()->sub_option( 'header_cart_icon_size', 'unit' ) );
 			}
+			$css->set_selector( '.header-cart-wrap .header-cart-button:hover .header-cart-label' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_label_color', 'hover' ) ) );
 			$css->set_selector( '.header-cart-wrap .header-cart-button .header-cart-title' );
 			$css->render_font( webapp()->option( 'header_cart_title_typography' ), $css );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'color' ) ) );
+			$css->set_selector( '.header-cart-wrap .header-cart-button:hover .header-cart-title' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'hover' ) ) );
 
 			// Mobile Cart.
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-inner-wrap .header-cart-button' );
@@ -2789,7 +2797,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			// Product Archive Columns Mobile.
 			if ( 'twocolumn' === webapp()->option( 'product_archive_mobile_columns' ) ) {
 				$css->start_media_query( $media_query['mobile'] );
-				$css->set_selector( '.woocommerce ul.products:not(.products-list-view), .wp-site-blocks .wc-block-grid:not(.has-2-columns):not(has-1-columns) .wc-block-grid__products' );
+				$css->set_selector( '.woocommerce ul.products:not(.products-list-view):not(.splide__list), .wp-site-blocks .wc-block-grid:not(.has-2-columns):not(has-1-columns) .wc-block-grid__products' );
 				$css->add_property( 'grid-template-columns', 'repeat(2, minmax(0, 1fr))' );
 				$css->add_property( 'column-gap', '0.5rem' );
 				$css->add_property( 'grid-row-gap', '0.5rem' );

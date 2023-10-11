@@ -257,21 +257,6 @@ body:not(.hide-focus-outline) .header-navigation li.menu-item--has-toggle>a:focu
 	transition: all .2s ease-in-out;
 	transform: translate3d(0,0,0);
 }
-.header-navigation-style-standard.header-navigation > div > ul > li > a:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 0;
-    border-bottom: 1px solid var(--global-palette-highlight);
-	-webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-.header-navigation-style-standard.header-navigation > div > ul > li > a:hover:after {
-	left: 0;
-    right: auto;
-    width: 100%;
-}
 .header-navigation li.menu-item > a:hover,
 .header-navigation li.menu-item > a:focus {
 	color: var(--global-palette-highlight);

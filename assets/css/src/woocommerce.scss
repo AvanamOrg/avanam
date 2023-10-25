@@ -468,17 +468,23 @@
                  width: 100%;
                  background: none;
                  list-style: none;
-                 padding-left: 0;
                  margin-left: 0;
+                 border: 1px solid var(--global-gray-400);
+                 border-radius: 4px;
+                 padding: 15px;
  
                  li {
-                     padding: 0;
+                    padding: 0 0 var(--global-md-spacing);
                      margin: 0 0 var(--global-md-spacing);
-                     border: 0;
+                    border-bottom: 1px solid var(--global-gray-400);
                      position: relative;
                      background: 0;
-                     border: 0;
- 
+                    &:last-child{
+                        border-bottom: none;
+                        padding: 0;
+                        margin: 0;
+                    }
+
                      .meta {
                          color: var(--global-palette6);
                          font-size: 0.75em;
@@ -498,9 +504,7 @@
  
                      .comment-text {
                         margin: 0 0 0 70px;
-                         border: 1px solid var(--global-gray-400);
-                         border-radius: 4px;
-                         padding: 1em 1em 0;
+                        padding: 0;
  
                          @include clearfix();
  
@@ -509,7 +513,7 @@
                          }
  
                          p.meta {
-                             font-size: 0.83em;
+                             font-size: 0.90em;
                          }
                      }
                  }
@@ -723,6 +727,8 @@
              border-bottom: 1px dotted var(--global-gray-400);
              margin: 0;
              line-height: 1.5;
+             color: var(--global-palette3);
+             text-align: unset;
          }
  
          td {
@@ -982,7 +988,7 @@
              padding-top: 0;
              padding-bottom: 15px;
             margin-bottom: 15px;
-            border-bottom: 1px solid var(--global-palette7);
+            border-bottom: 1px solid var(--global-gray-400);
             &:last-child {
                 border-bottom: 0;
                 margin-bottom: 0;

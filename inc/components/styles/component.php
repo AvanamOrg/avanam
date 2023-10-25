@@ -1668,6 +1668,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'sidebar_link_colors', 'color' ) ) );
 		$css->set_selector( '.primary-sidebar.widget-area .sidebar-inner-wrap a:where(:not(.button):not(.wp-block-button__link):not(.wp-element-button)):hover' );
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'sidebar_link_colors', 'hover' ) ) );
+		$css->set_selector( '.primary-sidebar.sidebar-link-style-normal .tmcore-wp-widget-filter ul.list-style-normal li a.filter-link:after' );
+		$css->add_property( 'border-bottom-color', $css->render_color( webapp()->sub_option( 'sidebar_link_colors', 'hover' ) ) );
 		$css->set_selector( '.primary-sidebar.widget-area' );
 		$css->render_background( webapp()->sub_option( 'sidebar_background', 'desktop' ), $css );
 		$css->add_property( 'padding', $this->render_responsive_measure( webapp()->option( 'sidebar_padding' ), 'desktop' ) );
@@ -1816,6 +1818,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'footer_middle_link_colors', 'color' ) ) );
 		$css->set_selector( '.site-footer .site-middle-footer-wrap a:where(:not(.button):not(.wp-block-button__link):not(.wp-element-button)):hover' );
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'footer_middle_link_colors', 'hover' ) ) );
+		$css->set_selector( '.site-footer .site-footer-row.ft-ro-lstyle-plain a:after' );
+		$css->add_property( 'border-bottom-color', $css->render_color( webapp()->sub_option( 'footer_middle_link_colors', 'hover' ) ) );
 		$css->set_selector( '.site-middle-footer-inner-wrap' );
 		$css->add_property( 'min-height', $this->render_range( webapp()->option( 'footer_middle_height' ), 'desktop' ) );
 		$css->add_property( 'padding-top', $this->render_range( webapp()->option( 'footer_middle_top_spacing' ), 'desktop' ) );

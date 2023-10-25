@@ -552,11 +552,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				</svg>';
 				break;
 			case 'list':
-				$output .= '<svg class="base-svg-icon base-list-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">';
+				$output .= '<svg class="base-svg-icon base-list-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 38 38">';
 				if ( $display_title ) {
 					$output .= '<title>' . ( ! empty( $icon_title ) ? $icon_title : esc_html__( 'List', 'avanam' ) ) . '</title>';
 				}
-				$output .= '<path d="M1 3h14v3h-14zM1 7h14v3h-14zM1 11h14v3h-14z"></path>
+				$output .= '<g id="Shopicon"> <rect x="0" y="10" width="35.964" height="5"></rect> <rect x="0" y="20" width="35.964" height="5"></rect> <rect x="0" y="30" width="35.964" height="5"></rect> </g>
 				</svg>';
 				break;
 			case 'account':

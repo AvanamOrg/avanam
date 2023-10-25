@@ -193,6 +193,9 @@
 /* Comment Form */
 .comment-form {
 	line-height: 1.3;
+	background-color: var(--global-palette8);
+    padding: 30px;
+    border-radius: 4px;
 	p {
 		margin: 1.5em 0;
 	}

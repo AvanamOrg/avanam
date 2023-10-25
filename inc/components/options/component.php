@@ -3117,9 +3117,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'product_content_element_extras' => array(
 						'enabled'   => true,
-						'title'     => __( 'Free shipping on orders over $50!', 'avanam' ),
-						'feature_1' => __( 'Satisfaction Guaranteed', 'avanam' ),
-						'feature_2' => __( 'Secure Payments', 'avanam' ),
+						'title'     => __( '', 'avanam' ),
+						'feature_1' => __( '<strong>Estimated Delivery : </strong> Up to 4 business days', 'avanam' ),
+						'feature_2' => __( '<strong>Free Shipping & Returns : </strong> On all orders over $200', 'avanam' ),
 						'feature_3' => '',
 						'feature_4' => '',
 						'feature_5' => '',
@@ -3131,7 +3131,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'product_content_element_payments' => array(
 						'enabled' => true,
-						'title'     => __( 'Guaranteed Safe Checkout', 'avanam' ),
+						'title'     => __( 'Guaranteed Safe And Secure Checkout', 'avanam' ),
 						'visa' => true,
 						'mastercard' => true,
 						'amex' => true,

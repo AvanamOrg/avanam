@@ -54,16 +54,18 @@
 		text-decoration: none;
 	}
 	.woocommerce-product-details__short-description {
-		margin-bottom: 2em;
+		margin-bottom: 1em;
 	}
 	.single-product-extras {
-		margin-bottom: 2em;
+		border-top: 1px solid var(--global-gray-400);
+		padding-top: 1em;
+		margin: 1em 0;
 		ul {
 			padding: 0;
 			margin: 0 0 1.5em 0;
 			list-style:none;
 			li {
-				line-height: 1.8em;
+				line-height: 2em;
 			}
 			.base-svg-iconset {
 				padding-right: 0.25em;
@@ -79,8 +81,8 @@
 		background-color: var(--global-palette8);
 		text-align: center;
 		.title {
-			color: var(--global-palette4);
-			font-size: calc(100% - 2px);
+			color: var(--global-palette3);
+			font-size: calc(100% - 1px);
 			font-weight: 500;
 		}
 		ul {
@@ -122,7 +124,7 @@
 
 		.product_title {
 			clear: none;
-			margin-top: 0;
+			margin: 0 0 0.3em 0;
 			padding: 0;
 		}
 
@@ -144,6 +146,7 @@
 
 		p.stock {
 			font-size: 0.92em;
+			font-weight: 500;
 		}
 
 		.stock {
@@ -341,7 +344,6 @@
 				margin: 0 0 1.618em;
 				overflow: hidden;
 				position: relative;
-				border-bottom: 1px solid var(--global-gray-400);
 
 				li {
 					border: 1px solid var(--global-gray-400);
@@ -355,11 +357,11 @@
 
 					a {
 						display: inline-block;
-						padding: 0.5em 1em;
-						font-weight: bold;
+						padding: 1em 1em;
+						font-weight: 500;
 						color: var(--global-palette5);
 						text-decoration: none;
-						font-size: calc(100% + 2px);
+						font-size: calc(100% + 3px);
 						&:hover {
 							text-decoration: none;
 							color: var(--global-palette3);
@@ -372,7 +374,7 @@
 						border-bottom-color: var(--global-palette9);
 
 						a {
-							color: var(--global-palette4);
+							color: var(--global-palette3);
 							text-shadow: inherit;
 						}
 					}
@@ -444,13 +446,13 @@
 		}
 
 		form.cart {
-			margin-bottom: 2em;
+			margin-bottom: 1em;
 
 			@include clearfix();
 
 			div.quantity {
 				float: left;
-				margin: 0 4px 0 0;
+				margin: 0 1em 0 0;
 			}
 
 			table {
@@ -485,6 +487,7 @@
 
 				label {
 					font-weight: 700;
+					color: var(--global-palette3);
 				}
 
 				select {
@@ -592,7 +595,7 @@
 		li {
 			border: 0;
 			border-bottom: 3px solid transparent;
-			margin: 0 0.6em;
+			margin: 0 1em;
 			background: transparent;
 			a {
 				padding-left: 0;

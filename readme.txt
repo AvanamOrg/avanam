@@ -4,7 +4,7 @@ Tags: translation-ready, two-columns, right-sidebar, left-sidebar, footer-widget
 Requires at least: 5.4
 Tested up to: 6.4
 Requires PHP: 7.2
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GNU General Public License v3.0 (or later)
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 

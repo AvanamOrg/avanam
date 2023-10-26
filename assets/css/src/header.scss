@@ -287,6 +287,10 @@ a.social-button.has-custom-image {
 			color:white;
 			box-shadow: 5px 5px 0px 0px currentColor;
 		}
+		@media screen and (max-width: $before-tablet-query) {
+			padding: 0.5em 50px 0.5em 1em;
+			font-size: 15px;
+		}
 	}
 	.search-submit[type="submit"] {
 		width: 70px;

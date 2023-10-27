@@ -160,7 +160,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$fields['url'] = '<p class="comment-form-url"><input aria-label="' . esc_attr__( 'Website', 'avanam' ) . '" id="url" name="url" type="url" placeholder="' . esc_attr__( 'https://www.example.com', 'avanam' ) . '" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" maxlength="200" /><label class="float-label" for="url">' . esc_html__( 'Website', 'avanam' ) . '</label></p></div>';
 		}
 
-		return apply_filters( 'base_comment_fields', $fields );
+		$new_fields = array(
+			'author' => $fields['author'],
+			'email' => $fields['email'],
+			'url' => $fields['url'],
+			'cookies' => $fields['cookies'],
+		);
+		
+		return apply_filters( 'base_comment_fields', $new_fields );
 	}
 
 	/**

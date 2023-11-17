@@ -3093,6 +3093,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_additional_weight_dimensions' => true,
 					'product_related_style'      => 'standard',
 					'product_related_columns'    => '5',
+					'product_upsell_columns'    => '5',
 					'product_content_elements'           => array( 'category', 'title', 'rating', 'price', 'excerpt', 'add_to_cart', 'extras', 'payments', 'product_meta', 'share' ),
 					'product_content_element_category' => array(
 						'enabled' => false,

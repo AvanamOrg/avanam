@@ -38,6 +38,9 @@
 	.up-sells.products, .related.products {
 		clear: both;
 	}
+	.up-sells.products {
+		margin: 0 0 4em 0;
+	}
 	.quantity .qty {
 		width: 3.631em;
 		text-align: center;
@@ -311,6 +314,9 @@
 			color: var(--global-palette6);
 			a {
 				color: inherit;
+				&:hover{
+					color: var(--global-palette1);
+				}
 			}
 		}
 		div.social {
@@ -527,6 +533,10 @@
 			.button {
 				vertical-align: middle;
 				float: left;
+				@media screen and (max-width: $landscape-phone-minus-query) {
+					clear: both;
+					margin: 1em 0 0 0;
+				}
 				.base-svg-iconset {
 					display: none;
 				}
@@ -817,6 +827,10 @@
 .woocommerce.base-cart-button-normal div.product div.summary .added_to_cart {
     margin-top: 0;
     margin-left: 1em;
+	@media screen and (max-width: $landscape-phone-minus-query) {
+		float: left;
+		margin: 1em 0 0 1em;
+	}
 }
 .base-sticky-add-to-cart-action-wrap .single_add_to_cart_button {
     height: 40px;

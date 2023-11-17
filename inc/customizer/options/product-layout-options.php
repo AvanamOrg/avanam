@@ -766,6 +766,31 @@ $settings = array(
 			'responsive' => false,
 		),
 	),
+	'product_upsell_columns' => array(
+		'control_type' => 'base_radio_icon_control',
+		'section'      => 'product_layout',
+		'priority'     => 10,
+		'label'        => esc_html__( 'Upsell Products Columns', 'avanam' ),
+		'transport'    => 'refresh',
+		'default'      => webapp()->default( 'product_upsell_columns' ),
+		'input_attrs'  => array(
+			'layout' => array(
+				'3' => array(
+					'name' => __( '3', 'avanam' ),
+				),
+				'4' => array(
+					'name' => __( '4', 'avanam' ),
+				),
+				'5' => array(
+					'name' => __( '5', 'avanam' ),
+				),
+				'6' => array(
+					'name' => __( '6', 'avanam' ),
+				),
+			),
+			'responsive' => false,
+		),
+	),
 	'product_background' => array(
 		'control_type' => 'base_background_control',
 		'section'      => 'product_layout_design',

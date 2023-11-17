@@ -1,6 +1,10 @@
+== 1.3.5 | 11th November 2023 ==
+* Add: Upsell options.
+* Fix: Comment css.
+
 == 1.3.4 | 27th October 2023 ==
-* Fix: Cart Button on Product Details Page.
-* Fix: Comment Form.
+* Fix: Cart button on product details page.
+* Fix: Comment form.
 
 == 1.3.3 | 26th October 2023 ==
 * Update: CSS updates.

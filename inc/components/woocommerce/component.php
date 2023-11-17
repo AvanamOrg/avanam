@@ -177,6 +177,8 @@ class Component implements Component_Interface {
 		add_filter( 'woocommerce_blocks_product_grid_item_html', array( $this, 'custom_block_html' ), 2, 3 );
 		// Change related products columns.
 		add_filter( 'woocommerce_output_related_products_args', array( $this, 'related_products_columns' ), 20 );
+		// Change Upsell products columns.
+		add_filter( 'woocommerce_upsell_display_args', array( $this, 'upsell_products_columns' ), 20 );
 		// Add js for category toggling.
 		add_filter( 'woocommerce_product_categories_widget_args', array( $this, 'category_widget_toggle_script' ) );
 		// Add menu-item class to submenu of woo account nav.
@@ -334,6 +336,18 @@ class Component implements Component_Interface {
 	 */
 	public function related_products_columns( $args ) {
 		$columns = absint( webapp()->option( 'product_related_columns' ) );
+		$args['posts_per_page'] = $columns;
+		$args['columns'] = $columns;
+		return $args;
+	}
+	/**
+	 * Sets columns for upsell columns.
+	 *
+	 * @param array $args for the upsell columns.
+	 * @return array updated args array.
+	 */
+	public function upsell_products_columns( $args ) {
+		$columns = absint( webapp()->option( 'product_upsell_columns' ) );
 		$args['posts_per_page'] = $columns;
 		$args['columns'] = $columns;
 		return $args;

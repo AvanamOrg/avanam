@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0 (or later).
 msgid ""
 msgstr ""
-"Project-Id-Version: Avanam 1.3.2\n"
+"Project-Id-Version: Avanam 1.3.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/avanam\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-10-25T09:30:38+00:00\n"
+"POT-Creation-Date: 2023-12-03T06:32:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: avanam\n"
@@ -491,11 +491,11 @@ msgstr ""
 msgid "https://www.example.com"
 msgstr ""
 
-#: inc/components/comments/component.php:175
+#: inc/components/comments/component.php:182
 msgid "Leave a comment..."
 msgstr ""
 
-#: inc/components/comments/component.php:175
+#: inc/components/comments/component.php:182
 #: template-parts/content/entry_loop_meta.php:317
 #: template-parts/content/entry_meta.php:289
 #: template-parts/title/meta.php:290
@@ -1144,19 +1144,19 @@ msgstr ""
 msgid "Free shipping on orders over $50!"
 msgstr ""
 
-#: inc/components/options/component.php:3109
+#: inc/components/options/component.php:3110
 msgid "& Free Shipping"
 msgstr ""
 
-#: inc/components/options/component.php:3121
+#: inc/components/options/component.php:3122
 msgid "<strong>Estimated Delivery : </strong> Up to 4 business days"
 msgstr ""
 
-#: inc/components/options/component.php:3122
+#: inc/components/options/component.php:3123
 msgid "<strong>Free Shipping & Returns : </strong> On all orders over $200"
 msgstr ""
 
-#: inc/components/options/component.php:3134
+#: inc/components/options/component.php:3135
 msgid "Guaranteed Safe And Secure Checkout"
 msgstr ""
 
@@ -1186,7 +1186,7 @@ msgid "Collapse child menu of"
 msgstr ""
 
 #. translators: %s: stylesheet handle
-#: inc/components/styles/component.php:4903
+#: inc/components/styles/component.php:4901
 msgid "Invalid theme stylesheet handle: %s"
 msgstr ""
 
@@ -1210,21 +1210,21 @@ msgstr ""
 msgid "The template tag method %1$s registered by theme component %2$s conflicts with an already registered template tag of the same name."
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1017
+#: inc/components/woocommerce/component.php:1031
 msgid "Cart Summary"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1052
+#: inc/components/woocommerce/component.php:1066
 msgid "Update Profile Photo"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1355
-#: inc/components/woocommerce/component.php:1367
+#: inc/components/woocommerce/component.php:1369
+#: inc/components/woocommerce/component.php:1381
 msgid "List View"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1358
-#: inc/components/woocommerce/component.php:1364
+#: inc/components/woocommerce/component.php:1372
+#: inc/components/woocommerce/component.php:1378
 msgid "Grid View"
 msgstr ""
 
@@ -2465,7 +2465,7 @@ msgstr ""
 #: inc/customizer/options/post-archive-layout-options.php:836
 #: inc/customizer/options/post-layout-options.php:1073
 #: inc/customizer/options/product-archive-layout-options.php:992
-#: inc/customizer/options/product-layout-options.php:772
+#: inc/customizer/options/product-layout-options.php:797
 #: inc/customizer/options/search-layout-options.php:710
 #: inc/customizer/options/tec-event-layout-options.php:729
 #: inc/customizer/options/topic-layout-options.php:824
@@ -2501,7 +2501,7 @@ msgstr ""
 #: inc/customizer/options/post-archive-layout-options.php:854
 #: inc/customizer/options/post-layout-options.php:1091
 #: inc/customizer/options/product-archive-layout-options.php:1010
-#: inc/customizer/options/product-layout-options.php:790
+#: inc/customizer/options/product-layout-options.php:815
 #: inc/customizer/options/search-layout-options.php:728
 #: inc/customizer/options/tec-event-layout-options.php:748
 #: inc/customizer/options/topic-layout-options.php:843
@@ -3613,6 +3613,7 @@ msgstr ""
 #: inc/customizer/options/post-archive-layout-options.php:564
 #: inc/customizer/options/post-layout-options.php:1020
 #: inc/customizer/options/product-layout-options.php:754
+#: inc/customizer/options/product-layout-options.php:779
 #: inc/customizer/options/search-layout-options.php:476
 msgid "3"
 msgstr ""
@@ -3628,6 +3629,7 @@ msgstr ""
 #: inc/customizer/options/post-archive-layout-options.php:567
 #: inc/customizer/options/post-layout-options.php:1023
 #: inc/customizer/options/product-layout-options.php:757
+#: inc/customizer/options/product-layout-options.php:782
 #: inc/customizer/options/search-layout-options.php:479
 msgid "4"
 msgstr ""
@@ -3695,6 +3697,7 @@ msgstr ""
 #: inc/customizer/options/footer-middle-options.php:109
 #: inc/customizer/options/footer-top-options.php:109
 #: inc/customizer/options/product-layout-options.php:760
+#: inc/customizer/options/product-layout-options.php:785
 msgid "5"
 msgstr ""
 
@@ -6676,14 +6679,19 @@ msgid "Related Products Columns"
 msgstr ""
 
 #: inc/customizer/options/product-layout-options.php:763
+#: inc/customizer/options/product-layout-options.php:788
 msgid "6"
 msgstr ""
 
-#: inc/customizer/options/product-layout-options.php:784
+#: inc/customizer/options/product-layout-options.php:773
+msgid "Upsell Products Columns"
+msgstr ""
+
+#: inc/customizer/options/product-layout-options.php:809
 msgid "Product Background"
 msgstr ""
 
-#: inc/customizer/options/product-layout-options.php:802
+#: inc/customizer/options/product-layout-options.php:827
 msgid "Product Content Background"
 msgstr ""
 

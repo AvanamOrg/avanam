@@ -1818,8 +1818,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'footer_middle_link_colors', 'color' ) ) );
 		$css->set_selector( '.site-footer .site-middle-footer-wrap a:where(:not(.button):not(.wp-block-button__link):not(.wp-element-button)):hover' );
 		$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'footer_middle_link_colors', 'hover' ) ) );
-		$css->set_selector( '.site-footer .site-footer-row.ft-ro-lstyle-plain a:after' );
-		$css->add_property( 'border-bottom-color', $css->render_color( webapp()->sub_option( 'footer_middle_link_colors', 'hover' ) ) );
 		$css->set_selector( '.site-middle-footer-inner-wrap' );
 		$css->add_property( 'min-height', $this->render_range( webapp()->option( 'footer_middle_height' ), 'desktop' ) );
 		$css->add_property( 'padding-top', $this->render_range( webapp()->option( 'footer_middle_top_spacing' ), 'desktop' ) );

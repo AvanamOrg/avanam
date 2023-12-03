@@ -53,23 +53,9 @@
 		}
 	}
 	&.ft-ro-lstyle-plain a {
-		position: relative;
 		text-decoration: none;
-		&:after {
-			content: '';
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			width: 0;
-			border-bottom: 1px solid var(--global-palette-highlight);
-			transition: all .3s ease;
-		}
 		&:hover {
-			&:after {
-				left: 0;
-				right: auto;
-				width: 100%;
-			}
+			text-decoration: underline;
 		}
 	}
 }

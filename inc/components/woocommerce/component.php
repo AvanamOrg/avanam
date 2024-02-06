@@ -101,8 +101,6 @@ class Component implements Component_Interface {
 		add_action( 'woocommerce_after_single_product_summary', array( $this, 'wrap_single_product_image_summary_close' ), 1 );
 		// Add Single product reviews css.
 		add_action( 'woocommerce_after_single_product_summary', array( $this, 'single_product_comment_css' ), 5 );
-		// Add woocommerce grouped product thumbnail
-		add_action( 'woocommerce_grouped_product_list_before_quantity', array( $this, 'grouped_product_thumbnail' ) );
 		// Loop Start.
 		add_filter( 'woocommerce_product_loop_start', array( $this, 'product_loop_start' ), 5 );
 		add_filter( 'base_blocks_carousel_woocommerce_product_loop_start', array( $this, 'product_loop_start' ), 5 );
@@ -474,7 +472,7 @@ class Component implements Component_Interface {
 		}
 		$output = "<li class=\"wc-block-grid__product entry loop-entry content-bg {$action_style} {$button_style} {$boxed_class} {$hover_style}\">";
 		if ( $product_image ) {
-			$output .= "<a href=\"{$new_data->permalink}\" class=\"{$product_image_link}\" aria-label=\"{$new_data->title}\">
+			$output .= "<a href=\"{$new_data->permalink}\" class=\"{$product_image_link}\" aria-label=\"".  esc_attr( $product->get_name() ) ."\">
 					{$new_data->image}
 					{$new_data->second_image}
 				</a>";
@@ -1448,13 +1446,4 @@ class Component implements Component_Interface {
 		echo '</div></div>';
 	}
 
-	/**
-	 * Adds grouped product thumbnail
-	 */
-	public function grouped_product_thumbnail() {
-		global $product;
-		echo '<td class="woocommerce-grouped-product-list-item__thumbnail">';
-		echo '<a href="' . get_the_permalink( $product->get_id() ) . '">' . wp_get_attachment_image( get_post_meta( $product->get_id(), '_thumbnail_id', true ), array( 100, 100 ) ) . '</a>';
-		echo '</td>';
-	}
 }

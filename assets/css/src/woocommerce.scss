@@ -107,14 +107,13 @@
     //max-height: calc( 100vh - ( 1.5em + 1em + 1.2em + 24px + 55px + 105px + 32px ) );
 }
 #cart-drawer.popup-drawer .drawer-content ul.product_list_widget{
-    //max-height: calc( 100vh - ( 1.5em + 1em + 1.2em + 24px + 55px + 105px) );
-    position: absolute;
-    top: 0;
-    padding: 1.5em 1.5em;
-    bottom: 174px;
-    right: 0;
-    left: 0;
+    padding: 0;
+    margin: 1.5em 0;
+    height: calc(100vh - 260px);
     overflow-y: auto;
+}
+#cart-drawer.popup-drawer .drawer-content:has(.base-mini-cart-shipping) ul.product_list_widget {
+    height: calc(100vh - 350px);
 }
 #cart-drawer.popup-drawer .drawer-content .woocommerce-mini-cart__buttons.buttons {
     position: fixed;

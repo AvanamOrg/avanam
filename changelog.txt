@@ -1,5 +1,8 @@
+== 1.3.8 | 11th March 2024 ==
+* Fix: Cart drawer css
+
 == 1.3.7 | 6th February 2024 ==
-* Update: Grouped Products Thumbnails
+* Update: Grouped products thumbnails
 
 == 1.3.6 | 3rd December 2023 ==
 * Update: Footer css.

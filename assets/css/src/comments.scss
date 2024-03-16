@@ -15,6 +15,10 @@
 		height: 50px;
 		border-radius: 50px;
 	}
+	.content-style-unboxed &{
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 .comment-content a {
 	word-wrap: break-word;
@@ -158,10 +162,16 @@
 .comment-content {
 	margin-bottom: 2rem;
 	padding-top: 1em;
+	@media screen and (max-width: $tablet-minus-query) {
+		margin-bottom: 1rem;
+	}
 }
 .reply {
     margin-bottom: 2em;
     margin-top: -0.5em;
+	@media screen and (max-width: $tablet-minus-query) {
+		margin-bottom: 1rem;
+	}
 }
 @media screen and (min-width: $before-tablet-query) {
 .reply {
@@ -198,6 +208,12 @@
     border-radius: 4px;
 	p {
 		margin: 1.5em 0;
+		@media screen and (max-width: $tablet-minus-query) {
+			margin: 0.5em 0;
+			&.comment-form-cookies-consent {
+				margin: 1.5em 0;
+			}
+		}
 	}
 	.comment-notes {
 		margin-top: -.5em;
@@ -205,7 +221,10 @@
 		font-style: italic;
 	}
 	.comment-input-wrap p {
-		margin: 0 0 1.5em 0;
+		margin: 0;
+	}
+	@media screen and (max-width: $tablet-minus-query) {
+		padding: 15px;
 	}
 }
 .comment-input-wrap {
@@ -219,9 +238,6 @@
 		grid-template-columns: repeat(3,1fr);
 		grid-gap: 1.5em;
 		margin-top:-1em;
-		p {
-			margin: 0;
-		}
 	}
 	.comment-form .comment-input-wrap.no-url-field {
 		grid-template-columns: repeat(2, 1fr);

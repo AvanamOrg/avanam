@@ -581,7 +581,7 @@
    span.onsale {
 	   min-height: 0;
 	   min-width: 0;
-	   padding: .5em 1em;
+	   padding: 0.3em 0.5em;
 	   font-weight: 700;
 	   position: absolute;
 	   text-align: center;
@@ -592,12 +592,8 @@
 	   border-radius: .25rem;
 	   background-color: var(--global-palette-highlight);
 	   color: var(--global-palette-highlight-alt2);
-	   font-size: 0.857em;
+	   font-size: 0.7em;
 	   z-index: 9;
-	   @media screen and (min-width: $landscape-phone-minus-query) {
-		   padding: 0.3em 0.5em;
-		   font-size: 0.7em;
-	   }
    	}
    	&.product-tab-style-center div.product .woocommerce-tabs ul.tabs {
 		text-align: center;

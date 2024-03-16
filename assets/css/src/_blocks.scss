@@ -267,8 +267,7 @@ ul.wp-block-social-links:not(.specificity) {
 }
 @media screen and (max-width: $landscape-phone-minus-query) {
 	.wp-block-latest-posts__featured-image.alignleft {
-		float:none;
-		margin-bottom: 1em;
+		margin-right: 0.5em;
 	}
 }
 

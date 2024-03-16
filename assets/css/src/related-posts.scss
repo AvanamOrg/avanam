@@ -32,6 +32,12 @@ h2.entry-related-title {
 	padding-bottom: var(--global-xl-spacing);
 	padding-left: var(--global-sm-spacing);
 	padding-right: var(--global-sm-spacing);
+	@media screen and (max-width: $landscape-phone-minus-query) {
+		padding-top: var(--global-sm-spacing);
+		padding-bottom: var(--global-sm-spacing);
+		padding-left: var(--global-xs-spacing);
+		padding-right: var(--global-xs-spacing);
+	}
 }
 @media screen and (min-width: $laptop-plus-query) {
 	.content-width-narrow .entry-related-inner-content {

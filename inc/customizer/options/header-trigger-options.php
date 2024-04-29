@@ -212,7 +212,7 @@ $settings = array(
 	'mobile_trigger_background' => array(
 		'control_type' => 'base_color_control',
 		'section'      => 'mobile_trigger_design',
-		'label'        => esc_html__( 'Navigation Background', 'avanam' ),
+		'label'        => esc_html__( 'Trigger Background', 'avanam' ),
 		'default'      => webapp()->default( 'mobile_trigger_background' ),
 		'live_method'     => array(
 			array(

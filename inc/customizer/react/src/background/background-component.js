@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
-const {
+import {
 	Component,
 	Fragment
-} = wp.element;
-const {
+} from '@wordpress/element';
+import {
 	Button,
 	Popover,
 	Dashicon,
@@ -16,7 +16,7 @@ const {
 	TabPanel,
 	GradientPicker,
 	__experimentalGradientPicker,
-} = wp.components;
+} from '@wordpress/components';
 // const {
 // 	MediaUpload,
 // } = wp.blockEditor;
@@ -223,7 +223,7 @@ class BackgroundComponent extends Component {
 				this.setState( { isVisible: false } );
 			}
 		};
-		const maybeToggleClose = () => {
+		const maybeToggleClose = ( e ) => {
 			if ( undefined !== this.props.control.frame ) {
 				if ( this.state.modalCanClose ) {
 					if ( this.state.isVisible === true ) {
@@ -530,7 +530,7 @@ class BackgroundComponent extends Component {
 				>
 					<div className="base-background-picker-wrap">
 						{ this.state.isVisible && (
-							<Popover position="top left" className="base-popover-color base-customizer-popover" onClose={ maybeToggleClose }>
+							<Popover position="top left" className="base-popover-color base-customizer-popover" inline={ true } onClose={ maybeToggleClose }>
 								<TabPanel className="base-popover-tabs base-background-tabs"
 									activeClass="active-tab"
 									initialTabName={ initial_tab }
@@ -542,16 +542,16 @@ class BackgroundComponent extends Component {
 											if ( tab.name ) {
 												if ( 'image' === tab.name ) {
 													tabout = (
-														<Fragment>
+														<>
 															{ undefined === this.state.value[ this.state.currentDevice ] && (
-																	<div class="attachment-media-view">
-																		<button type="button" class="upload-button button-add-media">{ data.button_labels.select }</button>
+																	<div className="attachment-media-view">
+																		<button type="button" className="upload-button button-add-media">{ data.button_labels.select }</button>
 																	</div>
 															) }
 															{ undefined !== this.state.value[ this.state.currentDevice ] && (
-																<Fragment>
+																<>
 																	{ ! this.state.value[ this.state.currentDevice ].image && (
-																		<Fragment>
+																		<>
 																		{/* <MediaUpload
 																			onSelect={ media => {
 																				let value = this.state.value;
@@ -579,18 +579,18 @@ class BackgroundComponent extends Component {
 																				</Button>
 																			) }
 																		/> */}
-																		<div class="attachment-media-view">
-																			<button type="button" class="upload-button button-add-media">{ data.button_labels.select }</button>
+																		<div className="attachment-media-view">
+																			<button type="button" className="upload-button button-add-media">{ data.button_labels.select }</button>
 																		</div>
-																		</Fragment>
+																		</>
 																	) }
 																	{ this.state.value[ this.state.currentDevice ].image && ! this.state.value[ this.state.currentDevice ].image.url && (
-																		<div class="attachment-media-view">
-																			<button type="button" class="upload-button button-add-media">{ data.button_labels.select }</button>
+																		<div className="attachment-media-view">
+																			<button type="button" className="upload-button button-add-media">{ data.button_labels.select }</button>
 																		</div>
 																	) }
 																	{ this.state.value[ this.state.currentDevice ].image && this.state.value[ this.state.currentDevice ].image.url && (
-																		<Fragment>
+																		<>
 																			<FocalPointPicker 
 																				url={ this.state.value[ this.state.currentDevice ].image.url }
 																				dimensions={ dimensions[ this.state.currentDevice ] }
@@ -601,9 +601,9 @@ class BackgroundComponent extends Component {
 																				<Button type="button" className="button remove-button" onClick={ () => this.onImageRemove( this.state.currentDevice ) } >{ data.button_labels.remove }</Button>
 																				<Button type="button" className="button upload-button control-focus">{ data.button_labels.change }</Button>
 																			</div>
-																		</Fragment>
+																		</>
 																	) }
-																</Fragment>
+																</>
 															) }
 															<span className="customize-control-title">{ __( 'Background Repeat', 'avanam' ) }</span>
 															<ButtonGroup className="base-radio-container-control">
@@ -692,21 +692,21 @@ class BackgroundComponent extends Component {
 																	);
 																} ) }
 															</ButtonGroup>
-														</Fragment>
+														</>
 													);
 												} else if ( 'gradient' === tab.name ) {
 														tabout = (
-															<Fragment>
+															<>
 																<BaseGradientPicker
 																	value={ undefined !== this.state.value[ this.state.currentDevice ].gradient && '' !== this.state.value[ this.state.currentDevice ].gradient ? this.state.value[ this.state.currentDevice ].gradient : '' }
 																	onChange={ ( newGradient ) => this.onGradientChangeComplete( newGradient, this.state.currentDevice ) }
 																	activePalette={ ( this.state.colorPalette[ this.state.activePalette ] ? this.state.colorPalette[ this.state.activePalette ] : [] ) }
 																/>
-															</Fragment>
+															</>
 														);
 												} else {
 													tabout = (
-														<Fragment>
+														<>
 															{ this.state.isVisible && this.state.refresh && (
 																<div className="base-background-color-wrap">
 																	<BaseColorPicker
@@ -741,7 +741,7 @@ class BackgroundComponent extends Component {
 																	/>
 																</div>
 															) }
-														</Fragment>
+														</>
 													);
 												}
 											}

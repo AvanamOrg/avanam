@@ -52,8 +52,8 @@ class SocialComponent extends Component {
 					'url': '',
 					'imageid': '',
 					'width': 24,
-					'icon': 'twitter',
-					'label': 'Twitter',
+					'icon': 'twitterAlt2',
+					'label': 'X',
 					'svg': '',
 				}
 			],
@@ -70,8 +70,9 @@ class SocialComponent extends Component {
 			'group' : 'social_item_group',
 			'options': [
 				{ value: 'facebook', label: __( 'Facebook', 'avanam' ) },
-				{ value: 'twitter', label: __( 'Twitter', 'avanam' ) },
+				{ value: 'twitter', label: __( 'X formerly Twitter', 'avanam' ) },
 				{ value: 'instagram', label: __( 'Instagram', 'avanam' ) },
+				{ value: 'threads', label: __( 'Threads', 'avanam' ) },
 				{ value: 'youtube', label: __( 'YouTube', 'avanam' ) },
 				{ value: 'facebook_group', label: __( 'Facebook Group', 'avanam' ) },
 				{ value: 'vimeo', label: __( 'Vimeo', 'avanam' ) },
@@ -298,7 +299,7 @@ class SocialComponent extends Component {
 							} }
 						/> */}
 						{ this.state.isVisible && (
-							<Popover position="top right" className="base-popover-color base-popover-social base-customizer-popover" onClose={ toggleClose }>
+							<Popover position="top right" inline={true} className="base-popover-color base-popover-social base-customizer-popover" onClose={ toggleClose }>
 								<div className="base-popover-social-list">
 									<ButtonGroup className="base-radio-container-control">
 										{ availableSocialOptions.map( ( item, index ) => {

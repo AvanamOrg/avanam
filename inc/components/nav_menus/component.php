@@ -141,7 +141,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			}
 			$menu_id = ( isset( $args->menu_id ) && ! empty( $args->menu_id ) ? '#' . $args->menu_id : '.menu' );
 			$toggle_target_string = $menu_id . ' .menu-item-' . $item->ID . ' > .sub-menu';
-			$output = '<div class="drawer-nav-drop-wrap">' . $item_output . '<button class="drawer-sub-toggle" data-toggle-duration="10" data-toggle-target="' . esc_attr( $toggle_target_string ) . '" aria-expanded="false"><span class="screen-reader-text">' . esc_html__( 'Expand child menu', 'avanam' ) . '</span>' . webapp()->get_icon( 'arrow-down', '', false, false ) . '</button></div>';
+			$output = '<div class="drawer-nav-drop-wrap">' . $item_output . '<button class="drawer-sub-toggle" data-toggle-duration="10" data-toggle-target="' . esc_attr( $toggle_target_string ) . '" aria-expanded="false"><span class="screen-reader-text">' . esc_html__( 'Toggle child menu', 'avanam' ) . '</span>' . webapp()->get_icon( 'arrow-down', '', false, false ) . '</button></div>';
 			return $output;
 		}
 

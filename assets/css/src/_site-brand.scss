@@ -165,3 +165,10 @@
 .site-header-row-center-column .brand:not(.has-logo-image) .site-title-wrap {
     text-align: center;
 }
+.logo-icon {
+    display: flex;
+	.base-svg-iconset svg {
+		width: 100%;
+		height: auto;
+	}
+}

@@ -1,6 +1,6 @@
 {
 	"name": "avanam",
-	"version": "1.1.5",
+	"version": "1.4.0",
 	"private": true,
 	"main": "inc/customizer/react/src/index.js",
 	"dependencies": {
@@ -17,7 +17,7 @@
 		"react-select": "^3.1.0",
 		"react-sortablejs": "^2.0.9",
 		"reactcss": "^1.2.3",
-		"sortablejs": "^1.15.0",
+		"sortablejs": "^1.15.2",
 		"webfontloader": "^1.6.28"
 	},
 	"devDependencies": {

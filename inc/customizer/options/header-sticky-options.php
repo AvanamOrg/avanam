@@ -436,6 +436,29 @@ $settings = array(
 			),
 		),
 	),
+	'header_sticky_logo_icon_color' => array(
+		'control_type' => 'base_color_control',
+		'section'      => 'header_sticky_design',
+		'label'        => esc_html__( 'Logo Icon Color', 'avanam' ),
+		'default'      => webapp()->default( 'header_sticky_logo_icon_color' ),
+		'live_method'     => array(
+			array(
+				'type'     => 'css',
+				'selector' => '#masthead .base-sticky-header.item-is-fixed:not(.item-at-start) .site-branding .logo-icon',
+				'property' => 'color',
+				'pattern'  => '$',
+				'key'      => 'color',
+			),
+		),
+		'input_attrs'  => array(
+			'colors' => array(
+				'color' => array(
+					'tooltip' => __( 'Initial Color', 'avanam' ),
+					'palette' => true,
+				),
+			),
+		),
+	),
 	'header_sticky_navigation_color' => array(
 		'control_type' => 'base_color_control',
 		'section'      => 'header_sticky_design',

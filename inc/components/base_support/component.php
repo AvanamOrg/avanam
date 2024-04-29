@@ -115,8 +115,18 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		add_filter( 'embed_oembed_html', array( $this, 'classic_embed_wrap' ), 90, 4 );
 		add_filter( 'excerpt_length', array( $this, 'custom_excerpt_length' ) );
 		add_filter( 'the_author_description', 'wpautop' );
+		add_action( 'admin_init', array( $this, 'set_theme_initial_version' ) );
 	}
-	
+	/**
+	 * Set the initial theme version.
+	 */
+	public function set_theme_initial_version() {
+		$initial_version = get_theme_mod( 'initial_version', false );
+		if ( ! $initial_version ) {
+			set_theme_mod( 'initial_version', AVANAM_VERSION );
+		}
+	}
+
 	/**
 	 * Add Notice for the Welcome Notice
 	 */
@@ -176,22 +186,25 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		}
 		$installed_plugins = get_plugins();
 		if ( ! isset( $installed_plugins['avanam-starter/avanam-starter.php'] ) ) {
-			$button_label = esc_html__( 'Install Base Starter Templates', 'avanam' );
+			$button_label = esc_html__( 'Install AI Starter Templates', 'avanam' );
 			$data_action  = 'install';
 		} elseif ( ! self::active_plugin_check( 'avanam-starter/avanam-starter.php' ) ) {
-			$button_label = esc_html__( 'Activate Base Starter Templates', 'avanam' );
+			$button_label = esc_html__( 'Activate AI Starter Templates', 'avanam' );
 			$data_action  = 'activate';
 		} else {
 			return;
 		}
+		$starter_link = class_exists( '\\BaseWP\\BaseBlocks\\AvanamOrg\\Uplink\\Register' ) ? admin_url( 'admin.php?page=avanam-starter' ) : admin_url( 'themes.php?page=avanam-starter' );
 		?>
 		<div id="base-notice-starter-templates" class="notice is-dismissible notice-info">
-			<h2 class="notice-title"><?php echo esc_html__( 'Thanks for choosing the Avanam Theme!', 'avanam' ); ?></h2>
-			<p class="base-notice-description"><?php /* translators: %s: <strong> <a> */ printf( esc_html__( 'Want to get started with a beautiful %1$sstarter template%2$s? Install the Base Starter Templates plugin to launch an optimized design in minutes.', 'avanam' ), '<a href="https://wordpress.org/plugins/base-starter-templates/" target="_blank">', '</a>', '<strong>', '</strong>' ); ?></p>
+			<div class="sub-notice-title"><?php echo esc_html__( 'Thanks for choosing the Avanam Theme!', 'avanam' ); ?></div>
+			<h2 class="notice-title"><?php echo esc_html__( 'Get Started with an AI Powered Website!', 'avanam' ); ?></h2>
+			<p class="base-notice-description"><?php /* translators: %s: <strong> <a> */ printf( esc_html__( 'Want to get started with a beautiful AI Powered %1$sstarter template%2$s? Install the Base AI Powered Starter Templates plugin to launch an AI optimized website in minutes.', 'avanam' ), '<a href="https://wordpress.org/plugins/base-starter-templates/" target="_blank">', '</a>', '<strong>', '</strong>' ); ?></p>
 			<p class="install-submit">
-				<button class="button button-primary base-install-starter-btn" data-redirect-url="<?php echo esc_url( admin_url( 'themes.php?page=avanam-starter' ) ); ?>" data-activating-label="<?php echo esc_attr__( 'Activating...', 'avanam' ); ?>" data-activated-label="<?php echo esc_attr__( 'Activated', 'avanam' ); ?>" data-installing-label="<?php echo esc_attr__( 'Installing...', 'avanam' ); ?>" data-installed-label="<?php echo esc_attr__( 'Installed', 'avanam' ); ?>" data-action="<?php echo esc_attr( $data_action ); ?>"><?php echo esc_html( $button_label ); ?></button>
+				<button class="button button-primary base-install-starter-btn" data-redirect-url="<?php echo esc_url( $starter_link ); ?>" data-activating-label="<?php echo esc_attr__( 'Activating...', 'avanam' ); ?>" data-activated-label="<?php echo esc_attr__( 'Activated', 'avanam' ); ?>" data-installing-label="<?php echo esc_attr__( 'Installing...', 'avanam' ); ?>" data-installed-label="<?php echo esc_attr__( 'Installed', 'avanam' ); ?>" data-action="<?php echo esc_attr( $data_action ); ?>"><?php echo esc_html( $button_label ); ?></button>
 			</p>
 		</div>
+		<style>#base-notice-starter-templates {padding: 24px;}#base-notice-starter-templates .base-notice-description {max-width: 600px;font-size: 15px;margin-bottom: 12px;}#base-notice-starter-templates button.base-install-starter-btn {padding: 4px 16px;font-size: 15px;}#base-notice-starter-templates h2.notice-title {font-size: 24px;margin-bottom: 8px;}</style>
 		<?php
 		wp_enqueue_script( 'base-starter-install' );
 		wp_localize_script(
@@ -772,7 +785,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * @return mixed
 	 */
 	public function add_search_icon( $markup ) {
-		$markup = str_replace( '</form>', '<div class="base-search-icon-wrap">' . webapp()->get_icon( 'search2', '', false ) . '</div></form>', $markup );
+		$markup = str_replace( '</form>', '<div class="base-search-icon-wrap">' . webapp()->get_icon( 'search', '', false ) . '</div></form>', $markup );
 		return $markup;
 	}
 	/**

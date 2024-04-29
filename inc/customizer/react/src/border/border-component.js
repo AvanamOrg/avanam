@@ -17,6 +17,7 @@ class BorderComponent extends Component {
 	constructor() {
 		super( ...arguments );
 		this.updateValues = this.updateValues.bind( this );
+		this.resetValues = this.resetValues.bind( this );
 		this.handleChangeComplete = this.handleChangeComplete.bind( this );
 		this.handleResponsiveChangeComplete = this.handleResponsiveChangeComplete.bind( this );
 		this.getUnitButtons = this.getUnitButtons.bind( this );
@@ -152,26 +153,26 @@ class BorderComponent extends Component {
 		if ( this.controlParams.responsive ) {
 			if ( undefined === this.state.value[ this.state.currentDevice ] ) {
 				let largerDevice = ( this.state.currentDevice === 'mobile' ? 'tablet' : 'desktop' );
-				if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice].style ) {
+				if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice]?.style ) {
 					currentStyle = this.state.value[largerDevice].style;
 				} else if ( 'tablet' === largerDevice && undefined !== this.state.value['desktop'] && this.state.value['desktop'].style ) {
 					currentStyle = this.state.value['desktop'].style;
 				}
-			} else if ( undefined === this.state.value[ this.state.currentDevice ].style ) {
+			} else if ( undefined === this.state.value[ this.state.currentDevice ]?.style ) {
 				let largerDevice = ( this.state.currentDevice === 'mobile' ? 'tablet' : 'desktop' );
-				if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice].style ) {
+				if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice]?.style ) {
 					currentStyle = this.state.value[largerDevice].style;
 				} else if ( 'tablet' === largerDevice && undefined !== this.state.value['desktop'] && this.state.value['desktop'].style ) {
 					currentStyle = this.state.value['desktop'].style;
 				}
-			} else if ( '' === this.state.value[ this.state.currentDevice ].style ) {
+			} else if ( '' === this.state.value[ this.state.currentDevice ]?.style ) {
 				let largerDevice = ( this.state.currentDevice === 'mobile' ? 'tablet' : 'desktop' );
-				if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice].style ) {
+				if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice]?.style ) {
 					currentStyle = this.state.value[largerDevice].style;
 				} else if ( 'tablet' === largerDevice && undefined !== this.state.value['desktop'] && this.state.value['desktop'].style ) {
 					currentStyle = this.state.value['desktop'].style;
 				}
-			} else if ( '' !== this.state.value[ this.state.currentDevice ].style ) {
+			} else if ( '' !== this.state.value[ this.state.currentDevice ]?.style ) {
 				currentStyle = this.state.value[ this.state.currentDevice ].style
 			}
 		} else {
@@ -208,6 +209,18 @@ class BorderComponent extends Component {
 								let value = this.state.value;
 								delete value[this.state.currentDevice];
 								this.updateValues( value );
+							} }
+						>
+							<Dashicon icon='image-rotate' />
+						</Button>
+					</Tooltip>
+				) }
+				{ this.state.currentDevice === 'desktop' && (
+					<Tooltip text={ __( 'Reset All Values', 'avanam' ) }>
+						<Button
+							className="reset base-reset"
+							onClick={ () => {
+								this.resetValues();
 							} }
 						>
 							<Dashicon icon='image-rotate' />
@@ -261,7 +274,7 @@ class BorderComponent extends Component {
 									/>
 								) }
 								<input
-									value={ ( undefined !== this.state.value[ this.state.currentDevice ] && undefined !== this.state.value[ this.state.currentDevice ].width ? this.state.value[ this.state.currentDevice ].width : '' ) }
+									value={ ( undefined !== this.state.value[ this.state.currentDevice ] && undefined !== this.state.value[ this.state.currentDevice ]?.width ? this.state.value[ this.state.currentDevice ].width : '' ) }
 									onChange={ onResponsiveInputChange }
 									min={this.controlParams.min[currentUnit]}
 									max={this.controlParams.max[currentUnit]}
@@ -335,21 +348,21 @@ class BorderComponent extends Component {
 		let currentStyle;
 		if ( undefined === this.state.value[ this.state.currentDevice ] ) {
 			let largerDevice = ( this.state.currentDevice === 'mobile' ? 'tablet' : 'desktop' );
-			if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice].style ) {
+			if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice]?.style ) {
 				currentStyle = this.state.value[largerDevice].style;
 			} else if ( 'tablet' === largerDevice && undefined !== this.state.value['desktop'] && this.state.value['desktop'].style ) {
 				currentStyle = this.state.value['desktop'].style;
 			}
 		} else if ( undefined === this.state.value[ this.state.currentDevice ].style ) {
 			let largerDevice = ( this.state.currentDevice === 'mobile' ? 'tablet' : 'desktop' );
-			if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice].style ) {
+			if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice]?.style ) {
 				currentStyle = this.state.value[largerDevice].style;
 			} else if ( 'tablet' === largerDevice && undefined !== this.state.value['desktop'] && this.state.value['desktop'].style ) {
 				currentStyle = this.state.value['desktop'].style;
 			}
 		} else if ( '' === this.state.value[ this.state.currentDevice ].style ) {
 			let largerDevice = ( this.state.currentDevice === 'mobile' ? 'tablet' : 'desktop' );
-			if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice].style ) {
+			if ( undefined !== this.state.value[largerDevice] && this.state.value[largerDevice]?.style ) {
 				currentStyle = this.state.value[largerDevice].style;
 			} else if ( 'tablet' === largerDevice && undefined !== this.state.value['desktop'] && this.state.value['desktop'].style ) {
 				currentStyle = this.state.value['desktop'].style;
@@ -394,7 +407,7 @@ class BorderComponent extends Component {
 		let self = this;
 		const { styles } = this.controlParams;
 		let currentStyle;
-		currentStyle = ( undefined !== this.state.value.style ? this.state.value.style : 'none' );
+		currentStyle = ( undefined !== this.state.value?.style ? this.state.value.style : 'none' );
 		if ( styles.length === 1 ) {
 			return ( <Button
 					className="is-active is-single"
@@ -512,14 +525,23 @@ class BorderComponent extends Component {
 		/> 
 	}
 	updateValues( value ) {
-		this.setState( { value: value } );
+		if ( value ) {
+			this.setState( { value: value } );
+		} else {
+			this.setState( { value: this.defaultValue } );
+			value = {};
+		}
 		if ( this.controlParams.responsive ) {
 			value.flag = !this.props.control.setting.get().flag;
 		}
 		this.props.control.setting.set( {
-			...this.props.control.setting.get(),
+			...{ flag: true },
 			...value,
 		} );
+	}
+	resetValues() {
+		this.setState( { value: this.defaultValue } );
+		this.props.control.setting.set( {} );
 	}
 }
 

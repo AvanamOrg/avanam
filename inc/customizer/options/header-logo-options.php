@@ -163,6 +163,208 @@ $settings = array(
 			),
 		),
 	),
+	'use_logo_icon' => array(
+		'control_type' => 'base_switch_control',
+		'sanitize'     => 'base_sanitize_toggle',
+		'section'      => 'title_tagline',
+		'transport'    => 'refresh',
+		'priority'     => 6,
+		'default'      => webapp()->default( 'use_logo_icon' ),
+		'label'        => esc_html__( 'Use Logo Icon?', 'avanam' ),
+		'context'      => array(
+			array(
+				'setting' => '__current_tab',
+				'value'   => 'general',
+			),
+			array(
+				'setting'  => 'custom_logo',
+				'operator' => 'empty',
+				'value'    => '',
+			),
+		),
+		'partial'      => array(
+			'selector'            => '#masthead',
+			'container_inclusive' => true,
+			'render_callback'     => 'Base\header_markup',
+		),
+	),
+	'logo_icon' => array(
+		'control_type' => 'base_radio_icon_control',
+		'section'      => 'title_tagline',
+		'priority'     => 6,
+		'default'      => webapp()->default( 'logo_icon' ),
+		'label'        => esc_html__( 'Logo Icon', 'avanam' ),
+		'context'      => array(
+			array(
+				'setting' => '__current_tab',
+				'value'   => 'general',
+			),
+			array(
+				'setting'  => 'custom_logo',
+				'operator' => 'empty',
+				'value'    => '',
+			),
+			array(
+				'setting'  => 'use_logo_icon',
+				'operator' => '=',
+				'value'    => true,
+			),
+		),
+		'partial'      => array(
+			'selector'            => '.logo-icon',
+			'container_inclusive' => false,
+			'render_callback'     => 'Base\logo_icon',
+		),
+		'input_attrs'  => array(
+			'layout' => array(
+				'logoArrow' => array(
+					'icon' => 'logoArrow',
+				),
+				'logoCircle' => array(
+					'icon' => 'logoCircle',
+				),
+				'logoLine' => array(
+					'icon' => 'logoLine',
+				),
+				'custom' => array(
+					'name' => __( 'Custom', 'avanam' ),
+				),
+			),
+			'responsive' => false,
+			'class' => 'radio-icon-padding',
+		),
+	),
+	'logo_icon_custom' => array(
+		'control_type' => 'base_textarea_control',
+		'section'      => 'title_tagline',
+		'priority'     => 6,
+		'default'      => webapp()->default( 'logo_icon_custom' ),
+		'partial'      => array(
+			'selector'            => '.logo-icon',
+			'container_inclusive' => true,
+			'render_callback'     => 'Base\logo_icon',
+		),
+		'context'      => array(
+			array(
+				'setting' => '__current_tab',
+				'value'   => 'general',
+			),
+			array(
+				'setting'  => 'custom_logo',
+				'operator' => 'empty',
+				'value'    => '',
+			),
+			array(
+				'setting'  => 'use_logo_icon',
+				'operator' => '=',
+				'value'    => true,
+			),
+			array(
+				'setting'  => 'logo_icon',
+				'operator' => '=',
+				'value'    => 'custom',
+			),
+		),
+		'input_attrs'  => array(
+			'id' => 'logo_icon_custom',
+		),
+	),
+	'logo_icon_width' => array(
+		'control_type' => 'base_range_control',
+		'section'      => 'title_tagline',
+		'priority'     => 6,
+		'label'        => esc_html__( 'Logo Icon Width', 'avanam' ),
+		'description'  => esc_html__( 'Define the width for the logo icon', 'avanam' ),
+		'context'      => array(
+			array(
+				'setting' => '__current_tab',
+				'value'   => 'general',
+			),
+			array(
+				'setting'  => 'custom_logo',
+				'operator' => 'empty',
+				'value'    => '',
+			),
+			array(
+				'setting'  => 'use_logo_icon',
+				'operator' => '=',
+				'value'    => true,
+			),
+		),
+		'live_method'     => array(
+			array(
+				'type'     => 'css',
+				'selector' => '#masthead .logo-icon',
+				'property' => 'max-width',
+				'pattern'  => '$',
+				'key'      => 'size',
+			),
+		),
+		'default'      => webapp()->default( 'logo_icon_width' ),
+		'input_attrs'  => array(
+			'min'     => array(
+				'px'  => 10,
+				'em'  => 1,
+				'rem' => 1,
+				'vw'  => 2,
+				'%'   => 2,
+			),
+			'max'     => array(
+				'px'  => 800,
+				'em'  => 50,
+				'rem' => 50,
+				'vw'  => 80,
+				'%'   => 80,
+			),
+			'step'    => array(
+				'px'  => 1,
+				'em'  => 0.01,
+				'rem' => 0.01,
+				'vw'  => 1,
+				'%'   => 1,
+			),
+			'units'   => array( 'px', 'em', 'rem', 'vw' ),
+		),
+	),
+	'logo_icon_color' => array(
+		'control_type' => 'base_color_control',
+		'section'      => 'title_tagline',
+		'label'        => esc_html__( 'Logo Icon Color', 'avanam' ),
+		'default'      => webapp()->default( 'logo_icon_color' ),
+		'live_method'     => array(
+			array(
+				'type'     => 'css',
+				'selector' => '#masthead .logo-icon',
+				'property' => 'color',
+				'pattern'  => '$',
+				'key'      => 'color',
+			),
+		),
+		'context'      => array(
+			array(
+				'setting' => '__current_tab',
+				'value'   => 'design',
+			),
+			array(
+				'setting'  => 'custom_logo',
+				'operator' => 'empty',
+				'value'    => '',
+			),
+			array(
+				'setting'  => 'use_logo_icon',
+				'operator' => '=',
+				'value'    => true,
+			),
+		),
+		'input_attrs'  => array(
+			'colors' => array(
+				'color' => array(
+					'tooltip' => __( 'Color', 'avanam' ),
+					'palette' => true,
+				),
+			),
+		),
+	),
 	'logo_layout' => array(
 		'control_type' => 'base_multi_radio_icon_control',
 		'section'      => 'title_tagline',

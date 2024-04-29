@@ -750,6 +750,9 @@ $settings = array(
 		),
 		'input_attrs'  => array(
 			'layout' => array(
+				'2' => array(
+					'name' => __( '2', 'avanam' ),
+				),
 				'3' => array(
 					'name' => __( '3', 'avanam' ),
 				),
@@ -761,6 +764,15 @@ $settings = array(
 				),
 				'6' => array(
 					'name' => __( '6', 'avanam' ),
+				),
+				'7' => array(
+					'name' => __( '7', 'avanam' ),
+				),
+				'8' => array(
+					'name' => __( '8', 'avanam' ),
+				),
+				'9' => array(
+					'name' => __( '9', 'avanam' ),
 				),
 			),
 			'responsive' => false,
@@ -775,6 +787,9 @@ $settings = array(
 		'default'      => webapp()->default( 'product_upsell_columns' ),
 		'input_attrs'  => array(
 			'layout' => array(
+				'2' => array(
+					'name' => __( '2', 'avanam' ),
+				),
 				'3' => array(
 					'name' => __( '3', 'avanam' ),
 				),
@@ -786,6 +801,15 @@ $settings = array(
 				),
 				'6' => array(
 					'name' => __( '6', 'avanam' ),
+				),
+				'7' => array(
+					'name' => __( '7', 'avanam' ),
+				),
+				'8' => array(
+					'name' => __( '8', 'avanam' ),
+				),
+				'9' => array(
+					'name' => __( '9', 'avanam' ),
 				),
 			),
 			'responsive' => false,

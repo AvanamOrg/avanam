@@ -168,6 +168,8 @@ class TypographyComponent extends Component {
 		}
 		const inheritFont = [
 			{ label: 'Inherit', value: 'inherit', google: false, },
+			{ label: 'Inherit Heading Font Family', value: 'var(--global-heading-font-family, inherit)', google: false, },
+			{ label: 'Inherit Body Font Family', value: 'var(--global-body-font-family, inherit)', google: false, },
 		];
 		let systemFonts = [
 			{ label: 'System Default', value: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"', google: false, variants:'systemstack' },
@@ -716,20 +718,30 @@ class TypographyComponent extends Component {
 			classes: false,
 			events: false,
 		};
+		let fontFamilyLabel = capitalizeFirstLetter( this.state.value.family );
+		if ( this.state.value.family === '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' ) {
+			fontFamilyLabel = __( 'System Default', 'avanam' );
+		}
+		if ( this.state.value.family === 'var(--global-heading-font-family, inherit)' ) {
+			fontFamilyLabel = __( 'Inherit Heading', 'avanam' );
+		}
+		if ( this.state.value.family === 'var(--global-body-font-family, inherit)' ) {
+			fontFamilyLabel = __( 'Inherit Body', 'avanam' );
+		}
 		return (
 			<div ref={ this.anchorNodeRef } className="base-control-field base-typography-control-wrap">
 				<div className="base-typography-control">
 					{ controlLabel }
 					<div className="base-typography-controls">
 						{ this.state.isVisible && 'family' === this.controlParams.options && (
-							<Popover position="top right" className="base-popover-color base-popover-typography base-customizer-popover" onClose={ toggleClose }>
+							<Popover position="top right" inline={true} className="base-popover-color base-popover-typography base-customizer-popover" onClose={ toggleClose }>
 								<div className="base-popover-typography-single-item">
 									{ fontFamilyTab }
 								</div>
 							</Popover>
 						) }
 						{ this.state.isVisible && ( 'all' === this.controlParams.options || 'no-color' === this.controlParams.options ) && (
-							<Popover position="top left" className="base-popover-color base-popover-typography base-customizer-popover" onClose={ toggleClose }>
+							<Popover position="top left" inline={true} className="base-popover-color base-popover-typography base-customizer-popover" onClose={ toggleClose }>
 								<TabPanel className="base-popover-tabs base-typography-tabs base-background-tabs"
 									activeClass="active-tab"
 									initialTabName={ this.state.openTab }
@@ -783,7 +795,7 @@ class TypographyComponent extends Component {
 							<Tooltip text={ this.controlParams.tooltip ? this.controlParams.tooltip : __( 'Select Font', 'avanam' ) }>
 								<div className="typography-button-wrap">
 									<Button className={ 'base-typography-family-indicate' } onClick={ () => { this.state.isVisible ? toggleClose() : toggleVisible('font') } }>
-										{ ( this.state.value.family === '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' ? 'System Default' : capitalizeFirstLetter( this.state.value.family ) ) }
+										{ fontFamilyLabel }
 									</Button>
 								</div>
 							</Tooltip>

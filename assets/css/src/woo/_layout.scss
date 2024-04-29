@@ -51,8 +51,6 @@
 			flex-wrap: wrap;
 		}
 		div.images {
-			/* float: left;
-			width: 48%; */
 			@media screen and (max-width: $tablet-minus-query){
 				width: 350px;
 			}
@@ -62,9 +60,6 @@
 		}
 
 		div.summary {
-			/* float: right;
-			width: 48%;
-			clear: none; */
 			margin-left: 2em;
 			flex: 1;
 			@media screen and (max-width: $phone-minus-query){
@@ -315,10 +310,8 @@
 		* Product page
 		*/
 		div.product {
-			
+
 			div.images {
-				/* float: right;
-				width: 48%; */
 				margin-right: 2em;
 				@media screen and (max-width: $tablet-minus-query){
 					width: 350px;
@@ -336,10 +329,8 @@
     				right: 50%;
 				}
 			}
+
 			div.summary {
-				/* float: left;
-				width: 48%;
-				clear: none; */
 				margin-left: 0;
 			}
 			#reviews {

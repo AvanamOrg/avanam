@@ -1,12 +1,12 @@
+import { createRoot } from '@wordpress/element';
+
 import BackgroundComponent from './background-component.js';
 
 export const BackgroundControl = wp.customize.MediaControl.extend( {
 	renderContent: function renderContent() {
 		let control = this;
-		ReactDOM.render(
-			<BackgroundComponent control={control} customizer={ wp.customize }/>,
-			control.container[0]
-		);
+		let root = createRoot( control.container[0] );
+		root.render( <BackgroundComponent control={control} customizer={ wp.customize }/> );
 	},
 	initialize: function( id, options ) {
 		var control = this,
@@ -21,7 +21,6 @@ export const BackgroundControl = wp.customize.MediaControl.extend( {
 			args.params.content.attr( 'id', 'customize-control-' + id.replace( /]/g, '' ).replace( /\[/g, '-' ) );
 			args.params.content.attr( 'class', 'customize-control customize-control-' + args.params.type );
 		}
-
 		control.propertyElements = [];
 		wp.customize.Control.prototype.initialize.call( control, id, args );
 	},
@@ -100,7 +99,6 @@ export const BackgroundControl = wp.customize.MediaControl.extend( {
 		var control = this;
 		// Shortcut so that we don't have to use _.bind every time we add a callback.
 		_.bindAll( control, 'openFrame', 'select' );
-
 		// Bind events, with delegation to facilitate re-rendering.
 		control.container.on( 'click keydown', '.upload-button', function( e ) {
 			let event = new CustomEvent( 'baseOpenMediaModal', {
@@ -115,7 +113,7 @@ export const BackgroundControl = wp.customize.MediaControl.extend( {
 
 		wp.customize.Control.prototype.ready.call( control );
 
-		//control.setting.bind( control.renderContent() );
+		control.setting.bind( control.renderContent() );
 
 		control.deferred.embedded.done( function() {
 		} );

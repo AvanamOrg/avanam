@@ -233,6 +233,18 @@ class BaseThemeLayout extends Component {
 								document.body.classList.remove( 'post-content-title-above' );
 								document.body.classList.remove( 'post-content-title-hide' );
 								document.body.classList.add( 'post-content-title-' + title );
+								document.body.classList.remove( 'admin-color-pct-normal' );
+								document.body.classList.remove( 'admin-color-pct-above' );
+								document.body.classList.remove( 'admin-color-pct-hide' );
+								document.body.classList.add( 'admin-color-pct-' + title );
+								let gEditor = document.querySelector( 'iframe[name=editor-canvas]' );
+								let gBody = gEditor?.contentWindow?.document?.body;
+								if ( gBody ) {
+									gBody.classList.remove( 'admin-color-pct-normal' );
+									gBody.classList.remove( 'admin-color-pct-above' );
+									gBody.classList.remove( 'admin-color-pct-hide' );
+									gBody.classList.add( 'admin-color-pct-' + title );
+								}
 								this.props.setMetaFieldValue( value, '_bst_post_title' );
 							} }
 						/>
@@ -260,6 +272,28 @@ class BaseThemeLayout extends Component {
 								document.body.classList.remove( 'post-content-sidebar-none' );
 								document.body.classList.add( 'post-content-width-' + layout );
 								document.body.classList.add( 'post-content-sidebar-' + sidebar );
+								document.body.classList.remove( 'admin-color-pcw-narrow' );
+								document.body.classList.remove( 'admin-color-pcw-normal' );
+								document.body.classList.remove( 'admin-color-pcw-fullwidth' );
+
+								document.body.classList.remove( 'admin-color-pc-sidebar-left' );
+								document.body.classList.remove( 'admin-color-pc-sidebar-right' );
+								document.body.classList.remove( 'admin-color-pc-sidebar-none' );
+								document.body.classList.add( 'admin-color-pcw-' + layout );
+								document.body.classList.add( 'admin-color-pc-sidebar-' + sidebar );
+
+								let gEditor = document.querySelector( 'iframe[name=editor-canvas]' );
+								let gBody = gEditor?.contentWindow?.document?.body;
+								if ( gBody ) {
+									gBody.classList.remove( 'admin-color-pcw-narrow' );
+									gBody.classList.remove( 'admin-color-pcw-normal' );
+									gBody.classList.remove( 'admin-color-pcw-fullwidth' );
+									gBody.classList.add( 'admin-color-pcw-' + layout );
+									gBody.classList.remove( 'admin-color-pc-sidebar-left' );
+									gBody.classList.remove( 'admin-color-pc-sidebar-right' );
+									gBody.classList.remove( 'admin-color-pc-sidebar-none' );
+									gBody.classList.add( 'admin-color-pc-sidebar-' + sidebar );
+								}
 								this.props.setMetaFieldValue( value, '_bst_post_layout' );
 							} }
 						/>
@@ -293,6 +327,13 @@ class BaseThemeLayout extends Component {
 								document.body.classList.remove( 'admin-color-pcs-boxed' );
 								document.body.classList.remove( 'admin-color-pcs-unboxed' );
 								document.body.classList.add( 'admin-color-pcs-' + boxed );
+								let gEditor = document.querySelector( 'iframe[name=editor-canvas]' );
+								let gBody = gEditor?.contentWindow?.document?.body;
+								if ( gBody ) {
+									gBody.classList.remove( 'admin-color-pcs-boxed' );
+									gBody.classList.remove( 'admin-color-pcs-unboxed' );
+									gBody.classList.add( 'admin-color-pcs-' + boxed );
+								}
 								this.props.setMetaFieldValue( value, '_bst_post_content_style' );
 							} }
 						/>
@@ -311,6 +352,15 @@ class BaseThemeLayout extends Component {
 								document.body.classList.remove( 'post-content-vertical-padding-top' );
 								document.body.classList.remove( 'post-content-vertical-padding-bottom' );
 								document.body.classList.add( 'post-content-vertical-padding-' + padding );
+								let gEditor = document.querySelector( 'iframe[name=editor-canvas]' );
+								let gBody = gEditor?.contentWindow?.document?.body;
+								if ( gBody ) {
+									gBody.classList.remove( 'admin-color-pcvp-show' );
+									gBody.classList.remove( 'admin-color-pcvp-hide' );
+									gBody.classList.remove( 'admin-color-pcvp-top' );
+									gBody.classList.remove( 'admin-color-pcvp-bottom' );
+									gBody.classList.add( 'admin-color-pcvp-' + padding );
+								}
 								this.props.setMetaFieldValue( value, '_bst_post_vertical_padding' );
 							} }
 						/>

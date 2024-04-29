@@ -34,7 +34,7 @@ class FontPairModal extends Component {
 					<Dashicon icon="portfolio" />
 				</Button>
 				{ this.state.isVisible && (
-					<Popover position="bottom left" className="base-font-pair-popover base-customizer-popover" onClose={ toggleClose }>
+					<Popover position="bottom left" inline={true} className="base-font-pair-popover base-customizer-popover" onClose={ toggleClose }>
 						<h2 style={{ textAlign:'center' }}>{ __( 'Select a Font Pairing', 'avanam' ) }</h2>
 						<ButtonGroup className="bt-font-pair-group" aria-label={ __( 'Select a Font Pair', 'avanam' ) }>
 							{ map( this.state.fonts, ( { hfont, bfont, hv, img, name } ) => {

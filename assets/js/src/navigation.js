@@ -111,7 +111,6 @@
 		
 			for ( let i = 0; i < SUBMENUS.length; i++ ) {
 				var parentMenuItem = SUBMENUS[ i ].parentNode;
-				let parentMenuItemLink = parentMenuItem.querySelector( 'a' );
 				let dropdown = parentMenuItem.querySelector( '.dropdown-nav-toggle' );
 				// If dropdown.
 				if ( dropdown ) {
@@ -119,11 +118,7 @@
 					var dropdownBtn = document.createElement( 'BUTTON' ); // Create a <button> element
 					dropdownBtn.setAttribute( 'aria-label', ( dropdown_label ? baseConfig.screenReader.expandOf + ' ' + dropdown_label : baseConfig.screenReader.expand ) );
 					dropdownBtn.classList.add( 'dropdown-nav-special-toggle' );
-					if ( parentMenuItemLink ) {
-						parentMenuItemLink.insertBefore( dropdownBtn, parentMenuItemLink.childNodes[1] );
-					} else {
-						parentMenuItem.insertBefore( dropdownBtn, parentMenuItem.childNodes[1] );
-					}
+					parentMenuItem.insertBefore( dropdownBtn, parentMenuItem.childNodes[1] );
 					// Toggle the submenu when we click the dropdown button.
 					dropdownBtn.addEventListener( 'click', function( e ) {
 						e.preventDefault();
@@ -139,7 +134,9 @@
 					parentMenuItem.querySelector( 'a' ).addEventListener( 'focus', function( e ) {
 						var parentMenuItemsToggled = e.target.parentNode.parentNode.querySelectorAll( 'li.menu-item--toggled-on' );
 						for ( let j = 0; j < parentMenuItemsToggled.length; j++ ) {
-							window.base.toggleSubMenu( parentMenuItemsToggled[ j ], false );
+							if ( parentMenuItem !== parentMenuItemsToggled[ j ] ) {
+								window.base.toggleSubMenu( parentMenuItemsToggled[ j ], false );
+							}
 						}
 					} );
 		
@@ -618,8 +615,7 @@
 							} else {
 								var totalOffsetDelay = Math.floor( activeOffsetTop - offsetTop );
 							}
-							var shrinkLogo = activeHeader.querySelector( '.custom-logo' );
-							var customShrinkLogo = activeHeader.querySelector( '.base-sticky-logo' );
+							var shrinkLogos = activeHeader.querySelectorAll( '.custom-logo' );
 							var shrinkHeader = activeHeader.querySelector( '.site-main-header-inner-wrap' );
 							var shrinkStartHeight = parseInt( shrinkHeader.getAttribute( 'data-start-height' ) );
 							if ( ! shrinkStartHeight ) {
@@ -630,22 +626,22 @@
 								shrinkHeader.style.height = shrinkStartHeight + 'px';
 								shrinkHeader.style.minHeight = shrinkStartHeight + 'px';
 								shrinkHeader.style.maxHeight = shrinkStartHeight + 'px';
-								if ( shrinkLogo ) {
-									shrinkLogo.style.maxHeight = '100%';
-								}
-								if ( customShrinkLogo ) {
-									customShrinkLogo.style.maxHeight = '100%';
+								if ( shrinkLogos ) {
+									for (let i = 0; i < shrinkLogos.length; i++) {
+										let shrinkLogo = shrinkLogos[i];
+										shrinkLogo.style.maxHeight = '100%';
+									}
 								}
 							} else if ( window.scrollY > totalOffsetDelay ) {
 								var shrinkingHeight = Math.max( shrinkHeight, shrinkStartHeight - ( window.scrollY - ( activeOffsetTop - offsetTop ) ) );
 								shrinkHeader.style.height = shrinkingHeight + 'px';
 								shrinkHeader.style.minHeight = shrinkingHeight + 'px';
 								shrinkHeader.style.maxHeight = shrinkingHeight + 'px';
-								if ( shrinkLogo ) {
-									shrinkLogo.style.maxHeight = shrinkingHeight + 'px';
-								}
-								if ( customShrinkLogo ) {
-									customShrinkLogo.style.maxHeight = shrinkingHeight + 'px';
+								if ( shrinkLogos ) {
+									for (let i = 0; i < shrinkLogos.length; i++) {
+										let shrinkLogo = shrinkLogos[i];
+										shrinkLogo.style.maxHeight = shrinkingHeight + 'px';
+									}
 								}
 							}
 						}

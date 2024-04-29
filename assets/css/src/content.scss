@@ -59,6 +59,10 @@ article.sticky {
 		margin-right: -1rem;
 		width: auto;
 	}
+	.content-width-fullwidth.content-style-boxed .content-bg:not(.loop-entry) {
+		margin-left: 0;
+		margin-right: 0;
+	}
 	.content-style-boxed .comments-area {
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
@@ -271,6 +275,12 @@ article.sticky {
 		width: 100%;
 	}
 }
+.wp-block-newspack-blocks-homepage-articles .post-thumbnail {
+	&:not(.base-thumbnail-ratio-inherit) img {
+		height: auto;
+		width: 100%;
+	}
+}
 .archive.content-style-unboxed .wp-site-blocks .post-thumbnail, .blog.content-style-unboxed .wp-site-blocks .post-thumbnail, .post-type-archive.content-style-unboxed .wp-site-blocks .post-thumbnail, .search-results.content-style-unboxed .wp-site-blocks .post-thumbnail {
     margin-bottom: 1em;
 }
@@ -293,7 +303,7 @@ article.sticky {
 }
 .base-breadcrumbs {
 	margin: 0.5em 0;
-	font-size: 90%;
+	font-size: 14;
     color: var(--global-palette5);
 	@media screen and (max-width: $before-tablet-query) {
 		margin: 0.2em 0;
@@ -315,6 +325,7 @@ article.sticky {
 	flex-wrap: wrap;
 	> * {
 		display: inline-flex;
+		vertical-align: middle;
 		align-items: center;
 		flex-wrap: wrap;
 		time {
@@ -505,6 +516,12 @@ a.post-more-link {
 		margin-bottom: 0;
 		> div {
 			width: 100%;
+		}
+		.entry-taxonomies{
+			margin-bottom: 1em;
+		}
+		.entry-meta{
+			display: inline-block;
 		}
 	}
 }
@@ -716,21 +733,23 @@ a.post-more-link {
 /*--------------------------------------------------------------
 ## Custom block font sizes.
 --------------------------------------------------------------*/
-
 .has-small-font-size {
-	font-size: $font-size-small;
+	font-size: var(--global-font-size-small);
 }
 
 .has-regular-font-size {
-	font-size: $font-size-regular;
+	font-size: var(--global-font-size-medium);
 }
 
 .has-large-font-size {
-	font-size: $font-size-large;
+	font-size: var(--global-font-size-large);
 }
 
 .has-larger-font-size {
-	font-size: $font-size-larger;
+	font-size: var(--global-font-size-larger);
+}
+.has-xxlarge-font-size {
+	font-size: var(--global-font-size-xxlarge);
 }
 
 .entry-content-asset.videofit{

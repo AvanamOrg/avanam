@@ -9,9 +9,9 @@
  * @package Base
  */
 
-define( 'AVANAM_VERSION', '1.3.8' );
-define( 'AVANAM_MINIMUM_WP_VERSION', '5.4' );
-define( 'AVANAM_MINIMUM_PHP_VERSION', '7.2' );
+define( 'AVANAM_VERSION', '1.4.0' );
+define( 'AVANAM_MINIMUM_WP_VERSION', '5.6' );
+define( 'AVANAM_MINIMUM_PHP_VERSION', '7.4' );
 
 // Bail if requirements are not met.
 if ( version_compare( $GLOBALS['wp_version'], AVANAM_MINIMUM_WP_VERSION, '<' ) || version_compare( phpversion(), AVANAM_MINIMUM_PHP_VERSION, '<' ) ) {

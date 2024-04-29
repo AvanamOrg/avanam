@@ -29,6 +29,7 @@ use function add_action;
  * * `webapp()->sidebar_options()`
  * * `webapp()->palette_option()`
  * * `webapp()->get_palette()`
+ * * `webapp()->get_pro_url()`
  */
 class Component implements Component_Interface, Templating_Component_Interface {
 
@@ -95,6 +96,13 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	protected static $custom_options = array();
 
 	/**
+	 * Holds allowed alt url values
+	 *
+	 * @var values of the allowed alt urls.
+	 */
+	protected static $allowed_urls = array( 'https://avanam.org/base-theme/hostinger/', 'https://avanam.org/base-theme/instawp/' );
+
+	/**
 	 * Gets the unique identifier for the theme component.
 	 *
 	 * @return string Component slug.
@@ -130,6 +138,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			'get_palette'                => array( $this, 'get_palette' ),
 			'get_default_palette'        => array( $this, 'get_default_palette' ),
 			'get_palette_for_customizer' => array( $this, 'get_palette_for_customizer' ),
+			'get_pro_url'                => array( $this, 'get_pro_url' ),
 		);
 	}
 
@@ -185,7 +194,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 0.938,
+							'desktop' => 0.9375,
 						),
 						'unit' => array(
 							'mobile'  => 'rem',
@@ -859,6 +868,30 @@ class Component implements Component_Interface, Templating_Component_Interface {
 							'desktop' => 'standard',
 						),
 					),
+					// Logo Icon.
+					'use_logo_icon' => false,
+					'logo_icon'   => 'logoArrow',
+					'logo_icon_width' => array(
+						'size' => array(
+							'mobile'  => '',
+							'tablet'  => '',
+							'desktop' => 60,
+						),
+						'unit' => array(
+							'mobile'  => 'px',
+							'tablet'  => 'px',
+							'desktop' => 'px',
+						),
+					),
+					'logo_icon_color' => array(
+						'color' => 'palette3',
+					),
+					'transparent_logo_icon_color' => array(
+						'color' => '',
+					),
+					'header_sticky_logo_icon_color' => array(
+						'color' => '',
+					),
 					'brand_typography'            => array(
 						'size' => array(
 							'desktop' => 26,
@@ -1105,7 +1138,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'desktop' => array(
 							'color' => 'palette9',
 						),
-					),
+						),
 					'header_popup_text_color'  => array(
 						'color' => 'palette4',
 					),
@@ -1218,13 +1251,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'unit'   => 'px',
 						'locked' => true,
 					),
-					
-					// Social Links
-					'facebook_link' => '#',
-					'twitter_link' => '#',
-					'instagram_link' => '#',
-					'youtube_link' => '#',
-					
 					// Header Social.
 					'header_social_items' => array(
 						'items' => array(
@@ -1245,8 +1271,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'twitterAlt',
-								'label'   => 'Twitter',
+								'icon'    => 'twitterAlt2',
+								'label'   => 'X',
 							),
 							array(
 								'id'      => 'instagram',
@@ -1339,8 +1365,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'twitter',
-								'label'   => 'Twitter',
+								'icon'    => 'twitterAlt2',
+								'label'   => 'X',
 							),
 							array(
 								'id'      => 'instagram',
@@ -1349,7 +1375,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'instagram',
+								'icon'    => 'instagramAlt',
 								'label'   => 'Instagram',
 							),
 						),
@@ -1410,7 +1436,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'tablet'  => true,
 						'mobile'  => false,
 					),
-					'header_search_icon'   => 'search2',
+					'header_search_icon'   => 'search',
 					'header_search_style'  => 'default',
 					'header_search_woo'    => true,
 					'header_search_border' => array(
@@ -2143,8 +2169,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 								'url'     => '',
 								'imageid' => '',
 								'width'   => 24,
-								'icon'    => 'twitterAlt',
-								'label'   => 'Twitter',
+								'icon'    => 'twitterAlt2',
+								'label'   => 'X',
 							),
 							array(
 								'id'      => 'instagram',
@@ -2641,9 +2667,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'post_archive_title_inner_layout' => 'standard',
 					'post_archive_title_height'       => array(
 						'size' => array(
-							'mobile'  => 100,
-							'tablet'  => '',
-							'desktop' => '',
+							'mobile'  => 95,
+							'tablet'  => 120,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2748,7 +2774,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'lineHeight' => array(
 							'desktop' => '',
 						),
-						'family'  => '',
+						'family'  => 'inherit',
 						'google'  => false,
 						'weight'  => '',
 						'variant' => '',
@@ -2794,9 +2820,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'search_archive_title_inner_layout' => 'standard',
 					'search_archive_title_height'       => array(
 						'size' => array(
-							'mobile'  => '95',
-							'tablet'  => '120',
-							'desktop' => '170',
+							'mobile'  => 95,
+							'tablet'  => 120,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -4269,6 +4295,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'sfwd-assignment_comments' => true,
 					// MISC
 					'ie11_basic_support' => false,
+					'theme_json_mode'    => false,
 				)
 			);
 		}
@@ -4648,6 +4675,43 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		}
 
 		return $value;
+	}
+	/**
+	 * Get Pro Url
+	 * 
+	 * @param string $url url.
+	 * @param string $initial_url initial url.
+	 * @param string $source source.
+	 * @param string $medium medium.
+	 * @param string $campaign campaign.
+	 */
+	public function get_pro_url( $url, $initial_url = '', $source = '', $medium = '', $campaign = '' ) {
+		if ( empty( $initial_url ) ) {
+			$initial_url = $url;
+		}
+		$partner_url = get_option( 'base_partner_pro_url', '' );
+		if ( ! empty( $partner_url ) && in_array( $partner_url, self::$allowed_urls, true ) ) {
+			$url = $partner_url;
+		}
+		$url = apply_filters( 'base_get_pro_url', $url, $initial_url );
+		if ( in_array( $url, self::$allowed_urls, true ) ) {
+			$url = $url;
+		} else {
+			$url = $initial_url;
+		}
+		// Add utm source.
+		if ( ! empty( $source ) ) {
+			$url = add_query_arg( 'utm_source', sanitize_text_field( $source ), $url );
+		}
+		// Add UTM medium.
+		if ( ! empty( $medium ) ) {
+			$url = add_query_arg( 'utm_medium', sanitize_text_field( $medium ), $url );
+		}
+		// Add UTM campaign.
+		if ( ! empty( $campaign ) ) {
+			$url = add_query_arg( 'utm_campaign', sanitize_text_field( $campaign ), $url );
+		}
+		return $url;
 	}
 	/**
 	 * Get Palette

@@ -39,6 +39,175 @@ class Component implements Component_Interface {
 		remove_action( 'admin_head-post-new.php', 'base_blocks_admin_editor_width', 100 );
 		add_filter( 'base_blocks_editor_width', array( $this, 'base_blocks_admin_editor_width_filter' ), 100 );
 		add_action( 'after_setup_theme', array( $this, 'google_font_add_editor_styles' ) );
+		add_filter( 'theme_file_path', array( $this, 'disable_json_optionally' ), 10, 2 );
+		add_filter( 'wp_theme_json_data_theme', array( $this, 'edit_theme_json' ), 10 );
+	}
+	/**
+	 * Edit the theme.json file optionally.
+	 *
+	 * @param object $theme_json the path to the theme.json file.
+	 */
+	public function edit_theme_json( $theme_json ) {
+		$theme_mode = get_theme_mod( 'theme_json_mode', false );
+		if ( ! $theme_mode ) {
+			$new_data = array(
+				'version'  => 2,
+				"settings" => array(
+					"appearanceTools" => true,
+					"border" => [
+						"color" => true, 
+						"radius" => true, 
+						"style" => true, 
+						"width" => true 
+					], 
+					"color" => [
+						"custom" => true, 
+						"defaultPalette" => false, 
+						"link" => true, 
+						"palette" => [
+							[
+							"name" => "Accent", 
+							"slug" => "theme-palette1", 
+							"color" => "var(--global-palette1)" 
+							], 
+							[
+								"name" => "Accent - alt", 
+								"slug" => "theme-palette2", 
+								"color" => "var(--global-palette2)" 
+							], 
+							[
+								"name" => "Strongest text", 
+								"slug" => "theme-palette3", 
+								"color" => "var(--global-palette3)" 
+							], 
+							[
+								"name" => "Strong Text", 
+								"slug" => "theme-palette4", 
+								"color" => "var(--global-palette4)" 
+							], 
+							[
+								"name" => "Medium text", 
+								"slug" => "theme-palette5", 
+								"color" => "var(--global-palette5)" 
+							], 
+							[
+								"name" => "Subtle Text", 
+								"slug" => "theme-palette6", 
+								"color" => "var(--global-palette6)" 
+							], 
+							[
+								"name" => "Subtle Background", 
+								"slug" => "theme-palette7", 
+								"color" => "var(--global-palette7)" 
+							], 
+							[
+								"name" => "Lighter Background", 
+								"slug" => "theme-palette8", 
+								"color" => "var(--global-palette8)" 
+							], 
+							[
+								"name" => "White or offwhite", 
+								"slug" => "theme-palette9", 
+								"color" => "var(--global-palette9)" 
+								] 
+							] 
+					], 
+					"layout" => [
+						"contentSize" => "var(--global-calc-content-width)", 
+						"wideSize" => "var(--global-calc-wide-content-width)", 
+						"fullSize" => "none" 
+					], 
+					"spacing" => [
+						"blockGap" => null, 
+						"margin" => true, 
+						"padding" => true, 
+						"units" => [
+							"px", 
+							"em", 
+							"rem", 
+							"vh", 
+							"vw", 
+							"%" 
+						] 
+					], 
+					"typography" => [
+					"customFontSize" => true, 
+					"fontSizes" => [
+						[
+							"name" => "Small", 
+							"slug" => "small", 
+							"size" => "var(--global-font-size-small)" 
+						], 
+						[
+							"name" => "Medium", 
+							"slug" => "medium", 
+							"size" => "var(--global-font-size-medium)" 
+						], 
+						[
+						"name" => "Large", 
+						"slug" => "large", 
+						"size" => "var(--global-font-size-large)" 
+						], 
+						[
+							"name" => "Larger", 
+							"slug" => "larger", 
+							"size" => "var(--global-font-size-larger)" 
+						], 
+						[
+							"name" => "XX-Large", 
+							"slug" => "xxlarge", 
+							"size" => "var(--global-font-size-xxlarge)" 
+						] 
+					], 
+					"lineHeight" => true 
+					] 
+				),
+			  	"styles" => [
+					"elements" => [
+						"button" => [
+							"spacing" => [
+								"padding" => false 
+							], 
+							"border" => [
+								"width" => false 
+							],
+							"color" => [
+								"background" => false, 
+								"text" => false 
+							],
+							"typography" => [
+								"fontFamily" => false, 
+								"fontSize" => false, 
+								"lineHeight" => false, 
+								"textDecoration" => false 
+							]
+						]
+					]
+				]
+			);
+
+			return $theme_json->update_with( $new_data );
+		}
+		return $theme_json;
+	}
+	/**
+	 * Disables the theme.json file optionally.
+	 *
+	 * @param string $path the path to the theme.json file.
+	 */
+	public function disable_json_optionally( $path, $file ) {
+		$length = strlen( 'base/theme.json' );
+		if ( ! empty( $file ) && 'theme.json' === $file && substr( $path, -$length ) === 'base/theme.json' ) {
+			$theme_mode = get_theme_mod( 'theme_json_mode', false );
+			if ( ! $theme_mode ) {
+				// Set the path to a file that doesn't exist.
+				$new_path = str_replace( 'base/theme.json', 'base/missing-theme.json', $path );
+				return $new_path;
+			} else {
+				return $path;
+			}
+		}
+		return $path;
 	}
 	/**
 	 * Registers an editor stylesheet for the current theme.
@@ -168,7 +337,7 @@ class Component implements Component_Interface {
 					$post_layout['layout'] = 'narrow';
 				}
 			}
-			$classes .= ' post-content-width-' . esc_attr( $post_layout['layout'] ) . ' admin-color-pcw-' . esc_attr( $post_layout['layout'] ) . ' post-content-style-' . esc_attr( $post_layout['boxed'] ) . ' admin-color-pcs-' . esc_attr( $post_layout['boxed'] ) . ' admin-color-post-type-' . esc_attr( $post_type ) . ' post-content-vertical-padding-' . esc_attr( $post_layout['padding'] ) . ' admin-color-pcvp-' . esc_attr( $post_layout['padding'] ) . ' post-content-title-' . esc_attr( $post_layout['title'] ) . ' admin-color-pct-' . esc_attr( $post_layout['title'] ) . '  post-content-sidebar-' . esc_attr( $post_layout['sidebar'] ) . ' ';
+			$classes .= ' post-content-width-' . esc_attr( $post_layout['layout'] ) . ' admin-color-pcw-' . esc_attr( $post_layout['layout'] ) . ' post-content-style-' . esc_attr( $post_layout['boxed'] ) . ' admin-color-pcs-' . esc_attr( $post_layout['boxed'] ) . ' admin-color-post-type-' . esc_attr( $post_type ) . ' post-content-vertical-padding-' . esc_attr( $post_layout['padding'] ) . ' admin-color-pcvp-' . esc_attr( $post_layout['padding'] ) . ' post-content-title-' . esc_attr( $post_layout['title'] ) . ' admin-color-pct-' . esc_attr( $post_layout['title'] ) . '  post-content-sidebar-' . esc_attr( $post_layout['sidebar'] ) . ' admin-color-pc-sidebar-' . esc_attr( $post_layout['sidebar'] ) . ' ';
 		}
 		return $classes;
 	}
@@ -191,38 +360,5 @@ class Component implements Component_Interface {
 		if ( apply_filters( 'base-theme-block-templates-support', true ) ) {
 			add_theme_support( 'block-templates' );
 		}
-		/*
-		 * Add support custom font sizes.
-		 * MOVED TO JSON
-		 */
-		add_theme_support(
-			'editor-font-sizes',
-			array(
-				array(
-					'name'      => __( 'Small', 'avanam' ),
-					'shortName' => __( 'S', 'avanam' ),
-					'size'      => 14,
-					'slug'      => 'small',
-				),
-				array(
-					'name'      => __( 'Medium', 'avanam' ),
-					'shortName' => __( 'M', 'avanam' ),
-					'size'      => 24,
-					'slug'      => 'medium',
-				),
-				array(
-					'name'      => __( 'Large', 'avanam' ),
-					'shortName' => __( 'L', 'avanam' ),
-					'size'      => 32,
-					'slug'      => 'large',
-				),
-				array(
-					'name'      => __( 'Larger', 'avanam' ),
-					'shortName' => __( 'XL', 'avanam' ),
-					'size'      => 40,
-					'slug'      => 'larger',
-				),
-			)
-		);
 	}
 }

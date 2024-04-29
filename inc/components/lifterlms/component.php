@@ -7,7 +7,9 @@
 
 namespace Base\LifterLMS;
 
+use Base\Base_CSS;
 use Base\Component_Interface;
+use Base_Blocks_Frontend;
 use function Base\webapp;
 use function add_action;
 use function add_filter;
@@ -22,6 +24,14 @@ use function get_post_type;
  * Class for adding LifterLMS plugin support.
  */
 class Component implements Component_Interface {
+	/**
+	 * Associative array of Google Fonts to load.
+	 *
+	 * Do not access this property directly, instead use the `get_google_fonts()` method.
+	 *
+	 * @var array
+	 */
+	protected static $google_fonts = array();
 
 	/**
 	 * Gets the unique identifier for the theme component.
@@ -36,6 +46,9 @@ class Component implements Component_Interface {
 	 * Adds the action and filter hooks to integrate with WordPress.
 	 */
 	public function initialize() {
+		add_filter( 'base_dynamic_css', array( $this, 'dynamic_css' ), 20 );
+		add_action( 'wp_head', array( $this, 'frontend_gfonts' ), 80 );
+
 		add_action( 'after_setup_theme', array( $this, 'action_add_lifterlms_support' ) );
 		add_filter( 'llms_get_theme_default_sidebar', array( $this, 'llms_sidebar_function' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'lifterlms_styles' ), 60 );
@@ -212,5 +225,344 @@ class Component implements Component_Interface {
 
 		return $sidebar_id;
 
+	}
+	/**
+	 * Enqueue Frontend Fonts
+	 */
+	public function frontend_gfonts() {
+		if ( empty( self::$google_fonts ) ) {
+			return;
+		}
+		if ( class_exists( 'Base_Blocks_Frontend' ) ) {
+			$ktblocks_instance = Base_Blocks_Frontend::get_instance();
+			foreach ( self::$google_fonts as $key => $font ) {
+				if ( ! array_key_exists( $key, $ktblocks_instance::$gfonts ) ) {
+					$add_font = array(
+						'fontfamily'   => $font['fontfamily'],
+						'fontvariants' => ( isset( $font['fontvariants'] ) && ! empty( $font['fontvariants'] ) && is_array( $font['fontvariants'] ) ? $font['fontvariants'] : array() ),
+						'fontsubsets'  => ( isset( $font['fontsubsets'] ) && ! empty( $font['fontsubsets'] ) && is_array( $font['fontsubsets'] ) ? $font['fontsubsets'] : array() ),
+					);
+					$ktblocks_instance::$gfonts[ $key ] = $add_font;
+				} else {
+					foreach ( $font['fontvariants'] as $variant ) {
+						if ( ! in_array( $variant, $ktblocks_instance::$gfonts[ $key ]['fontvariants'], true ) ) {
+							array_push( $ktblocks_instance::$gfonts[ $key ]['fontvariants'], $variant );
+						}
+					}
+				}
+			}
+		} else {
+			add_filter( 'base_theme_google_fonts_array', array( $this, 'filter_in_fonts' ) );
+		}
+	}
+	/**
+	 * Filters in pro fronts for output with free.
+	 *
+	 * @param array $font_array any custom css.
+	 * @return array
+	 */
+	public function filter_in_fonts( $font_array ) {
+		// Enqueue Google Fonts.
+		foreach ( self::$google_fonts as $key => $font ) {
+			if ( ! array_key_exists( $key, $font_array ) ) {
+				$add_font = array(
+					'fontfamily'   => $font['fontfamily'],
+					'fontvariants' => ( isset( $font['fontvariants'] ) && ! empty( $font['fontvariants'] ) && is_array( $font['fontvariants'] ) ? $font['fontvariants'] : array() ),
+					'fontsubsets'  => ( isset( $font['fontsubsets'] ) && ! empty( $font['fontsubsets'] ) && is_array( $font['fontsubsets'] ) ? $font['fontsubsets'] : array() ),
+				);
+				$font_array[ $key ] = $add_font;
+			} else {
+				foreach ( $font['fontvariants'] as $variant ) {
+					if ( ! in_array( $variant, $font_array[ $key ]['fontvariants'], true ) ) {
+						array_push( $font_array[ $key ]['fontvariants'], $variant );
+					}
+				}
+			}
+		}
+		return $font_array;
+	}
+	/**
+	 * Generates the dynamic css based on customizer options.
+	 *
+	 * @param string $css any custom css.
+	 * @return string
+	 */
+	public function dynamic_css( $css ) {
+		$generated_css = $this->generate_lifter_css();
+		if ( ! empty( $generated_css ) ) {
+			$css .= "\n/* Base Lifter CSS */\n" . $generated_css;
+		}
+		return $css;
+	}
+	/**
+	 * Generates the dynamic css based on page options.
+	 *
+	 * @return string
+	 */
+	public function generate_lifter_css() {
+		$css                    = new Base_CSS();
+		$media_query            = array();
+		$media_query['mobile']  = apply_filters( 'base_mobile_media_query', '(max-width: 767px)' );
+		$media_query['tablet']  = apply_filters( 'base_tablet_media_query', '(max-width: 1024px)' );
+		$media_query['desktop'] = apply_filters( 'base_desktop_media_query', '(min-width: 1025px)' );
+		// Lifter CSS.
+		if ( class_exists( 'LifterLMS' ) ) {
+			// Course Backgrounds.
+			$css->set_selector( 'body.single-course' );
+			$css->render_background( webapp()->sub_option( 'course_background', 'desktop' ), $css );
+			$css->set_selector( 'body.single-course .content-bg, body.content-style-unboxed.single-course .site' );
+			$css->render_background( webapp()->sub_option( 'course_content_background', 'desktop' ), $css );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( 'body.single-course' );
+			$css->render_background( webapp()->sub_option( 'course_background', 'tablet' ), $css );
+			$css->set_selector( 'body.single-course .content-bg, body.content-style-unboxed.single-course .site' );
+			$css->render_background( webapp()->sub_option( 'course_content_background', 'tablet' ), $css );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( 'body.single-course' );
+			$css->render_background( webapp()->sub_option( 'course_background', 'mobile' ), $css );
+			$css->set_selector( 'body.single-course .content-bg, body.content-style-unboxed.single-course .site' );
+			$css->render_background( webapp()->sub_option( 'course_content_background', 'mobile' ), $css );
+			$css->stop_media_query();
+			// Lesson Backgrounds.
+			$css->set_selector( 'body.single-lesson' );
+			$css->render_background( webapp()->sub_option( 'lesson_background', 'desktop' ), $css );
+			$css->set_selector( 'body.single-lesson .content-bg, body.content-style-unboxed.single-lesson .site' );
+			$css->render_background( webapp()->sub_option( 'lesson_content_background', 'desktop' ), $css );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( 'body.single-lesson' );
+			$css->render_background( webapp()->sub_option( 'lesson_background', 'tablet' ), $css );
+			$css->set_selector( 'body.single-lesson .content-bg, body.content-style-unboxed.single-lesson .site' );
+			$css->render_background( webapp()->sub_option( 'lesson_content_background', 'tablet' ), $css );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( 'body.single-lesson' );
+			$css->render_background( webapp()->sub_option( 'lesson_background', 'mobile' ), $css );
+			$css->set_selector( 'body.single-lesson .content-bg, body.content-style-unboxed.single-lesson .site' );
+			$css->render_background( webapp()->sub_option( 'lesson_content_background', 'mobile' ), $css );
+			$css->stop_media_query();
+			// Course Archive Backgrounds.
+			$css->set_selector( 'body.archive.tax-course_cat, body.post-type-archive-course' );
+			$css->render_background( webapp()->sub_option( 'course_archive_background', 'desktop' ), $css );
+			$css->set_selector( 'body.archive.tax-course_cat .content-bg, body.content-style-unboxed.archive.tax-course_cat .site, body.post-type-archive-course .content-bg, body.content-style-unboxed.archive.post-type-archive-course .site' );
+			$css->render_background( webapp()->sub_option( 'course_archive_content_background', 'desktop' ), $css );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( 'body.archive.tax-course_cat, body.post-type-archive-course' );
+			$css->render_background( webapp()->sub_option( 'course_archive_background', 'tablet' ), $css );
+			$css->set_selector( 'body.archive.tax-course_cat .content-bg, body.content-style-unboxed.archive.tax-course_cat .site, body.post-type-archive-course .content-bg, body.content-style-unboxed.archive.post-type-archive-course .site' );
+			$css->render_background( webapp()->sub_option( 'course_archive_content_background', 'tablet' ), $css );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( 'body.archive.tax-course_cat, body.post-type-archive-course' );
+			$css->render_background( webapp()->sub_option( 'course_archive_background', 'mobile' ), $css );
+			$css->set_selector( 'body.archive.tax-course_cat .content-bg, body.content-style-unboxed.archive.tax-course_cat .site, body.post-type-archive-course .content-bg, body.content-style-unboxed.archive.post-type-archive-course .site' );
+			$css->render_background( webapp()->sub_option( 'course_archive_content_background', 'mobile' ), $css );
+			$css->stop_media_query();
+			// Membership Archive Backgrounds.
+			$css->set_selector( 'body.archive.tax-membership_cat, body.post-type-archive-llms_membership' );
+			$css->render_background( webapp()->sub_option( 'llms_membership_archive_background', 'desktop' ), $css );
+			$css->set_selector( 'body.archive.tax-membership_cat .content-bg, body.content-style-unboxed.archive.tax-membership_cat .site, body.post-type-archive-llms_membership .content-bg, body.content-style-unboxed.archive.post-type-archive-llms_membership .site' );
+			$css->render_background( webapp()->sub_option( 'llms_membership_archive_content_background', 'desktop' ), $css );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( 'body.archive.tax-membership_cat, body.post-type-archive-llms_membership' );
+			$css->render_background( webapp()->sub_option( 'llms_membership_archive_background', 'tablet' ), $css );
+			$css->set_selector( 'body.archive.tax-membership_cat .content-bg, body.content-style-unboxed.archive.tax-membership_cat .site, body.post-type-archive-llms_membership .content-bg, body.content-style-unboxed.archive.post-type-archive-llms_membership .site' );
+			$css->render_background( webapp()->sub_option( 'llms_membership_archive_content_background', 'tablet' ), $css );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( 'body.archive.tax-membership_cat, body.post-type-archive-llms_membership' );
+			$css->render_background( webapp()->sub_option( 'llms_membership_archive_background', 'mobile' ), $css );
+			$css->set_selector( 'body.archive.tax-membership_cat .content-bg, body.content-style-unboxed.archive.tax-membership_cat .site, body.post-type-archive-llms_membership .content-bg, body.content-style-unboxed.archive.post-type-archive-llms_membership .site' );
+			$css->render_background( webapp()->sub_option( 'llms_membership_archive_content_background', 'mobile' ), $css );
+			$css->stop_media_query();
+			// Course Title.
+			$css->set_selector( '.wp-site-blocks .course-title h1' );
+			$css->render_font( webapp()->option( 'course_title_font' ), $css, 'heading' );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.wp-site-blocks .course-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'course_title_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'course_title_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'course_title_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.wp-site-blocks .course-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'course_title_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'course_title_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'course_title_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Course Title Breadcrumbs.
+			$css->set_selector( '.course-title .base-breadcrumbs' );
+			$css->render_font( webapp()->option( 'course_title_breadcrumb_font' ), $css );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'course_title_breadcrumb_color', 'color' ) ) );
+			$css->set_selector( '.course-title .base-breadcrumbs a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'course_title_breadcrumb_color', 'hover' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.course-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'course_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'course_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'course_title_breadcrumb_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.course-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'course_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'course_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'course_title_breadcrumb_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Above Course Title.
+			$css->set_selector( '.course-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'course_title_background', 'desktop' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'course_title_top_border', 'desktop' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'course_title_bottom_border', 'desktop' ) ) );
+			$css->set_selector( '.entry-hero.course-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'course_title_height' ), 'desktop' ) );
+			$css->set_selector( '.course-hero-section .hero-section-overlay' );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'course_title_overlay_color', 'color' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.course-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'course_title_background', 'tablet' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'course_title_top_border', 'tablet' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'course_title_bottom_border', 'tablet' ) ) );
+			$css->set_selector( '.entry-hero.course-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'course_title_height' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.course-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'course_title_background', 'mobile' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'course_title_top_border', 'mobile' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'course_title_bottom_border', 'mobile' ) ) );
+			$css->set_selector( '.entry-hero.course-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'course_title_height' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Lesson Title.
+			$css->set_selector( '.wp-site-blocks .lesson-title h1' );
+			$css->render_font( webapp()->option( 'lesson_title_font' ), $css, 'heading' );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.wp-site-blocks .lesson-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'lesson_title_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'lesson_title_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'lesson_title_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.wp-site-blocks .lesson-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'lesson_title_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'lesson_title_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'lesson_title_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Lesson Title Breadcrumbs.
+			$css->set_selector( '.lesson-title .base-breadcrumbs' );
+			$css->render_font( webapp()->option( 'lesson_title_breadcrumb_font' ), $css );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'lesson_title_breadcrumb_color', 'color' ) ) );
+			$css->set_selector( '.lesson-title .base-breadcrumbs a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'lesson_title_breadcrumb_color', 'hover' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.lesson-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'lesson_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'lesson_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'lesson_title_breadcrumb_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.lesson-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'lesson_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'lesson_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'lesson_title_breadcrumb_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Above Lesson Title.
+			$css->set_selector( '.lesson-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'lesson_title_background', 'desktop' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'lesson_title_top_border', 'desktop' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'lesson_title_bottom_border', 'desktop' ) ) );
+			$css->set_selector( '.entry-hero.lesson-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'lesson_title_height' ), 'desktop' ) );
+			$css->set_selector( '.lesson-hero-section .hero-section-overlay' );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'lesson_title_overlay_color', 'color' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.lesson-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'lesson_title_background', 'tablet' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'lesson_title_top_border', 'tablet' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'lesson_title_bottom_border', 'tablet' ) ) );
+			$css->set_selector( '.entry-hero.lesson-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'lesson_title_height' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.lesson-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'lesson_title_background', 'mobile' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'lesson_title_top_border', 'mobile' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'lesson_title_bottom_border', 'mobile' ) ) );
+			$css->set_selector( '.entry-hero.lesson-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'lesson_title_height' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Course Archive Title.
+			$css->set_selector( '.course-archive-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'course_archive_title_background', 'desktop' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'course_archive_title_top_border', 'desktop' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'course_archive_title_bottom_border', 'desktop' ) ) );
+			$css->set_selector( '.entry-hero.course-archive-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'course_archive_title_height' ), 'desktop' ) );
+			$css->set_selector( '.course-archive-hero-section .hero-section-overlay' );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'course_archive_title_overlay_color', 'color' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.course-archive-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'course_archive_title_background', 'tablet' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'course_archive_title_top_border', 'tablet' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'course_archive_title_bottom_border', 'tablet' ) ) );
+			$css->set_selector( '.entry-hero.course-archive-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'course_archive_title_height' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.course-archive-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'course_archive_title_background', 'mobile' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'course_archive_title_top_border', 'mobile' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'course_archive_title_bottom_border', 'mobile' ) ) );
+			$css->set_selector( '.entry-hero.course-archive-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'course_archive_title_height' ), 'mobile' ) );
+			$css->stop_media_query();
+			$css->set_selector( '.wp-site-blocks .course-archive-title h1' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'course_archive_title_color', 'color' ) ) );
+			$css->set_selector( '.course-archive-title .base-breadcrumbs' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'course_archive_title_breadcrumb_color', 'color' ) ) );
+			$css->set_selector( '.course-archive-title .base-breadcrumbs a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'course_archive_title_breadcrumb_color', 'hover' ) ) );
+			$css->set_selector( '.course-archive-title .archive-description' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'course_archive_title_description_color', 'color' ) ) );
+			$css->set_selector( '.course-archive-title .archive-description a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'course_archive_title_description_color', 'hover' ) ) );
+			// Membership Archive Title.
+			$css->set_selector( '.llms_membership-archive-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'llms_membership_archive_title_background', 'desktop' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'llms_membership_archive_title_top_border', 'desktop' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'llms_membership_archive_title_bottom_border', 'desktop' ) ) );
+			$css->set_selector( '.entry-hero.llms_membership-archive-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'llms_membership_archive_title_height' ), 'desktop' ) );
+			$css->set_selector( '.llms_membership-archive-hero-section .hero-section-overlay' );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'llms_membership_archive_title_overlay_color', 'color' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.llms_membership-archive-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'llms_membership_archive_title_background', 'tablet' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'llms_membership_archive_title_top_border', 'tablet' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'llms_membership_archive_title_bottom_border', 'tablet' ) ) );
+			$css->set_selector( '.entry-hero.llms_membership-archive-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'llms_membership_archive_title_height' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.llms_membership-archive-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'llms_membership_archive_title_background', 'mobile' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'llms_membership_archive_title_top_border', 'mobile' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'llms_membership_archive_title_bottom_border', 'mobile' ) ) );
+			$css->set_selector( '.entry-hero.llms_membership-archive-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'llms_membership_archive_title_height' ), 'mobile' ) );
+			$css->stop_media_query();
+			$css->set_selector( '.wp-site-blocks .llms_membership-archive-title h1' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'llms_membership_archive_title_color', 'color' ) ) );
+			$css->set_selector( '.llms_membership-archive-title .base-breadcrumbs' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'llms_membership_archive_title_breadcrumb_color', 'color' ) ) );
+			$css->set_selector( '.llms_membership-archive-title .base-breadcrumbs a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'llms_membership_archive_title_breadcrumb_color', 'hover' ) ) );
+			$css->set_selector( '.llms_membership-archive-title .archive-description' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'llms_membership_archive_title_description_color', 'color' ) ) );
+			$css->set_selector( '.llms_membership-archive-title .archive-description a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'llms_membership_archive_title_description_color', 'hover' ) ) );
+		}
+		self::$google_fonts = $css->fonts_output();
+		return $css->css_output();
 	}
 }

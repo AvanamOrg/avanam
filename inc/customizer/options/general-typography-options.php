@@ -30,6 +30,13 @@ Theme_Customizer::add_settings(
 					'property' => 'font',
 					'key'      => 'typography',
 				),
+				array(
+					'type'     => 'css',
+					'property' => '--global-body-font-family',
+					'selector' => 'body',
+					'pattern'  => '$',
+					'key'      => 'family',
+				),
 			),
 			'input_attrs'  => array(
 				'id'         => 'base_font',
@@ -66,6 +73,13 @@ Theme_Customizer::add_settings(
 					'type'     => 'css_typography',
 					'selector' => 'h1,h2,h3,h4,h5,h6',
 					'property' => 'font',
+					'key'      => 'family',
+				),
+				array(
+					'type'     => 'css',
+					'property' => '--global-heading-font-family',
+					'selector' => 'body',
+					'pattern'  => '$',
 					'key'      => 'family',
 				),
 			),

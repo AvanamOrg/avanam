@@ -213,3 +213,8 @@
 .content-style-boxed #tribe-events-content .entry-content-wrap {
 	position: relative;
 }
+.single-tribe_events .tribe-events-c-subscribe-dropdown__button, .tribe-block__events-link .tribe-events-c-subscribe-dropdown__button {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+}

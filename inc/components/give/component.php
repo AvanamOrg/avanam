@@ -238,8 +238,8 @@ class Component implements Component_Interface {
 		$css->add_property( '--global-palette-highlight', $css->render_color( webapp()->sub_option( 'link_color', 'highlight' ) ) );
 		$css->add_property( '--global-palette-highlight-alt', $css->render_color( webapp()->sub_option( 'link_color', 'highlight-alt' ) ) );
 		$css->add_property( '--global-palette-highlight-alt2', $css->render_color( webapp()->sub_option( 'link_color', 'highlight-alt2' ) ) );
-		$css->add_property( '--global-palette-btn-bg', $css->render_color( webapp()->sub_option( 'buttons_background', 'color' ) ) );
-		$css->add_property( '--global-palette-btn-bg-hover', $css->render_color( webapp()->sub_option( 'buttons_background', 'hover' ) ) );
+		$css->add_property( '--global-palette-btn-bg', $css->render_color_or_gradient( webapp()->sub_option( 'buttons_background', 'color' ) ) );
+		$css->add_property( '--global-palette-btn-bg-hover', $css->render_color_or_gradient( webapp()->sub_option( 'buttons_background', 'hover' ) ) );
 		$css->add_property( '--global-palette-btn', $css->render_color( webapp()->sub_option( 'buttons_color', 'color' ) ) );
 		$css->add_property( '--global-palette-btn-hover', $css->render_color( webapp()->sub_option( 'buttons_color', 'hover' ) ) );
 		$css->add_property( '--global-body-font-family', $css->render_font_family( webapp()->option( 'base_font' ), '' ) );

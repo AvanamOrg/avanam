@@ -321,6 +321,29 @@ $base_trans_settings = array(
 			),
 		),
 	),
+	'transparent_logo_icon_color' => array(
+		'control_type' => 'base_color_control',
+		'section'      => 'transparent_header_design',
+		'label'        => esc_html__( 'Logo Icon Color', 'avanam' ),
+		'default'      => webapp()->default( 'transparent_logo_icon_color' ),
+		'live_method'     => array(
+			array(
+				'type'     => 'css',
+				'selector' => '.transparent-header #main-header .site-branding .logo-icon',
+				'property' => 'color',
+				'pattern'  => '$',
+				'key'      => 'color',
+			),
+		),
+		'input_attrs'  => array(
+			'colors' => array(
+				'color' => array(
+					'tooltip' => __( 'Initial Color', 'avanam' ),
+					'palette' => true,
+				),
+			),
+		),
+	),
 	'transparent_header_site_title_color' => array(
 		'control_type' => 'base_color_control',
 		'section'      => 'transparent_header_design',
@@ -860,6 +883,24 @@ foreach ( $base_trans_post_types as $post_type_item ) {
 				),
 			),
 		);
+		if ( 'tribe_events' === $post_type_name ) {
+			$base_trans_extras_post_types[ 'transparent_header_tribe_events_archive' ] = array(
+				'control_type' => 'base_switch_control',
+				'sanitize'     => 'base_sanitize_toggle',
+				'section'      => 'transparent_header',
+				'priority'     => 5,
+				'default'      => true,
+				'label'        => esc_html__( 'Disable on Events Archive?', 'avanam' ),
+				'transport'    => 'refresh',
+				'context'      => array(
+					array(
+						'setting'  => 'transparent_header_enable',
+						'operator' => '=',
+						'value'    => true,
+					),
+				),
+			);
+		}
 	}
 }
 if ( $base_trans_add_extras ) {

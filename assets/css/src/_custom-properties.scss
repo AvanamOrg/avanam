@@ -31,10 +31,7 @@ $blue:          	#2ea2cc !default;
 $secondary:         desaturate(lighten(#3182ce, 40%), 21%) !default;    // Secondary buttons
 $secondarytext:     desaturate(darken($secondary, 60%), 21%) !default;   // Text on secondary color bg
 
-$font-size-small: calc(16 / 20 * 1rem);
-$font-size-regular: calc(20 / 16 * 1rem);
-$font-size-large: calc(36 / 20 * 1rem);
-$font-size-larger: calc(48 / 20 * 1rem);
+
 
 $landscape-phone-minus-query: 540px;
 $landscape-phone-plus-query: 576px;
@@ -49,7 +46,7 @@ $desktop-plus-query: 1200px;
 // Social Colors.
 $facebook: #3b5998;
 $facebook_group: #3b5998;
-$twitter: #1DA1F2;
+$twitter: #000000;
 $google: #DB4437;
 $dribbble: #EA4C89;
 $youtube: #FF3333;

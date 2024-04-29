@@ -152,10 +152,11 @@ class Base_Dashboard_Settings {
 				'starterTemplates' => ( defined( 'AVANAM_STARTER_VERSION' ) ? true : false ),
 				'ajax_url'   => admin_url( 'admin-ajax.php' ),
 				'ajax_nonce' => wp_create_nonce( 'base-ajax-verification' ),
+				'proURL'       => esc_url( \Base\webapp()->get_pro_url( 'https://avanam.org/base-theme/premium/', 'https://avanam.org/base-theme/premium/', 'in-app', 'theme-dash' ) ),
 				'status'       => $data_action,
 				'starterLabel' => $button_label,
 				'starterImage' => esc_attr( get_template_directory_uri() . '/assets/images/starter-templates-banner.jpeg' ),
-				'starterURL' => esc_url( admin_url( 'themes.php?page=avanam-starter' ) ),
+				'starterURL' => esc_url( class_exists( '\\BaseWP\\BaseBlocks\\AvanamOrg\\Uplink\\Register' ) ? admin_url( 'admin.php?page=avanam-starter' ) : admin_url( 'themes.php?page=avanam-starter' ) ),
 				'videoImage' => esc_attr( get_template_directory_uri() . '/assets/images/getting-started-video.jpg' ),
 			)
 		);
@@ -299,7 +300,7 @@ class Base_Dashboard_Settings {
 		<div class="base_theme_dash_head">
 			<div class="base_theme_dash_head_container">
 				<div class="base_theme_dash_logo">
-					<img src="<?php echo esc_attr( get_template_directory_uri() . '/assets/images/avanam-logo.png' ); ?>">
+					<img src="<?php echo esc_attr( apply_filters( 'base_theme_dashboard_logo', get_template_directory_uri() . '/assets/images/avanam-logo.png' ) ); ?>">
 				</div>
 				<div class="base_theme_dash_version">
 					<span>
@@ -322,21 +323,21 @@ class Base_Dashboard_Settings {
 							<div class="components-panel__body is-opened">
 								<h2><?php esc_html_e( 'Video Tutorials', 'avanam' ); ?></h2>
 								<p><?php esc_html_e( 'Want a guide? We have video tutorials to walk you through getting started.', 'avanam' ); ?></p>
-								<a href="https://avanam.org/wordpress#learn" target="_blank" class="sidebar-link"><?php esc_html_e( 'Watch Videos', 'avanam' ); ?></a>
+								<a href="https://avanam.org/wordpress#learn?utm_source=in-app&utm_medium=theme-dash&utm_campaign=videos" target="_blank" class="sidebar-link"><?php esc_html_e( 'Watch Videos', 'avanam' ); ?></a>
 							</div>
 						</div>
 						<div class="support-section sidebar-section components-panel">
 							<div class="components-panel__body is-opened">
 								<h2><?php esc_html_e( 'Documentation', 'avanam' ); ?></h2>
 								<p><?php esc_html_e( 'Need help? We have a knowledge base full of articles to get you started.', 'avanam' ); ?></p>
-								<a href="https://avanam.org/wordpress#kb" target="_blank" class="sidebar-link"><?php esc_html_e( 'Browse Docs', 'avanam' ); ?></a>
+								<a href="<?php echo esc_url( \Base\webapp()->get_pro_url( 'https://avanam.org/wordpress#kb', 'https://avanam.org/wordpress#kb', 'in-app', 'theme-dash', 'docs' ) ); ?>" target="_blank" class="sidebar-link"><?php esc_html_e( 'Browse Docs', 'avanam' ); ?></a>
 							</div>
 						</div>
 						<div class="support-section sidebar-section components-panel">
 							<div class="components-panel__body is-opened">
 								<h2><?php esc_html_e( 'Support', 'avanam' ); ?></h2>
 								<p><?php esc_html_e( 'Have a question, we are happy to help! Get in touch with our support team.', 'avanam' ); ?></p>
-								<a href="https://avanam.org/wordpress#support" target="_blank" class="sidebar-link"><?php esc_html_e( 'Submit a Ticket', 'avanam' ); ?></a>
+								<a href="https://avanam.org/wordpress#support?utm_source=in-app&utm_medium=theme-dash&utm_campaign=help" target="_blank" class="sidebar-link"><?php esc_html_e( 'Submit a Ticket', 'avanam' ); ?></a>
 							</div>
 						</div>
 					</div>

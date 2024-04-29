@@ -35,7 +35,14 @@ $settings = array(
 		'sanitize'     => 'esc_url_raw',
 		'section'      => 'general_social',
 		'default'      => webapp()->default( 'twitter_link' ),
-		'label'        => esc_html__( 'Twitter', 'avanam' ),
+		'label'        => esc_html__( 'X formerly Twitter', 'avanam' ),
+	),
+	'threads_link' => array(
+		'control_type' => 'base_text_control',
+		'sanitize'     => 'esc_url_raw',
+		'section'      => 'general_social',
+		'default'      => webapp()->default( 'threads_link' ),
+		'label'        => esc_html__( 'Threads', 'avanam' ),
 	),
 	'instagram_link' => array(
 		'control_type' => 'base_text_control',

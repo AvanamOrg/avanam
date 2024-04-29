@@ -25,6 +25,13 @@ $base_flush_button = ob_get_clean();
 
 Theme_Customizer::add_settings(
 	array(
+		'theme_json_mode' => array(
+			'control_type' => 'base_switch_control',
+			'sanitize'     => 'base_sanitize_toggle',
+			'section'      => 'general_performance',
+			'default'      => webapp()->default( 'theme_json_mode' ),
+			'label'        => esc_html__( 'Enable Optimized Group Block', 'avanam' ),
+		),
 		'enable_scroll_to_id' => array(
 			'control_type' => 'base_switch_control',
 			'sanitize'     => 'base_sanitize_toggle',

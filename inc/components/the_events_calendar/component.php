@@ -94,7 +94,7 @@ class Component implements Component_Interface {
 		$media_query['tablet']  = apply_filters( 'base_tablet_media_query', '(max-width: 1024px)' );
 		$media_query['desktop'] = apply_filters( 'base_desktop_media_query', '(min-width: 1025px)' );
 		$css->set_selector( ':root' );
-		$css->add_property( '--tec-color-background-events', 'var(--global-palette9)' );
+		$css->add_property( '--tec-color-background-events', 'transparent' );
 		$css->add_property( '--tec-color-text-event-date', 'var(--global-palette3)' );
 		$css->add_property( '--tec-color-text-event-title', 'var(--global-palette3)' );
 		$css->add_property( '--tec-color-text-events-title', 'var(--global-palette3)' );
@@ -382,12 +382,13 @@ class Component implements Component_Interface {
 				'weight'  => '',
 				'variant' => '',
 			),
-			'tribe_events_archive_title'            => false,
-			'tribe_events_archive_title_layout'     => 'normal',
-			'tribe_events_archive_layout'           => 'normal',
-			'tribe_events_archive_sidebar_id'       => 'sidebar-primary',
-			'tribe_events_archive_content_style'    => 'unboxed',
-			'tribe_events_archive_vertical_padding' => 'show',
+			'tribe_events_archive_title'              => false,
+			'tribe_events_archive_title_layout'       => 'normal',
+			'tribe_events_archive_layout'             => 'normal',
+			'tribe_events_archive_sidebar_id'         => 'sidebar-primary',
+			'tribe_events_archive_content_style'      => 'unboxed',
+			'tribe_events_archive_vertical_padding'   => 'show',
+			'transparent_header_tribe_events_archive' => true,
 		);
 		$defaults = array_merge(
 			$defaults,

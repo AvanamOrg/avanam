@@ -310,7 +310,11 @@ figure.wp-block-gallery ul {
 .wp-block-search {
 	.wp-block-search__button {
 		border-color: var(--global-gray-400);
+	}
+	.wp-block-search__button:not(.has-text-color) {
 		color: var(--global-palette4);
+	}
+	.wp-block-search__button:not(.has-background) {
 		background: var(--global-palette9);
 	}
 	.wp-block-search__input {

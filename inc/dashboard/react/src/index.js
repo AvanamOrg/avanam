@@ -14,9 +14,7 @@ import Notices from './notices';
  * WordPress dependencies
  */
  import { __, sprintf } from '@wordpress/i18n';
-const { registerCoreBlocks } = wp.blockLibrary;
-const { hasFilter } = wp.hooks;
-import { Fragment, Component, RawHTML, render } from '@wordpress/element';
+import { Fragment, Component, createRoot } from '@wordpress/element';
 import { TabPanel, Panel, PanelBody, PanelRow, Button } from '@wordpress/components';
 
 class BaseDashboard extends Component {
@@ -136,10 +134,9 @@ class BaseDashboard extends Component {
 		);
 	}
 }
-
 wp.domReady( () => {
-	render(
-		<BaseDashboard />,
-		document.querySelector( '.base_theme_dashboard_main' )
-	);
+	const container = document.querySelector( '.base_theme_dashboard_main' );
+	const root = createRoot( container );
+
+	root.render(<BaseDashboard />);
 } );

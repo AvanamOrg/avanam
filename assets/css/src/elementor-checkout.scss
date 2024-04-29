@@ -1,0 +1,22 @@
+/**
+ * Custom vars
+ */
+ .elementor-widget-woocommerce-checkout-page .woocommerce-checkout {
+	.col2-set {
+		float: none;
+		width: 100%;
+		padding: 0;
+	}
+	#order_review_heading {
+		float: none;
+		width: auto;
+		padding: 0;
+		margin-bottom: var(--sections-title-spacing,30px);
+	}
+	.woocommerce-checkout-review-order {
+		float: none;
+		width: auto;
+		padding: 0;
+	}
+ }
+ 

@@ -8,6 +8,8 @@
 namespace Base\LearnDash;
 
 use Base\Component_Interface;
+use Base\Base_CSS;
+use Base_Blocks_Frontend;
 use LearnDash_Settings_Section;
 use function Base\webapp;
 use function add_action;
@@ -22,6 +24,15 @@ use function get_post_type;
  * Class for adding LearnDash plugin support.
  */
 class Component implements Component_Interface {
+
+	/**
+	 * Associative array of Google Fonts to load.
+	 *
+	 * Do not access this property directly, instead use the `get_google_fonts()` method.
+	 *
+	 * @var array
+	 */
+	protected static $google_fonts = array();
 
 	/**
 	 * Gets the unique identifier for the theme component.
@@ -41,6 +52,8 @@ class Component implements Component_Interface {
 		add_filter( 'learndash_course_grid_template', array( $this, 'learndash_course_grid_template' ), 10 );
 		add_filter( 'ld_course_list', array( $this, 'learndash_course_grid_class' ), 10, 3 );
 		add_action( 'after_setup_theme', array( $this, 'action_add_editor_styles' ) );
+		add_filter( 'base_dynamic_css', array( $this, 'dynamic_css' ), 20 );
+		add_action( 'wp_head', array( $this, 'frontend_gfonts' ), 80 );
 	}
 	/**
 	 * Filters HTML output of course list.
@@ -67,6 +80,61 @@ class Component implements Component_Interface {
 
 		}
 		return $output;
+	}
+	/**
+	 * Enqueue Frontend Fonts
+	 */
+	public function frontend_gfonts() {
+		if ( empty( self::$google_fonts ) ) {
+			return;
+		}
+		if ( class_exists( 'Base_Blocks_Frontend' ) ) {
+			$ktblocks_instance = Base_Blocks_Frontend::get_instance();
+			foreach ( self::$google_fonts as $key => $font ) {
+				if ( ! array_key_exists( $key, $ktblocks_instance::$gfonts ) ) {
+					$add_font = array(
+						'fontfamily'   => $font['fontfamily'],
+						'fontvariants' => ( isset( $font['fontvariants'] ) && ! empty( $font['fontvariants'] ) && is_array( $font['fontvariants'] ) ? $font['fontvariants'] : array() ),
+						'fontsubsets'  => ( isset( $font['fontsubsets'] ) && ! empty( $font['fontsubsets'] ) && is_array( $font['fontsubsets'] ) ? $font['fontsubsets'] : array() ),
+					);
+					$ktblocks_instance::$gfonts[ $key ] = $add_font;
+				} else {
+					foreach ( $font['fontvariants'] as $variant ) {
+						if ( ! in_array( $variant, $ktblocks_instance::$gfonts[ $key ]['fontvariants'], true ) ) {
+							array_push( $ktblocks_instance::$gfonts[ $key ]['fontvariants'], $variant );
+						}
+					}
+				}
+			}
+		} else {
+			add_filter( 'base_theme_google_fonts_array', array( $this, 'filter_in_fonts' ) );
+		}
+	}
+	/**
+	 * Filters in pro fronts for output with free.
+	 *
+	 * @param array $font_array any custom css.
+	 * @return array
+	 */
+	public function filter_in_fonts( $font_array ) {
+		// Enqueue Google Fonts.
+		foreach ( self::$google_fonts as $key => $font ) {
+			if ( ! array_key_exists( $key, $font_array ) ) {
+				$add_font = array(
+					'fontfamily'   => $font['fontfamily'],
+					'fontvariants' => ( isset( $font['fontvariants'] ) && ! empty( $font['fontvariants'] ) && is_array( $font['fontvariants'] ) ? $font['fontvariants'] : array() ),
+					'fontsubsets'  => ( isset( $font['fontsubsets'] ) && ! empty( $font['fontsubsets'] ) && is_array( $font['fontsubsets'] ) ? $font['fontsubsets'] : array() ),
+				);
+				$font_array[ $key ] = $add_font;
+			} else {
+				foreach ( $font['fontvariants'] as $variant ) {
+					if ( ! in_array( $variant, $font_array[ $key ]['fontvariants'], true ) ) {
+						array_push( $font_array[ $key ]['fontvariants'], $variant );
+					}
+				}
+			}
+		}
+		return $font_array;
 	}
 	/**
 	 * Enqueues WordPress theme styles for the editor.
@@ -370,5 +438,523 @@ class Component implements Component_Interface {
 
 		// Return rgb(a) color string.
 		return $output;
+	}
+	/**
+	 * Generates the dynamic css based on customizer options.
+	 *
+	 * @param string $css any custom css.
+	 * @return string
+	 */
+	public function dynamic_css( $css ) {
+		$generated_css = $this->generate_ld_css();
+		if ( ! empty( $generated_css ) ) {
+			$css .= "\n/* Base LearnDash CSS */\n" . $generated_css;
+		}
+		return $css;
+	}
+	/**
+	 * Generates the dynamic css based on page options.
+	 *
+	 * @return string
+	 */
+	public function generate_ld_css() {
+		$css                    = new Base_CSS();
+		$media_query            = array();
+		$media_query['mobile']  = apply_filters( 'base_mobile_media_query', '(max-width: 767px)' );
+		$media_query['tablet']  = apply_filters( 'base_tablet_media_query', '(max-width: 1024px)' );
+		$media_query['desktop'] = apply_filters( 'base_desktop_media_query', '(min-width: 1025px)' );
+		// Learndash.
+		if ( class_exists( 'SFWD_LMS' ) ) {
+			// Course Archive Backgrounds.
+			$css->set_selector( 'body.post-type-archive-sfwd-courses' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_background', 'desktop' ), $css );
+			$css->set_selector( 'body.post-type-archive-sfwd-courses .content-bg, body.content-style-unboxed.archive.post-type-archive-sfwd-courses .site' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_content_background', 'desktop' ), $css );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( 'body.post-type-archive-sfwd-courses' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_background', 'tablet' ), $css );
+			$css->set_selector( 'body.post-type-archive-sfwd-courses .content-bg, body.content-style-unboxed.archive.post-type-archive-sfwd-courses .site' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_content_background', 'tablet' ), $css );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( 'body.post-type-archive-sfwd-courses' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_background', 'mobile' ), $css );
+			$css->set_selector( 'body.post-type-archive-sfwd-courses .content-bg, body.content-style-unboxed.archive.post-type-archive-sfwd-courses .site' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_content_background', 'mobile' ), $css );
+			$css->stop_media_query();
+			// Course Archive Title.
+			$css->set_selector( '.sfwd-courses-archive-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_title_background', 'desktop' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-courses_archive_title_top_border', 'desktop' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-courses_archive_title_bottom_border', 'desktop' ) ) );
+			$css->set_selector( '.entry-hero.sfwd-courses-archive-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-courses_archive_title_height' ), 'desktop' ) );
+			$css->set_selector( '.sfwd-courses-archive-hero-section .hero-section-overlay' );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-courses_archive_title_overlay_color', 'color' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.sfwd-courses-archive-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_title_background', 'tablet' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-courses_archive_title_top_border', 'tablet' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-courses_archive_title_bottom_border', 'tablet' ) ) );
+			$css->set_selector( '.entry-hero.sfwd-courses-archive-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-courses_archive_title_height' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.sfwd-courses-archive-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_archive_title_background', 'mobile' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-courses_archive_title_top_border', 'mobile' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-courses_archive_title_bottom_border', 'mobile' ) ) );
+			$css->set_selector( '.entry-hero.sfwd-courses-archive-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-courses_archive_title_height' ), 'mobile' ) );
+			$css->stop_media_query();
+			$css->set_selector( '.wp-site-blocks .sfwd-courses-archive-title h1' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-courses_archive_title_color', 'color' ) ) );
+			$css->set_selector( '.sfwd-courses-archive-title .base-breadcrumbs' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-courses_archive_title_breadcrumb_color', 'color' ) ) );
+			$css->set_selector( '.sfwd-courses-archive-title .base-breadcrumbs a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-courses_archive_title_breadcrumb_color', 'hover' ) ) );
+			$css->set_selector( '.sfwd-courses-archive-title .archive-description' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-courses_archive_title_description_color', 'color' ) ) );
+			$css->set_selector( '.sfwd-courses-archive-title .archive-description a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-courses_archive_title_description_color', 'hover' ) ) );
+			// Course Title.
+			$css->set_selector( '.sfwd-courses-title h1' );
+			$css->render_font( webapp()->option( 'sfwd-courses_title_font' ), $css, 'heading' );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.sfwd-courses-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-courses_title_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-courses_title_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-courses_title_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.sfwd-courses-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-courses_title_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-courses_title_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-courses_title_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Course Title Breadcrumbs.
+			$css->set_selector( '.sfwd-courses-title .base-breadcrumbs' );
+			$css->render_font( webapp()->option( 'sfwd-courses_title_breadcrumb_font' ), $css );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-courses_title_breadcrumb_color', 'color' ) ) );
+			$css->set_selector( '.sfwd-courses-title .base-breadcrumbs a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-courses_title_breadcrumb_color', 'hover' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.sfwd-courses-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-courses_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-courses_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-courses_title_breadcrumb_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.sfwd-courses-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-courses_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-courses_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-courses_title_breadcrumb_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Above Course Title.
+			$css->set_selector( '.sfwd-courses-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_title_background', 'desktop' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-courses_title_top_border', 'desktop' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-courses_title_bottom_border', 'desktop' ) ) );
+			$css->set_selector( '.entry-hero.sfwd-courses-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-courses_title_height' ), 'desktop' ) );
+			$css->set_selector( '.sfwd-courses-hero-section .hero-section-overlay' );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-courses_title_overlay_color', 'color' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.sfwd-courses-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_title_background', 'tablet' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-courses_title_top_border', 'tablet' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-courses_title_bottom_border', 'tablet' ) ) );
+			$css->set_selector( '.entry-hero.sfwd-courses-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-courses_title_height' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.sfwd-courses-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_title_background', 'mobile' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-courses_title_top_border', 'mobile' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-courses_title_bottom_border', 'mobile' ) ) );
+			$css->set_selector( '.entry-hero.sfwd-courses-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-courses_title_height' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Course Backgrounds.
+			$css->set_selector( 'body.single-sfwd-courses' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_background', 'desktop' ), $css );
+			$css->set_selector( 'body.single-sfwd-courses .content-bg, body.content-style-unboxed.single-sfwd-courses .site' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_content_background', 'desktop' ), $css );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( 'body.single-sfwd-courses' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_background', 'tablet' ), $css );
+			$css->set_selector( 'body.single-sfwd-courses .content-bg, body.content-style-unboxed.single-sfwd-courses .site' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_content_background', 'tablet' ), $css );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( 'body.single-sfwd-courses' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_background', 'mobile' ), $css );
+			$css->set_selector( 'body.single-sfwd-courses .content-bg, body.content-style-unboxed.single-sfwd-courses .site' );
+			$css->render_background( webapp()->sub_option( 'sfwd-courses_content_background', 'mobile' ), $css );
+			$css->stop_media_query();
+			if ( class_exists( 'LearnDash_Settings_Section' ) ) {
+				$in_focus_mode = \LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Theme_LD30', 'focus_mode_enabled' );
+				if ( ! $in_focus_mode ) {
+					// Lesson Title.
+					$css->set_selector( '.sfwd-lessons-title h1' );
+					$css->render_font( webapp()->option( 'sfwd-lessons_title_font' ), $css, 'heading' );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( '.sfwd-lessons-title h1' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-lessons_title_font' ), 'tablet' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-lessons_title_font' ), 'tablet' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-lessons_title_font' ), 'tablet' ) );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( '.sfwd-lessons-title h1' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-lessons_title_font' ), 'mobile' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-lessons_title_font' ), 'mobile' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-lessons_title_font' ), 'mobile' ) );
+					$css->stop_media_query();
+					// Lesson Title Breadcrumbs.
+					$css->set_selector( '.sfwd-lessons-title .base-breadcrumbs' );
+					$css->render_font( webapp()->option( 'sfwd-lessons_title_breadcrumb_font' ), $css );
+					$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-lessons_title_breadcrumb_color', 'color' ) ) );
+					$css->set_selector( '.sfwd-lessons-title .base-breadcrumbs a:hover' );
+					$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-lessons_title_breadcrumb_color', 'hover' ) ) );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( '.sfwd-lessons-title .base-breadcrumbs' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-lessons_title_breadcrumb_font' ), 'tablet' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-lessons_title_breadcrumb_font' ), 'tablet' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-lessons_title_breadcrumb_font' ), 'tablet' ) );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( '.sfwd-lessons-title .base-breadcrumbs' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-lessons_title_breadcrumb_font' ), 'mobile' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-lessons_title_breadcrumb_font' ), 'mobile' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-lessons_title_breadcrumb_font' ), 'mobile' ) );
+					$css->stop_media_query();
+					// Above Lesson Title.
+					$css->set_selector( '.sfwd-lessons-hero-section .entry-hero-container-inner' );
+					$css->render_background( webapp()->sub_option( 'sfwd-lessons_title_background', 'desktop' ), $css );
+					$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-lessons_title_top_border', 'desktop' ) ) );
+					$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-lessons_title_bottom_border', 'desktop' ) ) );
+					$css->set_selector( '.entry-hero.sfwd-lessons-hero-section .entry-header' );
+					$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-lessons_title_height' ), 'desktop' ) );
+					$css->set_selector( '.sfwd-lessons-hero-section .hero-section-overlay' );
+					$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-lessons_title_overlay_color', 'color' ) ) );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( '.sfwd-lessons-hero-section .entry-hero-container-inner' );
+					$css->render_background( webapp()->sub_option( 'sfwd-lessons_title_background', 'tablet' ), $css );
+					$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-lessons_title_top_border', 'tablet' ) ) );
+					$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-lessons_title_bottom_border', 'tablet' ) ) );
+					$css->set_selector( '.entry-hero.sfwd-lessons-hero-section .entry-header' );
+					$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-lessons_title_height' ), 'tablet' ) );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( '.sfwd-lessons-hero-section .entry-hero-container-inner' );
+					$css->render_background( webapp()->sub_option( 'sfwd-lessons_title_background', 'mobile' ), $css );
+					$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-lessons_title_top_border', 'mobile' ) ) );
+					$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-lessons_title_bottom_border', 'mobile' ) ) );
+					$css->set_selector( '.entry-hero.sfwd-lessons-hero-section .entry-header' );
+					$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-lessons_title_height' ), 'mobile' ) );
+					$css->stop_media_query();
+					// Lesson Backgrounds.
+					$css->set_selector( 'body.single-sfwd-lessons' );
+					$css->render_background( webapp()->sub_option( 'sfwd-lessons_background', 'desktop' ), $css );
+					$css->set_selector( 'body.single-sfwd-lessons .content-bg, body.content-style-unboxed.single-sfwd-lessons .site' );
+					$css->render_background( webapp()->sub_option( 'sfwd-lessons_content_background', 'desktop' ), $css );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( 'body.single-sfwd-lessons' );
+					$css->render_background( webapp()->sub_option( 'sfwd-lessons_background', 'tablet' ), $css );
+					$css->set_selector( 'body.single-sfwd-lessons .content-bg, body.content-style-unboxed.single-sfwd-lessons .site' );
+					$css->render_background( webapp()->sub_option( 'sfwd-lessons_content_background', 'tablet' ), $css );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( 'body.single-sfwd-lessons' );
+					$css->render_background( webapp()->sub_option( 'sfwd-lessons_background', 'mobile' ), $css );
+					$css->set_selector( 'body.single-sfwd-lessons .content-bg, body.content-style-unboxed.single-sfwd-lessons .site' );
+					$css->render_background( webapp()->sub_option( 'sfwd-lessons_content_background', 'mobile' ), $css );
+					$css->stop_media_query();
+					// Quiz Title.
+					$css->set_selector( '.sfwd-quiz-title h1' );
+					$css->render_font( webapp()->option( 'sfwd-quiz_title_font' ), $css, 'heading' );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( '.sfwd-quiz-title h1' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-quiz_title_font' ), 'tablet' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-quiz_title_font' ), 'tablet' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-quiz_title_font' ), 'tablet' ) );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( '.sfwd-quiz-title h1' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-quiz_title_font' ), 'mobile' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-quiz_title_font' ), 'mobile' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-quiz_title_font' ), 'mobile' ) );
+					$css->stop_media_query();
+					// Quiz Title Breadcrumbs.
+					$css->set_selector( '.sfwd-quiz-title .base-breadcrumbs' );
+					$css->render_font( webapp()->option( 'sfwd-quiz_title_breadcrumb_font' ), $css );
+					$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-quiz_title_breadcrumb_color', 'color' ) ) );
+					$css->set_selector( '.sfwd-quiz-title .base-breadcrumbs a:hover' );
+					$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-quiz_title_breadcrumb_color', 'hover' ) ) );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( '.sfwd-quiz-title .base-breadcrumbs' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-quiz_title_breadcrumb_font' ), 'tablet' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-quiz_title_breadcrumb_font' ), 'tablet' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-quiz_title_breadcrumb_font' ), 'tablet' ) );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( '.sfwd-quiz-title .base-breadcrumbs' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-quiz_title_breadcrumb_font' ), 'mobile' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-quiz_title_breadcrumb_font' ), 'mobile' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-quiz_title_breadcrumb_font' ), 'mobile' ) );
+					$css->stop_media_query();
+					// Above Quiz Title.
+					$css->set_selector( '.sfwd-quiz-hero-section .entry-hero-container-inner' );
+					$css->render_background( webapp()->sub_option( 'sfwd-quiz_title_background', 'desktop' ), $css );
+					$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-quiz_title_top_border', 'desktop' ) ) );
+					$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-quiz_title_bottom_border', 'desktop' ) ) );
+					$css->set_selector( '.entry-hero.sfwd-quiz-hero-section .entry-header' );
+					$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-quiz_title_height' ), 'desktop' ) );
+					$css->set_selector( '.sfwd-quiz-hero-section .hero-section-overlay' );
+					$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-quiz_title_overlay_color', 'color' ) ) );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( '.sfwd-quiz-hero-section .entry-hero-container-inner' );
+					$css->render_background( webapp()->sub_option( 'sfwd-quiz_title_background', 'tablet' ), $css );
+					$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-quiz_title_top_border', 'tablet' ) ) );
+					$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-quiz_title_bottom_border', 'tablet' ) ) );
+					$css->set_selector( '.entry-hero.sfwd-quiz-hero-section .entry-header' );
+					$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-quiz_title_height' ), 'tablet' ) );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( '.sfwd-quiz-hero-section .entry-hero-container-inner' );
+					$css->render_background( webapp()->sub_option( 'sfwd-quiz_title_background', 'mobile' ), $css );
+					$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-quiz_title_top_border', 'mobile' ) ) );
+					$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-quiz_title_bottom_border', 'mobile' ) ) );
+					$css->set_selector( '.entry-hero.sfwd-quiz-hero-section .entry-header' );
+					$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-quiz_title_height' ), 'mobile' ) );
+					$css->stop_media_query();
+					// Quiz Backgrounds.
+					$css->set_selector( 'body.single-sfwd-quiz' );
+					$css->render_background( webapp()->sub_option( 'sfwd-quiz_background', 'desktop' ), $css );
+					$css->set_selector( 'body.single-sfwd-quiz .content-bg, body.content-style-unboxed.single-sfwd-quiz .site' );
+					$css->render_background( webapp()->sub_option( 'sfwd-quiz_content_background', 'desktop' ), $css );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( 'body.single-sfwd-quiz' );
+					$css->render_background( webapp()->sub_option( 'sfwd-quiz_background', 'tablet' ), $css );
+					$css->set_selector( 'body.single-sfwd-quiz .content-bg, body.content-style-unboxed.single-sfwd-quiz .site' );
+					$css->render_background( webapp()->sub_option( 'sfwd-quiz_content_background', 'tablet' ), $css );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( 'body.single-sfwd-quiz' );
+					$css->render_background( webapp()->sub_option( 'sfwd-quiz_background', 'mobile' ), $css );
+					$css->set_selector( 'body.single-sfwd-quiz .content-bg, body.content-style-unboxed.single-sfwd-quiz .site' );
+					$css->render_background( webapp()->sub_option( 'sfwd-quiz_content_background', 'mobile' ), $css );
+					$css->stop_media_query();
+					// Topic Title.
+					$css->set_selector( '.sfwd-topic-title h1' );
+					$css->render_font( webapp()->option( 'sfwd-topic_title_font' ), $css, 'heading' );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( '.sfwd-topic-title h1' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-topic_title_font' ), 'tablet' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-topic_title_font' ), 'tablet' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-topic_title_font' ), 'tablet' ) );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( '.sfwd-topic-title h1' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-topic_title_font' ), 'mobile' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-topic_title_font' ), 'mobile' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-topic_title_font' ), 'mobile' ) );
+					$css->stop_media_query();
+					// Topic Title Breadcrumbs.
+					$css->set_selector( '.sfwd-topic-title .base-breadcrumbs' );
+					$css->render_font( webapp()->option( 'sfwd-topic_title_breadcrumb_font' ), $css );
+					$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-topic_title_breadcrumb_color', 'color' ) ) );
+					$css->set_selector( '.sfwd-topic-title .base-breadcrumbs a:hover' );
+					$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-topic_title_breadcrumb_color', 'hover' ) ) );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( '.sfwd-topic-title .base-breadcrumbs' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-topic_title_breadcrumb_font' ), 'tablet' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-topic_title_breadcrumb_font' ), 'tablet' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-topic_title_breadcrumb_font' ), 'tablet' ) );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( '.sfwd-topic-title .base-breadcrumbs' );
+					$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-topic_title_breadcrumb_font' ), 'mobile' ) );
+					$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-topic_title_breadcrumb_font' ), 'mobile' ) );
+					$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-topic_title_breadcrumb_font' ), 'mobile' ) );
+					$css->stop_media_query();
+					// Above Topic Title.
+					$css->set_selector( '.sfwd-topic-hero-section .entry-hero-container-inner' );
+					$css->render_background( webapp()->sub_option( 'sfwd-topic_title_background', 'desktop' ), $css );
+					$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-topic_title_top_border', 'desktop' ) ) );
+					$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-topic_title_bottom_border', 'desktop' ) ) );
+					$css->set_selector( '.entry-hero.sfwd-topic-hero-section .entry-header' );
+					$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-topic_title_height' ), 'desktop' ) );
+					$css->set_selector( '.sfwd-topic-hero-section .hero-section-overlay' );
+					$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-topic_title_overlay_color', 'color' ) ) );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( '.sfwd-topic-hero-section .entry-hero-container-inner' );
+					$css->render_background( webapp()->sub_option( 'sfwd-topic_title_background', 'tablet' ), $css );
+					$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-topic_title_top_border', 'tablet' ) ) );
+					$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-topic_title_bottom_border', 'tablet' ) ) );
+					$css->set_selector( '.entry-hero.sfwd-topic-hero-section .entry-header' );
+					$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-topic_title_height' ), 'tablet' ) );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( '.sfwd-topic-hero-section .entry-hero-container-inner' );
+					$css->render_background( webapp()->sub_option( 'sfwd-topic_title_background', 'mobile' ), $css );
+					$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-topic_title_top_border', 'mobile' ) ) );
+					$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-topic_title_bottom_border', 'mobile' ) ) );
+					$css->set_selector( '.entry-hero.sfwd-topic-hero-section .entry-header' );
+					$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-topic_title_height' ), 'mobile' ) );
+					$css->stop_media_query();
+					// Topic Backgrounds.
+					$css->set_selector( 'body.single-sfwd-topic' );
+					$css->render_background( webapp()->sub_option( 'sfwd-topic_background', 'desktop' ), $css );
+					$css->set_selector( 'body.single-sfwd-topic .content-bg, body.content-style-unboxed.single-sfwd-topic .site' );
+					$css->render_background( webapp()->sub_option( 'sfwd-topic_content_background', 'desktop' ), $css );
+					$css->start_media_query( $media_query['tablet'] );
+					$css->set_selector( 'body.single-sfwd-topic' );
+					$css->render_background( webapp()->sub_option( 'sfwd-topic_background', 'tablet' ), $css );
+					$css->set_selector( 'body.single-sfwd-topic .content-bg, body.content-style-unboxed.single-sfwd-topic .site' );
+					$css->render_background( webapp()->sub_option( 'sfwd-topic_content_background', 'tablet' ), $css );
+					$css->stop_media_query();
+					$css->start_media_query( $media_query['mobile'] );
+					$css->set_selector( 'body.single-sfwd-topic' );
+					$css->render_background( webapp()->sub_option( 'sfwd-topic_background', 'mobile' ), $css );
+					$css->set_selector( 'body.single-sfwd-topic .content-bg, body.content-style-unboxed.single-sfwd-topic .site' );
+					$css->render_background( webapp()->sub_option( 'sfwd-topic_content_background', 'mobile' ), $css );
+					$css->stop_media_query();
+				}
+			}
+			// Group Title.
+			$css->set_selector( '.wp-site-blocks .groupe-title h1' );
+			$css->render_font( webapp()->option( 'groupe_title_font' ), $css, 'heading' );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.wp-site-blocks .groupe-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'groupe_title_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'groupe_title_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'groupe_title_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.wp-site-blocks .groupe-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'groupe_title_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'groupe_title_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'groupe_title_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Essay Group Breadcrumbs.
+			$css->set_selector( '.groupe-title .base-breadcrumbs' );
+			$css->render_font( webapp()->option( 'groupe_title_breadcrumb_font' ), $css );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'groupe_title_breadcrumb_color', 'color' ) ) );
+			$css->set_selector( '.groupe-title .base-breadcrumbs a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'groupe_title_breadcrumb_color', 'hover' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.groupe-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'groupe_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'groupe_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'groupe_title_breadcrumb_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.groupe-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'groupe_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'groupe_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'groupe_title_breadcrumb_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Above Group Title.
+			$css->set_selector( '.groupe-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'groupe_title_background', 'desktop' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'groupe_title_top_border', 'desktop' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'groupe_title_bottom_border', 'desktop' ) ) );
+			$css->set_selector( '.entry-hero.groupe-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'groupe_title_height' ), 'desktop' ) );
+			$css->set_selector( '.groupe-hero-section .hero-section-overlay' );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'groupe_title_overlay_color', 'color' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.groupe-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'groupe_title_background', 'tablet' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'groupe_title_top_border', 'tablet' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'groupe_title_bottom_border', 'tablet' ) ) );
+			$css->set_selector( '.entry-hero.groupe-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'groupe_title_height' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.groupe-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'groupe_title_background', 'mobile' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'groupe_title_top_border', 'mobile' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'groupe_title_bottom_border', 'mobile' ) ) );
+			$css->set_selector( '.entry-hero.groupe-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'groupe_title_height' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Essay Title.
+			$css->set_selector( '.wp-site-blocks .sfwd-essays-title h1' );
+			$css->render_font( webapp()->option( 'sfwd-essays_title_font' ), $css, 'heading' );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.wp-site-blocks .sfwd-essays-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-essays_title_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-essays_title_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-essays_title_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.wp-site-blocks .sfwd-essays-title h1' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-essays_title_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-essays_title_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-essays_title_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Essay Title Breadcrumbs.
+			$css->set_selector( '.sfwd-essays-title .base-breadcrumbs' );
+			$css->render_font( webapp()->option( 'sfwd-essays_title_breadcrumb_font' ), $css );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-essays_title_breadcrumb_color', 'color' ) ) );
+			$css->set_selector( '.sfwd-essays-title .base-breadcrumbs a:hover' );
+			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sfwd-essays_title_breadcrumb_color', 'hover' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.sfwd-essays-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-essays_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-essays_title_breadcrumb_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-essays_title_breadcrumb_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.sfwd-essays-title .base-breadcrumbs' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-essays_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-essays_title_breadcrumb_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-essays_title_breadcrumb_font' ), 'mobile' ) );
+			$css->stop_media_query();
+			// Above Essay Title.
+			$css->set_selector( '.sfwd-essays-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'sfwd-essays_title_background', 'desktop' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-essays_title_top_border', 'desktop' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-essays_title_bottom_border', 'desktop' ) ) );
+			$css->set_selector( '.entry-hero.sfwd-essays-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-essays_title_height' ), 'desktop' ) );
+			$css->set_selector( '.sfwd-essays-hero-section .hero-section-overlay' );
+			$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'sfwd-essays_title_overlay_color', 'color' ) ) );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.sfwd-essays-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'sfwd-essays_title_background', 'tablet' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-essays_title_top_border', 'tablet' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-essays_title_bottom_border', 'tablet' ) ) );
+			$css->set_selector( '.entry-hero.sfwd-essays-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-essays_title_height' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.sfwd-essays-hero-section .entry-hero-container-inner' );
+			$css->render_background( webapp()->sub_option( 'sfwd-essays_title_background', 'mobile' ), $css );
+			$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'sfwd-essays_title_top_border', 'mobile' ) ) );
+			$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'sfwd-essays_title_bottom_border', 'mobile' ) ) );
+			$css->set_selector( '.entry-hero.sfwd-essays-hero-section .entry-header' );
+			$css->add_property( 'min-height', $css->render_range( webapp()->option( 'sfwd-essays_title_height' ), 'mobile' ) );
+			$css->stop_media_query();
+			// LearnDash Grid Title.
+			$css->set_selector( '.ld-course-list-items .ld_course_grid.entry .course .entry-title' );
+			$css->render_font( webapp()->option( 'sfwd-grid_title_font' ), $css );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.ld-course-list-items .ld_course_grid.entry .course .entry-title' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-grid_title_font' ), 'tablet' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-grid_title_font' ), 'tablet' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-grid_title_font' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.ld-course-list-items .ld_course_grid.entry .course .entry-title' );
+			$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'sfwd-grid_title_font' ), 'mobile' ) );
+			$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'sfwd-grid_title_font' ), 'mobile' ) );
+			$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'sfwd-grid_title_font' ), 'mobile' ) );
+			$css->stop_media_query();
+		}
+		self::$google_fonts = $css->fonts_output();
+		return $css->css_output();
 	}
 }

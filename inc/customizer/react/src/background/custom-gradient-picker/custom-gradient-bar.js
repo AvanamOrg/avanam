@@ -18,11 +18,11 @@ import { plusCircle } from '@wordpress/icons';
 /**
  * Internal dependencies
  */
-const {
+import {
 	Button,
 	Dropdown,
 	ColorPicker,
-} = wp.components;
+} from '@wordpress/components';
 import BaseGradientColorPicker from './color-picker';
 
 import ControlPoints from './control-points';

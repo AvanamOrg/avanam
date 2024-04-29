@@ -133,7 +133,9 @@
 					parentMenuItem.querySelector( 'a' ).addEventListener( 'focus', function( e ) {
 						var parentMenuItemsToggled = e.target.parentNode.parentNode.querySelectorAll( 'li.menu-item--toggled-on' );
 						for ( let j = 0; j < parentMenuItemsToggled.length; j++ ) {
-							window.base.toggleSubMenu( parentMenuItemsToggled[ j ], false );
+							if ( parentMenuItem !== parentMenuItemsToggled[ j ] ) {
+								window.base.toggleSubMenu( parentMenuItemsToggled[ j ], false );
+							}
 						}
 					} );
 		

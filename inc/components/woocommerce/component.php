@@ -8,6 +8,8 @@
 namespace Base\Woocommerce;
 
 use Base\Component_Interface;
+use Base\Base_CSS;
+use Base_Blocks_Frontend;
 use ElementorPro;
 use function Base\webapp;
 use function add_action;
@@ -25,6 +27,15 @@ use WPSEO_Primary_Term;
  * Class for adding Woocommerce plugin support.
  */
 class Component implements Component_Interface {
+
+	/**
+	 * Associative array of Google Fonts to load.
+	 *
+	 * Do not access this property directly, instead use the `get_google_fonts()` method.
+	 *
+	 * @var array
+	 */
+	protected static $google_fonts = array();
 
 	/**
 	 * Holds the bool for cart in header.
@@ -60,6 +71,9 @@ class Component implements Component_Interface {
 	 * Adds the action and filter hooks to integrate with WordPress.
 	 */
 	public function initialize() {
+
+		add_filter( 'base_dynamic_css', array( $this, 'dynamic_css' ), 20 );
+		add_action( 'wp_head', array( $this, 'frontend_gfonts' ), 80 );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_product_scripts' ), 1 );
@@ -189,6 +203,61 @@ class Component implements Component_Interface {
 		// Shopkit Add filter for block classes.
 		add_filter( 'base_shop_kit_product_loop_classes', array( $this, 'add_product_archive_loop_classes_shopkit' ), 10 );
 
+	}
+	/**
+	 * Enqueue Frontend Fonts
+	 */
+	public function frontend_gfonts() {
+		if ( empty( self::$google_fonts ) ) {
+			return;
+		}
+		if ( class_exists( 'Base_Blocks_Frontend' ) ) {
+			$ktblocks_instance = Base_Blocks_Frontend::get_instance();
+			foreach ( self::$google_fonts as $key => $font ) {
+				if ( ! array_key_exists( $key, $ktblocks_instance::$gfonts ) ) {
+					$add_font = array(
+						'fontfamily'   => $font['fontfamily'],
+						'fontvariants' => ( isset( $font['fontvariants'] ) && ! empty( $font['fontvariants'] ) && is_array( $font['fontvariants'] ) ? $font['fontvariants'] : array() ),
+						'fontsubsets'  => ( isset( $font['fontsubsets'] ) && ! empty( $font['fontsubsets'] ) && is_array( $font['fontsubsets'] ) ? $font['fontsubsets'] : array() ),
+					);
+					$ktblocks_instance::$gfonts[ $key ] = $add_font;
+				} else {
+					foreach ( $font['fontvariants'] as $variant ) {
+						if ( ! in_array( $variant, $ktblocks_instance::$gfonts[ $key ]['fontvariants'], true ) ) {
+							array_push( $ktblocks_instance::$gfonts[ $key ]['fontvariants'], $variant );
+						}
+					}
+				}
+			}
+		} else {
+			add_filter( 'base_theme_google_fonts_array', array( $this, 'filter_in_fonts' ) );
+		}
+	}
+	/**
+	 * Filters in pro fronts for output with free.
+	 *
+	 * @param array $font_array any custom css.
+	 * @return array
+	 */
+	public function filter_in_fonts( $font_array ) {
+		// Enqueue Google Fonts.
+		foreach ( self::$google_fonts as $key => $font ) {
+			if ( ! array_key_exists( $key, $font_array ) ) {
+				$add_font = array(
+					'fontfamily'   => $font['fontfamily'],
+					'fontvariants' => ( isset( $font['fontvariants'] ) && ! empty( $font['fontvariants'] ) && is_array( $font['fontvariants'] ) ? $font['fontvariants'] : array() ),
+					'fontsubsets'  => ( isset( $font['fontsubsets'] ) && ! empty( $font['fontsubsets'] ) && is_array( $font['fontsubsets'] ) ? $font['fontsubsets'] : array() ),
+				);
+				$font_array[ $key ] = $add_font;
+			} else {
+				foreach ( $font['fontvariants'] as $variant ) {
+					if ( ! in_array( $variant, $font_array[ $key ]['fontvariants'], true ) ) {
+						array_push( $font_array[ $key ]['fontvariants'], $variant );
+					}
+				}
+			}
+		}
+		return $font_array;
 	}
 	/**
 	 * Add filters for element content output.
@@ -680,25 +749,25 @@ class Component implements Component_Interface {
 		echo '<fieldset class="single-product-payments payments-color-scheme-' . esc_attr( $colors ) . '">';
 		echo '<ul>';
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['stripe'] ) && true === $payments_element['stripe'] ) {
-			echo '<li class="single-product-payments-stripe">' . webapp()->get_icon( 'stripe' ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<li class="single-product-payments-stripe">' . webapp()->get_icon( 'stripe', '', false ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['visa'] ) && true === $payments_element['visa'] ) {
-			echo '<li class="single-product-payments-visa">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'visa_gray' : 'visa' ) ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<li class="single-product-payments-visa">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'visa_gray' : 'visa' ), '', false ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['mastercard'] ) && true === $payments_element['mastercard'] ) {
-			echo '<li class="single-product-payments-mastercard">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'mastercard_gray' : 'mastercard' ) ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<li class="single-product-payments-mastercard">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'mastercard_gray' : 'mastercard' ), '', false ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['amex'] ) && true === $payments_element['amex'] ) {
-			echo '<li class="single-product-payments-amex">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'amex_gray' : 'amex' ) ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<li class="single-product-payments-amex">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'amex_gray' : 'amex' ) ), '', false . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['discover'] ) && true === $payments_element['discover'] ) {
-			echo '<li class="single-product-payments-discover">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'discover_gray' : 'discover' ) ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<li class="single-product-payments-discover">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'discover_gray' : 'discover' ), '', false ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['paypal'] ) && true === $payments_element['paypal'] ) {
-			echo '<li class="single-product-payments-paypal">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'paypal_gray' : 'paypal' ) ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<li class="single-product-payments-paypal">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'paypal_gray' : 'paypal' ), '', false ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['applepay'] ) && true === $payments_element['applepay'] ) {
-			echo '<li class="single-product-payments-applepay">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'applepay_gray' : 'applepay' ) ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<li class="single-product-payments-applepay">' . webapp()->get_icon( ( 'inherit' !== $colors ? 'applepay_gray' : 'applepay' ), '', false ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['custom_enable_01'] ) && true === $payments_element['custom_enable_01'] && isset( $payments_element['custom_img_01'] ) && ! empty( $payments_element['custom_img_01'] ) ) {
 			echo '<li class="single-product-payments-custom-01"><img src="' . esc_attr( $payments_element['custom_img_01'] ) . '" class="payment-custom-img' . ( 'inherit' !== $colors ? ' payment-custom-img-gray' : '' ) . '" alt="' . ( isset( $payments_element['custom_id_01'] ) && ! empty( $payments_element['custom_id_01'] ) ? get_post_meta( $payments_element['custom_id_01'], '_wp_attachment_image_alt', true ) : '' ) . '"/></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -1061,7 +1130,7 @@ class Component implements Component_Interface {
 			?>
 			<div class="base-account-avatar">
 				<div class="base-customer-image">
-				<a class="bst-link-to-gravatar" href="https://gravatar.com/" target="_blank" rel="no" title="<?php echo esc_attr__( 'Update Profile Photo', 'avanam' ); ?>">
+				<a class="bt-link-to-gravatar" href="https://gravatar.com/" target="_blank" rel="no" title="<?php echo esc_attr__( 'Update Profile Photo', 'avanam' ); ?>">
 					<?php echo get_avatar( $current_user->ID, 60 ); ?>
 				</a>
 				</div>
@@ -1161,7 +1230,7 @@ class Component implements Component_Interface {
 				}
 			}
 		}
-		echo '<a href="' . esc_url( $link ) . '" class="woocommerce-loop-image-link woocommerce-LoopProduct-link woocommerce-loop-product__link' . esc_attr( $has_hover_image ) . '" aria-label="' . esc_attr( $product->get_name() ) . '">';
+		echo '<a href="' . esc_url( $link ) . '" class="woocommerce-loop-image-link woocommerce-LoopProduct-link woocommerce-loop-product__link' . esc_attr( $has_hover_image ) . '"  aria-label="' . esc_attr( $product->get_name() ) . '">';
 	}
 	/**
 	 * Insert the closing anchor tag for products image in the loop.
@@ -1445,5 +1514,306 @@ class Component implements Component_Interface {
 		get_sidebar();
 		echo '</div></div>';
 	}
+	/**
+	 * Generates the dynamic css based on customizer options.
+	 *
+	 * @param string $css any custom css.
+	 * @return string
+	 */
+	public function dynamic_css( $css ) {
+		$generated_css = $this->generate_woo_css();
+		if ( ! empty( $generated_css ) ) {
+			$css .= "\n/* Base Woo CSS */\n" . $generated_css;
+		}
+		return $css;
+	}
+	/**
+	 * Generates the dynamic css based on page options.
+	 *
+	 * @return string
+	 */
+	public function generate_woo_css() {
+		$css                    = new Base_CSS();
+		$media_query            = array();
+		$media_query['mobile']  = apply_filters( 'base_mobile_media_query', '(max-width: 767px)' );
+		$media_query['tablet']  = apply_filters( 'base_tablet_media_query', '(max-width: 1024px)' );
+		$media_query['desktop'] = apply_filters( 'base_desktop_media_query', '(min-width: 1025px)' );
 
+		if ( webapp()->option( 'custom_quantity' ) ) {
+			$css->set_selector( '.woocommerce table.shop_table td.product-quantity' );
+			$css->add_property( 'min-width', '130px' );
+		}
+		// Shop Notice.
+		$css->set_selector( '.woocommerce-demo-store .woocommerce-store-notice' );
+		$css->add_property( 'background', $css->render_color( webapp()->sub_option( 'woo_store_notice_background', 'color' ) ) );
+		$css->set_selector( '.woocommerce-demo-store .woocommerce-store-notice a, .woocommerce-demo-store .woocommerce-store-notice' );
+		$css->render_font( webapp()->option( 'woo_store_notice_font' ), $css );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.woocommerce-demo-store .woocommerce-store-notice a, .woocommerce-demo-store .woocommerce-store-notice' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_title_breadcrumb_font' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_title_breadcrumb_font' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_title_breadcrumb_font' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.woocommerce-demo-store .woocommerce-store-notice a, .woocommerce-demo-store .woocommerce-store-notice' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_title_breadcrumb_font' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_title_breadcrumb_font' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_title_breadcrumb_font' ), 'mobile' ) );
+		$css->stop_media_query();
+		// Product Single Image Width.
+		$css->set_selector( '.woocommerce div.product div.images' );
+		$css->add_property( 'width', get_option( 'woocommerce_single_image_width', '600' ).'px' );
+		// Above Product Title.
+		$css->set_selector( '.product-hero-section .entry-hero-container-inner' );
+		$css->render_background( webapp()->sub_option( 'product_title_background', 'desktop' ), $css );
+		$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'product_title_top_border', 'desktop' ) ) );
+		$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'product_title_bottom_border', 'desktop' ) ) );
+		$css->set_selector( '.entry-hero.product-hero-section .entry-header' );
+		$css->add_property( 'min-height', $css->render_range( webapp()->option( 'product_title_height' ), 'desktop' ) );
+		$css->set_selector( '.product-hero-section .hero-section-overlay' );
+		$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'product_title_overlay_color', 'color' ) ) );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.product-hero-section .entry-hero-container-inner' );
+		$css->render_background( webapp()->sub_option( 'product_title_background', 'tablet' ), $css );
+		$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'product_title_top_border', 'tablet' ) ) );
+		$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'product_title_bottom_border', 'tablet' ) ) );
+		$css->set_selector( '.entry-hero.product-hero-section .entry-header' );
+		$css->add_property( 'min-height', $css->render_range( webapp()->option( 'product_title_height' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.product-hero-section .entry-hero-container-inner' );
+		$css->render_background( webapp()->sub_option( 'product_title_background', 'mobile' ), $css );
+		$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'product_title_top_border', 'mobile' ) ) );
+		$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'product_title_bottom_border', 'mobile' ) ) );
+		$css->set_selector( '.entry-hero.product-hero-section .entry-header' );
+		$css->add_property( 'min-height', $css->render_range( webapp()->option( 'product_title_height' ), 'mobile' ) );
+		$css->stop_media_query();
+		// Product Breadcrumbs.
+		$css->set_selector( '.product-title .base-breadcrumbs' );
+		$css->render_font( webapp()->option( 'product_title_breadcrumb_font' ), $css );
+		$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'product_title_breadcrumb_color', 'color' ) ) );
+		$css->set_selector( '.product-title .base-breadcrumbs a:hover' );
+		$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'product_title_breadcrumb_color', 'hover' ) ) );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.product-title .base-breadcrumbs' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_title_breadcrumb_font' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_title_breadcrumb_font' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_title_breadcrumb_font' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.product-title .base-breadcrumbs' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_title_breadcrumb_font' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_title_breadcrumb_font' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_title_breadcrumb_font' ), 'mobile' ) );
+		$css->stop_media_query();
+		// Product Title Category.
+		$css->set_selector( '.product-title .single-category' );
+		$css->render_font( webapp()->option( 'product_above_category_font' ), $css );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.product-title .single-category' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_above_category_font' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_above_category_font' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_above_category_font' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.product-title .single-category' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_above_category_font' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_above_category_font' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_above_category_font' ), 'mobile' ) );
+		$css->stop_media_query();
+		// Product Above Extra Title.
+		$css->set_selector( '.wp-site-blocks .product-hero-section .extra-title' );
+		$css->render_font( webapp()->option( 'product_above_title_font' ), $css, 'heading' );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.wp-site-blocks .product-hero-section .extra-title' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_above_title_font' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_above_title_font' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_above_title_font' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.wp-site-blocks .product-hero-section .extra-title' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_above_title_font' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_above_title_font' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_above_title_font' ), 'mobile' ) );
+		$css->stop_media_query();
+		// Product Title.
+		$css->set_selector( '.woocommerce div.product .product_title' );
+		$css->render_font( webapp()->option( 'product_title_font' ), $css, 'heading' );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.woocommerce div.product .product_title' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_title_font' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_title_font' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_title_font' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.woocommerce div.product .product_title' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_title_font' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_title_font' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_title_font' ), 'mobile' ) );
+		$css->stop_media_query();
+		$css->set_selector( '.woocommerce div.product .product-single-category' );
+		$css->render_font( webapp()->option( 'product_single_category_font' ), $css );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.woocommerce div.product .product-single-category' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_single_category_font' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_single_category_font' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_single_category_font' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.woocommerce div.product .product-single-category' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_single_category_font' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_single_category_font' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_single_category_font' ), 'mobile' ) );
+		$css->stop_media_query();
+		// Product Single Backgrounds.
+		$css->set_selector( 'body.single-product' );
+		$css->render_background( webapp()->sub_option( 'product_background', 'desktop' ), $css );
+		$css->set_selector( 'body.single-product .content-bg, body.content-style-unboxed.single-product .site' );
+		$css->render_background( webapp()->sub_option( 'product_content_background', 'desktop' ), $css );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( 'body.single-product' );
+		$css->render_background( webapp()->sub_option( 'product_background', 'tablet' ), $css );
+		$css->set_selector( 'body.single-product .content-bg, body.content-style-unboxed.single-product .site' );
+		$css->render_background( webapp()->sub_option( 'product_content_background', 'tablet' ), $css );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( 'body.single-product' );
+		$css->render_background( webapp()->sub_option( 'product_background', 'mobile' ), $css );
+		$css->set_selector( 'body.single-product .content-bg, body.content-style-unboxed.single-product .site' );
+		$css->render_background( webapp()->sub_option( 'product_content_background', 'mobile' ), $css );
+		$css->stop_media_query();
+		// Product Archive Backgrounds.
+		$css->set_selector( 'body.archive.tax-woo-product, body.post-type-archive-product' );
+		$css->render_background( webapp()->sub_option( 'product_archive_background', 'desktop' ), $css );
+		$css->set_selector( 'body.archive.tax-woo-product .content-bg, body.content-style-unboxed.archive.tax-woo-product .site, body.post-type-archive-product .content-bg, body.content-style-unboxed.archive.post-type-archive-product .site, body.content-style-unboxed.archive.tax-woo-product .content-bg.loop-entry .content-bg:not(.loop-entry), body.content-style-unboxed.post-type-archive-product .content-bg.loop-entry .content-bg:not(.loop-entry)' );
+		$css->render_background( webapp()->sub_option( 'product_archive_content_background', 'desktop' ), $css );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( 'body.archive.tax-woo-product, body.post-type-archive-product' );
+		$css->render_background( webapp()->sub_option( 'product_archive_background', 'tablet' ), $css );
+		$css->set_selector( 'body.archive.tax-woo-product .content-bg, body.content-style-unboxed.archive.tax-woo-product .site, body.post-type-archive-product .content-bg, body.content-style-unboxed.archive.post-type-archive-product .site, body.content-style-unboxed.archive.tax-woo-product .content-bg.loop-entry .content-bg:not(.loop-entry), body.content-style-unboxed.post-type-archive-product .content-bg.loop-entry .content-bg:not(.loop-entry)' );
+		$css->render_background( webapp()->sub_option( 'product_archive_content_background', 'tablet' ), $css );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( 'body.archive.tax-woo-product, body.post-type-archive-product' );
+		$css->render_background( webapp()->sub_option( 'product_archive_background', 'mobile' ), $css );
+		$css->set_selector( 'body.archive.tax-woo-product .content-bg, body.content-style-unboxed.archive.tax-woo-product .site, body.post-type-archive-product .content-bg, body.content-style-unboxed.archive.post-type-archive-product .site, body.content-style-unboxed.archive.tax-woo-product .content-bg.loop-entry .content-bg:not(.loop-entry), body.content-style-unboxed.post-type-archive-product .content-bg.loop-entry .content-bg:not(.loop-entry)' );
+		$css->render_background( webapp()->sub_option( 'product_archive_content_background', 'mobile' ), $css );
+		$css->stop_media_query();
+		// Product Archive Columns Mobile.
+		if ( 'twocolumn' === webapp()->option( 'product_archive_mobile_columns' ) ) {
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.woocommerce ul.products:not(.products-list-view):not(.splide__list), .wp-site-blocks .wc-block-grid:not(.has-2-columns):not(.has-1-columns) .wc-block-grid__products' );
+			$css->add_property( 'grid-template-columns', 'repeat(2, minmax(0, 1fr))' );
+			$css->add_property( 'column-gap', '0.5rem' );
+			$css->add_property( 'grid-row-gap', '0.5rem' );
+			$css->stop_media_query();
+		}
+		// Product Archive Title.
+		$css->set_selector( '.product-archive-hero-section .entry-hero-container-inner' );
+		$css->render_background( webapp()->sub_option( 'product_archive_title_background', 'desktop' ), $css );
+		$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'product_archive_title_top_border', 'desktop' ) ) );
+		$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'product_archive_title_bottom_border', 'desktop' ) ) );
+		$css->set_selector( '.entry-hero.product-archive-hero-section .entry-header' );
+		$css->add_property( 'min-height', $css->render_range( webapp()->option( 'product_archive_title_height' ), 'desktop' ) );
+		$css->set_selector( '.product-archive-hero-section .hero-section-overlay' );
+		$css->add_property( 'background', $css->render_color_or_gradient( webapp()->sub_option( 'product_archive_title_overlay_color', 'color' ) ) );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.product-archive-hero-section .entry-hero-container-inner' );
+		$css->render_background( webapp()->sub_option( 'product_archive_title_background', 'tablet' ), $css );
+		$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'product_archive_title_top_border', 'tablet' ) ) );
+		$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'product_archive_title_bottom_border', 'tablet' ) ) );
+		$css->set_selector( '.entry-hero.product-archive-hero-section .entry-header' );
+		$css->add_property( 'min-height', $css->render_range( webapp()->option( 'product_archive_title_height' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.product-archive-hero-section .entry-hero-container-inner' );
+		$css->render_background( webapp()->sub_option( 'product_archive_title_background', 'mobile' ), $css );
+		$css->add_property( 'border-top', $css->render_border( webapp()->sub_option( 'product_archive_title_top_border', 'mobile' ) ) );
+		$css->add_property( 'border-bottom', $css->render_border( webapp()->sub_option( 'product_archive_title_bottom_border', 'mobile' ) ) );
+		$css->set_selector( '.entry-hero.product-archive-hero-section .entry-header' );
+		$css->add_property( 'min-height', $css->render_range( webapp()->option( 'product_archive_title_height' ), 'mobile' ) );
+		$css->stop_media_query();
+		$css->set_selector( '.wp-site-blocks .product-archive-title h1' );
+		$css->render_font( webapp()->option( 'product_archive_title_heading_font' ), $css, 'heading' );
+		$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'product_archive_title_color', 'color' ) ) );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.wp-site-blocks .product-archive-title h1' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_archive_title_heading_font' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_archive_title_heading_font' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_archive_title_heading_font' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.wp-site-blocks .product-archive-title h1' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_archive_title_heading_font' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_archive_title_heading_font' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_archive_title_heading_font' ), 'mobile' ) );
+		$css->stop_media_query();
+		$css->set_selector( '.product-archive-title .base-breadcrumbs' );
+		$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'product_archive_title_breadcrumb_color', 'color' ) ) );
+		$css->set_selector( '.product-archive-title .base-breadcrumbs a:hover' );
+		$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'product_archive_title_breadcrumb_color', 'hover' ) ) );
+		$css->set_selector( '.product-archive-title .archive-description' );
+		$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'product_archive_title_description_color', 'color' ) ) );
+		$css->set_selector( '.product-archive-title .archive-description a:hover' );
+		$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'product_archive_title_description_color', 'hover' ) ) );
+		// Product Archive Title Font.
+		$css->set_selector( '.woocommerce ul.products li.product h3, .woocommerce ul.products li.product .product-details .woocommerce-loop-product__title, .woocommerce ul.products li.product .product-details .woocommerce-loop-category__title, .wc-block-grid__products .wc-block-grid__product .wc-block-grid__product-title' );
+		$css->render_font( webapp()->option( 'product_archive_title_font' ), $css );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.woocommerce ul.products li.product h3, .woocommerce ul.products li.product .product-details .woocommerce-loop-product__title, .woocommerce ul.products li.product .product-details .woocommerce-loop-category__title, .wc-block-grid__products .wc-block-grid__product .wc-block-grid__product-title' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_archive_title_font' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_archive_title_font' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_archive_title_font' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.woocommerce ul.products li.product h3, .woocommerce ul.products li.product .product-details .woocommerce-loop-product__title, .woocommerce ul.products li.product .product-details .woocommerce-loop-category__title, .wc-block-grid__products .wc-block-grid__product .wc-block-grid__product-title' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_archive_title_font' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_archive_title_font' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_archive_title_font' ), 'mobile' ) );
+		$css->stop_media_query();
+		// Product Archive Price Font.
+		$css->set_selector( '.woocommerce ul.products li.product .product-details .price, .wc-block-grid__products .wc-block-grid__product .wc-block-grid__product-price' );
+		$css->render_font( webapp()->option( 'product_archive_price_font' ), $css );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.woocommerce ul.products li.product .product-details .price, .wc-block-grid__products .wc-block-grid__product .wc-block-grid__product-price' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_archive_price_font' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_archive_price_font' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_archive_price_font' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.woocommerce ul.products li.product .product-details .price, .wc-block-grid__products .wc-block-grid__product .wc-block-grid__product-price' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_archive_price_font' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_archive_price_font' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_archive_price_font' ), 'mobile' ) );
+		$css->stop_media_query();
+		// Product Archive Button Font.
+		$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link' );
+		$css->add_property( 'border-radius', $css->render_measure( webapp()->option( 'product_archive_button_radius' ) ) );
+		$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'product_archive_button_color', 'color' ) ) );
+		$css->add_property( 'background', $css->render_color( webapp()->sub_option( 'product_archive_button_background', 'color' ) ) );
+		$css->add_property( 'border', $css->render_border( webapp()->option( 'product_archive_button_border' ) ) );
+		$css->add_property( 'border-color', $css->render_color( webapp()->sub_option( 'product_archive_button_border_colors', 'color' ) ) );
+		$css->add_property( 'box-shadow', $css->render_shadow( webapp()->option( 'product_archive_button_shadow' ), webapp()->default( 'product_archive_button_shadow' ) ) );
+		$css->render_font( webapp()->option( 'product_archive_button_typography' ), $css );
+		$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button):hover, .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button):hover, .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link:hover' );
+		$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'product_archive_button_color', 'hover' ) ) );
+		$css->add_property( 'background', $css->render_color( webapp()->sub_option( 'product_archive_button_background', 'hover' ) ) );
+		$css->add_property( 'border-color', $css->render_color( webapp()->sub_option( 'product_archive_button_border_colors', 'hover' ) ) );
+		$css->add_property( 'box-shadow', $css->render_shadow( webapp()->option( 'product_archive_button_shadow_hover' ), webapp()->default( 'product_archive_button_shadow_hover' ) ) );
+		$css->start_media_query( $media_query['tablet'] );
+		$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_archive_button_typography' ), 'tablet' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_archive_button_typography' ), 'tablet' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_archive_button_typography' ), 'tablet' ) );
+		$css->stop_media_query();
+		$css->start_media_query( $media_query['mobile'] );
+		$css->set_selector( '.woocommerce ul.products.woo-archive-btn-button .product-action-wrap .button:not(.kb-button), .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button), .wc-block-grid__product.woo-archive-btn-button .product-details .wc-block-grid__product-add-to-cart .wp-block-button__link' );
+		$css->add_property( 'font-size', $css->render_font_size( webapp()->option( 'product_archive_button_typography' ), 'mobile' ) );
+		$css->add_property( 'line-height', $css->render_font_height( webapp()->option( 'product_archive_button_typography' ), 'mobile' ) );
+		$css->add_property( 'letter-spacing', $css->render_font_spacing( webapp()->option( 'product_archive_button_typography' ), 'mobile' ) );
+		$css->stop_media_query();
+
+		self::$google_fonts = $css->fonts_output();
+		return $css->css_output();
+	}
 }

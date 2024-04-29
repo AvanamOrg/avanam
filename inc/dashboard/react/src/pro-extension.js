@@ -2,8 +2,7 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-const { Fragment } = wp.element;
-const { withFilters } = wp.components;
+import { withFilters } from '@wordpress/components';
 const lockIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
 <path d="M34 23h-2v-4c0-3.9-3.1-7-7-7s-7 3.1-7 7v4h-2v-4c0-5 4-9 9-9s9 4 9 9v4z"></path>
 <path d="M33 40H17c-1.7 0-3-1.3-3-3V25c0-1.7 1.3-3 3-3h16c1.7 0 3 1.3 3 3v12c0 1.7-1.3 3-3 3zM17 24c-.6 0-1 .4-1 1v12c0 .6.4 1 1 1h16c.6 0 1-.4 1-1V25c0-.6-.4-1-1-1H17z"></path>
@@ -18,7 +17,7 @@ import map from 'lodash/map';
 export const ProModules = () => {
 	const proLinks = [];
 	return (
-		<Fragment>
+		<>
 			{/* <h2 className="section-header">{ __( 'Do more with the Avanam Pro Addon', 'avanam' ) }</h2>
 			<div className="two-col-grid">
 				{ map( proLinks, ( link ) => {
@@ -28,7 +27,7 @@ export const ProModules = () => {
 							<h4>{ link.title }</h4>
 							<p>{ link.description }</p>
 							<div className="link-item-foot">
-								<a href={ `https://avanam.org/wordpress#premium/?utm_source=${ link.setting }&utm_campaign=theme-dash` } target="_blank">
+								<a href={ `${baseDashboardParams.proURL}&utm_campaign=${ link.setting }` } target="_blank">
 									{ __( 'Learn More', 'avanam') }
 								</a>
 							</div>
@@ -36,7 +35,7 @@ export const ProModules = () => {
 					);
 				} ) }
 			</div> */}
-		</Fragment>
+		</>
 	);
 };
 

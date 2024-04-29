@@ -675,11 +675,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		if ( $this->post_types['post']['archive_page'] ) {
 			$html .= $this->get_archive_crumb( $this->post_types['post']['archive_page'], $this->post_types['post']['archive_label'] );
 		}
-		$ancestors = get_ancestors( get_queried_object()->term_id, 'product_cat' );
+		$ancestors = get_ancestors( get_queried_object()->term_id, 'category' );
 		$ancestors = array_reverse( $ancestors );
 		foreach ( $ancestors as $ancestor ) {
-			$ancestor = get_term( $ancestor, 'product_cat' );
-			$html    .= sprintf( $this->get_link(), get_term_link( $ancestor->slug, 'product_cat' ), $this->get_breadcrumb_term_title( $ancestor ) ) . $this->get_sep();
+			$ancestor = get_term( $ancestor, 'category' );
+			$html    .= sprintf( $this->get_link(), get_term_link( $ancestor->slug, 'category' ), $this->get_breadcrumb_term_title( $ancestor ) ) . $this->get_sep();
 		}
 		$title_output = ( $this->args['show_title'] ? $this->settings['before'] . $this->get_breadcrumb_term_title( get_queried_object() ) . $this->settings['after'] : '' );
 		return $html . $title_output;

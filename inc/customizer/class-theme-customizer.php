@@ -511,6 +511,7 @@ class Theme_Customizer {
 		require_once $react_path . 'class-base-control-focus-button.php'; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
 		require_once $react_path . 'class-base-control-color-link.php'; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
 		require_once $react_path . 'class-base-control-text.php'; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
+		require_once $react_path . 'class-base-control-textarea.php'; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
 		require_once $react_path . 'class-base-control-measure.php'; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
 		require_once $react_path . 'class-base-control-editor.php'; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
 		require_once $react_path . 'class-base-control-sorter.php'; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
@@ -1967,8 +1968,8 @@ class Theme_Customizer {
 			--global-palette-highlight-alt2: ' . $this->render_color( webapp()->sub_option( 'link_color', 'highlight-alt2' ) ) . ';
 			--global-palette-btn: ' . $this->render_color( webapp()->sub_option( 'buttons_color', 'color' ) ) . ';
 			--global-palette-btn-hover: ' . $this->render_color( webapp()->sub_option( 'buttons_color', 'hover' ) ) . ';
-			--global-palette-btn-bg: ' . $this->render_color( webapp()->sub_option( 'buttons_background', 'color' ) ) . ';
-			--global-palette-btn-bg-hover: ' . $this->render_color( webapp()->sub_option( 'buttons_background', 'hover' ) ) . ';
+			--global-palette-btn-bg: ' . $this->render_color_or_gradient( webapp()->sub_option( 'buttons_background', 'color' ) ) . ';
+			--global-palette-btn-bg-hover: ' . $this->render_color_or_gradient( webapp()->sub_option( 'buttons_background', 'hover' ) ) . ';
 			--global-base-font: ' . webapp()->sub_option( 'base_font', 'family' ) . ';
 			--global-heading-font: ' . ( 'inherit' !== webapp()->sub_option( 'heading_font', 'family' ) ? webapp()->sub_option( 'heading_font', 'family' ) : 'var(--global-base-font)' ) . ';
 		}';
@@ -1976,6 +1977,21 @@ class Theme_Customizer {
 		if ( function_exists( 'wp_set_script_translations' ) ) {
 			wp_set_script_translations( 'base-customizer-controls', 'avanam' );
 		}
+	}
+	/**
+	 * Generates the color output.
+	 *
+	 * @param string $color any color attribute.
+	 * @return string
+	 */
+	public function render_color_or_gradient( $color ) {
+		if ( empty( $color ) ) {
+			return false;
+		}
+		if ( ! is_array( $color ) && 'palette' === substr( $color, 0, 7 ) ) {
+			$color = 'var(--global-' . $color . ')';
+		}
+		return $color;
 	}
 	/**
 	 * Generates the color output.

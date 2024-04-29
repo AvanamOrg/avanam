@@ -52,7 +52,8 @@ html :where(.wp-block) {
     max-width: none;
 }
 .edit-post-visual-editor__post-title-wrapper:not(.specificity) {
-    margin-top: var(--global-md-spacing);
+    margin-top: 0px;
+	padding-top: var(--global-md-spacing);
     margin-bottom: var(--global-md-spacing);
 	position: relative;
 }
@@ -313,15 +314,18 @@ li>ol, li>ul {
 	padding-left: 2.5em;
 	padding-right: 2.5em;
 }
-body:not(.mce-content-body):before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-	pointer-events: none;
+body:not(.mce-content-body) {
+	position: relative;
+	&:before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+		pointer-events: none;
+	}
 }
 .bt-post-grid-item .bt-blocks-post-excerpt p {
 	margin-bottom: 0;
@@ -453,4 +457,102 @@ select:focus {
 	option {
 		color: #333;
 	}
+}
+// Testing above and hidden title.
+.admin-color-post-type-page.admin-color-pct-above .edit-post-visual-editor__post-title-wrapper:not(.specificity),
+.admin-color-post-type-post.admin-color-pct-above .edit-post-visual-editor__post-title-wrapper:not(.specificity) {
+    min-height: var(--bst-editor-title-height, 200px );
+    display: flex;
+    text-align: var(--bst-editor-title-align, center );
+    justify-content: center;
+    flex-direction: column;
+    margin: 0px 0px var(--bst-editor-vertical-top-padding, 5rem) 0px;
+    background:  var(--bst-editor-title-bg, var(--global-palette7) );
+	position: relative;
+	&::before {
+		content: '';
+		position: absolute;
+		height: auto;
+		top: 0;
+		bottom:0;
+		left:0;
+		right:0;
+		width:auto;
+		z-index: 0;
+		background: var(--bst-editor-title-overlay-bg, transparent );
+	}
+	h1.wp-block-post-title {
+		position: relative;
+		z-index: 12;
+		width: 100%;
+		color:var(--bst-editor-title-color, var(--global-palette3));
+	}
+}
+.admin-color-pct-hide .edit-post-visual-editor__post-title-wrapper:not(.specificity) {
+    margin: 0px 0px var(--bst-editor-vertical-top-padding, 5rem) 0px;
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+    background:  var(--bst-editor-content-bg, var(--global-palette9) );
+	position: relative;
+	&::before {
+		content: '';
+		position: absolute;
+		height: auto;
+		top: 0;
+		bottom:0;
+		left:0;
+		right:0;
+		width:auto;
+		z-index: 0;
+		opacity: .8;
+		background: repeating-linear-gradient(
+			45deg,
+			var(--global-palette8),
+			var(--global-palette8) 10px,
+			var(--bst-editor-content-bg, var(--global-palette9)) 10px,
+			var(--bst-editor-content-bg, var(--global-palette9)) 20px
+		);
+	}
+	&::after {
+		content: '';
+		position: absolute;
+		height: auto;
+		top: 0;
+		bottom:0;
+		left:0;
+		right:0;
+		width:auto;
+		z-index: 0;
+		opacity: 0.6;
+		background: var(--bst-editor-content-bg, var(--global-palette9));
+	}
+	h1.wp-block-post-title {
+		position: relative;
+		z-index: 12;
+		font-size: 24px;
+		line-height: 1.5;
+		width: 100%;
+	}
+}
+.admin-color-pct-above.admin-color-pcvp-hide .edit-post-visual-editor__post-title-wrapper:not(.specificity),
+.admin-color-pct-above.admin-color-pcvp-bottom .edit-post-visual-editor__post-title-wrapper:not(.specificity),
+.admin-color-pct-hide.admin-color-pcvp-hide .edit-post-visual-editor__post-title-wrapper:not(.specificity),
+.admin-color-pct-hide.admin-color-pcvp-bottom .edit-post-visual-editor__post-title-wrapper:not(.specificity),
+.admin-color-pcw-fullwidth:not(.specificity):not(.specificity) .edit-post-visual-editor__post-title-wrapper:not(.specificity) {
+	margin-bottom: 0;
+}
+.admin-color-post-type-page.admin-color-pct-above.admin-color-pcs-boxed:not(.admin-color-pcw-fullwidth):not(.admin-color-pcvp-hide):not(.admin-color-pcvp-bottom) .edit-post-visual-editor__post-title-wrapper:not(.specificity),
+.admin-color-post-type-post.admin-color-pct-above.admin-color-pcs-boxed:not(.admin-color-pcw-fullwidth):not(.admin-color-pcvp-hide):not(.admin-color-pcvp-bottom) .edit-post-visual-editor__post-title-wrapper:not(.specificity) {
+	&:after {
+		content: '';
+		position: absolute;
+		height: var(--bst-editor-vertical-top-padding, 5rem);
+		width: 100%;
+		top: 100%;
+		background: var(--bst-editor-body-bg, var(--global-palette8));
+	}
+}
+.admin-color-pcs-boxed .is-root-container.wp-block-post-content {
+	padding-top: var(--bst-editor-boxed-spacing, 2rem );
+	padding-bottom: var(--bst-editor-boxed-spacing, 2rem );
 }

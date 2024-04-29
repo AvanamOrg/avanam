@@ -508,8 +508,8 @@
 						if ( undefined == cssArray[ media_mobile ] ) cssArray[ media_mobile ] = {};
 						if ( undefined == cssArray[ media_mobile ][ selector ] ) cssArray[ media_mobile ][ selector ] = {};
 						var mobile_border_style = ( undefined !== newValue['mobile']['style'] && '' !== newValue['mobile']['style'] ? newValue['mobile']['style'] : '' );
-						var tablet_border_style = ( undefined !== newValue['tablet']['style'] && '' !== newValue['tablet']['style'] ? newValue['tablet']['style'] : '' );
-						var desktop_border_style = ( undefined !== newValue['desktop']['style'] && '' !== newValue['desktop']['style'] ? newValue['desktop']['style'] : '' );
+						var tablet_border_style = ( undefined !== newValue?.['tablet']?.['style'] && '' !== newValue?.['tablet']?.['style'] ? newValue['tablet']['style'] : '' );
+						var desktop_border_style = ( undefined !== newValue?.['desktop']?.['style'] && '' !== newValue?.['desktop']?.['style'] ? newValue['desktop']['style'] : '' );
 						var border_style = 'undefined';
 						if ( '' !== mobile_border_style ) {
 							border_style = mobile_border_style;
@@ -1083,7 +1083,7 @@
 				if ( 'object' == typeof newValue ) {
 					if ( undefined !== rule['key'] && undefined !== newValue[ rule['key'] ] ) {
 						// Fetch the property newValue using the key from setting value.
-						if ( typeof newValue[ rule['key'] ] === 'string' && newValue[ rule['key'] ].includes('palette') ) {
+						if ( typeof newValue[ rule['key'] ] === 'string' && newValue[ rule['key'] ].includes('palette') && ! newValue[ rule['key'] ].includes('gradient') ) {
 							formattedValue = 'var(--global-' + newValue[ rule['key'] ] + ')';
 						} else {
 							formattedValue = newValue[ rule['key'] ];

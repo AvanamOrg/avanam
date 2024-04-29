@@ -135,7 +135,7 @@ class Component implements Component_Interface {
 		// Main js file.
 		$file = 'navigation.min.js';
 		// Lets make it possile to load a lighter file if things are not being used.
-		if ( 'no' === webapp()->option( 'header_sticky' ) && 'no' === webapp()->option( 'mobile_header_sticky' ) && ! webapp()->option( 'product_archive_sticky_filter' ) && ! webapp()->option( 'enable_scroll_to_id' ) && ! webapp()->option( 'scroll_up' ) ) {
+		if ( 'no' === webapp()->option( 'header_sticky' ) && 'no' === webapp()->option( 'mobile_header_sticky' ) && ! webapp()->option( 'enable_scroll_to_id' ) && ! webapp()->option( 'scroll_up' ) ) {
 			$file = 'navigation-lite.min.js';
 		}
 		wp_enqueue_script(
@@ -152,10 +152,10 @@ class Component implements Component_Interface {
 			'baseConfig',
 			array(
 				'screenReader' => array(
-					'expand'     => __( 'Expand child menu', 'avanam' ),
-					'expandOf'   => __( 'Expand child menu of', 'avanam' ),
-					'collapse'   => __( 'Collapse child menu', 'avanam' ),
-					'collapseOf' => __( 'Collapse child menu of', 'avanam' ),
+					'expand'     => __( 'Child menu', 'avanam' ),
+					'expandOf'   => __( 'Child menu of', 'avanam' ),
+					'collapse'   => __( 'Child menu', 'avanam' ),
+					'collapseOf' => __( 'Child menu of', 'avanam' ),
 				),
 				'breakPoints' => array(
 					'desktop' => esc_attr( $breakpoint ),

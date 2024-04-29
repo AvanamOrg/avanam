@@ -1,11 +1,21 @@
+== 1.4.0 | 29th April 2024 ==
+* Add: theme.json file to better support core blocks.
+* Add: Threads to social media options.
+* Add: Option to enable theme.json mode.
+* Update: Default icons for social, X and Instagram.
+* Update: Google Font choices.
+* Fix: Miscellaneous css.
+* Fix: Background image not selected.
+* Fix: CSS determining content width.
+
 == 1.3.9 | 16th March 2024 ==
-* Fix: Miscellaneous css
+* Fix: Miscellaneous css.
 
 == 1.3.8 | 11th March 2024 ==
-* Fix: Cart drawer css
+* Fix: Cart drawer css.
 
 == 1.3.7 | 6th February 2024 ==
-* Update: Grouped products thumbnails
+* Update: Grouped products thumbnails.
 
 == 1.3.6 | 3rd December 2023 ==
 * Update: Footer css.
@@ -44,7 +54,7 @@
 
 == 1.1.7 | 12th June 2023 ==
 * Fix: Color picker input typing.
-* New: WooCommerce Product Wrap
+* New: WooCommerce Product Wrap.
 
 == 1.1.6 | 20th May 2023 ==
 * Fix: Color picker in border controls.
@@ -53,29 +63,29 @@
 * Fix: Issue with product buttons style.
 
 == 1.1.5 | 12th April 2023 ==
-* Update: Editor style tweak
-* Fix: 6.2 css issue with editor title
+* Update: Editor style tweak.
+* Fix: 6.2 css issue with editor title.
 
 == 1.1.4 | 27th March 2023 ==
-* Fix: Welcome notice JS registered
+* Fix: Welcome notice JS registered.
 
 == 1.1.3 | 27th March 2023 ==
-* Update: JS to prevent conflicts
-* Update: Editor styling of form
-* Fix: Various CSS and other issues
+* Update: JS to prevent conflicts.
+* Update: Editor styling of form.
+* Fix: Various CSS and other issues.
 
 == 1.1.2 | 22nd February 2023 ==
 * Fix: Possible updater bug in php 8.0
 
 == 1.1.1 | 22nd February 2023 ==
-* Update: Buttons CSS styling
-* Update: Image options in the customizer
-* Fix: Palette popover in customizer
-* Fix: Heading spacing in editor
+* Update: Buttons CSS styling.
+* Update: Image options in the customizer.
+* Fix: Palette popover in customizer.
+* Fix: Heading spacing in editor.
 
 == 1.1.0 | 15th November 2022 ==
-* Add: Theme Updater
-* Fix: Changelog Display in Dashboard
+* Add: Theme Updater.
+* Fix: Changelog Display in Dashboard.
 
 == 1.0.0 | 27th October 2022 ==
 * Initial Version.

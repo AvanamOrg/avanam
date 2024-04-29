@@ -624,6 +624,13 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				if ( get_query_var( 'tribe_events_front_page' ) ) {
 					$archive_type = 'tribe_events_archive';
 					$trans_type   = 'archive';
+					$tribe_option_trans = webapp()->option( 'transparent_header_tribe_events_archive', true );
+					if ( true === $tribe_option_trans ) {
+						$temp_transparent = 'disable';
+					} else {
+						$temp_transparent = 'enable';
+					}
+					$archivetrans = apply_filters( 'base_tribe_events_archive_transparent', $temp_transparent );
 				} else {
 					$post_id         = get_option( 'page_for_posts' );
 					$archivelayout   = get_post_meta( $post_id, '_bst_post_layout', true );
@@ -697,7 +704,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				$trans_type   = 'archive';
 			} elseif ( is_post_type_archive( 'tribe_events' ) ) {
 				$archive_type = 'tribe_events_archive';
-				$trans_type = 'archive';
+				$trans_type   = 'archive';
+				$tribe_option_trans = webapp()->option( 'transparent_header_tribe_events_archive', true );
+				if ( true === $tribe_option_trans ) {
+					$temp_transparent = 'disable';
+				} else {
+					$temp_transparent = 'enable';
+				}
+				$archivetrans = apply_filters( 'base_tribe_events_archive_transparent', $temp_transparent );
 			} elseif ( is_tax( 'portfolio-type' ) || is_tax( 'portfolio-tag' ) ) {
 				$archive_type = 'portfolio_archive';
 				$trans_type   = 'archive';

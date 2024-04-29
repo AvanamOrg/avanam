@@ -74,7 +74,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		if ( 'html' === $context ) {
 			$type = 'WebPage';
 
-			if ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) {
+			if ( class_exists( 'woocommerce' ) && is_product() ) {
+				$type = 'IndividualProduct';
+			} elseif ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) {
 				$type = 'Blog';
 			} elseif ( is_author() ) {
 				$type = 'ProfilePage';

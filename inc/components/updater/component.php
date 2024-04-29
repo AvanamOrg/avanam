@@ -42,9 +42,7 @@ class Component implements Component_Interface {
 	public function base_theme_updater( $transient ) {
 
 		$stylesheet = get_template();
-
-		$theme = wp_get_theme();
-		$version = $theme->get( 'Version' );
+		$version = webapp()->get_version();
 
 		if( false == $remote = get_transient( 'avanam-theme-update'.$version ) ) {
 

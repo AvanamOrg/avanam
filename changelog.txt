@@ -1,3 +1,6 @@
+== 1.4.1 | 1st May 2024 ==
+* Fix: Active Product css in Menu.
+
 == 1.4.0 | 29th April 2024 ==
 * Add: theme.json file to better support core blocks.
 * Add: Threads to social media options.

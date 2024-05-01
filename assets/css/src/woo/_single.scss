@@ -740,7 +740,7 @@
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
-.content-style-unboxed .entry-content-wrap.product:not(.loop-entry) {
+.content-style-unboxed .entry-content-wrap.product:not(.loop-entry):not(.menu-item .entry-content-wrap.product) {
     padding: 0;
 }
 .content-style-unboxed .content-bg.loop-entry .content-bg:not(.loop-entry) {

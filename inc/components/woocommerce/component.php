@@ -1562,7 +1562,7 @@ class Component implements Component_Interface {
 		$css->stop_media_query();
 		// Product Single Image Width.
 		$css->set_selector( '.woocommerce div.product div.images' );
-		$css->add_property( 'width', get_option( 'woocommerce_single_image_width', '600' ).'px' );
+		$css->add_property( 'width', get_option( 'woocommerce_single_image_width', '700' ).'px' );
 		// Above Product Title.
 		$css->set_selector( '.product-hero-section .entry-hero-container-inner' );
 		$css->render_background( webapp()->sub_option( 'product_title_background', 'desktop' ), $css );

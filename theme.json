@@ -123,6 +123,11 @@
 					"lineHeight": false,
 					"textDecoration": false
 				}
+			},
+			"link": {
+				"typography": {
+					"textDecoration": false
+				}
 			}
 		}
 	}

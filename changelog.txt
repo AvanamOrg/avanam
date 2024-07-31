@@ -1,3 +1,8 @@
+== 1.4.3 | 31th July 2024 ==
+* Update: Twitter color.
+* Update: Splide js to version 4.1.2
+* Fix: Can't edit color hex code in color picker.
+
 == 1.4.2 | 4th July 2024 ==
 * Update: Updates some default values.
 

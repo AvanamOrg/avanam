@@ -2974,7 +2974,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$socials = array(
 				'facebook'=> '#3b5998',
 				'instagram'=> '#517fa4',
-				'twitter'=> '#1DA1F2',
+				'twitter'=> '#0f1419',
 				'youtube'=> '#FF3333',
 				'facebook_group'=> '#3b5998',
 				'vimeo'=> '#4EBBFF',

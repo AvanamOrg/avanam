@@ -164,7 +164,7 @@ $post_type_obj = get_post_type_object( get_post_type() );
 						if ( isset( $meta_labels['date'] ) ) {
 							echo '<span class="meta-label">' . esc_html( $meta_labels['date'] ) . '</span>';
 						}
-						echo $time_string; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo apply_filters( 'base_posted_on_date', $time_string ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 					</span>
 					<?php
@@ -195,7 +195,7 @@ $post_type_obj = get_post_type_object( get_post_type() );
 						if ( isset( $meta_labels['date'] ) ) {
 							echo '<span class="meta-label">' . esc_html( $meta_labels['date'] ) . '</span>';
 						}
-						echo $time_string; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo apply_filters( 'base_posted_on_datetime', $time_string ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 					</span>
 					<?php
@@ -221,7 +221,7 @@ $post_type_obj = get_post_type_object( get_post_type() );
 						if ( isset( $meta_labels['dateUpdated'] ) ) {
 							echo '<span class="meta-label">' . esc_html( $meta_labels['dateUpdated'] ) . '</span>';
 						}
-						echo $time_string; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo apply_filters( 'base_updated_on_date', $time_string ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 					</span>
 					<?php
@@ -249,7 +249,7 @@ $post_type_obj = get_post_type_object( get_post_type() );
 						if ( isset( $meta_labels['dateUpdated'] ) ) {
 							echo '<span class="meta-label">' . esc_html( $meta_labels['dateUpdated'] ) . '</span>';
 						}
-						echo $time_string; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo apply_filters( 'base_updated_on_datetime', $time_string ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 					</span>
 					<?php

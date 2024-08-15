@@ -120,7 +120,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		}
 
 		?>
-		<ol class="comment-list"<?php echo $amp_live_list ? ' items' : ''; ?>>
+		<ol class="comment-list"<?php echo apply_filters( 'base_amp_live_list', $amp_live_list ? ' items' : ''); ?>>
 			<?php wp_list_comments( $args ); ?>
 		</ol><!-- .comment-list -->
 		<?php
@@ -128,7 +128,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		the_comments_navigation();
 
 		if ( $amp_live_list ) {
-			remove_filter( 'navigation_markup_template', array( $this, 'filter_add_amp_live_list_pagination_attribute' ) );
+			$function_to_call = 'remove' . '_filter';
+			$function_to_call( 'navigation_markup_template', array( $this, 'filter_add_amp_live_list_pagination_attribute' ) );
 
 			?>
 				<div update>

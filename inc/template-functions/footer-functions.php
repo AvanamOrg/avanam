@@ -73,7 +73,7 @@ function footer_html() {
 		$content = str_replace( '{year}', date_i18n( 'Y' ), $content );
 		$content = str_replace( '{site-title}', get_bloginfo( 'name' ), $content );
 		// translators: %s is link to Avanam".
-		$content = str_replace( '{theme-credit}', sprintf( __( '- WordPress Theme by %s', 'avanam' ), '<a href="https://avanam.org" rel="nofollow noopener" target="_blank">Avanam</a>' ), $content );
+		$content = str_replace( '{theme-credit}', sprintf( __( '- WordPress Theme by %s', 'avanam' ), '<a href="' . esc_url( __('https://avanam.org', 'avanam') ) . '" rel="nofollow noopener" target="_blank">Avanam</a>' ), $content );
 		echo do_shortcode( wpautop( $content ) );
 		echo '</div>';
 		echo '</div>';

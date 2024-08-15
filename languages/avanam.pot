@@ -2,25 +2,29 @@
 # This file is distributed under the GNU General Public License v3.0 (or later).
 msgid ""
 msgstr ""
-"Project-Id-Version: Avanam 1.4.0\n"
+"Project-Id-Version: Avanam 1.4.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/avanam\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-27T13:04:03+00:00\n"
+"POT-Creation-Date: 2024-08-15T06:34:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: avanam\n"
 
 #. Theme Name of the theme
-#: inc/dashboard/class-theme-dashboard.php:98
-#: inc/dashboard/class-theme-dashboard.php:307
+#: inc/dashboard/class-theme-dashboard.php:92
+#: inc/dashboard/class-theme-dashboard.php:289
 msgid "Avanam"
 msgstr ""
 
 #. Theme URI of the theme
+#. translators: %s: <a>
+#. translators: %s is link to Avanam".
+#: inc/components/base_support/component.php:140
+#: inc/template-functions/footer-functions.php:76
 msgid "https://avanam.org"
 msgstr ""
 
@@ -358,7 +362,7 @@ msgstr ""
 
 #: inc/components/bbpress/component.php:71
 #: inc/components/icons/component.php:115
-#: inc/dashboard/class-theme-dashboard.php:99
+#: inc/dashboard/class-theme-dashboard.php:93
 #: assets/js/admin/meta.js:1
 msgid "Settings"
 msgstr ""
@@ -460,19 +464,19 @@ msgstr ""
 msgid "White or offwhite"
 msgstr ""
 
-#: inc/components/comments/component.php:135
+#: inc/components/comments/component.php:136
 msgid "New comment(s)"
 msgstr ""
 
-#: inc/components/comments/component.php:154
+#: inc/components/comments/component.php:155
 msgid "Name"
 msgstr ""
 
-#: inc/components/comments/component.php:154
+#: inc/components/comments/component.php:155
 msgid "John Doe"
 msgstr ""
 
-#: inc/components/comments/component.php:156
+#: inc/components/comments/component.php:157
 #: inc/components/icons/component.php:429
 #: inc/components/icons/component.php:437
 #: inc/components/icons/component.php:445
@@ -481,23 +485,23 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: inc/components/comments/component.php:156
+#: inc/components/comments/component.php:157
 msgid "john@example.com"
 msgstr ""
 
-#: inc/components/comments/component.php:160
+#: inc/components/comments/component.php:161
 msgid "Website"
 msgstr ""
 
-#: inc/components/comments/component.php:160
+#: inc/components/comments/component.php:161
 msgid "https://www.example.com"
 msgstr ""
 
-#: inc/components/comments/component.php:182
+#: inc/components/comments/component.php:183
 msgid "Leave a comment..."
 msgstr ""
 
-#: inc/components/comments/component.php:182
+#: inc/components/comments/component.php:183
 #: template-parts/content/entry_loop_meta.php:317
 #: template-parts/content/entry_meta.php:289
 #: template-parts/title/meta.php:290
@@ -1185,21 +1189,21 @@ msgstr ""
 msgid "The template tag method %1$s registered by theme component %2$s conflicts with an already registered template tag of the same name."
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1098
+#: inc/components/woocommerce/component.php:1099
 msgid "Cart Summary"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1133
+#: inc/components/woocommerce/component.php:1134
 msgid "Update Profile Photo"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1436
-#: inc/components/woocommerce/component.php:1448
+#: inc/components/woocommerce/component.php:1437
+#: inc/components/woocommerce/component.php:1449
 msgid "List View"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1439
-#: inc/components/woocommerce/component.php:1445
+#: inc/components/woocommerce/component.php:1440
+#: inc/components/woocommerce/component.php:1446
 msgid "Grid View"
 msgstr ""
 
@@ -1376,8 +1380,8 @@ msgstr ""
 #: inc/customizer/options/header-main-options.php:37
 #: inc/customizer/options/header-popup-options.php:53
 #: inc/customizer/options/header-top-options.php:37
-#: inc/meta/class-theme-meta.php:220
-#: inc/meta/class-theme-meta.php:362
+#: inc/meta/class-theme-meta.php:222
+#: inc/meta/class-theme-meta.php:364
 #: assets/js/admin/meta.js:1
 msgid "Layout"
 msgstr ""
@@ -1531,8 +1535,8 @@ msgstr ""
 #: inc/customizer/class-theme-customizer.php:859
 #: inc/customizer/class-theme-customizer.php:864
 #: inc/customizer/options/header-builder-options.php:247
-#: inc/meta/class-theme-meta.php:196
-#: inc/meta/class-theme-meta.php:315
+#: inc/meta/class-theme-meta.php:198
+#: inc/meta/class-theme-meta.php:317
 msgid "Transparent Header"
 msgstr ""
 
@@ -1995,8 +1999,8 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:544
 #: inc/customizer/options/topic-layout-options.php:723
 #: inc/customizer/options/tutor-course-archive-layout-options.php:441
-#: inc/meta/class-theme-meta.php:225
-#: inc/meta/class-theme-meta.php:367
+#: inc/meta/class-theme-meta.php:227
+#: inc/meta/class-theme-meta.php:369
 #: assets/js/admin/meta.js:1
 msgid "Normal"
 msgstr ""
@@ -2029,8 +2033,8 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:548
 #: inc/customizer/options/topic-layout-options.php:727
 #: inc/customizer/options/tutor-course-archive-layout-options.php:445
-#: inc/meta/class-theme-meta.php:226
-#: inc/meta/class-theme-meta.php:368
+#: inc/meta/class-theme-meta.php:228
+#: inc/meta/class-theme-meta.php:370
 #: assets/js/admin/meta.js:1
 msgid "Narrow"
 msgstr ""
@@ -2097,8 +2101,8 @@ msgstr ""
 #: inc/customizer/options/tutor-course-archive-layout-options.php:135
 #: inc/customizer/options/tutor-course-archive-layout-options.php:449
 #: inc/customizer/options/tutor-course-layout-options.php:114
-#: inc/meta/class-theme-meta.php:227
-#: inc/meta/class-theme-meta.php:369
+#: inc/meta/class-theme-meta.php:229
+#: inc/meta/class-theme-meta.php:371
 #: assets/js/admin/customizer.js:4
 #: assets/js/admin/meta.js:1
 msgid "Fullwidth"
@@ -2202,8 +2206,8 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:582
 #: inc/customizer/options/topic-layout-options.php:761
 #: inc/customizer/options/tutor-course-layout-options.php:475
-#: inc/meta/class-theme-meta.php:246
-#: inc/meta/class-theme-meta.php:389
+#: inc/meta/class-theme-meta.php:248
+#: inc/meta/class-theme-meta.php:391
 #: assets/js/admin/meta.js:1
 msgid "Content Style"
 msgstr ""
@@ -2239,8 +2243,8 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:596
 #: inc/customizer/options/topic-layout-options.php:775
 #: inc/customizer/options/tutor-course-layout-options.php:489
-#: inc/meta/class-theme-meta.php:251
-#: inc/meta/class-theme-meta.php:394
+#: inc/meta/class-theme-meta.php:253
+#: inc/meta/class-theme-meta.php:396
 #: assets/js/admin/meta.js:1
 msgid "Boxed"
 msgstr ""
@@ -2276,8 +2280,8 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:600
 #: inc/customizer/options/topic-layout-options.php:779
 #: inc/customizer/options/tutor-course-layout-options.php:493
-#: inc/meta/class-theme-meta.php:252
-#: inc/meta/class-theme-meta.php:395
+#: inc/meta/class-theme-meta.php:254
+#: inc/meta/class-theme-meta.php:397
 #: assets/js/admin/meta.js:1
 msgid "Unboxed"
 msgstr ""
@@ -2302,8 +2306,8 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:611
 #: inc/customizer/options/topic-layout-options.php:790
 #: inc/customizer/options/tutor-course-layout-options.php:504
-#: inc/meta/class-theme-meta.php:270
-#: inc/meta/class-theme-meta.php:413
+#: inc/meta/class-theme-meta.php:272
+#: inc/meta/class-theme-meta.php:415
 #: assets/js/admin/meta.js:1
 msgid "Content Vertical Padding"
 msgstr ""
@@ -2328,11 +2332,11 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:625
 #: inc/customizer/options/topic-layout-options.php:804
 #: inc/customizer/options/tutor-course-layout-options.php:518
-#: inc/meta/class-theme-meta.php:201
-#: inc/meta/class-theme-meta.php:275
-#: inc/meta/class-theme-meta.php:320
-#: inc/meta/class-theme-meta.php:343
-#: inc/meta/class-theme-meta.php:418
+#: inc/meta/class-theme-meta.php:203
+#: inc/meta/class-theme-meta.php:277
+#: inc/meta/class-theme-meta.php:322
+#: inc/meta/class-theme-meta.php:345
+#: inc/meta/class-theme-meta.php:420
 #: assets/js/admin/meta.js:1
 msgid "Enable"
 msgstr ""
@@ -2357,11 +2361,11 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:628
 #: inc/customizer/options/topic-layout-options.php:807
 #: inc/customizer/options/tutor-course-layout-options.php:521
-#: inc/meta/class-theme-meta.php:202
-#: inc/meta/class-theme-meta.php:276
-#: inc/meta/class-theme-meta.php:321
-#: inc/meta/class-theme-meta.php:344
-#: inc/meta/class-theme-meta.php:419
+#: inc/meta/class-theme-meta.php:204
+#: inc/meta/class-theme-meta.php:278
+#: inc/meta/class-theme-meta.php:323
+#: inc/meta/class-theme-meta.php:346
+#: inc/meta/class-theme-meta.php:421
 #: assets/js/admin/meta.js:1
 msgid "Disable"
 msgstr ""
@@ -2386,8 +2390,8 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:631
 #: inc/customizer/options/topic-layout-options.php:810
 #: inc/customizer/options/tutor-course-layout-options.php:524
-#: inc/meta/class-theme-meta.php:277
-#: inc/meta/class-theme-meta.php:420
+#: inc/meta/class-theme-meta.php:279
+#: inc/meta/class-theme-meta.php:422
 #: assets/js/admin/meta.js:1
 msgid "Top Only"
 msgstr ""
@@ -2412,8 +2416,8 @@ msgstr ""
 #: inc/customizer/options/tec-event-layout-options.php:634
 #: inc/customizer/options/topic-layout-options.php:813
 #: inc/customizer/options/tutor-course-layout-options.php:527
-#: inc/meta/class-theme-meta.php:278
-#: inc/meta/class-theme-meta.php:421
+#: inc/meta/class-theme-meta.php:280
+#: inc/meta/class-theme-meta.php:423
 #: assets/js/admin/meta.js:1
 msgid "Bottom Only"
 msgstr ""
@@ -4546,16 +4550,16 @@ msgstr ""
 #: inc/customizer/options/general-breadcrumb-options.php:24
 #: inc/customizer/options/header-search-options.php:146
 #: inc/customizer/options/header-trigger-options.php:107
-#: inc/meta/class-theme-meta.php:200
-#: inc/meta/class-theme-meta.php:224
-#: inc/meta/class-theme-meta.php:250
-#: inc/meta/class-theme-meta.php:274
-#: inc/meta/class-theme-meta.php:319
-#: inc/meta/class-theme-meta.php:342
-#: inc/meta/class-theme-meta.php:366
-#: inc/meta/class-theme-meta.php:393
-#: inc/meta/class-theme-meta.php:417
-#: inc/meta/class-theme-meta.php:659
+#: inc/meta/class-theme-meta.php:202
+#: inc/meta/class-theme-meta.php:226
+#: inc/meta/class-theme-meta.php:252
+#: inc/meta/class-theme-meta.php:276
+#: inc/meta/class-theme-meta.php:321
+#: inc/meta/class-theme-meta.php:344
+#: inc/meta/class-theme-meta.php:368
+#: inc/meta/class-theme-meta.php:395
+#: inc/meta/class-theme-meta.php:419
+#: inc/meta/class-theme-meta.php:661
 #: assets/js/admin/meta.js:1
 msgid "Default"
 msgstr ""
@@ -6928,83 +6932,91 @@ msgstr ""
 msgid "Background Color"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:98
-#: inc/dashboard/class-theme-dashboard.php:99
+#: inc/dashboard/class-theme-dashboard.php:92
+#: inc/dashboard/class-theme-dashboard.php:93
 msgid "Avanam - Next Generation Theme"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:131
+#: inc/dashboard/class-theme-dashboard.php:125
 msgid "Browse Base Starter Templates"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:135
+#: inc/dashboard/class-theme-dashboard.php:129
 msgid "Install Base Starter Templates"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:138
+#: inc/dashboard/class-theme-dashboard.php:132
 msgid "Activate Base Starter Templates"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:287
+#: inc/dashboard/class-theme-dashboard.php:269
 msgid "Config Theme Modules"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:324
+#: inc/dashboard/class-theme-dashboard.php:306
 #: assets/js/admin/dashboard.js:1
 msgid "Video Tutorials"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:325
+#: inc/dashboard/class-theme-dashboard.php:307
 msgid "Want a guide? We have video tutorials to walk you through getting started."
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:326
+#: inc/dashboard/class-theme-dashboard.php:308
 msgid "Watch Videos"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:331
+#: inc/dashboard/class-theme-dashboard.php:313
 msgid "Documentation"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:332
+#: inc/dashboard/class-theme-dashboard.php:314
 msgid "Need help? We have a knowledge base full of articles to get you started."
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:333
+#: inc/dashboard/class-theme-dashboard.php:315
 msgid "Browse Docs"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:338
+#: inc/dashboard/class-theme-dashboard.php:320
 #: assets/js/admin/dashboard.js:1
 msgid "Support"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:339
+#: inc/dashboard/class-theme-dashboard.php:321
 #: assets/js/admin/dashboard.js:1
 msgid "Have a question, we are happy to help! Get in touch with our support team."
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:340
+#: inc/dashboard/class-theme-dashboard.php:322
 #: assets/js/admin/dashboard.js:1
 msgid "Submit a Ticket"
 msgstr ""
 
-#: inc/meta/class-theme-meta.php:103
-#: inc/meta/class-theme-meta.php:119
+#: inc/functions.php:60
+msgid "Blue Quote"
+msgstr ""
+
+#: inc/functions.php:71
+msgid "Example Pattern"
+msgstr ""
+
+#: inc/meta/class-theme-meta.php:104
+#: inc/meta/class-theme-meta.php:121
 msgid "Post Settings"
 msgstr ""
 
-#: inc/meta/class-theme-meta.php:228
-#: inc/meta/class-theme-meta.php:370
+#: inc/meta/class-theme-meta.php:230
+#: inc/meta/class-theme-meta.php:372
 msgid "Sidebar Left"
 msgstr ""
 
-#: inc/meta/class-theme-meta.php:229
-#: inc/meta/class-theme-meta.php:371
+#: inc/meta/class-theme-meta.php:231
+#: inc/meta/class-theme-meta.php:373
 msgid "Sidebar Right"
 msgstr ""
 
-#: inc/meta/class-theme-meta.php:338
+#: inc/meta/class-theme-meta.php:340
 msgid "Display Title"
 msgstr ""
 

@@ -235,7 +235,7 @@ ob_start();
 			<div class="caption entry-content-wrap">
 				<h3 class="entry-title"><?php the_title(); ?></h3>
 				<?php if ( ! empty( $short_description ) ) : ?>
-				<p class="entry-content"><?php echo do_shortcode( htmlspecialchars_decode( $short_description ) ); ?></p>
+				<p class="entry-content"><?php echo do_shortcode( wp_specialchars_decode( $short_description ) ); ?></p>
 				<?php endif; ?>
 				<p class="ld_course_grid_button"><a class="btn btn-primary" role="button" href="<?php echo esc_url( $button_link ); ?>" rel="bookmark"><?php echo esc_html( $button_text ); ?></a></p>
 				<?php if ( isset( $shortcode_atts['progress_bar'] ) && $shortcode_atts['progress_bar'] == 'true' ) : ?>

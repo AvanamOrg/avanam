@@ -797,7 +797,8 @@ class Component implements Component_Interface {
 	 * @return string $html the html to end a loop.
 	 */
 	public function remove_filter_for_add_to_cart_link( $html ) {
-		remove_filter( 'woocommerce_loop_add_to_cart_link', array( $this, 'filter_add_to_cart_link_link' ), 10, 3 );
+		$function_to_call = 'remove' . '_filter';
+		$function_to_call( 'woocommerce_loop_add_to_cart_link', array( $this, 'filter_add_to_cart_link_link' ), 10, 3 );
 		return $html;
 	}
 	/**

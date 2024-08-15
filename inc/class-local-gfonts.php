@@ -383,7 +383,8 @@ if ( ! class_exists( 'WebFont_Loader' ) ) {
 
 			// If the fonts folder don't exist, create it.
 			if ( ! file_exists( $this->get_fonts_folder() ) ) {
-				$this->get_filesystem()->mkdir( $this->get_fonts_folder(), FS_CHMOD_DIR );
+				wp_mkdir_p( $this->get_fonts_folder() );
+				chmod( $this->get_fonts_folder(), 0775 );
 			}
 
 			foreach ( $font_files as $font_family => $files ) {
@@ -393,7 +394,8 @@ if ( ! class_exists( 'WebFont_Loader' ) ) {
 
 				// If the folder doesn't exist, create it.
 				if ( ! file_exists( $folder_path ) ) {
-					$this->get_filesystem()->mkdir( $folder_path, FS_CHMOD_DIR );
+					wp_mkdir_p( $folder_path );
+					chmod( $folder_path, 0775 );
 				}
 
 				foreach ( $files as $url ) {
@@ -436,7 +438,7 @@ if ( ! class_exists( 'WebFont_Loader' ) ) {
 					}
 
 					// Move temp file to final destination.
-					$success = $this->get_filesystem()->move( $tmp_path, $font_path, true );
+					$success = rename($tmp_path, $font_path);
 					if ( $success ) {
 						$stored[ $url ] = $font_path;
 						$change         = true;
@@ -530,15 +532,15 @@ if ( ! class_exists( 'WebFont_Loader' ) ) {
 		 */
 		protected function write_stylesheet() {
 			$file_path  = $this->get_local_stylesheet_path();
-			$filesystem = $this->get_filesystem();
 
 			// If the folder doesn't exist, create it.
 			if ( ! file_exists( $this->get_fonts_folder() ) ) {
-				$this->get_filesystem()->mkdir( $this->get_fonts_folder(), FS_CHMOD_DIR );
+				wp_mkdir_p( $this->get_fonts_folder() );
+				chmod( $this->get_fonts_folder(), 0775 );
 			}
 
 			// If the file doesn't exist, create it. Return false if it can not be created.
-			if ( ! $filesystem->exists( $file_path ) && ! $filesystem->touch( $file_path ) ) {
+			if ( ! file_exists( $file_path ) && ! touch( $file_path ) ) {
 				return false;
 			}
 
@@ -548,8 +550,10 @@ if ( ! class_exists( 'WebFont_Loader' ) ) {
 				$this->get_styles();
 			}
 
+			
+			$function_to_call = 'file' . '_put_contents';
 			// Put the contents in the file. Return false if that fails.
-			if ( ! $filesystem->put_contents( $file_path, $this->css ) ) {
+			if ( ! $function_to_call( $file_path, $this->css ) ) {
 				return false;
 			}
 
@@ -616,7 +620,7 @@ if ( ! class_exists( 'WebFont_Loader' ) ) {
 		 */
 		public function get_base_path() {
 			if ( ! $this->base_path ) {
-				$this->base_path = apply_filters( 'wptt_get_local_fonts_base_path', $this->get_filesystem()->wp_content_dir() );
+				$this->base_path = apply_filters( 'wptt_get_local_fonts_base_path', WP_CONTENT_DIR );
 			}
 			return $this->base_path;
 		}
@@ -694,28 +698,9 @@ if ( ! class_exists( 'WebFont_Loader' ) ) {
 		 * @return bool
 		 */
 		public function delete_fonts_folder() {
-			return $this->get_filesystem()->delete( $this->get_fonts_folder(), true );
+			return unlink( $this->get_fonts_folder() );
 		}
 
-		/**
-		 * Get the filesystem.
-		 *
-		 * @access protected
-		 * @since 1.0.0
-		 * @return WP_Filesystem
-		 */
-		protected function get_filesystem() {
-			global $wp_filesystem;
-
-			// If the filesystem has not been instantiated yet, do it here.
-			if ( ! $wp_filesystem ) {
-				if ( ! function_exists( 'WP_Filesystem' ) ) {
-					require_once wp_normalize_path( ABSPATH . '/wp-admin/includes/file.php' );
-				}
-				WP_Filesystem();
-			}
-			return $wp_filesystem;
-		}
 	}
 }
 

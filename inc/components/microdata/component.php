@@ -59,7 +59,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			return;
 		}
 
-		echo $this->get_microdata( $context ); // phpcs:ignore
+		echo apply_filters( 'base_print_microdata', $this->get_microdata( $context ) ); // phpcs:ignore
 	}
 
 	/**

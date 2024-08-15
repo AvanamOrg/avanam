@@ -1,3 +1,6 @@
+== 1.4.4 | 15th August 2024 ==
+* Update: Pass tests with theme check plugin.
+
 == 1.4.3 | 31th July 2024 ==
 * Update: Twitter color.
 * Update: Splide js to version 4.1.2

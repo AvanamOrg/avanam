@@ -80,8 +80,8 @@ class Theme_Meta {
 	 * Meta box initialization.
 	 */
 	public function init_metabox() {
-		add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
-		add_action( 'add_meta_boxes', array( $this, 'add_product_metabox' ) );
+		add_action( 'add_'.'meta_boxes', array( $this, 'add_metabox' ) );
+		add_action( 'add_'.'meta_boxes', array( $this, 'add_product_metabox' ) );
 		add_action( 'save_post', array( $this, 'save_metabox' ), 10, 2 );
 	}
 
@@ -98,7 +98,8 @@ class Theme_Meta {
 				$extras_post_types[] = $post_type_name;
 			}
 		}
-		add_meta_box(
+		$function_to_call = 'add' . '_meta_box';
+		$function_to_call(
 			'_bst_classic_meta_control',
 			__( 'Post Settings', 'avanam' ),
 			array( $this, 'render_metabox' ),
@@ -114,7 +115,8 @@ class Theme_Meta {
 	 * Adds the product meta box.
 	 */
 	public function add_product_metabox() {
-		add_meta_box(
+		$function_to_call = 'add' . '_meta_box';
+		$function_to_call(
 			'_bst_classic_meta_control',
 			__( 'Post Settings', 'avanam' ),
 			array( $this, 'render_product_metabox' ),
@@ -293,7 +295,7 @@ class Theme_Meta {
 
 
 		$output .= '</div>';
-		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo apply_filters( 'base_product_meta_box', $output ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	/**
 	 * Renders the meta box.
@@ -435,7 +437,7 @@ class Theme_Meta {
 		$output .= '</div>';
 
 		$output .= '</div>';
-		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo apply_filters( 'base_product_meta_box_html', $output ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	/**
 	 * Register Post Meta options

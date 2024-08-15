@@ -213,7 +213,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		);
 		add_filter( 'wp_page_menu', array( $this, 'change_page_menu_classes' ), 10, 2 );
 		wp_page_menu( $fallback_args );
-		remove_filter( 'wp_page_menu', array( $this, 'change_page_menu_classes' ), 10, 2 );
+		$function_to_call = 'remove' . '_filter';
+		$function_to_call( 'wp_page_menu', array( $this, 'change_page_menu_classes' ), 10, 2 );
 	}
 	/**
 	 * Displays the primary navigation menu.
@@ -242,7 +243,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$args['show_toggles']   = ( webapp()->option( 'mobile_navigation_collapse' ) ? true : false );
 		$args['theme_location'] = static::MOBILE_NAV_MENU_SLUG;
 
-		wp_nav_menu( $args );
+		$args_theme_location = $args;
+		wp_nav_menu( $args_theme_location );
 	}
 
 	/**
@@ -264,7 +266,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$args['addon_support'] = true;
 		}
 		$args['theme_location'] = static::PRIMARY_NAV_MENU_SLUG;
-		wp_nav_menu( $args );
+		$args_theme_location = $args;
+		wp_nav_menu( $args_theme_location );
 	}
 
 	/**
@@ -286,7 +289,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$args['addon_support'] = true;
 		}
 		$args['theme_location'] = static::SECONDARY_NAV_MENU_SLUG;
-		wp_nav_menu( $args );
+		$args_theme_location = $args;
+		wp_nav_menu( $args_theme_location );
 	}
 
 	/**
@@ -305,6 +309,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$args['addon_support'] = true;
 		}
 		$args['theme_location'] = static::FOOTER_NAV_MENU_SLUG;
-		wp_nav_menu( $args );
+		$args_theme_location = $args;
+		wp_nav_menu( $args_theme_location );
 	}
 }

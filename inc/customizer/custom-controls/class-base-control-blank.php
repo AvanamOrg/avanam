@@ -29,12 +29,12 @@ class Base_Control_Blank extends WP_Customize_Control {
 	public function render_content() {
 		if ( ! empty( $this->label ) ) :
 			?>
-			<span class="customize-control-title"><?php echo $this->label; // phpcs:ignore ?></span>
+			<span class="customize-control-title"><?php echo wp_kses_post($this->label); // phpcs:ignore ?></span>
 			<?php
 		endif;
 		if ( ! empty( $this->description ) ) :
 			?>
-			<span class="customize-control-description"><?php echo $this->description; // phpcs:ignore ?></span>
+			<span class="customize-control-description"><?php echo wp_kses_post($this->description); // phpcs:ignore ?></span>
 			<?php
 		endif;
 		?>

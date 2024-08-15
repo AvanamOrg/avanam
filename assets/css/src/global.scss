@@ -19,10 +19,7 @@
 .bt-clear {
 	@include clearfix();
 }
-// Makes mobile sticky better when logged in.
-#wpadminbar {
-    position: fixed!important;
-}
+
 // Perhaps Remove.
 .content-area {
 	margin: var(--global-xxl-spacing) 0;

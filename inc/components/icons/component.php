@@ -1103,6 +1103,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * @param bool   $base if the baseline class should be added.
 	 */
 	public function print_icon( $icon = 'search', $icon_title = '', $base = true ) {
-		echo $this->get_icon( $icon, $icon_title, $base ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo apply_filters( 'base_print_svg_icon', $this->get_icon( $icon, $icon_title, $base ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }

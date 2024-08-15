@@ -353,7 +353,7 @@ class Component implements Component_Interface {
 
 		// Add support for default block styles.
 		// Don't add this "add_theme_support( 'wp-block-styles' );" because theme provides it own styling.
-		// add_theme_support( 'wp-block-styles' );
+		add_theme_support( 'wp-block-styles' );
 		// Add support for wide-aligned images.
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'custom-spacing' );

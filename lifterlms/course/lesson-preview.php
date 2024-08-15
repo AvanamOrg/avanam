@@ -22,7 +22,7 @@ $data_msg     = $restrictions['is_restricted'] ? ' data-tooltip-msg="' . esc_htm
 ?>
 
 <div class="llms-lesson-preview<?php echo esc_attr( $lesson->get_preview_classes() ); ?>">
-	<a class="llms-lesson-link<?php echo $restrictions['is_restricted'] ? ' llms-lesson-link-locked' : ''; ?>" href="<?php echo ( ! $restrictions['is_restricted'] ) ? esc_url( get_permalink( $lesson->get( 'id' ) ) ) : '#llms-lesson-locked'; ?>"<?php echo $data_msg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<a class="llms-lesson-link<?php echo ( apply_filters( 'llms_filter_pre_text', $restrictions['is_restricted'] ? ' llms-lesson-link-locked' : '' ) ); ?>" href="<?php echo ( ! $restrictions['is_restricted'] ) ? esc_url( get_permalink( $lesson->get( 'id' ) ) ) : '#llms-lesson-locked'; ?>"<?php echo apply_filters( 'llms_filter_data_msg', $data_msg ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 
 		<?php if ( 'course' === get_post_type( get_the_ID() ) ) : ?>
 
@@ -43,14 +43,14 @@ $data_msg     = $restrictions['is_restricted'] ? ' data-tooltip-msg="' . esc_htm
 				<aside class="llms-extra">
 					<?php // translators: %1$d is lession order %2$d is the total number of lessions. ?>
 					<span class="llms-lesson-counter"><?php printf( _x( '%1$d of %2$d', 'lesson order within section', 'avanam' ), isset( $order ) ? $order : $lesson->get_order(), $total_lessons ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
-					<?php echo $lesson->get_preview_icon_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo apply_filters( 'llms_filter_preview_icon', $lesson->get_preview_icon_html() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</aside>
 
 			<?php endif; ?>
 
 			<section class="llms-main">
 				<?php if ( 'lesson' === get_post_type( get_the_ID() ) ) : ?>
-					<h6 class="llms-pre-text"><?php echo $pre_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h6>
+					<h6 class="llms-pre-text"><?php echo apply_filters( 'llms_filter_pre_text', $pre_text); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h6>
 				<?php endif; ?>
 				<h5 class="llms-h5 llms-lesson-title"><?php echo get_the_title( $lesson->get( 'id' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h5>
 				<?php if ( apply_filters( 'llms_show_preview_excerpt', true ) && llms_get_excerpt( $lesson->get( 'id' ) ) ) : // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound ?>

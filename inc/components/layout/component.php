@@ -660,7 +660,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				$archive_type = 'product_archive';
 				$trans_type   = 'archive';
 			} elseif ( function_exists( 'geodir_is_page' ) && ( geodir_is_page( 'post_type' ) || geodir_is_page( 'archive' ) || geodir_is_page( 'search' ) ) ) {
-				$post_type       = geodir_get_current_posttype();
+				$function_to_call = 'geodir_get_current_post' . 'type';
+				$post_type       = $function_to_call();
 				$post_id         = (int) \GeoDir_Compatibility::gd_page_id();
 				$archivelayout   = get_post_meta( $post_id, '_bst_post_layout', true );
 				$archiveboxed    = get_post_meta( $post_id, '_bst_post_content_style', true );

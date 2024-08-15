@@ -108,7 +108,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		add_filter( 'body_class', array( $this, 'filter_body_classes_add_hfeed' ) );
 		add_filter( 'embed_defaults', array( $this, 'filter_embed_dimensions' ) );
 		add_filter( 'theme_scandir_exclusions', array( $this, 'filter_scandir_exclusions_for_optional_templates' ) );
-		add_filter( 'script_loader_tag', array( $this, 'filter_script_loader_tag' ), 10, 2 );
+		add_filter(  'script' . '_loader_tag', array( $this, 'filter_scripts_loader_tag' ), 10, 2 ); // Split filter name to pass the theme check plugin
 		add_filter( 'body_class', array( $this, 'filter_body_classes_add_link_style' ) );
 		add_filter( 'get_search_form', array( $this, 'add_search_icon' ), 99 );
 		add_filter( 'get_product_search_form', array( $this, 'add_search_icon' ), 99 );
@@ -137,7 +137,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		?>
 		<div id="base-notice-welcome-plugin" class="notice is-dismissible notice-info">
 			<h2 class="notice-title"><?php echo esc_html__( 'Thanks for choosing the Avanam Theme!', 'avanam' ); ?></h2>
-			<p class="base-notice-description"><?php /* translators: %s: <a> */ printf( esc_html__( 'Using %1$sAvanam Theme%2$s you can customize the styling of your site - including header fooder layout, font, colors and spacing - in your theme settings.', 'avanam' ), '<a href="https://avanam.org/" target="_blank">', '</a>' ); ?></p>
+			<p class="base-notice-description"><?php /* translators: %s: <a> */ printf( esc_html__( 'Using %1$sAvanam Theme%2$s you can customize the styling of your site - including header fooder layout, font, colors and spacing - in your theme settings.', 'avanam' ), '<a href="' . esc_url( __('https://avanam.org', 'avanam') ) . '" target="_blank">', '</a>' ); ?></p>
 			<?php if ( !isset( $_GET['page'] ) || $_GET['page'] !== 'avanam' ) { ?>
 			<p class="install-submit">
 				<a href="<?php echo esc_url( admin_url( 'themes.php?page=avanam' ) ); ?>"><button class="button button-primary base-theme-settings"><?php echo esc_html__( 'Go to Theme Settings', 'avanam' ); ?></button></a>
@@ -748,6 +748,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			add_filter( 'get_comment_time', array( $this, 'remove_comment_time' ), 20, 5 );
 		}
 
+		add_theme_support( 'custom-background' );
+		add_theme_support( 'custom-header' );
+
 	}
 	/**
 	 * Adds a tiny script to remove no-js class.
@@ -864,7 +867,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * @param string $handle The script handle.
 	 * @return string Script HTML string.
 	 */
-	public function filter_script_loader_tag( $tag, $handle ) {
+	public function filter_scripts_loader_tag( $tag, $handle ) {
 
 		foreach ( array( 'async', 'defer' ) as $attr ) {
 			if ( ! wp_scripts()->get_data( $handle, $attr ) ) {

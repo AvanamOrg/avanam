@@ -108,7 +108,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		add_filter( 'body_class', array( $this, 'filter_body_classes_add_hfeed' ) );
 		add_filter( 'embed_defaults', array( $this, 'filter_embed_dimensions' ) );
 		add_filter( 'theme_scandir_exclusions', array( $this, 'filter_scandir_exclusions_for_optional_templates' ) );
-		add_filter(  'script' . '_loader_tag', array( $this, 'filter_scripts_loader_tag' ), 10, 2 ); // Split filter name to pass the theme check plugin
+		//add_filter(  'script' . '_loader_tag', array( $this, 'filter_scripts_loader_tag' ), 10, 2 ); // Split filter name to pass the theme check plugin
 		add_filter( 'body_class', array( $this, 'filter_body_classes_add_link_style' ) );
 		add_filter( 'get_search_form', array( $this, 'add_search_icon' ), 99 );
 		add_filter( 'get_product_search_form', array( $this, 'add_search_icon' ), 99 );

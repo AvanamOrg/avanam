@@ -1,3 +1,8 @@
+== 1.4.5 | 18th September 2024 ==
+* Update: Twitter icon to x
+* Update: Disable async and defer function
+* Fix: Undefined key 'cookies' on blog page
+
 == 1.4.4 | 15th August 2024 ==
 * Update: Pass tests with theme check plugin.
 

@@ -59,6 +59,20 @@ class Component implements Component_Interface {
 	public static $show_cart_total = false;
 
 	/**
+	 * Holds the bool for showing the cart sub total.
+	 *
+	 * @var bool based on the theme settings.
+	 */
+	public static $show_cart_subtotal = false;
+
+	/**
+	 * Holds the bool for showing the cart sub total mobile.
+	 *
+	 * @var bool based on the theme settings.
+	 */
+	public static $show_mobile_cart_subtotal = false;
+
+	/**
 	 * Gets the unique identifier for the theme component.
 	 *
 	 * @return string Component slug.
@@ -930,6 +944,87 @@ class Component implements Component_Interface {
 		return $fragments;
 
 	}
+
+	/**
+	 * Refresh the cart for ajax adds.
+	 *
+	 * @param object $fragments the cart object.
+	 */
+	public function get_refreshed_fragments_subtotal( $fragments ) {
+
+		global 	$woocommerce;
+		
+		$show_decimal = webapp()->option( 'header_cart_show_decimal' );
+		$cartTotal = WC()->cart->get_cart_total() . ( WC()->cart->total == 0 && $show_decimal ? '.00' : '' );
+		$cartSubTotal = WC()->cart->get_cart_subtotal() . ( WC()->cart->subtotal == 0 && $show_decimal ? '.00' : '' );
+		$cartItems = WC()->cart->get_cart_contents_count();
+
+		$title = webapp()->option( 'header_cart_title' );
+		$has_subtotal_title = ( str_contains($title, '{cart_total}') || str_contains($title, '{cart_subtotal}') );
+		$title      = str_replace( '{cart_total}', $cartTotal, $title );
+		$title      = str_replace( '{cart_subtotal}', $cartSubTotal, $title );
+		$title      = str_replace( '{cart_count}', $cartItems, $title );
+		$label = webapp()->option( 'header_cart_label' );
+		$has_subtotal_label = ( str_contains($label, '{cart_total}') || str_contains($label, '{cart_subtotal}') );
+		$label      = str_replace( '{cart_total}', $cartTotal, $label );
+		$label      = str_replace( '{cart_subtotal}', $cartSubTotal, $label );
+		$label      = str_replace( '{cart_count}', $cartItems, $label );
+		// Get cart items.
+		ob_start();
+
+		?><div class="header-cart-content"><?php
+		if ( ! empty( $title )) {
+			?><span class="header-cart-title <?php echo esc_attr( $has_subtotal_title ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $title ); ?></span><?php
+		}if ( ! empty( $label ) ) {
+			?><span class="header-cart-label <?php echo esc_attr( $has_subtotal_label ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $label ); ?></span><?php
+		}?></div><?php
+
+		$fragments['div.header-cart-wrap div.header-cart-content'] = ob_get_clean();
+		return $fragments;
+
+	}
+
+	/**
+	 * Refresh the cart for ajax adds.
+	 *
+	 * @param object $fragments the cart object.
+	 */
+	public function get_refreshed_fragments_subtotal_mobile( $fragments ) {
+
+		global 	$woocommerce;
+
+		$show_decimal = webapp()->option( 'header_mobile_cart_show_decimal' );
+		$cartTotal = WC()->cart->get_cart_total() . ( WC()->cart->total == 0 && $show_decimal ? '.00' : '' );
+		$cartSubTotal = WC()->cart->get_cart_subtotal() . ( WC()->cart->subtotal == 0 && $show_decimal ? '.00' : '' );
+		$cartItems = WC()->cart->get_cart_contents_count();
+
+		$title = webapp()->option( 'header_mobile_cart_title' );
+		$has_subtotal_title = ( str_contains($title, '{cart_total}') || str_contains($title, '{cart_subtotal}') );
+		$title = str_replace( '{cart_total}', $cartTotal, $title );
+		$title = str_replace( '{cart_subtotal}', $cartSubTotal, $title );
+		$title = str_replace( '{cart_count}', $cartItems, $title );
+		$label = webapp()->option( 'header_mobile_cart_label' );
+		$has_subtotal_label = ( str_contains($label, '{cart_total}') || str_contains($label, '{cart_subtotal}') );
+		$label = str_replace( '{cart_total}', $cartTotal, $label );
+		$label = str_replace( '{cart_subtotal}', $cartSubTotal, $label );
+		$label = str_replace( '{cart_count}', $cartItems, $label );
+		
+		// Get cart items.
+		ob_start();
+
+		?><div class="header-cart-content"><?php
+		if ( ! empty( $title )) {
+			?><span class="header-cart-title <?php echo esc_attr( $has_subtotal_title ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $title ); ?></span><?php
+		}if ( ! empty( $label ) ) {
+			?><span class="header-cart-label <?php echo esc_attr( $has_subtotal_label ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $label ); ?></span><?php
+		}?></div><?php
+
+		$fragments['div.header-mobile-cart-wrap div.header-cart-content'] = ob_get_clean();
+		return $fragments;
+
+	}
+	
+
 	/**
 	 * Refresh the cart for ajax adds.
 	 *
@@ -960,6 +1055,16 @@ class Component implements Component_Interface {
 			self::$show_mini_cart = true;
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_mini' ), 11 );
 		}
+		if ( str_contains(webapp()->option( 'header_cart_title' ), '{cart_total}') || str_contains(webapp()->option( 'header_cart_label' ), '{cart_total}') || str_contains(webapp()->option( 'header_cart_title' ), '{cart_subtotal}') || str_contains(webapp()->option( 'header_cart_label' ), '{cart_subtotal}') || str_contains(webapp()->option( 'header_cart_title' ), '{cart_count}') || str_contains(webapp()->option( 'header_cart_label' ), '{cart_count}') ) {
+			self::$show_cart_subtotal = true;
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_subtotal' ), 11 );
+		}
+		if ( str_contains(webapp()->option( 'header_mobile_cart_title' ), '{cart_total}') || str_contains(webapp()->option( 'header_mobile_cart_label' ), '{cart_total}') || str_contains(webapp()->option( 'header_mobile_cart_title' ), '{cart_subtotal}') || str_contains(webapp()->option( 'header_mobile_cart_label' ), '{cart_subtotal}') || str_contains(webapp()->option( 'header_mobile_cart_title' ), '{cart_count}') || str_contains(webapp()->option( 'header_mobile_cart_label' ), '{cart_count}') ) {
+			self::$show_mobile_cart_subtotal = true;
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_subtotal_mobile' ), 11 );
+		}
+
+		
 	}
 	/**
 	 * Checks to see if themes conditional header needs to hook into cart fragments.
@@ -972,6 +1077,14 @@ class Component implements Component_Interface {
 		if ( ( 'slide' === webapp()->option( 'header_cart_style' ) || 'slide' === webapp()->option( 'header_mobile_cart_style' ) || 'dropdown' === webapp()->option( 'header_cart_style' ) ) && ! self::$show_mini_cart ) {
 			self::$show_mini_cart = true;
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_mini' ) );
+		}
+		if ( (str_contains(webapp()->option( 'header_cart_title' ), '{cart_total}') || str_contains(webapp()->option( 'header_cart_label' ), '{cart_total}') || str_contains(webapp()->option( 'header_cart_title' ), '{cart_subtotal}') || str_contains(webapp()->option( 'header_cart_label' ), '{cart_subtotal}') || str_contains(webapp()->option( 'header_cart_title' ), '{cart_count}') || str_contains(webapp()->option( 'header_cart_label' ), '{cart_count}') ) && ! self::$show_cart_subtotal ) {
+			self::$show_cart_subtotal = true;
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_subtotal' ) );
+		}
+		if ( (str_contains(webapp()->option( 'header_mobile_cart_title' ), '{cart_total}') || str_contains(webapp()->option( 'header_mobile_cart_label' ), '{cart_total}') || str_contains(webapp()->option( 'header_mobile_cart_title' ), '{cart_subtotal}') || str_contains(webapp()->option( 'header_mobile_cart_label' ), '{cart_subtotal}') || str_contains(webapp()->option( 'header_mobile_cart_title' ), '{cart_count}') || str_contains(webapp()->option( 'header_mobile_cart_label' ), '{cart_count}') ) && ! self::$show_mobile_cart_subtotal ) {
+			self::$show_mobile_cart_subtotal = true;
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'get_refreshed_fragments_subtotal_mobile' ) );
 		}
 	}
 	/**

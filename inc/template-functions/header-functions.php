@@ -757,14 +757,30 @@ function mobile_button() {
 function header_cart() {
 	if ( class_exists( 'woocommerce' ) ) {
 		wp_enqueue_script( 'wc-cart-fragments' );
+		global $woocommerce;
+
+		$show_decimal = webapp()->option( 'header_cart_show_decimal' );
+		$cartTotal = WC()->cart->get_cart_total() . ( WC()->cart->total == 0 && $show_decimal ? '.00' : '' );
+		$cartSubTotal = WC()->cart->get_cart_subtotal() . ( WC()->cart->subtotal == 0 && $show_decimal ? '.00' : '' );
+		$cartItems = WC()->cart->get_cart_contents_count();
+
 		$title      = webapp()->option( 'header_cart_title' );
+		$has_subtotal_title = ( str_contains($title, '{cart_total}') || str_contains($title, '{cart_subtotal}') );
+		$title      = str_replace( '{cart_total}', $cartTotal, $title );
+		$title      = str_replace( '{cart_subtotal}', $cartSubTotal, $title );
+		$title      = str_replace( '{cart_count}', $cartItems, $title );
 		$label      = webapp()->option( 'header_cart_label' );
+		$has_subtotal_label = ( str_contains($label, '{cart_total}') || str_contains($label, '{cart_subtotal}') );
+		$label      = str_replace( '{cart_total}', $cartTotal, $label );
+		$label      = str_replace( '{cart_subtotal}', $cartSubTotal, $label );
+		$label      = str_replace( '{cart_count}', $cartItems, $label );
 		$show_total = webapp()->option( 'header_cart_show_total' );
 		$icon       = webapp()->option( 'header_cart_icon', 'shopping-bag' );
 		$dropdown   = 'header-navigation nav--toggle-sub header-navigation-dropdown-animation-' . esc_attr( webapp()->option( 'dropdown_navigation_reveal' ) );
 		echo '<div class="header-cart-wrap base-header-cart' . ( 'dropdown' === webapp()->option( 'header_cart_style' ) ? ' ' . esc_attr( $dropdown ) : '' ) . '">';
 		webapp()->customizer_quick_link();
 		$cart_contents_count = ( isset( WC()->cart ) ? WC()->cart->get_cart_contents_count() : 0 );
+		
 		echo '<span class="header-cart-empty-check header-cart-is-empty-' . ( $cart_contents_count > 0 ? 'false' : 'true' ) . '"></span>';
 		echo '<div class="header-cart-inner-wrap cart-show-label-' . ( ! empty( $label ) ? 'true' : 'false' ) . ' cart-style-' . esc_attr( webapp()->option( 'header_cart_style' ) ) . ( 'dropdown' === webapp()->option( 'header_cart_style' ) ? ' header-menu-container' : '' ) . '">';
 		if ( 'link' === webapp()->option( 'header_cart_style' ) ) {
@@ -774,14 +790,14 @@ function header_cart() {
 				echo '<span class="header-cart-total header-cart-is-empty-' . ( $cart_contents_count > 0 ? 'false' : 'true' ) . '">' . wp_kses_post( $cart_contents_count ) . '</span>';
 			}
 			echo '<div class="header-cart-content">';
-			if ( ! empty( $title ) || is_customize_preview() ) {
+			if ( ! empty( $title )) {
 				?>
-				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<span class="header-cart-title <?php echo esc_attr( $has_subtotal_title ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $title ); ?></span>
 				<?php
 			}
-			if ( ! empty( $label ) || is_customize_preview() ) {
+			if ( ! empty( $label )) {
 				?>
-				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
+				<span class="header-cart-label <?php echo esc_attr( $has_subtotal_label ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $label ); ?></span>
 				<?php
 			}
 			echo '</div>';
@@ -794,14 +810,14 @@ function header_cart() {
 				echo '<span class="header-cart-total header-cart-is-empty-' . ( $cart_contents_count > 0 ? 'false' : 'true' ) . '">' . wp_kses_post( $cart_contents_count ) . '</span>';
 			}
 			echo '<div class="header-cart-content">';
-			if ( ! empty( $title ) || is_customize_preview() ) {
+			if ( ! empty( $title )) {
 				?>
-				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<span class="header-cart-title <?php echo esc_attr( $has_subtotal_title ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $title ); ?></span>
 				<?php
 			}
-			if ( ! empty( $label ) || is_customize_preview() ) {
+			if ( ! empty( $label )) {
 				?>
-				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
+				<span class="header-cart-label <?php echo esc_attr( $has_subtotal_label ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $label ); ?></span>
 				<?php
 			}
 			echo '</div>';
@@ -815,14 +831,14 @@ function header_cart() {
 				echo '<span class="header-cart-total header-cart-is-empty-' . ( $cart_contents_count > 0 ? 'false' : 'true' ) . '">' . wp_kses_post( $cart_contents_count ) . '</span>';
 			}
 			echo '<div class="header-cart-content">';
-			if ( ! empty( $title ) || is_customize_preview() ) {
+			if ( ! empty( $title )) {
 				?>
-				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<span class="header-cart-title <?php echo esc_attr( $has_subtotal_title ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $title ); ?></span>
 				<?php
 			}
-			if ( ! empty( $label ) || is_customize_preview() ) {
+			if ( ! empty( $label )) {
 				?>
-				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
+				<span class="header-cart-label <?php echo esc_attr( $has_subtotal_label ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $label ); ?></span>
 				<?php
 			}
 			echo '</div>';
@@ -882,8 +898,23 @@ function cart_popup() {
 function mobile_cart() {
 	if ( class_exists( 'woocommerce' ) ) {
 		wp_enqueue_script( 'wc-cart-fragments' );
+		global $woocommerce;
+
+		$show_decimal = webapp()->option( 'header_cart_show_decimal' );
+		$cartTotal = WC()->cart->get_cart_total() . ( WC()->cart->total == 0 && $show_decimal ? '.00' : '' );
+		$cartSubTotal = WC()->cart->get_cart_subtotal() . ( WC()->cart->subtotal == 0 && $show_decimal ? '.00' : '' );
+		$cartItems = WC()->cart->get_cart_contents_count();
+
 		$title      = webapp()->option( 'header_mobile_cart_title' );
+		$has_subtotal_title = ( str_contains($title, '{cart_total}') || str_contains($title, '{cart_subtotal}') );
+		$title      = str_replace( '{cart_total}', $cartTotal, $title );
+		$title      = str_replace( '{cart_subtotal}', $cartSubTotal, $title );
+		$title      = str_replace( '{cart_count}', $cartItems, $title );
 		$label      = webapp()->option( 'header_mobile_cart_label' );
+		$has_subtotal_label = ( str_contains($label, '{cart_total}') || str_contains($label, '{cart_subtotal}') );
+		$label      = str_replace( '{cart_total}', $cartTotal, $label );
+		$label      = str_replace( '{cart_subtotal}', $cartSubTotal, $label );
+		$label      = str_replace( '{cart_count}', $cartItems, $label );
 		$show_total = webapp()->option( 'header_mobile_cart_show_total' );
 		$icon       = webapp()->option( 'header_mobile_cart_icon', 'shopping-bag' );
 		echo '<div class="header-mobile-cart-wrap base-header-cart">';
@@ -898,14 +929,14 @@ function mobile_cart() {
 				echo '<span class="header-cart-total">' . wp_kses_post( $cart_contents_count ) . '</span>';
 			}
 			echo '<div class="header-cart-content">';
-			if ( ! empty( $title ) || is_customize_preview() ) {
+			if ( ! empty( $title )) {
 				?>
-				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<span class="header-cart-title <?php echo esc_attr( $has_subtotal_title ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $title ); ?></span>
 				<?php
 			}
-			if ( ! empty( $label ) || is_customize_preview() ) {
+			if ( ! empty( $label )) {
 				?>
-				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
+				<span class="header-cart-label <?php echo esc_attr( $has_subtotal_label ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $label ); ?></span>
 				<?php
 			}
 			echo '</div>';
@@ -918,14 +949,14 @@ function mobile_cart() {
 				echo '<span class="header-cart-total">' . wp_kses_post( $cart_contents_count ) . '</span>';
 			}
 			echo '<div class="header-cart-content">';
-			if ( ! empty( $title ) || is_customize_preview() ) {
+			if ( ! empty( $title )) {
 				?>
-				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<span class="header-cart-title <?php echo esc_attr( $has_subtotal_title ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $title ); ?></span>
 				<?php
 			}
-			if ( ! empty( $label ) || is_customize_preview() ) {
+			if ( ! empty( $label )) {
 				?>
-				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
+				<span class="header-cart-label <?php echo esc_attr( $has_subtotal_label ? 'subtotal' : '' ); ?>"><?php echo wp_kses_post( $label ); ?></span>
 				<?php
 			}
 			echo '</div>';

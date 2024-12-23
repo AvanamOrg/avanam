@@ -45,13 +45,20 @@ $settings = array(
 			'active' => 'design',
 		),
 	),
+	'header_mobile_cart_title_description' => array(
+		'control_type' => 'base_blank_control',
+		'section'      => 'mobile_cart',
+		'settings'     => false,
+		'priority'     => 3,
+		'description'  => esc_html__( 'Use {cart_subtotal}, {cart_total}, {cart_count} placeholders', 'avanam' ),
+	),
 	'header_mobile_cart_title' => array(
 		'control_type' => 'base_text_control',
 		'section'      => 'mobile_cart',
 		'sanitize'     => 'sanitize_text_field',
-		'priority'     => 6,
+		'priority'     => 4,
 		'default'      => webapp()->default( 'header_mobile_cart_title' ),
-		'label'        => esc_html__( 'Cart Label Title', 'avanam' ),
+		'label'        => esc_html__( 'Cart Title', 'avanam' ),
 		'live_method'     => array(
 			array(
 				'type'     => 'html',
@@ -60,6 +67,13 @@ $settings = array(
 				'key'      => '',
 			),
 		),
+	),
+	'header_mobile_cart_label_description' => array(
+		'control_type' => 'base_blank_control',
+		'section'      => 'mobile_cart',
+		'settings'     => false,
+		'priority'     => 5,
+		'description'  => esc_html__( 'Use {cart_subtotal}, {cart_total}, {cart_count} placeholders', 'avanam' ),
 	),
 	'header_mobile_cart_label' => array(
 		'control_type' => 'base_text_control',
@@ -77,6 +91,14 @@ $settings = array(
 			),
 		),
 	),
+	'header_mobile_cart_show_decimal' => array(
+			'control_type' => 'base_switch_control',
+			'sanitize'     => 'base_sanitize_toggle',
+			'section'      => 'mobile_cart',
+			'priority'     => 6,
+			'default'      => webapp()->default( 'header_mobile_cart_show_decimal' ),
+			'label'        => esc_html__( 'Show decimals in price?', 'avanam' ),
+		),
 	'header_mobile_cart_icon' => array(
 		'control_type' => 'base_radio_icon_control',
 		'section'      => 'mobile_cart',
@@ -123,7 +145,7 @@ $settings = array(
 		'control_type' => 'base_switch_control',
 		'sanitize'     => 'base_sanitize_toggle',
 		'section'      => 'mobile_cart',
-		'priority'     => 6,
+		'priority'     => 9,
 		'partial'      => array(
 			'selector'            => '.header-mobile-cart-wrap',
 			'container_inclusive' => true,

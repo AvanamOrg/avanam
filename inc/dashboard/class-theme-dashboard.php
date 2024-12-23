@@ -299,6 +299,7 @@ class Base_Dashboard_Settings {
 				<div class="page-grid">
 					<div class="base_theme_dashboard_main">
 					</div>
+					<?php /*
 					<div class="side-panel">
 						<?php do_action( 'base_theme_dash_side_panel' ); ?>
 						<div class="support-section sidebar-section components-panel">
@@ -323,6 +324,7 @@ class Base_Dashboard_Settings {
 							</div>
 						</div>
 					</div>
+					*/ ?>
 				</div>
 			</div>
 		</div>

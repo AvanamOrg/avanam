@@ -25,11 +25,11 @@ class BaseDashboard extends Component {
 				title: __( 'Dashboard', 'avanam' ),
 				className: 'base-dash-tab',
 			},
-			{
-				name: 'help',
-				title: __( 'Getting Started', 'avanam' ),
-				className: 'base-help-tab',
-			},
+			// {
+			// 	name: 'help',
+			// 	title: __( 'Getting Started', 'avanam' ),
+			// 	className: 'base-help-tab',
+			// },
 			{
 				name: 'changelog',
 				title: __( 'Changelog', 'avanam' ),

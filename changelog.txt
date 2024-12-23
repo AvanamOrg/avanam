@@ -1,7 +1,13 @@
+== 1.4.6 | 23rd December 2024 ==
+* Add: Subtotal to Header cart.
+* Add: Placeholders to Header cart.
+* Update: Header cart icon css.
+* Fix: Miscellaneous css.
+
 == 1.4.5 | 18th September 2024 ==
 * Update: Twitter icon to x
-* Update: Disable async and defer function
-* Fix: Undefined key 'cookies' on blog page
+* Update: Disable async and defer function.
+* Fix: Undefined key 'cookies' on blog page.
 
 == 1.4.4 | 15th August 2024 ==
 * Update: Pass tests with theme check plugin.

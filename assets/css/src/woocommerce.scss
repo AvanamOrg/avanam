@@ -51,9 +51,26 @@
     }
     .header-cart-content {
         padding-left: 5px;
-        span {
+        
+        & > span {
             display: block;
-    }
+            line-height: normal;
+        }
+        & > span.subtotal {
+            display: inline-flex;
+            color: var(--global-palette3);
+            font-weight: 500;
+        }
+        & > span.subtotal span {
+            display: inline-flex;
+            color: var(--global-palette3);
+            font-weight: 500;
+        }
+
+        .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount) {
+            color: var(--global-palette3);
+            font-weight: 500;
+        }
     }
     .header-cart-content:empty {
 		padding-left: 0px;

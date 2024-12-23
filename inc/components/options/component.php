@@ -3329,6 +3329,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					// Header Cart.
 					'header_cart_title' => '',
 					'header_cart_label' => '',
+					'header_cart_show_decimal' => true,
 					'header_cart_show_total' => true,
 					'header_cart_style' => 'slide',
 					'header_cart_popup_side' => 'right',
@@ -3393,6 +3394,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					// Mobile Header Cart.
 					'header_mobile_cart_title' => '',
 					'header_mobile_cart_label' => '',
+					'header_mobile_cart_show_decimal' => true,
 					'header_mobile_cart_show_total' => true,
 					'header_mobile_cart_style' => 'slide',
 					'header_mobile_cart_popup_side' => 'right',

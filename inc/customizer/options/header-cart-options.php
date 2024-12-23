@@ -46,21 +46,35 @@ Theme_Customizer::add_settings(
 				'active' => 'design',
 			),
 		),
+		'header_cart_title_description' => array(
+			'control_type' => 'base_blank_control',
+			'section'      => 'cart',
+			'settings'     => false,
+			'priority'     => 3,
+			'description'  => esc_html__( 'Use {cart_subtotal}, {cart_total}, {cart_count} placeholders', 'avanam' ),
+		),
 		'header_cart_title' => array(
 			'control_type' => 'base_text_control',
 			'section'      => 'cart',
 			'sanitize'     => 'sanitize_text_field',
-			'priority'     => 6,
+			'priority'     => 4,
 			'default'      => webapp()->default( 'header_cart_title' ),
 			'label'        => esc_html__( 'Cart Title', 'avanam' ),
 			'live_method'     => array(
 				array(
 					'type'     => 'html',
-					'selector' => '.header-mobile-cart-wrap .header-cart-title',
+					'selector' => '.header-cart-wrap .header-cart-title',
 					'pattern'  => '$',
 					'key'      => '',
 				),
 			),
+		),
+		'header_cart_label_description' => array(
+			'control_type' => 'base_blank_control',
+			'section'      => 'cart',
+			'settings'     => false,
+			'priority'     => 5,
+			'description'  => esc_html__( 'Use {cart_subtotal}, {cart_total}, {cart_count} placeholders', 'avanam' ),
 		),
 		'header_cart_label' => array(
 			'control_type' => 'base_text_control',
@@ -72,11 +86,19 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'html',
-					'selector' => '.header-mobile-cart-wrap .header-cart-label',
+					'selector' => '.header-cart-wrap .header-cart-label',
 					'pattern'  => '$',
 					'key'      => '',
 				),
 			),
+		),
+		'header_cart_show_decimal' => array(
+			'control_type' => 'base_switch_control',
+			'sanitize'     => 'base_sanitize_toggle',
+			'section'      => 'cart',
+			'priority'     => 6,
+			'default'      => webapp()->default( 'header_cart_show_decimal' ),
+			'label'        => esc_html__( 'Show decimals in price?', 'avanam' ),
 		),
 		'header_cart_icon' => array(
 			'control_type' => 'base_radio_icon_control',
@@ -127,7 +149,7 @@ Theme_Customizer::add_settings(
 			'control_type' => 'base_switch_control',
 			'sanitize'     => 'base_sanitize_toggle',
 			'section'      => 'cart',
-			'priority'     => 6,
+			'priority'     => 9,
 			'partial'      => array(
 				'selector'            => '.header-cart-wrap',
 				'container_inclusive' => true,

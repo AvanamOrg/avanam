@@ -1455,6 +1455,46 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'color' ) ) );
 			$css->set_selector( '.header-cart-wrap .header-cart-button:hover .header-cart-title' );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'hover' ) ) );
+
+			// sub total colors
+			$css->set_selector( '.header-cart-wrap .header-cart-button .header-cart-label.subtotal' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_label_color', 'color' ) ) );
+			$css->render_font( webapp()->option( 'header_cart_typography' ), $css );
+			$css->set_selector( '.header-cart-wrap .header-cart-button:hover .header-cart-label.subtotal' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_label_color', 'hover' ) ) );
+
+			$css->set_selector( '.header-cart-wrap .header-cart-button .header-cart-label.subtotal span' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_label_color', 'color' ) ) );
+			$css->render_font( webapp()->option( 'header_cart_typography' ), $css );
+			$css->set_selector( '.header-cart-wrap .header-cart-button:hover .header-cart-label.subtotal span' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_label_color', 'hover' ) ) );
+
+			$css->set_selector( '.header-cart-wrap .header-cart-button .header-cart-label.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_label_color', 'color' ) ) );
+			$css->render_font( webapp()->option( 'header_cart_typography' ), $css );
+			$css->set_selector( '.header-cart-wrap .header-cart-button:hover .header-cart-label.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_label_color', 'hover' ) ) );
+			
+
+			$css->set_selector( '.header-cart-wrap .header-cart-button .header-cart-title.subtotal' );
+			$css->render_font( webapp()->option( 'header_cart_title_typography' ), $css );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'color' ) ) );
+			$css->set_selector( '.header-cart-wrap .header-cart-button:hover .header-cart-title.subtotal' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'hover' ) ) );
+
+			$css->set_selector( '.header-cart-wrap .header-cart-button .header-cart-title.subtotal span' );
+			$css->render_font( webapp()->option( 'header_cart_title_typography' ), $css );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'color' ) ) );
+			$css->set_selector( '.header-cart-wrap .header-cart-button:hover .header-cart-title.subtotal span' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'hover' ) ) );
+
+			$css->set_selector( '.header-cart-wrap .header-cart-button .header-cart-title.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->render_font( webapp()->option( 'header_cart_title_typography' ), $css );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'color' ) ) );
+			$css->set_selector( '.header-cart-wrap .header-cart-button:hover .header-cart-title.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_cart_title_color', 'hover' ) ) );
+			
+
 		}
 			// Mobile Cart.
 		if ( class_exists( 'woocommerce' ) && $this->search_for_value( 'mobile-cart', $mobile_elements ) ) {
@@ -1471,11 +1511,33 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button:hover .header-cart-total' );
 			$css->add_property( 'background', $css->render_color( webapp()->sub_option( 'header_mobile_cart_total_background', 'hover' ) ) );
 			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'header_mobile_cart_total_color', 'hover' ) ) );
+			
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label' );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_mobile_cart_label_color', 'color' ) ) );
 			$css->render_font( webapp()->option( 'header_mobile_cart_title_typography' ), $css );
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button:hover .header-cart-label' );
 			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_mobile_cart_label_color', 'hover' ) ) );
+
+
+
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label.subtotal' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_mobile_cart_label_color', 'color' ) ) );
+			$css->render_font( webapp()->option( 'header_mobile_cart_title_typography' ), $css );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button:hover .header-cart-label.subtotal' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_mobile_cart_label_color', 'hover' ) ) );
+			
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label.subtotal span' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_mobile_cart_label_color', 'color' ) ) );
+			$css->render_font( webapp()->option( 'header_mobile_cart_title_typography' ), $css );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button:hover .header-cart-label.subtotal span' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_mobile_cart_label_color', 'hover' ) ) );
+
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_mobile_cart_label_color', 'color' ) ) );
+			$css->render_font( webapp()->option( 'header_mobile_cart_title_typography' ), $css );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button:hover .header-cart-label.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->add_property( 'color', $this->render_color( webapp()->sub_option( 'header_mobile_cart_label_color', 'hover' ) ) );
+			
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title' );
 			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
@@ -1487,6 +1549,41 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
 			$css->stop_media_query();
 			
+			// subtotal 
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title.subtotal' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title.subtotal' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->stop_media_query();
+
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title.subtotal span' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title.subtotal span' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->stop_media_query();
+
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->stop_media_query();
+
+
 			$css->render_font( webapp()->option( 'header_mobile_cart_typography' ), $css );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label' );
@@ -1502,6 +1599,42 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .base-svg-iconset' );
 				$css->add_property( 'font-size', webapp()->sub_option( 'header_mobile_cart_icon_size', 'size' ) . webapp()->sub_option( 'header_mobile_cart_icon_size', 'unit' ) );
 			}
+
+
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label.subtotal' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_typography' ), 'tablet' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_typography' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label.subtotal' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_typography' ), 'mobile' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_typography' ), 'mobile' ) );
+			$css->stop_media_query();
+
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label.subtotal span' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_typography' ), 'tablet' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_typography' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label.subtotal span' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_typography' ), 'mobile' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_typography' ), 'mobile' ) );
+			$css->stop_media_query();
+
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_typography' ), 'tablet' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_typography' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label.subtotal .woocommerce-Price-amount:not(del .woocommerce-Price-amount):not(.tmcore-product-price-filter .woocommerce-Price-amount)' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_typography' ), 'mobile' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_typography' ), 'mobile' ) );
+			$css->stop_media_query();
+
+
 		}
 		// Header Social.
 		if ( $this->search_for_value( 'social', $header_elements ) ) {

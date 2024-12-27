@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0 (or later).
 msgid ""
 msgstr ""
-"Project-Id-Version: Avanam 1.4.4\n"
+"Project-Id-Version: Avanam 1.4.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/avanam\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-15T06:34:12+00:00\n"
+"POT-Creation-Date: 2024-12-27T09:52:15+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: avanam\n"
@@ -497,11 +497,11 @@ msgstr ""
 msgid "https://www.example.com"
 msgstr ""
 
-#: inc/components/comments/component.php:183
+#: inc/components/comments/component.php:184
 msgid "Leave a comment..."
 msgstr ""
 
-#: inc/components/comments/component.php:183
+#: inc/components/comments/component.php:184
 #: template-parts/content/entry_loop_meta.php:317
 #: template-parts/content/entry_meta.php:289
 #: template-parts/title/meta.php:290
@@ -941,11 +941,11 @@ msgstr ""
 
 #: inc/components/icons/component.php:871
 #: inc/components/icons/component.php:879
-#: inc/template-functions/header-functions.php:771
-#: inc/template-functions/header-functions.php:791
-#: inc/template-functions/header-functions.php:812
-#: inc/template-functions/header-functions.php:895
-#: inc/template-functions/header-functions.php:915
+#: inc/template-functions/header-functions.php:787
+#: inc/template-functions/header-functions.php:807
+#: inc/template-functions/header-functions.php:828
+#: inc/template-functions/header-functions.php:926
+#: inc/template-functions/header-functions.php:946
 msgid "Shopping Cart"
 msgstr ""
 
@@ -1165,7 +1165,7 @@ msgid "Child menu of"
 msgstr ""
 
 #. translators: %s: stylesheet handle
-#: inc/components/styles/component.php:4061
+#: inc/components/styles/component.php:4194
 msgid "Invalid theme stylesheet handle: %s"
 msgstr ""
 
@@ -1189,21 +1189,21 @@ msgstr ""
 msgid "The template tag method %1$s registered by theme component %2$s conflicts with an already registered template tag of the same name."
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1099
+#: inc/components/woocommerce/component.php:1212
 msgid "Cart Summary"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1134
+#: inc/components/woocommerce/component.php:1247
 msgid "Update Profile Photo"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1437
-#: inc/components/woocommerce/component.php:1449
+#: inc/components/woocommerce/component.php:1550
+#: inc/components/woocommerce/component.php:1562
 msgid "List View"
 msgstr ""
 
-#: inc/components/woocommerce/component.php:1440
-#: inc/components/woocommerce/component.php:1446
+#: inc/components/woocommerce/component.php:1553
+#: inc/components/woocommerce/component.php:1559
 msgid "Grid View"
 msgstr ""
 
@@ -2947,19 +2947,19 @@ msgstr ""
 #: inc/customizer/options/header-button-options.php:248
 #: inc/customizer/options/header-button-options.php:289
 #: inc/customizer/options/header-button-options.php:323
-#: inc/customizer/options/header-cart-options.php:197
-#: inc/customizer/options/header-cart-options.php:272
-#: inc/customizer/options/header-cart-options.php:377
-#: inc/customizer/options/header-cart-options.php:441
+#: inc/customizer/options/header-cart-options.php:219
+#: inc/customizer/options/header-cart-options.php:294
+#: inc/customizer/options/header-cart-options.php:399
+#: inc/customizer/options/header-cart-options.php:463
 #: inc/customizer/options/header-dropdown-options.php:80
 #: inc/customizer/options/header-html-options.php:145
 #: inc/customizer/options/header-mobile-button-options.php:210
 #: inc/customizer/options/header-mobile-button-options.php:251
 #: inc/customizer/options/header-mobile-button-options.php:285
-#: inc/customizer/options/header-mobile-cart-options.php:193
-#: inc/customizer/options/header-mobile-cart-options.php:268
-#: inc/customizer/options/header-mobile-cart-options.php:373
-#: inc/customizer/options/header-mobile-cart-options.php:437
+#: inc/customizer/options/header-mobile-cart-options.php:215
+#: inc/customizer/options/header-mobile-cart-options.php:290
+#: inc/customizer/options/header-mobile-cart-options.php:395
+#: inc/customizer/options/header-mobile-cart-options.php:459
 #: inc/customizer/options/header-mobile-html-options.php:129
 #: inc/customizer/options/header-mobile-nav-options.php:85
 #: inc/customizer/options/header-mobile-social-options.php:214
@@ -3806,20 +3806,20 @@ msgstr ""
 #: inc/customizer/options/header-button-options.php:252
 #: inc/customizer/options/header-button-options.php:293
 #: inc/customizer/options/header-button-options.php:327
-#: inc/customizer/options/header-cart-options.php:201
-#: inc/customizer/options/header-cart-options.php:276
-#: inc/customizer/options/header-cart-options.php:381
-#: inc/customizer/options/header-cart-options.php:445
+#: inc/customizer/options/header-cart-options.php:223
+#: inc/customizer/options/header-cart-options.php:298
+#: inc/customizer/options/header-cart-options.php:403
+#: inc/customizer/options/header-cart-options.php:467
 #: inc/customizer/options/header-dropdown-options.php:84
 #: inc/customizer/options/header-html-options.php:149
 #: inc/customizer/options/header-logo-options.php:469
 #: inc/customizer/options/header-mobile-button-options.php:214
 #: inc/customizer/options/header-mobile-button-options.php:255
 #: inc/customizer/options/header-mobile-button-options.php:289
-#: inc/customizer/options/header-mobile-cart-options.php:197
-#: inc/customizer/options/header-mobile-cart-options.php:272
-#: inc/customizer/options/header-mobile-cart-options.php:377
-#: inc/customizer/options/header-mobile-cart-options.php:441
+#: inc/customizer/options/header-mobile-cart-options.php:219
+#: inc/customizer/options/header-mobile-cart-options.php:294
+#: inc/customizer/options/header-mobile-cart-options.php:399
+#: inc/customizer/options/header-mobile-cart-options.php:463
 #: inc/customizer/options/header-mobile-html-options.php:133
 #: inc/customizer/options/header-mobile-nav-options.php:89
 #: inc/customizer/options/header-mobile-social-options.php:218
@@ -4223,11 +4223,11 @@ msgid "Navigation Background"
 msgstr ""
 
 #: inc/customizer/options/footer-navigation-options.php:343
-#: inc/customizer/options/header-cart-options.php:231
-#: inc/customizer/options/header-cart-options.php:313
+#: inc/customizer/options/header-cart-options.php:253
+#: inc/customizer/options/header-cart-options.php:335
 #: inc/customizer/options/header-dropdown-options.php:126
-#: inc/customizer/options/header-mobile-cart-options.php:227
-#: inc/customizer/options/header-mobile-cart-options.php:309
+#: inc/customizer/options/header-mobile-cart-options.php:249
+#: inc/customizer/options/header-mobile-cart-options.php:331
 #: inc/customizer/options/header-mobile-nav-options.php:137
 #: inc/customizer/options/header-navigation-options.php:340
 #: inc/customizer/options/header-search-options.php:297
@@ -4239,11 +4239,11 @@ msgid "Initial Background"
 msgstr ""
 
 #: inc/customizer/options/footer-navigation-options.php:347
-#: inc/customizer/options/header-cart-options.php:235
-#: inc/customizer/options/header-cart-options.php:317
+#: inc/customizer/options/header-cart-options.php:257
+#: inc/customizer/options/header-cart-options.php:339
 #: inc/customizer/options/header-dropdown-options.php:130
-#: inc/customizer/options/header-mobile-cart-options.php:231
-#: inc/customizer/options/header-mobile-cart-options.php:313
+#: inc/customizer/options/header-mobile-cart-options.php:253
+#: inc/customizer/options/header-mobile-cart-options.php:335
 #: inc/customizer/options/header-mobile-nav-options.php:141
 #: inc/customizer/options/header-navigation-options.php:344
 #: inc/customizer/options/header-search-options.php:301
@@ -4314,8 +4314,8 @@ msgstr ""
 
 #: inc/customizer/options/footer-social-options.php:221
 #: inc/customizer/options/general-scroll-to-top-options.php:96
-#: inc/customizer/options/header-cart-options.php:142
-#: inc/customizer/options/header-mobile-cart-options.php:138
+#: inc/customizer/options/header-cart-options.php:164
+#: inc/customizer/options/header-mobile-cart-options.php:160
 #: inc/customizer/options/header-mobile-social-options.php:136
 #: inc/customizer/options/header-search-options.php:190
 #: inc/customizer/options/header-social-options.php:136
@@ -4733,8 +4733,8 @@ msgid "Align"
 msgstr ""
 
 #: inc/customizer/options/general-scroll-to-top-options.php:150
-#: inc/customizer/options/header-cart-options.php:495
-#: inc/customizer/options/header-mobile-cart-options.php:491
+#: inc/customizer/options/header-cart-options.php:517
+#: inc/customizer/options/header-mobile-cart-options.php:513
 #: inc/customizer/options/header-popup-options.php:105
 #: inc/customizer/options/lifter-dashboard-layout-options.php:32
 #: inc/customizer/options/my-account-layout-options.php:41
@@ -4743,8 +4743,8 @@ msgid "Left"
 msgstr ""
 
 #: inc/customizer/options/general-scroll-to-top-options.php:154
-#: inc/customizer/options/header-cart-options.php:500
-#: inc/customizer/options/header-mobile-cart-options.php:496
+#: inc/customizer/options/header-cart-options.php:522
+#: inc/customizer/options/header-mobile-cart-options.php:518
 #: inc/customizer/options/header-popup-options.php:110
 #: inc/customizer/options/lifter-dashboard-layout-options.php:42
 #: inc/customizer/options/my-account-layout-options.php:51
@@ -5183,107 +5183,120 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:55
+#: inc/customizer/options/header-cart-options.php:54
+#: inc/customizer/options/header-cart-options.php:77
+#: inc/customizer/options/header-mobile-cart-options.php:53
+#: inc/customizer/options/header-mobile-cart-options.php:76
+msgid "Use {cart_subtotal}, {cart_total}, {cart_count} placeholders"
+msgstr ""
+
+#: inc/customizer/options/header-cart-options.php:62
+#: inc/customizer/options/header-mobile-cart-options.php:61
 msgid "Cart Title"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:71
-#: inc/customizer/options/header-mobile-cart-options.php:70
+#: inc/customizer/options/header-cart-options.php:85
+#: inc/customizer/options/header-mobile-cart-options.php:84
 msgid "Cart Label"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:86
-#: inc/customizer/options/header-mobile-cart-options.php:85
+#: inc/customizer/options/header-cart-options.php:101
+#: inc/customizer/options/header-mobile-cart-options.php:100
+msgid "Show decimals in price?"
+msgstr ""
+
+#: inc/customizer/options/header-cart-options.php:108
+#: inc/customizer/options/header-mobile-cart-options.php:107
 msgid "Cart Icon"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:109
-#: inc/customizer/options/header-mobile-cart-options.php:108
+#: inc/customizer/options/header-cart-options.php:131
+#: inc/customizer/options/header-mobile-cart-options.php:130
 msgid "Cart Click Action"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:114
-#: inc/customizer/options/header-mobile-cart-options.php:113
+#: inc/customizer/options/header-cart-options.php:136
+#: inc/customizer/options/header-mobile-cart-options.php:135
 msgid "Link"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:117
-#: inc/customizer/options/header-mobile-cart-options.php:116
+#: inc/customizer/options/header-cart-options.php:139
+#: inc/customizer/options/header-mobile-cart-options.php:138
 msgid "Popout Cart"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:120
+#: inc/customizer/options/header-cart-options.php:142
 msgid "Dropdown Cart"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:137
-#: inc/customizer/options/header-mobile-cart-options.php:133
+#: inc/customizer/options/header-cart-options.php:159
+#: inc/customizer/options/header-mobile-cart-options.php:155
 msgid "Show Item Total Indicator"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:176
-#: inc/customizer/options/header-mobile-cart-options.php:172
+#: inc/customizer/options/header-cart-options.php:198
+#: inc/customizer/options/header-mobile-cart-options.php:194
 #: inc/customizer/options/header-sticky-options.php:801
 #: inc/customizer/options/transparent-header-options.php:748
 msgid "Cart Colors"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:210
-#: inc/customizer/options/header-mobile-cart-options.php:206
+#: inc/customizer/options/header-cart-options.php:232
+#: inc/customizer/options/header-mobile-cart-options.php:228
 msgid "Cart Background"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:244
-#: inc/customizer/options/header-mobile-cart-options.php:240
+#: inc/customizer/options/header-cart-options.php:266
+#: inc/customizer/options/header-mobile-cart-options.php:262
 #: inc/customizer/options/header-sticky-options.php:857
 #: inc/customizer/options/transparent-header-options.php:804
 msgid "Cart Total Colors"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:285
-#: inc/customizer/options/header-mobile-cart-options.php:281
+#: inc/customizer/options/header-cart-options.php:307
+#: inc/customizer/options/header-mobile-cart-options.php:303
 msgid "Cart Total Background"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:326
-#: inc/customizer/options/header-mobile-cart-options.php:322
+#: inc/customizer/options/header-cart-options.php:348
+#: inc/customizer/options/header-mobile-cart-options.php:344
 msgid "Cart Title Font"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:356
-#: inc/customizer/options/header-mobile-cart-options.php:352
+#: inc/customizer/options/header-cart-options.php:378
+#: inc/customizer/options/header-mobile-cart-options.php:374
 msgid "Cart Title Color"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:390
-#: inc/customizer/options/header-mobile-cart-options.php:386
+#: inc/customizer/options/header-cart-options.php:412
+#: inc/customizer/options/header-mobile-cart-options.php:408
 msgid "Cart Label Font"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:420
-#: inc/customizer/options/header-mobile-cart-options.php:416
+#: inc/customizer/options/header-cart-options.php:442
+#: inc/customizer/options/header-mobile-cart-options.php:438
 msgid "Cart Label Color"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:456
-#: inc/customizer/options/header-mobile-cart-options.php:452
+#: inc/customizer/options/header-cart-options.php:478
+#: inc/customizer/options/header-mobile-cart-options.php:474
 msgid "Cart Padding"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:475
-#: inc/customizer/options/header-mobile-cart-options.php:471
+#: inc/customizer/options/header-cart-options.php:497
+#: inc/customizer/options/header-mobile-cart-options.php:493
 #: inc/customizer/options/header-popup-options.php:83
 msgid "Slide-Out Side"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:494
-#: inc/customizer/options/header-mobile-cart-options.php:490
+#: inc/customizer/options/header-cart-options.php:516
+#: inc/customizer/options/header-mobile-cart-options.php:512
 #: inc/customizer/options/header-popup-options.php:104
 msgid "Reveal from Left"
 msgstr ""
 
-#: inc/customizer/options/header-cart-options.php:499
-#: inc/customizer/options/header-mobile-cart-options.php:495
+#: inc/customizer/options/header-cart-options.php:521
+#: inc/customizer/options/header-mobile-cart-options.php:517
 #: inc/customizer/options/header-popup-options.php:109
 msgid "Reveal from Right"
 msgstr ""
@@ -5439,10 +5452,6 @@ msgstr ""
 #: inc/customizer/options/header-mobile-button-options.php:100
 #: assets/js/admin/customizer.js:4
 msgid "Large"
-msgstr ""
-
-#: inc/customizer/options/header-mobile-cart-options.php:54
-msgid "Cart Label Title"
 msgstr ""
 
 #: inc/customizer/options/header-mobile-nav-options.php:219
@@ -6953,46 +6962,6 @@ msgstr ""
 msgid "Config Theme Modules"
 msgstr ""
 
-#: inc/dashboard/class-theme-dashboard.php:306
-#: assets/js/admin/dashboard.js:1
-msgid "Video Tutorials"
-msgstr ""
-
-#: inc/dashboard/class-theme-dashboard.php:307
-msgid "Want a guide? We have video tutorials to walk you through getting started."
-msgstr ""
-
-#: inc/dashboard/class-theme-dashboard.php:308
-msgid "Watch Videos"
-msgstr ""
-
-#: inc/dashboard/class-theme-dashboard.php:313
-msgid "Documentation"
-msgstr ""
-
-#: inc/dashboard/class-theme-dashboard.php:314
-msgid "Need help? We have a knowledge base full of articles to get you started."
-msgstr ""
-
-#: inc/dashboard/class-theme-dashboard.php:315
-msgid "Browse Docs"
-msgstr ""
-
-#: inc/dashboard/class-theme-dashboard.php:320
-#: assets/js/admin/dashboard.js:1
-msgid "Support"
-msgstr ""
-
-#: inc/dashboard/class-theme-dashboard.php:321
-#: assets/js/admin/dashboard.js:1
-msgid "Have a question, we are happy to help! Get in touch with our support team."
-msgstr ""
-
-#: inc/dashboard/class-theme-dashboard.php:322
-#: assets/js/admin/dashboard.js:1
-msgid "Submit a Ticket"
-msgstr ""
-
 #: inc/functions.php:60
 msgid "Blue Quote"
 msgstr ""
@@ -7044,19 +7013,19 @@ msgstr ""
 msgid "Primary Mobile Navigation"
 msgstr ""
 
-#: inc/template-functions/header-functions.php:857
+#: inc/template-functions/header-functions.php:873
 msgid "Review Cart"
 msgstr ""
 
-#: inc/template-functions/header-functions.php:858
+#: inc/template-functions/header-functions.php:874
 msgid "Close Cart"
 msgstr ""
 
-#: inc/template-functions/header-functions.php:1070
+#: inc/template-functions/header-functions.php:1101
 msgid "View Search Form"
 msgstr ""
 
-#: inc/template-functions/header-functions.php:1119
+#: inc/template-functions/header-functions.php:1150
 msgid "Close search"
 msgstr ""
 
@@ -7961,6 +7930,10 @@ msgid "You are going to love working with this theme! View the video below to ge
 msgstr ""
 
 #: assets/js/admin/dashboard.js:1
+msgid "Video Tutorials"
+msgstr ""
+
+#: assets/js/admin/dashboard.js:1
 msgid "View Knowledge Base"
 msgstr ""
 
@@ -7982,6 +7955,18 @@ msgstr ""
 
 #: assets/js/admin/dashboard.js:1
 msgid "Create and customize professionally designed websites in minutes. Simply choose your template, choose your colors, and import. Done!"
+msgstr ""
+
+#: assets/js/admin/dashboard.js:1
+msgid "Support"
+msgstr ""
+
+#: assets/js/admin/dashboard.js:1
+msgid "Have a question, we are happy to help! Get in touch with our support team."
+msgstr ""
+
+#: assets/js/admin/dashboard.js:1
+msgid "Submit a Ticket"
 msgstr ""
 
 #: assets/js/admin/dashboard.js:1
@@ -8026,10 +8011,6 @@ msgstr ""
 
 #: assets/js/admin/dashboard.js:1
 msgid "Dashboard"
-msgstr ""
-
-#: assets/js/admin/dashboard.js:1
-msgid "Getting Started"
 msgstr ""
 
 #: assets/js/admin/meta.js:1

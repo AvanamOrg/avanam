@@ -991,3 +991,17 @@
 		}
 	}
 }
+
+@media (max-width: 767px) {
+    .woocommerce{
+        div.product form.cart.grouped_form {
+            .woocommerce-grouped-product-list.group_table{
+                padding: 10px;
+            }
+            .group_table td:first-child{
+                width: 7em;
+                margin: 0 10px 0 0;
+            }
+        }
+    }
+}

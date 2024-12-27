@@ -1,3 +1,6 @@
+== 1.4.7 | 27th December 2024 ==
+* Fix: Miscellaneous css on product page.
+
 == 1.4.6 | 23rd December 2024 ==
 * Add: Subtotal to Header cart.
 * Add: Placeholders to Header cart.

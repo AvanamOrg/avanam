@@ -1,3 +1,6 @@
+== 1.4.8 | 28th December 2024 ==
+* Fix: Icon css
+
 == 1.4.7 | 27th December 2024 ==
 * Fix: Miscellaneous css on product page.
 

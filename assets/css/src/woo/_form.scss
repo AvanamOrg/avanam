@@ -19,7 +19,7 @@
 		color: transparent;
 		background: transparent;
 		z-index: 2;
-		width: 50px;
+		width: 55px;
 		border: 0;
 		padding: 8px 12px 7px;
 		box-shadow: none;
@@ -36,7 +36,7 @@
 		right: 0;
 		top: 0;
 		height: 100%;
-		width: 40px;
+		width: 55px;
 		padding: 0;
 		text-align: center;
 		background: 0 0;
@@ -81,9 +81,7 @@ body.rtl .woocommerce-product-search input[type="search"] {
 
         label {
             line-height: 2.4;
-            font-weight: bold;
             color: var(--global-palette5);
-            font-size: 90%;
         }
 
         label.hidden {
@@ -153,9 +151,6 @@ body.rtl .woocommerce-product-search input[type="search"] {
             margin: 0;
             outline: 0;
         }
-        .button {
-            padding: calc( 0.4em + 1px ) 1em;
-        }
 
         textarea {
             height: 4em;
@@ -172,13 +167,13 @@ body.rtl .woocommerce-product-search input[type="search"] {
         &.woocommerce-invalid {
 
             label {
-                color: $red;
+                color: var(--color-alert);
             }
 
             .select2-container,
             input.input-text,
             select {
-                border-color: $red;
+                border-color: var(--color-alert);
             }
         }
 
@@ -187,7 +182,7 @@ body.rtl .woocommerce-product-search input[type="search"] {
             .select2-container,
             input.input-text,
             select {
-                border-color: darken($green, 5%);
+                border-color: var(--progress-full);
             }
         }
 
@@ -205,7 +200,7 @@ body.rtl .woocommerce-product-search input[type="search"] {
     }
     .form-row {
         .required {
-            color: red;
+            color: var(--color-alert);
             font-weight: 700;
             border: 0 !important;
             text-decoration: none;

@@ -123,7 +123,26 @@
 				label {
 					display: none;
 				}
+
+				.coupon-error-notice {
+					clear: left;
+					color: var(--color-alert);
+					flex-basis: 100%;
+					float: none;
+					margin-bottom: 0;
+					margin-top: 10px;
+					text-align: left;
+					width: auto;
+				}
 			}
+		}
+	}
+
+	form.checkout_coupon {
+		.coupon-error-notice {
+			color: var(--color-alert);
+			display: block;
+			margin-top: 10px;
 		}
 	}
 

@@ -8,7 +8,8 @@
 .widget-area .widget:last-child {
     margin-bottom: 0;
 }
-.widget-area .widget-title {
+.widget-area .widget-title,
+.widget-area .wp-block-heading {
 	font-size: 20px;
     line-height: 1.5;
     margin-bottom: 0.5em;
@@ -103,6 +104,12 @@
 /* Meta widget */
 .widget_meta li {
 	padding: 0;
+}
+
+/* Categories widgets */
+.widget_categories li,
+.wp-block-categories li {
+	padding-bottom: 0.5em;
 }
 
 /* Recent comments */
@@ -226,3 +233,37 @@
 		border-bottom: 1px solid var(--global-palette7);
 	}
 }
+
+.widget-area .widget_tag_cloud,
+.widget-area .wp-block-tag-cloud {
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+
+	a {
+		font-size: inherit !important;
+		background-color: transparent;
+		border: 1px solid var(--global-gray-400);
+		padding: 6px 12px 6px;
+		text-transform: capitalize;
+		border-radius: 10px;
+	}
+}
+
+.primary-sidebar.widget-area .widget {
+	
+	ul:first-of-type {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+		list-style: none;
+	}
+	
+	ol.wp-block-latest-comments {
+		margin-top: .5em;
+	}
+
+}
+

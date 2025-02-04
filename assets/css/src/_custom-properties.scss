@@ -23,10 +23,10 @@ $dropdown-symbol-width: 0.7em;
 $color-quote-border: #000;
 $color-quote-citation: #6c7781;
 
-$green:         	#7ad03a !default;
-$red:           	#a00 !default;
-$orange:        	#ffba00 !default;
-$blue:          	#2ea2cc !default;
+$green:         	var(--progress-full) !default;
+$red:           	var(--color-alert) !default;
+$orange:        	var(--progress-some) !default;
+$blue:          	var(--color-info) !default;
 
 $secondary:         desaturate(lighten(#3182ce, 40%), 21%) !default;    // Secondary buttons
 $secondarytext:     desaturate(darken($secondary, 60%), 21%) !default;   // Text on secondary color bg

@@ -870,7 +870,7 @@ function cart_popup() {
 		<div class="drawer-overlay" data-drawer-target-string="#cart-drawer"></div>
 		<div class="drawer-inner">
 			<div class="drawer-header">
-				<h2 class="side-cart-header"><?php esc_html_e( 'Review Cart', 'avanam' ); ?></h2>
+				<h2 class="side-cart-header"><?php esc_html_e( 'Shopping Cart', 'avanam' ); ?></h2>
 				<button class="cart-toggle-close drawer-toggle" aria-label="<?php esc_attr_e( 'Close Cart', 'avanam' ); ?>"  data-toggle-target="#cart-drawer" data-toggle-body-class="showing-popup-drawer-from-<?php echo esc_attr( webapp()->option( 'header_mobile_cart_popup_side' ) ); ?>" aria-expanded="false" data-set-focus=".header-cart-button">
 					<?php webapp()->print_icon( 'close', '', false ); ?>
 				</button>

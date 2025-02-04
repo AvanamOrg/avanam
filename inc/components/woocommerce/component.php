@@ -176,11 +176,11 @@ class Component implements Component_Interface {
 
 		// Cart.
 		add_action( 'woocommerce_before_cart', array( $this, 'cart_form_wrap_before' ) );
-		add_action( 'woocommerce_after_cart', array( $this, 'cart_form_wrap_after' ) );
+		add_action( 'woocommerce_after_cart', array( $this, 'cart_form_wrap_after' ), 1 );
 		add_action( 'woocommerce_before_cart_table', array( $this, 'cart_summary_title' ) );
 		// Move Cross sell below.
 		remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
-		add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );
+		add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display', 20 );
 		// Change cross sells columns and limit.
 		add_filter( 'woocommerce_cross_sells_columns', array( $this, 'cross_sell_columns' ), 20 );
 		add_filter( 'woocommerce_cross_sells_total', array( $this, 'cross_sell_limit' ), 20 );

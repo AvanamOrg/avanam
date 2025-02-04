@@ -34,10 +34,6 @@
  
      table.cart {
 		 position: relative;
-		.coupon .button:not(:hover) {
-			background: var(--global-palette7);
-			color: var(--global-palette5);
-		}
 		
 		td.actions .button:disabled {
 			background-color: var(--global-palette7);
@@ -66,7 +62,7 @@
 					float: left;
 					box-sizing: border-box;
 					padding: 6px 6px 5px;
-					padding: 0.4em 0.5em;
+					padding: 0.4em 0.9375em;
 					margin: 0 4px 0 0;
 					outline: 0;
 					height: 38px;
@@ -95,7 +91,6 @@
              display: block;
              text-align: center;
              margin-bottom: 1em;
-             padding: 0.6em 1em;
          }
      }
  
@@ -651,7 +646,6 @@
 }
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: var(--global-palette5);
-    line-height: 40px;
     background:transparent;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow {

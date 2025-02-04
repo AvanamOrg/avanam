@@ -21,7 +21,6 @@ input[type="submit"] {
 	cursor: pointer;
 	text-decoration: none;
 	transition: all 0.2s ease;
-	box-shadow: 0px 0px 0px -7px rgba(0,0,0,0.0);
 	&:visited {
 		background: var(--global-palette-btn-bg);
 		color: var(--global-palette-btn);
@@ -29,7 +28,6 @@ input[type="submit"] {
 	&:hover, &:focus, &:active {
 		color: var(--global-palette-btn-hover);
 		background: var(--global-palette-btn-bg-hover);
-		box-shadow: 0px 15px 25px -7px rgba(0,0,0,0.1);
 	}
 	&:disabled,
 	&.disabled {
@@ -43,7 +41,6 @@ input[type="submit"] {
 	&:hover, &:focus, &:active {
 		color: var(--global-palette-btn-hover);
 		background-color: var(--global-palette-btn-bg-hover);
-		box-shadow: 0px 15px 25px -7px rgba(0,0,0,0.1);
 	}
 }
 .button.button-size-small {
@@ -61,7 +58,6 @@ input[type="submit"] {
 	border: 2px solid currentColor;
 	&:hover, &:focus, &:active {
 		border: 2px solid currentColor;
-		box-shadow: 0px 0px 0px -7px rgba(0,0,0,0.0);
 	}
 }
 .wp-block-button.is-style-outline .wp-block-button__link:not(.has-background), .wp-block-button.is-style-outline .wp-element-button:not(.has-background), .button.button-style-outline:not(.has-background) {

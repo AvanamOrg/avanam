@@ -165,7 +165,7 @@ Theme_Customizer::add_settings(
 			'live_method'     => array(
 				array(
 					'type'     => 'css_typography',
-					'selector' => '.primary-sidebar.widget-area .widget-title',
+					'selector' => '.primary-sidebar.widget-area .widget-title, .primary-sidebar.widget-area .wp-block-heading',
 					'pattern'  => array(
 						'desktop' => '$',
 						'tablet'  => '$',

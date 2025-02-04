@@ -2,9 +2,63 @@
  * Custom vars
  */
 :root{
-    --global-gray-400: #CBD5E0;
-    --global-gray-500: #A0AEC0;
-	--global-xs-spacing: 1em;
+
+    --gray-010: #fcfcfc;
+    --gray-050: #fbfbfb;
+    --gray-100: #f9fafb;
+    --gray-200: #f7fafc;
+    --gray-300: #edf2f7;
+    --gray-400: #ebebeb;
+    --gray-500: #a0aec0;
+    --gray-600: #718096;
+    --gray-700: #4a5568;
+    --gray-800: #2d3748;
+    --gray-900: #1a202c;
+    --gray-950: #030712;
+
+    --gray-025: #fcfbfb;
+    --gray-150: #F9F9F9;
+    --gray-250: #E1E1E1;
+    --gray-550: #d3d3d3;
+
+    --orange-700: #f49d6e;
+    --green-400: #dff0d8;
+
+    --progress-none:#E0E0E0;
+    --progress-some:#FFC107;
+    --progress-full:#4CAF50;
+
+    --color-star: #ffab00;
+
+    --color-success: #2A7A25;
+    --color-success-bg: #e6f7e6;
+
+    --color-warning: #d97706; 
+    --color-warning-bg: #fff7e6;
+
+    --color-info: #0288d1; 
+    --color-info-bg: #e0f7fa; 
+    
+    --color-alert:#da3f3f;
+    --color-alert-bg:#fbe9e7;
+
+    --color-success2: #2E7D32;
+    --color-success-bg2: #E8F5E9;
+  
+    --color-warning2: #F57C00;
+    --color-warning-bg2: #FFF3E0;
+  
+    --color-info2: #0277BD;
+    --color-info-bg2: #E3F2FD;
+  
+    --color-alert2: #C62828;
+    --color-alert-bg2: #FFEBEE;
+
+    --loader-size: 34px;
+    
+    --global-gray-400: var(--gray-400);
+    --global-gray-500: var(--gray-500);
+    --global-xs-spacing: 1em;
     --global-sm-spacing: 1.5rem;
     --global-md-spacing: 2rem;
     --global-lg-spacing: 2.5em;
@@ -17,4 +71,5 @@
     --global-font-size-large: clamp(1.75rem, calc(1.576rem + 0.543vw), 2rem);
     --global-font-size-larger: clamp(2rem, calc(1.6rem + 1vw), 2.5rem);
     --global-font-size-xxlarge: clamp(2.25rem, calc(1.728rem + 1.63vw), 3rem);
+    
 }

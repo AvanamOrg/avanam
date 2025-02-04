@@ -57,7 +57,11 @@
 		text-decoration: none;
 	}
 	.woocommerce-product-details__short-description {
-		margin-bottom: 1em;
+		margin: 1em 0;
+
+		ul {
+			margin-bottom: 0;
+		}
 	}
 	.single-product-extras {
 		border-top: 1px solid var(--global-gray-400);
@@ -157,7 +161,7 @@
 		}
 
 		.out-of-stock {
-			color: red;
+			color: var(--color-alert);
 		}
 
 		.woocommerce-product-rating {
@@ -515,7 +519,6 @@
 
 			.reset_variations {
 				visibility: hidden;
-				font-size: 0.83em;
 			}
 			.woocommerce-variation-add-to-cart {
 				margin-top: 0.5em;
@@ -870,9 +873,7 @@
 		-webkit-appearance: none; 
 		margin: 0; 
 	}
-	border: 1px solid var(--global-gray-400);
-	background: var(--global-palette7);
-    border-radius: 3px;
+	background: var(--global-palette8);
 	transition: all 0.2s ease;
 	&:hover {
 		border-color: var(--global-gray-400);

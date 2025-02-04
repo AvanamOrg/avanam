@@ -651,7 +651,9 @@ body.admin-bar .popup-drawer {
 	}
 	.drawer-overlay {
 		opacity:1;
-		cursor: pointer;
+		cursor:  url('../images/icons/cursor-close.png'), pointer;
+		transition: .6s cubic-bezier(.7,0,.2,1);
+		transition-property: opacity, visibility, background-color;
 	}
 }
 body[class*="showing-popup-drawer-"] {

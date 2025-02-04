@@ -254,7 +254,7 @@ ul.wp-block-social-links:not(.specificity) {
 }
 .wp-block-latest-posts__list {
 	li {
-		margin-top: var(--global-xs-spacing);
+		margin-bottom: var(--global-xs-spacing);
 		&:after {
 			clear: both;
 			display: table;
@@ -315,7 +315,7 @@ figure.wp-block-gallery ul {
 		color: var(--global-palette4);
 	}
 	.wp-block-search__button:not(.has-background) {
-		background: var(--global-palette9);
+		background: var(--global-palette7);
 	}
 	.wp-block-search__input {
 		border-color: var(--global-gray-400);

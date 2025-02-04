@@ -21,15 +21,15 @@ input[type="time"],
 input[type="datetime"],
 input[type="datetime-local"],
 input[type="color"],
-textarea {
+textarea,
+.select2-container--default .select2-selection--single {
 	-webkit-appearance: none;
 	color: var(--global-palette5);
 	border: 1px solid var(--global-gray-400);
 	border-radius: 3px;
-	padding: 0.4em 0.5em;
+	padding: 0.4em 0.9375em;
 	max-width: 100%;
 	background: var(--global-palette9);
-	box-shadow: 0px 0px 0px -7px rgba(0,0,0,0);
 }
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
 color: var(--global-palette6);
@@ -64,9 +64,8 @@ input[type="datetime-local"]:focus,
 input[type="color"]:focus,
 textarea:focus {
 	color: var(--global-palette3);
-	border-color:var(--global-palette6);
+	border-color:var(--gray-550);
 	outline: 0;
-	box-shadow: 0px 5px 15px -7px rgba(0,0,0,0.1);
 }
 
 select {
@@ -95,10 +94,23 @@ select:focus {
 		color: #333;
 	}
 }
+
+.select2-container--default .select2-selection--single {
+	background: var(--global-palette9);
+	border-radius: 3px;
+	.select2-selection__rendered {
+		padding-left: 0;
+	}
+	.select2-selection__arrow {
+		right: 0.9375em;
+	}
+}
+
 .elementor-select-wrapper select{
     background-image:none;
 }
-.search-form {
+.search-form,
+.woocommerce-product-search {
 	position: relative;
 	input[type="search"], input.search-field {
 		padding: 0.2em 0.8em;
@@ -142,6 +154,11 @@ select:focus {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		.base-svg-iconset svg {
+			height: 1.25em;
+			width: 1.25em;
+		}
 	}
 	.search-submit[type="submit"]:hover ~ .base-search-icon-wrap {
 		color: var(--global-palette4);

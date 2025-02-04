@@ -57,6 +57,16 @@ hr {
   overflow: visible; /* 2 */
 }
 
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
 /* Text-level semantics
    ========================================================================== */
 
@@ -85,7 +95,7 @@ abbr[title] {
 
 b,
 strong {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 /**
@@ -153,7 +163,9 @@ input,
 optgroup,
 select,
 textarea {
+  font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
 }
 
@@ -209,6 +221,14 @@ button:-moz-focusring,
 [type="reset"]:-moz-focusring,
 [type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
 }
 
 /**
@@ -280,6 +300,38 @@ textarea {
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
+
+/**
+ * Remove the X in Chrome and Safari on macOS.
+ */
+ [type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+[type="search"].no-cancel-button::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+[type="search"].no-decoration::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+[type="search"].no-decoration-no-cancel-button::-webkit-search-decoration,
+[type="search"].no-decoration-no-cancel-button::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/**
+ * Remove the X in IE.
+ */
+ [type="search"]::-ms-clear {
+  display: none;
+}
+
 
 /**
  * 1. Correct the inability to style clickable types in iOS and Safari.

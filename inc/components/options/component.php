@@ -1488,7 +1488,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'locked' => false,
 					),
 					'header_search_modal_color'              => array(
-						'color' => 'palette9',
+						'color' => 'palette3',
 						'hover' => '',
 					),
 					'header_search_modal_background'              => array(
@@ -1496,7 +1496,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'header_search_modal_background'                => array(
 						'desktop' => array(
-							'color' => 'rgba(9, 12, 16, 0.97)',
+							'color' => 'palette3',
 						),
 					),
 					// Mobile Header Button.
@@ -2477,7 +2477,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'post_navigation'         => true,
 					'post_related'            => true,
 					'post_related_style'      => 'wide',
-					'post_related_carousel_loop' => true,
+					'post_related_carousel_loop' => false,
 					'post_related_columns'    => '',
 					'post_related_title_font' => array(
 						'size' => array(
@@ -3144,7 +3144,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'product_content_element_extras' => array(
 						'enabled'   => true,
-						'title'     => __( '', 'avanam' ),
+						'title'     => '',
 						'feature_1' => __( '<strong>Estimated Delivery : </strong> Up to 4 business days', 'avanam' ),
 						'feature_2' => __( '<strong>Free Shipping & Returns : </strong> On all orders over $200', 'avanam' ),
 						'feature_3' => '',

@@ -2127,7 +2127,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->set_selector( '.primary-sidebar.widget-area .widget' );
 		$css->add_property( 'margin-bottom', $this->render_range( webapp()->option( 'sidebar_widget_spacing' ), 'desktop' ) );
 		$css->render_font( webapp()->option( 'sidebar_widget_content' ), $css );
-		$css->set_selector( '.primary-sidebar.widget-area .widget-title' );
+		$css->set_selector( '.primary-sidebar.widget-area .widget-title, .primary-sidebar.widget-area .wp-block-heading' );
 		$css->render_font( webapp()->option( 'sidebar_widget_title' ), $css );
 		$css->set_selector( '.primary-sidebar.widget-area .sidebar-inner-wrap a:where(:not(.button):not(.wp-block-button__link):not(.wp-element-button))' );
 			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'sidebar_link_colors', 'color' ) ) );
@@ -2145,7 +2145,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'margin-bottom', $this->render_range( webapp()->option( 'sidebar_widget_spacing' ), 'tablet' ) );
 		$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'sidebar_widget_content' ), 'tablet' ) );
 		$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'sidebar_widget_content' ), 'tablet' ) );
-		$css->set_selector( '.primary-sidebar.widget-area .widget-title' );
+		$css->set_selector( '.primary-sidebar.widget-area .widget-title, .primary-sidebar.widget-area .wp-block-heading' );
 		$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'sidebar_widget_title' ), 'tablet' ) );
 		$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'sidebar_widget_title' ), 'tablet' ) );
 		$css->set_selector( '.primary-sidebar.widget-area' );
@@ -2161,7 +2161,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		$css->add_property( 'margin-bottom', $this->render_range( webapp()->option( 'sidebar_widget_spacing' ), 'mobile' ) );
 		$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'sidebar_widget_content' ), 'mobile' ) );
 		$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'sidebar_widget_content' ), 'mobile' ) );
-		$css->set_selector( '.primary-sidebar.widget-area .widget-title' );
+		$css->set_selector( '.primary-sidebar.widget-area .widget-title, .primary-sidebar.widget-area .wp-block-heading' );
 		$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'sidebar_widget_title' ), 'mobile' ) );
 		$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'sidebar_widget_title' ), 'mobile' ) );
 		$css->set_selector( '.primary-sidebar.widget-area' );

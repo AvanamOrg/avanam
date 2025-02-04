@@ -236,26 +236,38 @@ a.social-button.has-custom-image {
 	background: rgba(9, 12, 16, 0.97);
 }
 #search-drawer .drawer-inner {
+	color: var(--global-palette3);
+	background-color: var(--global-palette9);
+	bottom: auto;
+	padding: 2.5em 0;
+	padding-top: 1em;
+	
 	.drawer-header {
 		position: relative;
 		z-index: 100;
+
+		.drawer-toggle {
+			padding: 0;
+		}
 	}
 	.drawer-content {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		position: absolute;
 		top: 0;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		padding: 2em;
+		padding: 1em;
+		padding-top: 0;
+
 	}
 	form {
 		max-width: 800px;
 		width: 100%;
 		margin: 0 auto;
 		display: flex;
+		z-index: 200;
 		label {
 			flex-grow: 2;
 		}
@@ -280,30 +292,23 @@ a.social-button.has-custom-image {
 		width: 100%;
 		background: transparent;
 		color:var(--global-palette6);
-		padding: 0.8em 80px 0.8em 0.8em;
-		font-size: 20px;
-		border: 1px solid currentColor;
-		&:focus {
-			color:white;
-			box-shadow: 5px 5px 0px 0px currentColor;
-		}
+		padding: 0.5em 80px 0.5em 1em;
+
 		@media screen and (max-width: $before-tablet-query) {
 			padding: 0.5em 50px 0.5em 1em;
 			font-size: 15px;
 		}
 	}
 	.search-submit[type="submit"] {
-		width: 70px;
+		width: 55px;
 	}
 	.base-search-icon-wrap {
 		color: var(--global-palette6);
-		width: 70px;
+		width: 55px;
 	}
 	.search-submit[type="submit"]:hover ~ .base-search-icon-wrap {
-		color: #ffffff;
 	}
 	button[type="submit"]:hover ~ .base-search-icon-wrap {
-		color: #ffffff;
 	}
 }
 // sticky Header

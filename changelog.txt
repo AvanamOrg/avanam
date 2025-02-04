@@ -1,4 +1,7 @@
-== 1.5.0 | 27th January 2024 ==
+== 1.5.1 | 4th February 2025 ==
+* Improve: Checkout button css.
+
+== 1.5.0 | 27th January 2025 ==
 * Add: Global variables.
 * Update: Woocommerce loader.
 * Update: Mini cart.

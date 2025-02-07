@@ -1,3 +1,6 @@
+== 1.5.2 | 7th February 2025 ==
+* Fix: Mini cart does not close when empty.
+
 == 1.5.1 | 4th February 2025 ==
 * Improve: Checkout button css.
 

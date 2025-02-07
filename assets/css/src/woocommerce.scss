@@ -115,6 +115,7 @@
     background-color: var(--global-palette7);
     border-bottom: 1px solid var(--global-gray-400);
     height: 50px;
+    z-index: 500;
 
     .cart-toggle-close {
         margin-right: 0px;

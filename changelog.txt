@@ -1,3 +1,6 @@
+== 1.5.3 | 9th February 2025 ==
+* Improve: Adjust font weight for special price.
+
 == 1.5.2 | 7th February 2025 ==
 * Fix: Mini cart does not close when empty.
 

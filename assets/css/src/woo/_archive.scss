@@ -200,18 +200,18 @@ select.orderby {
         .price {
             color: inherit;
             display: block;
-             font-weight: 500;
+            font-weight: 500;
             margin-bottom: 0.3em;
             font-size: 0.857em;
             del {
-                  color: var(--global-palette4);
+                color: var(--global-palette4);
                 opacity: 0.5;
                 display: inline-block;
             }
 
             ins {
                 background: none;
-                font-weight: 700;
+                font-weight: 500;
                 display: inline-block;
             }
 

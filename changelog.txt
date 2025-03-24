@@ -1,3 +1,7 @@
+== 1.5.4 | 24th March 2025 ==
+* Add: Apply filter to shop loop product title.
+* Fix: 00 cart total when currency symbol right.
+
 == 1.5.3 | 9th February 2025 ==
 * Improve: Adjust font weight for special price.
 

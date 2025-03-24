@@ -759,9 +759,8 @@ function header_cart() {
 		wp_enqueue_script( 'wc-cart-fragments' );
 		global $woocommerce;
 
-		$show_decimal = webapp()->option( 'header_cart_show_decimal' );
-		$cartTotal = WC()->cart->get_cart_total() . ( WC()->cart->total == 0 && $show_decimal ? '.00' : '' );
-		$cartSubTotal = WC()->cart->get_cart_subtotal() . ( WC()->cart->subtotal == 0 && $show_decimal ? '.00' : '' );
+		$cartTotal = add_suffix_to_price('total');
+		$cartSubTotal = add_suffix_to_price('subtotal');
 		$cartItems = WC()->cart->get_cart_contents_count();
 
 		$title      = webapp()->option( 'header_cart_title' );
@@ -900,9 +899,8 @@ function mobile_cart() {
 		wp_enqueue_script( 'wc-cart-fragments' );
 		global $woocommerce;
 
-		$show_decimal = webapp()->option( 'header_cart_show_decimal' );
-		$cartTotal = WC()->cart->get_cart_total() . ( WC()->cart->total == 0 && $show_decimal ? '.00' : '' );
-		$cartSubTotal = WC()->cart->get_cart_subtotal() . ( WC()->cart->subtotal == 0 && $show_decimal ? '.00' : '' );
+		$cartTotal = add_suffix_to_price('total','mobile');
+		$cartSubTotal = add_suffix_to_price('subtotal','mobile');
 		$cartItems = WC()->cart->get_cart_contents_count();
 
 		$title      = webapp()->option( 'header_mobile_cart_title' );
@@ -1172,4 +1170,34 @@ function search_modal() {
 		</div>
 	</div>
 	<?php
+}
+
+
+function add_suffix_to_price($type = 'total', $device = '') {
+	// Determine if decimals should be shown (mobile or desktop setting)
+    $show_decimal = $device === 'mobile' 
+        ? webapp()->option('header_mobile_cart_show_decimal') 
+        : webapp()->option('header_cart_show_decimal');
+
+    // Get the correct cart value and price
+    $cart = WC()->cart;
+    $price = ($type === 'subtotal') ? $cart->get_cart_subtotal() : $cart->get_cart_total();
+    $cart_value = ($type === 'subtotal') ? $cart->subtotal : $cart->total;
+
+    // Only modify price if cart total/subtotal is 0 and the setting is enabled
+    if ($cart_value == 0 && $show_decimal) {
+        $currency_symbol = get_woocommerce_currency_symbol();
+        $price_format = get_woocommerce_price_format();
+
+        // Determine if currency symbol is before or after the price
+        if (strpos($price_format, '%1$s') < strpos($price_format, '%2$s')) {
+            // Currency symbol is before the price
+            $price .= '.00';
+        } else {
+            // Currency symbol is after the price
+            $price = str_replace($currency_symbol, '.00' . $currency_symbol, $price);
+        }
+    }
+
+    return $price;
 }

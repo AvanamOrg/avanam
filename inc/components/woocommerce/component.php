@@ -12,6 +12,7 @@ use Base\Base_CSS;
 use Base_Blocks_Frontend;
 use ElementorPro;
 use function Base\webapp;
+use function Base\add_suffix_to_price;
 use function add_action;
 use function add_theme_support;
 use function have_posts;
@@ -955,8 +956,8 @@ class Component implements Component_Interface {
 		global 	$woocommerce;
 		
 		$show_decimal = webapp()->option( 'header_cart_show_decimal' );
-		$cartTotal = WC()->cart->get_cart_total() . ( WC()->cart->total == 0 && $show_decimal ? '.00' : '' );
-		$cartSubTotal = WC()->cart->get_cart_subtotal() . ( WC()->cart->subtotal == 0 && $show_decimal ? '.00' : '' );
+		$cartTotal = add_suffix_to_price('total');
+		$cartSubTotal = add_suffix_to_price('subtotal');
 		$cartItems = WC()->cart->get_cart_contents_count();
 
 		$title = webapp()->option( 'header_cart_title' );
@@ -994,8 +995,8 @@ class Component implements Component_Interface {
 		global 	$woocommerce;
 
 		$show_decimal = webapp()->option( 'header_mobile_cart_show_decimal' );
-		$cartTotal = WC()->cart->get_cart_total() . ( WC()->cart->total == 0 && $show_decimal ? '.00' : '' );
-		$cartSubTotal = WC()->cart->get_cart_subtotal() . ( WC()->cart->subtotal == 0 && $show_decimal ? '.00' : '' );
+		$cartTotal = add_suffix_to_price('total','mobile');
+		$cartSubTotal = add_suffix_to_price('subtotal','mobile');
 		$cartItems = WC()->cart->get_cart_contents_count();
 
 		$title = webapp()->option( 'header_mobile_cart_title' );
@@ -1398,7 +1399,19 @@ class Component implements Component_Interface {
 		global $product;
 
 		$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
-		echo '<h2 class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '"><a href="' . esc_url( $link ) . '" class="woocommerce-LoopProduct-link-title woocommerce-loop-product__title_ink">' . get_the_title() . '</a></h2>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$title_classes = apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ); // Allow to modify the product title classes
+		$link_classes = apply_filters( 'woocommerce_product_loop_title_link_classes', 'woocommerce-LoopProduct-link-title woocommerce-loop-product__title_link' ); // Allow to modify the anchor tag classes
+		$product_title = apply_filters( 'woocommerce_product_loop_title', get_the_title(), $product ); // Allow to modify the product title
+	
+		$output = sprintf(
+			'<h2 class="%s"><a href="%s" class="%s">%s</a></h2>',
+			esc_attr( $title_classes ),
+			esc_url( $link ),
+			esc_attr( $link_classes ),
+			$product_title
+		);
+	
+		echo apply_filters( 'woocommerce_product_loop_title_html', $output, $product ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		// phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
 	}
 

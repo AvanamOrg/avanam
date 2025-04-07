@@ -12,6 +12,16 @@
  /**
   * Style begins
   */
+  @media screen and (max-width: $tablet-minus-query) {
+    .woocommerce.product-tab-style-center div.product .woocommerce-tabs ul.tabs {
+        display: flex;
+		justify-content: unset; 
+		overflow-x: auto;
+        li {
+            flex-shrink: 0;
+        }
+    }
+  }
   @media screen and (max-width: $phone-minus-query) {
     .woocommerce div.product .woocommerce-tabs {
         margin-bottom: 2em;
@@ -20,13 +30,12 @@
             margin-bottom: 1em;
             li {
                 display: block;
-                margin: 0;
-                border-radius: 0;
-                border: 0;
                 border-bottom: 1px solid var(--global-gray-400);
                 a {
                     display: block;
                     opacity: 0.7;
+                    padding: 7px 15px;
+                    font-size: inherit;
                 }
             }
             li.active {

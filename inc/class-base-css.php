@@ -1203,8 +1203,10 @@ class Base_CSS {
 			}
 		}
 		if ( $maybe_add ) {
-			if ( ! in_array( $font['variant'], self::$google_fonts[ $parent_font['family'] ]['fontvariants'], true ) ) {
-				array_push( self::$google_fonts[ $parent_font['family'] ]['fontvariants'], $font['variant'] );
+			if (is_array(self::$google_fonts) && !empty(self::$google_fonts)) {
+				if ( ! in_array( $font['variant'], self::$google_fonts[ $parent_font['family'] ]['fontvariants'], true ) ) {
+					array_push( self::$google_fonts[ $parent_font['family'] ]['fontvariants'], $font['variant'] );
+				}
 			}
 		}
 	}

@@ -355,6 +355,10 @@
 				overflow: hidden;
 				position: relative;
 
+				display: flex;
+				justify-content: unset;
+				overflow-x: auto;
+
 				li {
 					border: 1px solid var(--global-gray-400);
 					background-color: var(--global-palette8);
@@ -364,6 +368,8 @@
 					border-radius: 3px 3px 0 0;
 					margin: 0 2px;
 					padding: 0;
+
+					flex-shrink: 0;
 
 					a {
 						display: inline-block;
@@ -599,8 +605,8 @@
 	   z-index: 9;
    	}
    	&.product-tab-style-center div.product .woocommerce-tabs ul.tabs {
-		text-align: center;
 		padding: 0;
+		justify-content: center;
 		li {
 			border: 0;
 			border-bottom: 3px solid transparent;

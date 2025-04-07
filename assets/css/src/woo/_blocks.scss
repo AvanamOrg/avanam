@@ -377,11 +377,13 @@ li.product a .secondary-product-image, .wc-block-grid__product a .secondary-prod
     overflow: hidden;
 }
 // Hover image Fade
-.woo-archive-image-hover-fade .woocommerce-loop-product__link .attachment-woocommerce_thumbnail {
-    transition: opacity 0.3s ease;
-}
-.woo-archive-image-hover-fade .woocommerce-loop-product__link:hover .attachment-woocommerce_thumbnail {
-    opacity: 1;
+@media screen and (min-width:767px) {
+	.woo-archive-image-hover-fade .woocommerce-loop-product__link .attachment-woocommerce_thumbnail {
+		transition: opacity 0.3s ease;
+	}
+	.woo-archive-image-hover-fade .woocommerce-loop-product__link:hover .attachment-woocommerce_thumbnail {
+		opacity: 1;
+	}	
 }
 // Hover image Zoom
 .woo-archive-image-hover-zoom .woocommerce-loop-product__link .attachment-woocommerce_thumbnail {

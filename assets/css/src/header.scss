@@ -360,3 +360,22 @@ a.social-button.has-custom-image {
 #mobile-header .mobile-navigation ul li.menu-item-has-children .drawer-nav-drop-wrap, #mobile-header .mobile-navigation ul li:not(.menu-item-has-children) a {
 	border: 0;
 }
+
+#mobile-header {
+	.site-header-item{
+        &:has(input, select, textarea) { 
+			flex: 1 1 auto;  // Allows it to grow fully 
+			min-width: 0;  // Prevents unwanted shrinking 
+			width: 100%;  // Forces full width 
+			justify-self: center;
+			align-self: center;
+
+			& > * {
+				flex-grow: 1;
+			}
+        }
+		input, select, textarea {
+			width: 100%;
+		}
+    }
+}

@@ -1,3 +1,8 @@
+== 1.5.5 | 7th April 2025 ==
+* Fix: Variant error at default options.
+* Fix: WooCommerce product tabs css.
+* Fix: Password input css.
+
 == 1.5.4 | 24th March 2025 ==
 * Add: Apply filter to shop loop product title.
 * Fix: 00 cart total when currency symbol right.

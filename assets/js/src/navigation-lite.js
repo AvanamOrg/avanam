@@ -8,6 +8,8 @@
 
 (function() {
 	'use strict';
+	
+	// Define window.base first
 	window.base = {
 
 		/**
@@ -493,11 +495,37 @@
 			window.base.initTransHeaderPadding();
 		}
 	}
-	if ( 'loading' === document.readyState ) {
-		// The DOM has not yet been loaded.
-		document.addEventListener( 'DOMContentLoaded', window.base.init );
+
+	// Initialize after DOM is ready
+	function initialize() {
+		if (typeof window.base.initNavToggleSubmenus === 'function') {
+			window.base.initNavToggleSubmenus();
+		}
+		if (typeof window.base.initToggleDrawer === 'function') {
+			window.base.initToggleDrawer();
+		}
+		if (typeof window.base.initMobileToggleAnchor === 'function') {
+			window.base.initMobileToggleAnchor();
+		}
+		if (typeof window.base.initMobileToggleSub === 'function') {
+			window.base.initMobileToggleSub();
+		}
+		if (typeof window.base.initOutlineToggle === 'function') {
+			window.base.initOutlineToggle();
+		}
+		if (typeof window.base.initStickySidebar === 'function') {
+			window.base.initStickySidebar();
+		}
+		if (typeof window.base.initTransHeaderPadding === 'function') {
+			window.base.initTransHeaderPadding();
+		}
+	}
+
+	// Check if DOM is already loaded
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initialize);
 	} else {
-		// The DOM has already been loaded.
-		window.base.init();
+		// DOM already loaded, initialize immediately
+		initialize();
 	}
 })();

@@ -1,3 +1,7 @@
+== 1.5.6 | 24th April 2025 ==
+* Fix: JS error for navigation.
+* Fix: Early translation notice.
+
 == 1.5.5 | 7th April 2025 ==
 * Fix: Variant error at default options.
 * Fix: WooCommerce product tabs css.

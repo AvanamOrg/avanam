@@ -9,7 +9,7 @@
  * @package Base
  */
 
-define( 'AVANAM_VERSION', '1.5.5' );
+define( 'AVANAM_VERSION', '1.5.6' );
 define( 'AVANAM_MINIMUM_WP_VERSION', '6.0' );
 define( 'AVANAM_MINIMUM_PHP_VERSION', '7.4' );
 

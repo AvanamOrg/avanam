@@ -50,28 +50,3 @@ require get_template_directory() . '/inc/template-functions/archive-functions.ph
 
 // Load the template hooks.
 require get_template_directory() . '/inc/template-hooks.php';
-
-// Example Block Style
-if ( function_exists( 'register_block_style' ) ) {
-    register_block_style(
-        'core/quote',
-        array(
-            'name'         => 'blue-quote',
-            'label'        => __( 'Blue Quote', 'avanam' ),
-            'is_default'   => true,
-            'inline_style' => '.wp-block-quote.is-style-blue-quote { color: blue; }',
-        )
-    );
-}
-// Example Block Pattern
-if ( function_exists( 'register_block_pattern' ) ) {
-    register_block_pattern(
-        'avanam/example',
-        array(
-            'title'      => __( 'Example Pattern', 'avanam' ),
-            'categories' => array( 'header' ), // Assigning the pattern the "header" area.
-            'blockTypes' => array( 'core/template-part/header' ),
-            'content'    => 'Content of example block pattern',
-        )
-    );
-}

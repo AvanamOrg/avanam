@@ -50,7 +50,8 @@ class Component implements Component_Interface {
 			$remote = wp_remote_get(
 				'https://avanam.org/updates/avanam.json',
 				array(
-					'timeout' => 10,
+					'timeout' => 3,
+					'sslverify' => false,
 					'headers' => array(
 						'Accept' => 'application/json'
 					)
@@ -71,7 +72,7 @@ class Component implements Component_Interface {
 				return $transient;
 			}
 
-			set_transient( 'avanam-theme-update'.$version, $remote, HOUR_IN_SECONDS );
+			set_transient( 'avanam-theme-update'.$version, $remote, WEEK_IN_SECONDS );
 
 		}
 		

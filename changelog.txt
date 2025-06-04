@@ -1,3 +1,6 @@
+== 1.5.7 | 30th May 2025 ==
+* Improve: Updater performance
+
 == 1.5.6 | 24th April 2025 ==
 * Fix: JS error for navigation.
 * Fix: Early translation notice.

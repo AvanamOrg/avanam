@@ -1,5 +1,8 @@
+== 1.5.8 | 10th June 2025 ==
+* Update: Cart and checkout pages for Elementor pro
+
 == 1.5.7 | 30th May 2025 ==
-* Improve: Updater performance
+* Improve: Update checker performance
 
 == 1.5.6 | 24th April 2025 ==
 * Fix: JS error for navigation.

@@ -1,4 +1,7 @@
-== 1.5.8 | 10th June 2025 ==
+== 1.5.9 | 17th June 2025 ==
+* Fix: Product title overlapping at cart page
+
+== 1.5.8 | 15th June 2025 ==
 * Update: Cart and checkout pages for Elementor pro
 
 == 1.5.7 | 30th May 2025 ==

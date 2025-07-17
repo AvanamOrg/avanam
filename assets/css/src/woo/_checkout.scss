@@ -468,7 +468,7 @@
 			.product-thumbnail {
 				width: 100px;
 			 }
-			 th.product-name {
+			 thead th.product-name {
 				position: absolute;
 				left: 0;
 			}
@@ -483,7 +483,7 @@
         #add_payment_method {
         
             table.cart {
-                th.product-name {
+                thead th.product-name {
                     right: 0;
                     left:auto;
                 }

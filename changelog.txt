@@ -1,3 +1,7 @@
+
+== 1.5.10 | 7th January 2026 ==
+* Fix: Font size in view cart button
+
 == 1.5.9 | 17th June 2025 ==
 * Fix: Product title overlapping at cart page
 

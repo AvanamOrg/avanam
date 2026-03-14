@@ -1,3 +1,5 @@
+== 1.5.11 | 14th February 2026 ==
+* Fix: Spacing add to cart button in mobile
 
 == 1.5.10 | 7th January 2026 ==
 * Fix: Font size in view cart button

@@ -1,3 +1,6 @@
+== 1.6.0 | 3rd August 2026 ==
+* Added: RTL support
+
 == 1.5.11 | 14th February 2026 ==
 * Fix: Spacing add to cart button in mobile
 

@@ -443,12 +443,12 @@
 .rtl {
 	.footer-widget-area.content-align-right {
 		.footer-social-inner-wrap {
-			justify-content: flex-start;
+			justify-content: flex-end;
 		}
 	}
 	.footer-widget-area.content-align-left {
 		.footer-social-inner-wrap {
-			justify-content: flex-end;
+			justify-content: flex-start;
 		}
 	}
 }
